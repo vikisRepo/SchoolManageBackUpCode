@@ -1,0 +1,112 @@
+<form [formGroup] = "empDetailsForm" class="p-base">
+    <div class="container-fluid" style="margin-top:5px">
+        <div class="row">
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Teacher ID</mat-label>
+                    <input matInput formControlName="teacherId"  >
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Employee ID</mat-label>
+                    <input matInput formControlName="employeeId" >
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Education</mat-label>
+                    <mat-select formControlName="educationId">
+                        <mat-option *ngFor="let educationId of education " [value]="educationId.value">
+                            {{educationId.viewValue}} 
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Official Email</mat-label>
+                    <input matInput formControlName="officialEmailId" >
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>ESI Number</mat-label>
+                    <input matInput formControlName="esiNumber" >
+                </mat-form-field>
+            </div>
+
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Staff Type</mat-label>
+                    <mat-select formControlName="staffId">
+                        <mat-option *ngFor="let staff of staffId" [value]="staff.value">
+                            {{staff.viewValue}} 
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Employeement Status</mat-label>
+                    <mat-select formControlName="employeementstatusId">
+                        <mat-option *ngFor="let employeementstatusId of employeementStatus" [value]="employeementstatusId.value">
+                            {{employeementstatusId.viewValue}} 
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Reporting To</mat-label>
+                    <mat-select formControlName="reportingTo">
+                        <mat-option *ngFor="let reportingTo  of reportingTo " [value]="reportingTo .value">
+                            {{reportingTo .viewValue}} 
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>EPF Number</mat-label>
+                    <input matInput formControlName="epfNumber">
+                </mat-form-field>
+            </div>
+
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Department</mat-label>
+                    <mat-select formControlName="departmentId">
+                        <mat-option *ngFor="let departmentId  of department " [value]="departmentId .value">
+                            {{departmentId .viewValue}} 
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Joining Date</mat-label>
+                    <input matInput [matDatepicker]="picker3" formControlName="joiningDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                    <mat-datepicker #picker3></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Active</mat-label>
+                    <mat-select formControlName="activeId">
+                        <mat-option *ngFor="let activeId  of active_value " [value]="activeId .value">
+                            {{activeId .viewValue}} 
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>UAN Number</mat-label>
+                    <input matInput formControlName="uanNumber" >
+                </mat-form-field>
+            </div>
+
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Designation</mat-label>
+                    <mat-select formControlName="designationId">
+                        <mat-option *ngFor="let designationId  of designation " [value]="designationId .value">
+                            {{designationId .viewValue}} 
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Role</mat-label>
+                    <mat-select formControlName="roleId">
+                        <mat-option *ngFor="let roleId  of role" [value]="roleId .value">
+                            {{roleId .viewValue}} 
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+</form>
+

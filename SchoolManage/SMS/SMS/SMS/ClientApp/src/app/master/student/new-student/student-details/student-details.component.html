@@ -1,0 +1,219 @@
+<!-- <form [formGroup]="studentProfileForm" class="p-base"> -->
+<form [formGroup]="studentProfileForm" class="p-base">
+    <div class="container-fluid" style="margin-top:5px">
+        <div class="row">
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Salutation</mat-label>
+                    <mat-select formControlName="salutation">
+                        <mat-option *ngFor="let salutation of salutations" [value]="salutation.value">
+                            {{salutation.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>D.O.B</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="dob">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Religion</mat-label>
+                    <mat-select formControlName="religionId">
+                        <mat-option *ngFor="let religionId of religion" [value]="religionId.value">
+                            {{religionId.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>First Name</mat-label>
+                    <input matInput formControlName="firstName">
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Blood Group</mat-label>
+                    <mat-select formControlName="bloodGroup">
+                        <mat-option *ngFor="let bloodGroup of blood" [value]="bloodGroup.viewValue">
+                            {{bloodGroup.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Gender</mat-label>
+                    <mat-select formControlName="gender">
+                        <mat-option *ngFor="let gender of gender " [value]="gender.value">
+                            {{gender.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Middle Name</mat-label>
+                    <input matInput formControlName="middleName">
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Nationality</mat-label>
+                    <mat-select formControlName="nationalityId">
+                        <mat-option *ngFor="let national of nationality" [value]="national.value">
+                            {{national.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Personal Email</mat-label>
+                    <input matInput formControlName="emailId">
+                </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Last Name</mat-label>
+                    <input matInput formControlName="lastName">
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Mobile Number</mat-label>
+                    <input matInput formControlName="mobile">
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>AAdhar Number</mat-label>
+                    <input matInput formControlName="aadharNumber">
+                </mat-form-field>
+            </div>
+        </div>
+        <!-- <div class="row">
+            <div class="col-sm-5">
+                <div class="col-sm-2">
+                    <button mat-icon-button>
+                        <img src="../../../assets/user.png" alt="menu" style="width:85px;height: 85px;margin-top:50px;">
+                    </button>
+                   <p style="margin-top:60px;font-size:15px;margin-left: 5px;">Upload Profile Pic</p>          </div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <button mat-icon-button>
+                        <img src="../../../assets/hipster.png" alt="menu" class="box"
+                            style="width:75px;height: 75px;margin-top:50px;margin-left: 60px;">
+                    </button>
+                </div>
+            </div>
+
+        </div> -->
+
+
+        <app-address-details [addressDetails]="addressData" (addresses)="getAddress($event)" #dt></app-address-details>
+        <p class="mat-title">School info</p>
+
+
+        <div class="row">
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Admission Number</mat-label>
+                    <input matInput formControlName="admissionNumber">
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Roll Number</mat-label>
+                    <input matInput formControlName="rollNo">
+                </mat-form-field>
+
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Admision Date</mat-label>
+                    <input matInput [matDatepicker]="picker1" formControlName="admissionDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>First Language</mat-label>
+                    <mat-select formControlName="firstLanguage">
+                        <mat-option *ngFor="let firstLanguage of firstLang " [value]="firstLanguage.value">
+                            {{firstLanguage.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>class</mat-label>
+                    <mat-select formControlName="class">
+                        <mat-option *ngFor="let classes of class" [value]="classes.value">
+                            {{classes.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Second Language</mat-label>
+                    <mat-select formControlName="secondLanguage">
+                        <mat-option *ngFor="let secondLanguage of secndLanguage " [value]="secondLanguage.value">
+                            {{secondLanguage.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Section</mat-label>
+                    <mat-select formControlName="section">
+                        <mat-option *ngFor="let section of section " [value]="section.value">
+                            {{section.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>EMSIS Number</mat-label>
+                    <input matInput formControlName="emisNumber">
+                </mat-form-field>
+
+            </div>
+        </div>
+
+        <p class="mat-title">Previous School</p>
+
+        <div class="row">
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>School Name</mat-label>
+                    <input matInput formControlName="schoolName">
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>School Brand</mat-label>
+                    <mat-select formControlName="schoolBrand">
+                        <mat-option *ngFor="let schoolBrand of sclBrand " [value]="schoolBrand.value">
+                            {{schoolBrand.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Passing Out School</mat-label>
+                    <mat-select formControlName="passingOutSchool">
+                        <mat-option *ngFor="let passingOutSchool of pasOutScl " [value]="passingOutSchool.value">
+                            {{passingOutSchool.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Year of Attendance</mat-label>
+                    <mat-select formControlName="yearofattendence">
+                        <mat-option *ngFor="let yearofattendence of yearOfAttends " [value]="yearofattendence.value">
+                            {{yearofattendence.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Academic Percentage</mat-label>
+                    <input matInput formControlName="academicPrecentage">
+                </mat-form-field>
+                <mat-form-field appearance="fill" style="width:350px;">
+                    <mat-label>Reason for Leaving</mat-label>
+                    <textarea matInput formControlName="reasonForLeaving"></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+
+    </div>
+</form>

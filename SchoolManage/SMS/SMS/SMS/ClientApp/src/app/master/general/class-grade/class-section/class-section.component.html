@@ -1,0 +1,55 @@
+<form [formGroup]="csForm">
+    <mat-card >
+        <div class="row">
+
+
+            <input type = "hidden" formControlName ="academicYear">
+
+            <mat-form-field appearance="standard" class="col-sm-2">
+                <mat-label>Class</mat-label>
+                <input matInput required formControlName="class">
+            </mat-form-field>
+
+            <mat-form-field appearance="standard" class="col-sm-3">
+                <mat-label>Section</mat-label>
+                <mat-select formControlName="sections" multiple>
+                    <mat-option *ngFor="let sections of sectionList" [value]="sections">{{sections}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+
+            <mat-form-field appearance="standard" class="col-sm-4">
+                <mat-label>Subject</mat-label>
+                <mat-select formControlName="subjects" multiple>
+                    <mat-option *ngFor="let sub of subjectList" [value]="sub">{{sub}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Group</mat-label>
+                    <input matInput formControlName="group">
+                </mat-form-field>
+
+
+                <button mat-icon-button class="btnIcon" *ngIf="newFlag"  (click)="save('save')">
+                    <img src="../../../../assets/edit.png" class="icon">
+                </button>
+
+                <button mat-icon-button class="btnIcon" *ngIf="!newFlag" (click)="save(_eventtype)">
+                    <img src="../../../../assets/edit.png" class="icon">
+                </button>
+
+                <button mat-icon-button class="btnIcon" (click)="delete()">
+                    <img src="../../../../assets/trash.png" class="icon">
+                </button>
+            </div>
+
+
+        </div>
+    </mat-card>
+
+    <!-- <p>
+        {{ csForm.value | json }}
+    </p> -->
+</form>

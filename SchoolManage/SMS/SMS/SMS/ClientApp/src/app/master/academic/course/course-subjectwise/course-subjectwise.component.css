@@ -1,0 +1,24 @@
+.headerstyle
+{   background-color: 	#f2f2f2;
+    height: 60px;
+   padding: 15px;
+    font-size: 40px;
+    color:	#676360;
+}
+    .footer-n-stu
+    {
+      margin-top:10px;
+      display: flex;
+      justify-content: flex-end;  
+      margin-right: 20px;
+      
+    }
+  .button-width{
+    width: 100px;
+  }
+  .footer-n-stu>button:first-child{
+      margin-right: 10px;
+  }
+  .add{
+    width: 100px;
+  }

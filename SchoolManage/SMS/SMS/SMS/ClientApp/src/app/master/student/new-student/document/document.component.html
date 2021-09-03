@@ -1,0 +1,31 @@
+<!-- <button mat-raised-button
+class="example-delete-tab-button"
+[disabled]="tabs.length === 1"
+(click)="backTab(index)">
+Delete Tab
+</button> -->
+
+<form [formGroup]="documentForm" class="p-base">
+
+    <div class="container-fluid">
+        <!-- <angular-file-uploader #fileUpload1
+        [config]="afuConfig">
+       [resetUpload]=resetVar -->
+        <!-- // (ApiResponse)="DocUpload($event)">  -->
+
+
+
+        <div class="row" *ngFor = "let doc of attachementTitles">
+            <div class="col-sm-3" style="margin-left: 50px;margin-Top: 20px;">
+                <h3>{{doc}}</h3>
+            </div>
+            <div class="col-sm-5" style="margin-Top: 20px;">
+                <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
+                
+            </div>
+           
+        </div>
+     
+
+    </div>
+</form>

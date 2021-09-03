@@ -1,0 +1,93 @@
+<nav class="navbar navbar-expand-sm bg-light navbar-light Navborder">
+  <a>
+    <img src="../../../assets/menu.png" alt="logo" style="width:30px;" class="menuIcon" (click)="drawer.toggle() ">
+    
+  </a>
+  <p class="NavborHead">Menu</p>
+  <div class="NavCenter">
+    <div class="row">
+    <img src="../../../assets/BVloginlogo.png"  alt="logo" style="width:100px;padding: 5px;">
+    <h1 style="padding-top:29px;padding-left:15px">BV Public School</h1>
+    </div>
+  </div>
+  
+  <div class="mx-auto order-0">
+    
+     <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+        <span class="navbar-toggler-icon"></span>
+    </button>-->
+</div>
+</nav>
+<div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+            </a>
+        </li>
+    </ul>
+    <!-- <h1 class="content">Welcoe<br>Username!</h1> -->
+    <img src="../../../assets/hipster.png"  alt="profile" style="width:100px; padding-right: 10px;">
+    <img src="../../../assets/notification-bell.png"  alt="Notify" style="width:40px; padding-right: 10px;">
+    <button class="btn  " style="background-color: #f2725f;color:white" type="submit">Help</button>
+</div>
+
+<mat-drawer-container class="sidenav-container" autosize>
+  <mat-drawer #drawer class="sidenav-content" mode="push">
+    <mat-accordion>  
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+       <mat-expansion-panel-header>
+          <mat-panel-title>
+           <img src="../../../assets/student.png" style="width:40px;">
+          </mat-panel-title>
+          <mat-panel-description>
+            Student
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+         <mat-list-item>
+          <button mat-flat-button>Student List</button>
+         </mat-list-item>
+         <mat-list-item>
+           <button mat-flat-button> New Student </button>
+         </mat-list-item>   
+         <mat-list-item>
+          <button mat-flat-button> Student Promotion/Detain </button>
+         </mat-list-item>
+         <mat-list-item>
+          <button mat-flat-button> Student Exit </button>
+         </mat-list-item>
+         <mat-list-item>
+          <button mat-flat-button> Student Feedback </button>
+         </mat-list-item>   
+        </mat-nav-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <mat-divider></mat-divider>
+    <mat-accordion>  
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+       <mat-expansion-panel-header>
+          <mat-panel-title>
+           <img src="../../../assets/teacher.png" style="width:40px;">
+          </mat-panel-title>
+          <mat-panel-description>
+            Staff
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+         <mat-list-item>
+          <button mat-flat-button>Staff List</button>
+         </mat-list-item>
+         <mat-list-item>
+           <button mat-flat-button>New Staff</button>
+         </mat-list-item>   
+         <mat-list-item>
+          <button mat-flat-button>e-Letter</button>
+         </mat-list-item>
+         <mat-list-item>
+          <button mat-flat-button>Staff Feedback</button>
+         </mat-list-item>   
+        </mat-nav-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-drawer>
+</mat-drawer-container>

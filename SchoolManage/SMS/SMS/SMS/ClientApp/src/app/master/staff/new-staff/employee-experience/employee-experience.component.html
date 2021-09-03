@@ -1,0 +1,48 @@
+<form [formGroup]="experienceForm" class="p-base">
+    <div class="container-fluid" style="margin-top:5px" formArrayName="experiences">
+        <div [formGroupName]="i" *ngFor="let address of experiences.controls; let i=index">
+            <div class="row">
+                <div class="col-sm-3">
+                    <mat-form-field appearance="standard">
+                        <mat-label attr.for="{{'From' + i}}">From</mat-label>
+                        <input id="{{'From' + i}}" matInput [matDatepicker]="picker4" formControlName="from">
+                        <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                        <mat-datepicker #picker4></mat-datepicker>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-sm-3">
+                    <mat-form-field appearance="standard">
+                        <mat-label attr.for="{{'To' + i}}">To</mat-label>
+                        <input id="{{'To' + i}}" matInput [matDatepicker]="picker5" formControlName="to">
+                        <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+                        <mat-datepicker #picker5></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-3">
+                    <mat-form-field appearance="fill" style="width:350px;">
+                        <mat-label attr.for="{{'Responsiblity' + i}}">Responsiblity</mat-label>
+                        <textarea id="{{'Responsiblity' + i}}" matInput formControlName="responsiblity"></textarea>
+                    </mat-form-field>
+
+
+                </div>
+                <img src="../../../../assets/trash.png" class="icon"
+                    style="margin-Top: 25px; cursor: pointer; width: 25px;height: 25px;float:right" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-9"></div>
+            <div class="col-sm-1">
+                <img src="../../../assets/plus.png" (click)="addExperience()" alt="profile" style="height:55px;">
+            </div>
+        </div>
+
+    </div>
+
+    <!-- <button (click) = "addExperience()"> Add Experience</button> -->
+</form>
+
+<!-- <p>
+    {{experienceForm.value | json}}
+</p> -->

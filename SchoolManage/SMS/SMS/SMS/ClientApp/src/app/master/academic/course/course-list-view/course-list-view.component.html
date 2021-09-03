@@ -1,0 +1,86 @@
+<div class="row headerstyle ">
+    <div class="col-sm-5">
+        <h2>Course</h2>
+    </div>
+    <div class="col-sm-7">
+        <div class="right-content">
+            <img src="../../../assets/plus.png" style="height:35px;margin-top:-10px;margin-right: 5px; cursor: pointer;"
+                (click)="navigate()" />
+        </div>
+    </div>
+</div>
+
+<form [formGroup]="courseListForm">
+    <div class=" row infoheaderstyle ">
+
+        <h2 style="margin-left: 15px;">Class:{{classId}}</h2>
+        <h2 style="margin-left: 70px; background-color:#f27200;color: white;padding-left: 15px;padding-right: 15px;">
+            {{subjectName}}
+        </h2>
+        <div style="margin-top: -20px;margin-left: 100px;">
+            <mat-form-field appearance="standard">
+                <mat-label>Course Created From</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="courseCFrom">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field appearance="standard" style="margin-left: 100px;">
+                <mat-label>Course Created To</mat-label>
+                <input matInput [matDatepicker]="picker1" formControlName="courseCTo">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+
+            <!-- //(change)="checkBoxAction($event)" -->
+            <mat-checkbox color="primary" style="margin-left: 100px; ">Course Active</mat-checkbox>
+
+
+
+
+        </div>
+        <div class="right-content">
+            <ul type="none" class="merge-two-Line" style="margin-top:-20px;">
+                <li>count:1 </li>
+                <br>
+                <li>Clear_All</li>
+                <!-- <li>!</li> -->
+            </ul>
+        </div>
+        <div class="col-sm-3">
+
+        </div>
+    </div>
+    <!-- <div class="targetHeaderstyle">
+        <div class="row">
+            <div class="col-sm-6" style="margin-top: -18px;">
+                <h2 style="margin-left: 40px;">Class:{{classId}}</h2>
+                <h2
+                    style="margin-left: 70px; background-color:#f27200;color: white;padding-left: 15px;padding-right: 15px;">
+                    {{subjectName}}
+                </h2>
+            </div>
+            <div class="col-sm-3 headers">
+                <mat-form-field appearance="standard">
+                    <mat-label>status</mat-label>
+                    <mat-select formControlName="status">
+                        <mat-option *ngFor="let status of allstatus" [value]="status.value">
+                            {{status.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-3" style="margin-left: -50px;">
+                <mat-checkbox color="primary" (change)="checkBoxAction($event)">Assign Letter</mat-checkbox>
+
+            </div>
+            <div class="right-content" style="margin-top:-27px;">
+                <ul type="none" class="merge-two-Line">
+                    <li>count:1 </li>
+                    <br>
+                    <li>Clear All</li>
+                    <li>!</li> -->
+    <!-- </ul>
+            </div>
+        </div>
+    </div> -->
+</form>

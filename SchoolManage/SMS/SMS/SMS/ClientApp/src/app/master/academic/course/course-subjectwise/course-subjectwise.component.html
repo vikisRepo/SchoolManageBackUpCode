@@ -1,0 +1,49 @@
+<app-header-action [index]='9'></app-header-action> 
+
+<div class=" row headerstyle">
+    <h2 style="margin-left: 40px;">Class:{{class}}</h2>
+    <h2 style="margin-left: 70px; background-color:#f27200;color: white;padding-left: 15px;padding-right: 15px;">
+        {{subject}}
+    </h2>
+</div>
+<mat-tab-group [(selectedIndex)]="selectedTab">
+    <mat-tab>
+        <ng-template mat-tab-label>
+          Course Details
+          <mat-icon *ngIf="emitcourseformDetails[0]!=null && emitcourseformDetails[0]" color="primary">check_circle</mat-icon>
+        </ng-template>
+        <app-course-details (emitcourseformDetails)="setTabFormDetails($event,0)"></app-course-details>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          Content Upload
+          <mat-icon *ngIf="emitcourseformDetails[1]!=null && emitcourseformDetails[1]" color="primary">check_circle</mat-icon>
+        </ng-template>
+        <app-content-upload (emitcourseformDetails)="setTabFormDetails($event,1)"></app-content-upload>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          Target Students
+          <mat-icon *ngIf="emitcourseformDetails[2]!=null && emitcourseformDetails[2]" color="primary">check_circle</mat-icon>
+        </ng-template>
+        <app-target-student (emitcourseformDetails)="setTabFormDetails($event,2)"></app-target-student>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          Preview & Publish
+          <mat-icon *ngIf="emitcourseformDetails[3]!=null && emitcourseformDetails[3]" color="primary">check_circle</mat-icon>
+        </ng-template>
+         <app-preview-publish (emitcourseformDetails)="setTabFormDetails($event,3)"></app-preview-publish>
+      </mat-tab>
+</mat-tab-group>
+<div class="footer-n-stu">
+
+    <button type="button" class="gradient-button button-width"  (click)="btnMovement('bck')" [disabled]="selectedTab<=0">
+      Back
+    </button>
+    <button type="button" class="gradient-button button-width" (click)="btnMovement('frd')">
+      <span *ngIf="!(selectedTab>=3)">Next</span>
+      <span *ngIf="(selectedTab>=3)">Submit</span>
+    </button>
+    
+  </div>

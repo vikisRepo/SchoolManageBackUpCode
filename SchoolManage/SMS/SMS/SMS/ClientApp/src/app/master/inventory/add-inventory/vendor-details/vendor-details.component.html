@@ -1,0 +1,28 @@
+<form [formGroup]="vendorDetailForm" class="p-base">
+    <div class="container-fluid" style="margin-top:5px">
+        <div class="row">
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Vendor Name</mat-label>
+                    <input matInput formControlName="vendorName">
+                </mat-form-field>    
+                <mat-form-field appearance="standard">
+                    <mat-label>Item price/per unit</mat-label>
+                    <input matInput formControlName="itemPriceorPerUnit">
+                </mat-form-field>        
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Vendor Address</mat-label>
+                    <input matInput formControlName="vendorAddress">
+                </mat-form-field>  
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Vendor Number</mat-label>
+                    <input matInput formControlName="vendorNumber">
+                </mat-form-field>  
+            </div>
+        </div>
+    </div>
+</form>

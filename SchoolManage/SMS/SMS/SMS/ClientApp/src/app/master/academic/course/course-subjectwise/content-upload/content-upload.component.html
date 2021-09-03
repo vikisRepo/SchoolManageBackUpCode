@@ -1,0 +1,28 @@
+<div class="container-fluid">
+    <form [formGroup]="courseUploadForm" class="p-base">
+        <div class="row" style="margin-left: 10px;">
+            <mat-form-field appearance="standard">
+                <mat-label>Content Type</mat-label>
+                <mat-select formControlName="contentType">
+                    <mat-option *ngFor="let contentType of ContentTypes" [value]="contentType.value">
+                        {{contentType.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <label for="uploadContent " style="margin-left: 10px;">
+                    <p>Upload Content <img src="../../../../assets/attachment.png" class="icon" style="height: 25px;" />
+                    </p>
+                    <p style="color:red; margin-top:-10px">{{this.uploadContentName}}</p>
+                </label>
+            </div>
+            <div class="col-sm-3" style="margin-top: 20px;">
+
+                <input type="file" id="uploadContent" (change)="Onfilesave($event,0)" style="visibility: hidden;"
+                    formControlName="uploadContent">
+            </div>
+        </div>
+    </form>
+</div>

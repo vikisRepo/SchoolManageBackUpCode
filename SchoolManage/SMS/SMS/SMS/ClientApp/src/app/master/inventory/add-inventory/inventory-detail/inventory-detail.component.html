@@ -1,0 +1,57 @@
+<form [formGroup]="inventoryDetailForm" class="p-base">
+    <div class="container-fluid" style="margin-top:5px">
+        <div class="row">
+            <div class="col-sm-3">
+                
+                <mat-form-field appearance="standard">
+                    <mat-label>Item Name</mat-label>
+                    <input matInput formControlName="itemName">
+                </mat-form-field>    
+                <mat-form-field appearance="standard">
+                    <mat-label>Item Type</mat-label>
+                    <mat-select formControlName="itemTypeId">
+                        <mat-option *ngFor="let item of itemtype" [value]="item.value">
+                            {{item.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>    
+                <mat-form-field appearance="standard">
+                    <mat-label>Model Number</mat-label>
+                    <input matInput formControlName="modelNumber">
+                </mat-form-field> 
+                <mat-form-field appearance="standard">
+                    <mat-label>Item Usage Area</mat-label>
+                    <mat-select formControlName="itemUsageId">
+                        <mat-option *ngFor="let ItemUsage of itemusageAreaType" [value]="ItemUsage.value">
+                            {{ItemUsage.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>   
+                <mat-form-field appearance="standard">
+                    <mat-label>Serial Number</mat-label>
+                    <input matInput formControlName="serialNumber">
+                </mat-form-field>   
+                
+                <mat-slide-toggle color="primary" labelPosition="before" formControlName="warrenOrGarantee">Is Warranty/Guarantee</mat-slide-toggle>
+
+                <mat-form-field appearance="standard">
+                    <mat-label>Details of Warranty/Guarantee</mat-label>
+                    <input matInput formControlName="warrenOrGarenInfo">
+                </mat-form-field> 
+              
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Brand Name</mat-label>
+                    <input matInput formControlName="brandName">
+                </mat-form-field> 
+                
+                <mat-form-field appearance="standard">
+                    <mat-label>Quantity</mat-label>
+                    <input matInput formControlName="quantity">
+                </mat-form-field> 
+            </div>
+        </div>
+    </div>
+
+</form>

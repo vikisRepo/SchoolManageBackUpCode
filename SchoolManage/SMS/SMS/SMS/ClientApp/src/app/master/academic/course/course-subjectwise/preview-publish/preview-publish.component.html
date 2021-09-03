@@ -1,0 +1,25 @@
+<form [formGroup]="prePublishForm">
+    <div class="container-fluid" style="margin-top:5px">
+        <div class="row">
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Course Name</mat-label>
+                    <input matInput formControlName="courseName">
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Course code</mat-label>
+                    <input matInput formControlName="courseCode">
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Course Description</mat-label>
+                    <input matInput formControlName="courseDescription">
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Course Topic</mat-label>
+                    <input matInput formControlName="topic">
+                </mat-form-field><br>
+                <label>Course Created Date:</label>
+            </div>
+        </div>
+    </div>
+</form>

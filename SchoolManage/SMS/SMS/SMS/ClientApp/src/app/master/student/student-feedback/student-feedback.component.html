@@ -1,0 +1,79 @@
+<form [formGroup]="newstudentFeedback">
+    <app-header-action [index]='4'></app-header-action>
+    <div class="container-fluid" style="margin-top:5px;">
+        <div class="row">
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Addmission Number</mat-label>
+                    <input matInput  formControlName="admissionNumber">
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Staff Name</mat-label>
+                    <input matInput  formControlName="staffName">
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Feedback Type</mat-label>
+                    <mat-select formControlName="feedbackType">
+                        <mat-option *ngFor="let feedbackType of feedbackTypes" [value]="feedbackType.value">
+                            {{feedbackType.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Date</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Class</mat-label>
+                    <input matInput  formControlName="class">
+                </mat-form-field>
+                <!-- <mat-form-field appearance="standard">
+                    <mat-label>Feedback Title</mat-label>
+                    <mat-select formControlName="feedbacktitle">
+                        <mat-option *ngFor="let feedbacktitle of studentFeedbackTitle" [value]="feedbacktitle.value">
+                            {{feedbacktitle.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field> -->
+
+                <mat-form-field appearance="standard">
+                    <mat-label>Feedback Title</mat-label>
+                    <input matInput  formControlName="feedbacktitle">
+                </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Section</mat-label>
+                    <input matInput  formControlName="section">
+                </mat-form-field>
+                <mat-form-field appearance="standard" style="width:350px;">
+                    <mat-label>Description</mat-label>
+                    <textarea matInput formControlName="description"></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row" style="width: 100%;">
+            <div class="col-sm-3" style="margin-Top: 20px;">
+                <label for="tCertificate">
+                    <h2>Attachment <img src="../../../../assets/attachment.png" class="icon" style="height: 25px;" />&nbsp;
+                        <!--<mat-icon  color="primary">check_circle
+                     </mat-icon> -->
+                    </h2>
+                    <!-- <p style="color:red; margin-top:-10px">{{this.t1fileName}}</p> *ngIf="this.t1img"-->
+                </label>
+            </div>
+            <div class="col-sm-3" style="margin-top: 20px;">
+                <!-- <input type="file" id="tCertificate" (change)="Onfilesave($event,0)" style="visibility: hidden;"
+                 formControlName="attachment"> -->
+            </div>
+        </div>
+    </div>
+    <div class="footer-n-stu" style="float: right; margin-right: 20px;">   
+        <button type="button" (click)="submit()" class="gradient-button">Submit</button>
+      </div>
+      <!-- <p>{{newstudentFeedback.value|json}}</p> -->
+    </form>

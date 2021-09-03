@@ -1,0 +1,10 @@
+<app-header (menuToggle)="drawer.toggle()"></app-header>
+<!--<app-header-action></app-header-action>-->
+<mat-drawer-container class="sidenav-container" autosize [ngStyle]="{height:mHeight}">
+    <mat-drawer #drawer class="sidenav-content" mode="push">
+        <app-side-menu></app-side-menu>
+    </mat-drawer>
+    <mat-drawer-content>
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+</mat-drawer-container>

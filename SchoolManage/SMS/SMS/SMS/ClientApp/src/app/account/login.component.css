@@ -1,0 +1,46 @@
+
+
+#backphoto {  
+    background-image: url(../../assets/LoginBG.png);
+    background-size: 100% 100%;  
+    width: 100vw; height: 100vh;
+}   
+
+.box {
+
+padding-left: 25px;
+padding-right:25px ;
+margin-top:25vh;
+border: 3px solid transparent;
+background-color: white;
+padding-bottom:20px; 
+} 
+
+.logicon{
+width: 15vh;
+height:15vh;
+margin-top:-8vh;
+border-radius: 100px; 
+display: block;
+margin-left: auto;
+margin-right: auto;  
+}       
+
+
+.submit{
+text-align: center;
+}
+
+
+.submit-btn{
+width: 80%;
+}
+
+.inputForm{
+height: 60%;
+display: flex;
+
+flex-direction: column;
+justify-content: space-between;
+margin-top: 10%;
+}

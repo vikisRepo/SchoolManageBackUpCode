@@ -1,0 +1,27 @@
+.card{
+    background-color: white;
+    border-radius: 15px;
+    border-style: dashed;
+    box-shadow: 0 5px rgba(0, 0, 0, 0.11);
+    border-color: #43A047;
+    height: 200px;
+    width: 200px;
+    margin:20px;
+    text-align: center;
+    padding-top:28%;
+    cursor: pointer;
+}
+
+.flex-content{
+    display:flex;
+    flex-wrap: wrap;
+    margin-left: 100px;
+}
+
+   
+ .flex-child{
+   display: flex;
+ }
+  .container {
+    margin-top: 10px;
+  }

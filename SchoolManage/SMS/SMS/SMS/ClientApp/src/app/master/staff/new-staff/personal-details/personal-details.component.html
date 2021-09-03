@@ -1,0 +1,181 @@
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="p-base">
+    <div class="container-fluid" style="margin-top:5px">
+        <div class="row">
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Salutation</mat-label>
+                    <mat-select formControlName="salutationId">
+                        <mat-option *ngFor="let salu of salutations;" [value]="salu.viewValue">
+                            {{salu.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard" style="width: 180px;">
+                    <mat-label>D.O.B</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="dob">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Religion</mat-label>
+                    <mat-select formControlName="religionId">
+                        <mat-option *ngFor="let religionId of religion" [value]="religionId.value">
+                            {{religionId.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Mother Tonuge</mat-label>
+                    <mat-select formControlName="motherTonge">
+                        <mat-option *ngFor="let mothertonge of motherTon" [value]="mothertonge.value">
+                            {{mothertonge.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>First Name</mat-label>
+                    <input formControlName="firstName" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Blood Group</mat-label>
+                    <mat-select formControlName="bloodGroup">
+                        <mat-option *ngFor="let bloodGroup of blood" [value]="bloodGroup.viewValue">
+                            {{bloodGroup.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Gender</mat-label>
+                    <mat-select formControlName="gender">
+                        <mat-option *ngFor="let gender of gender " [value]="gender.value">
+                            {{gender.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Languages Known</mat-label>
+                    <mat-select formControlName="languages">
+                        <mat-option *ngFor="let languages of languageknown " [value]="languages.value">
+                            {{languages.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Middle Name</mat-label>
+                    <input formControlName="middleName" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Marital Status</mat-label>
+                    <mat-select formControlName="maritalStatus">
+                        <mat-option *ngFor="let maritalStatus of maritalstatus" [value]="maritalStatus.viewValue">
+                            {{maritalStatus.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Nationality</mat-label>
+                    <mat-select formControlName="nationality">
+                        <mat-option *ngFor="let national of nationality" [value]="national.value">
+                            {{national.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Personal Email</mat-label>
+                    <input formControlName="emailId" matInput>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Last Name</mat-label>
+                    <input formControlName="lastName" matInput>
+                </mat-form-field>
+
+                <mat-form-field appearance="standard">
+                    <mat-label>WeedingDate</mat-label>
+                    <input matInput [matDatepicker]="picker1" formControlName="weedingDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field appearance="standard">
+                    <mat-label>Mobile Number</mat-label>
+                    <input formControlName="mobile" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>AAdhar Number</mat-label>
+                    <input formControlName="aadharNumber" matInput>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <hr>
+
+        <p class="mat-title"> Family Info</p>
+        <div class="row">
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Father Name</mat-label>
+                    <input formControlName="fatherName" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Mother Name</mat-label>
+                    <input formControlName="motherName" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Spouse Name</mat-label>
+                    <input formControlName="spouseName" matInput>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Father Occupation</mat-label>
+                    <input formControlName="fatherOccupation" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Mother Occupation</mat-label>
+                    <input formControlName="motherOccupation" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Spouse Occupation</mat-label>
+                    <input formControlName="souseOccupation" matInput>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Father Contact Number</mat-label>
+                    <input formControlName="fatherMobileNumber" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Mother Contact Number</mat-label>
+                    <input formControlName="motherMobileNumber" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Spouse Contact Number</mat-label>
+                    <input formControlName="spouseMobileNumber" matInput>
+                </mat-form-field>
+            </div>
+            <!-- <div class="col-sm-3">
+                <div class="col-sm-2">
+                    <button mat-icon-button>
+                        <img src="../../../assets/user.png" alt="menu" 
+                        style="width:85px;height: 85px;margin-top:50px;margin-left:-100px ;">
+                    </button>
+                    <p style="margin-top:60px;margin-left:-80px;font-size:12px;">Upload Profile Pic</p>
+                </div>
+                <div class="col-sm-1">
+                    <button mat-icon-button>
+                        <img src="../../../assets/hipster.png" alt="menu" class="box" style="width:75px;height: 75px;margin-top:50px;v">
+                    </button>
+                </div>
+            </div> -->
+        </div>
+        <app-address-details [addressDetails]="addressData" (addresses)="getAddress($event)" #dt></app-address-details>
+    </div>
+
+
+</form>

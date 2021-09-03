@@ -1,0 +1,80 @@
+<!-- <div class="row headerstyle">
+  <div class="col-sm-5">
+    <h2>Leave configuration </h2>
+  </div>
+  <div class="col-sm-3">
+    <mat-form-field appearance="standard" style="font-size: 12px;margin-top:-18px;">
+      <mat-label>Year</mat-label>
+      <input matInput [matDatepicker]="pickerToFilter1">
+      <mat-datepicker-toggle matSuffix [for]="pickerToFilter1"></mat-datepicker-toggle>
+      <mat-datepicker #pickerToFilter1></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div class="col-sm-4">
+    <h2>(Current Accademic Year) </h2>
+  </div>
+  <div class="row col-sm-3">
+
+  </div>
+</div> -->
+<app-header-action [index]='17'></app-header-action>
+<form [formGroup]="leaveForm" class="p-base">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="container-fluid" style="margin-top:5px" formArrayName="studentLeave">
+        <div [formGroupName]="i" *ngFor="let leave of studentLeave.controls; let i=index">
+          <div class="row">
+            <div class="col-sm-5">
+              <mat-form-field appearance="standard">
+                <mat-label attr.for="{{'studentleave' + i}}">Student Leave Type</mat-label>
+                <input id="{{'studentleave' + i}}" matInput formControlName="studentLeave">
+              </mat-form-field>
+
+              <img src="../../../../assets/trash.png" class="icon"
+                style="margin-left: 10px;cursor: pointer; width: 25px;height: 25px;" />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-1">
+            <img src="../../../assets/plus.png" (click)="addStudentleave()" alt="profile" style="height:55px;">
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="col-sm-6">
+      <div class="container-fluid" style="margin-top:5px" formArrayName="staffLeavearr">
+        <div [formGroupName]="k" *ngFor="let leave of staffLeavearr.controls; let k=index">
+          <div class="row">
+            <div class="col-sm-5">
+              <mat-form-field appearance="standard">
+                <mat-label attr.for="{{'staffLeavearr' + k}}">staff Leave Type</mat-label>
+                <input id="{{'staffLeavearr' + k}}" matInput formControlName="staffLeavearr">
+              </mat-form-field>
+
+              <img src="../../../../assets/trash.png" class="icon"
+                style="margin-left: 10px;cursor: pointer; width: 25px;height: 25px;" />
+            </div>
+
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-1">
+            <img src="../../../assets/plus.png" (click)="addStaffleave()" alt="profile" style="height:55px;">
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- <button (click) = "addExperience()"> Add Experience</button> -->
+</form>
+
+<!-- <p>
+  {{experienceForm.value | json}}
+</p> -->

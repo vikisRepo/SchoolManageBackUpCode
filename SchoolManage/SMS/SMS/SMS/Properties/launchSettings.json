@@ -1,0 +1,32 @@
+{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:4000/",
+      "sslPort": 0
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "AZURE_USERNAME": "SchoolmanagementSys@outlook.com",
+        "SqlConnectionString": "https://smsmanagement.vault.azure.net/",
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "SMS": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "AZURE_USERNAME": "SchoolmanagementSys@outlook.com",
+        "SqlConnectionString": "https://smsmanagement.vault.azure.net/",
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "http://localhost:5000"
+    }
+  }
+}

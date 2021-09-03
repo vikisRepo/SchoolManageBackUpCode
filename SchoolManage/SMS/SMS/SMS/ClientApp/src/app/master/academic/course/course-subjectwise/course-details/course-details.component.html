@@ -1,0 +1,67 @@
+<div class="container-fluid">
+    <form [formGroup]="courseDetailsForm" class="p-base">
+        
+            <div class="row">
+                <div class="col-sm-3">
+                    <mat-form-field appearance="standard">
+                        <mat-label>Course Name</mat-label>
+                        <input formControlName="courseName" matInput>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <mat-form-field appearance="standard">
+                        <mat-label>Course Code</mat-label>
+                        <input formControlName="courseCode" matInput>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <mat-form-field appearance="standard">
+                        <mat-label>Course Description</mat-label>
+                        <input formControlName="courseDescription" matInput>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <mat-form-field appearance="standard">
+                        <mat-label>Topic</mat-label>
+                        <input formControlName="topic" matInput>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <mat-form-field appearance="standard">
+                        <mat-label>Completion Criteria</mat-label>
+                        <mat-select formControlName="complitionCriteria">
+                            <mat-option *ngFor="let Criteria of complitionCriteria" [value]="Criteria.value">
+                                {{Criteria.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+
+                <div class="col-sm-3">
+                    <mat-form-field appearance="standard">
+                        <mat-label>Passing Score</mat-label>
+                        <input formControlName="PassingScore" matInput>
+                    </mat-form-field>
+                </div>
+            </div>
+        
+        <div class="row">
+            <div class="col-sm-3">
+                <p class="mat-title">
+                    <mat-slide-toggle color="primary" labelPosition="before" [checked]="true" (click)="toggle()">Course
+                        Active</mat-slide-toggle>
+                </p>
+            </div>
+        </div>
+
+    </form>
+</div>

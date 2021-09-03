@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/bvschoolsystem/databases/bvschoolsystem1",
+      "type": "mssql.azure",
+      "connectionId": "SchoolManagementConnection",
+      "secretStore": "AzureAppSettings"
+    },
+    "secrets1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.KeyVault/vaults/Smsmanagement",
+      "type": "secrets.keyVault",
+      "connectionId": "SqlConnectionString",
+      "secretStore": "AzureAppSettings"
+    }
+  }
+}

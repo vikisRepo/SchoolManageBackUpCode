@@ -1,0 +1,6 @@
+
+.flex-content{
+    display:flex;
+    flex-wrap: wrap;
+    margin-left: 100px;
+}

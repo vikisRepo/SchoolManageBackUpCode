@@ -1,0 +1,35 @@
+<form [formGroup] = "bankingFrom" class="p-base">
+    <div class="container-fluid" style="margin-top:5px">
+        <div class="row">
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Bank</mat-label>
+                    <mat-select formControlName = "bankName">
+                        <mat-option *ngFor="let bankName of bank" [value]="bankName.value" >
+                            {{bankName.viewValue}} 
+                       </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>AC Number</mat-label>
+                    <input matInput value="" required formControlName = "bankAccountNumber">
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>PAN Number</mat-label>
+                    <input matInput value="" required formControlName = "panNumber">
+                </mat-form-field>
+            </div>
+
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Branch Number</mat-label>
+                    <input matInput value="" required formControlName = "branchNumber">
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>IFSC Code</mat-label>
+                    <input matInput value="" required formControlName = "bankIfscCode" >
+                </mat-form-field>
+            </div> 
+        </div>
+    </div>
+</form>

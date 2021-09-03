@@ -1,0 +1,36 @@
+<app-header-action [index]='18'></app-header-action>
+
+<mat-tab-group [(selectedIndex)]="selectedTab">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        Inventory Details
+        <mat-icon *ngIf="inventoryFormDetails[0]!=null && inventoryFormDetails[0]" color="primary">check_circle</mat-icon>
+      </ng-template>
+      <app-inventory-detail (inventoryFormDetails)="setTabFormDetails($event,0)" #dt></app-inventory-detail>
+    </mat-tab>
+
+  
+    <mat-tab>
+    <ng-template mat-tab-label>
+      vendor Details
+       <mat-icon *ngIf="inventoryFormDetails[1]!=null && inventoryFormDetails[1]"  color="primary">check_circle</mat-icon>
+    </ng-template>
+     <app-vendor-details (vendorFormDetails)="setTabFormDetails($event,1)" #dt></app-vendor-details>
+  </mat-tab>
+  
+  
+  </mat-tab-group>
+  
+  <div class="footer-n-stu">
+     
+    <button type="button" class="gradient-button" (click)="btnMovement('bck')" [disabled]="selectedTab<=0">
+      Back
+    </button>
+    <button type="button" class="gradient-button" (click)="btnMovement('frd')" >
+      <span *ngIf="!(selectedTab>=1)">Next</span>
+      <span *ngIf="selectedTab>=1">Submit</span>
+    </button>
+    
+  
+  </div>
+  

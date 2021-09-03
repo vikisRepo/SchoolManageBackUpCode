@@ -1,0 +1,41 @@
+table{
+    width:90%;
+    margin-left:2%;
+   
+}
+
+.bg-app-bar{
+    background-color: rgb(78, 120, 211);
+    }
+
+.icon{
+    height: 20px;
+    width: 20px;
+
+}
+
+/* header bar */
+.headerstyle{background-color: #e8f6ff;
+    height: 60px;
+    padding: 15px;
+    margin:5px;
+    font-size: 40px;
+    color:	#676360;
+    }
+
+    .fileterStyle{background-color: #f2f2f2;
+        height: 60px;
+        font-size: 12px;
+        color:	#676360;
+        }
+
+    img{
+        text-align: right;
+    }
+    .profile-name{
+   
+        line-height: 0.7;
+       margin-right: 15px;
+       margin-top: 15px;
+        
+    }

@@ -1,0 +1,76 @@
+<div class=" row headerstyle">
+    <h2 style="margin-left: 40px;">Class:{{class}}</h2>
+    <h2 style="margin-left: 70px; background-color:#f27200;color: white;padding-left: 15px;padding-right: 15px;">
+        {{subject}}
+    </h2>
+    <div class="right-content">
+
+        <img src="../../../assets/visible.png" (click)="navToListView()"
+            style="height:35px;margin-top:-10px;margin-right: 40px; cursor: pointer;" />
+    </div>
+</div>
+<form [formGroup]="subjectwiselessonform" class="p-base">
+    <div class="container-fluid" style="margin-top:5px;">
+        <div class="row">
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Date</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <!-- <mat-form-field appearance="standard">
+            <mat-label>Class Work</mat-label>
+            <input formControlName="classWork" matInput>
+        </mat-form-field> -->
+                <!-- <mat-form-field appearance="standard">
+            <mat-label>Home Work</mat-label>
+            <input formControlName="homeWork" matInput>
+        </mat-form-field> -->
+                <h2 style="margin-top:18px;">Class Work:</h2>
+                <br>
+                <h2>Home Work:</h2>
+
+
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Lesson</mat-label>
+                    <input formControlName="lesson" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Games</mat-label>
+                    <input formControlName="games" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Activity</mat-label>
+                    <input formControlName="activity" matInput>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Topic</mat-label>
+                    <input formControlName="topic" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Activity</mat-label>
+                    <input formControlName="classActivity" matInput>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-2">
+                <mat-form-field appearance="standard">
+                    <mat-label>Concept</mat-label>
+                    <input formControlName="concept" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Extra Info</mat-label>
+                    <input formControlName="extraInfo" matInput>
+                </mat-form-field>
+            </div>
+
+        </div>
+        <div class="footer-n-stu">
+            <button type="button" class="gradient-button" (click)="onSubmit()">Save</button>
+        </div>
+    </div>
+</form>

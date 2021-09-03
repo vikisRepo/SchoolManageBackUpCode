@@ -1,0 +1,26 @@
+.card{
+    background-color: white;
+    border-radius: 15px;
+    border-style: dashed;
+    box-shadow: 0 5px rgba(0, 0, 0, 0.11);
+    
+    border-color: #43A047;
+    height: 200px;
+    width: 200px;
+    margin:10px;
+    text-align: center;
+    padding-top:39%;
+    cursor: pointer;
+}
+
+.card:hover{
+    color:white;
+    border-radius: 10px;
+    transform: scale(1.1);
+}
+
+.cards{
+    cursor: pointer;
+    transition: transform 0.5s , border-radius 0.5s  ;
+}
+

@@ -1,0 +1,44 @@
+<form [formGroup]="inventoryDefectForm" class="p-base">
+    <div class="container-fluid" style="margin-top:5px" formArrayName="defect">
+        <div [formGroupName]="i" *ngFor="let address of defect.controls; let i=index">
+            <div class="row">
+                <div class="col-sm-3">
+                    <mat-form-field appearance="standard">
+                        <mat-label attr.for="{{'ItemName' + i}}">Item Code</mat-label>
+                        <input id="{{'ItemName' + i}}" matInput formControlName="ItemName">
+                    </mat-form-field>   
+                </div>
+
+                <div class="col-sm-3">
+                    <mat-form-field appearance="standard">
+                        <mat-label attr.for="{{'ItemCode' + i}}">Item Name</mat-label>
+                        <input id="{{'ItemCode' + i}}" matInput formControlName="ItemCode">
+                    </mat-form-field> 
+                </div>
+                <div class="col-sm-3">
+                    <mat-form-field appearance="fill" style="width:350px;">
+                        <mat-label attr.for="{{'DefectDesc' + i}}">Defect Desciption</mat-label>
+                        <textarea id="{{'DefectDesc' + i}}" matInput formControlName="DefectDesc"></textarea>
+                    </mat-form-field>
+
+
+                </div>
+                <img src="../../../../assets/trash.png" class="icon"
+                    style="margin-Top: 25px; cursor: pointer; width: 25px;height: 25px;float:right" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-9"></div>
+            <div class="col-sm-1">
+                <img src="../../../assets/plus.png" (click)="addDefects()" alt="profile" style="height:55px;">
+            </div>
+        </div>
+
+    </div>
+
+    <!-- <button (click) = "addDefects()"> Add Experience</button> -->
+</form>
+
+<!-- <p>
+    {{inventoryDefectForm.value | json}}
+</p> -->

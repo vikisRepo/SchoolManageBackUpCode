@@ -1,0 +1,42 @@
+<app-header-action [index]='19'></app-header-action>
+<form [formGroup]="tablefilters">
+<!-- <div class="container-fluid percentagebar" style="margin-top:5px"> -->
+    <!-- <div class="row" style="margin-left: 20px;margin-top: -5px;padding-top: 10px;">
+        LKG
+    </div> -->
+    <div class="container-fluid percentagebar">
+        <div class="row">
+           
+            <div class="col-sm-2" style="font-size: 24px; padding-top: 13px;">
+                LKG
+            </div>
+            <div class="col-sm-2"></div>
+            <div class="col-sm-2">
+                <mat-form-field appearance="standard">
+                    <mat-label>Class</mat-label>
+                    <mat-select formControlName="classFilter" (selectionChange)="applyFilter('classFilter')">
+                        <mat-option *ngFor="let classFilter  of classes " [value]="classFilter .viewValue">
+                            {{classFilter .viewValue}} 
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-2">
+                <mat-form-field appearance="standard">
+                    <mat-label>Section</mat-label>
+                    <mat-select formControlName="sectionFilter" (selectionChange)="applyFilter('sectionFilter')">
+                        <mat-option *ngFor="let sectionFilter  of sectiones " [value]="sectionFilter.viewValue">
+                            {{sectionFilter .viewValue}} 
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+           
+        </div>
+    </div>
+    <!-- </div> -->
+
+
+    <app-time-table-viewer></app-time-table-viewer>
+
+</form>

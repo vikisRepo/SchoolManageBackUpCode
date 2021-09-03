@@ -1,0 +1,16 @@
+
+.btnIcon{
+    margin-left:5px;
+    outline: none;
+ 
+}
+.icon{
+    width: 25px;
+    height: 25px;
+    }
+
+    mat-card{
+        width: 90%;
+        margin-left:50px;
+        margin-bottom:10px;
+    }

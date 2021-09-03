@@ -1,0 +1,3 @@
+<app-address-detail [formInput]="formCurrentAddress" title="Current Address" (formValue)="getAddress($event,0)"  #formTouched></app-address-detail>
+<app-address-detail title="Permenant Address" [pFlag]="true" (pFlagEmit)="cTp($event)"
+ [formInput]="formPermanentAddress" (formValue)="getAddress($event,1)" #formTouched></app-address-detail>

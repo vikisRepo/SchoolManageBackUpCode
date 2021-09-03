@@ -1,0 +1,40 @@
+<div class="tt">
+    <div class="t-base">
+
+        <!--timetable header-->
+        <div class="tt-header" [ngStyle]="{'width':'calc(120px * '+(10+numBreaks)+')'}">
+            <div class="tt-hd-item" *ngFor="let name of timePeriod" [innerHTML]="name"></div>
+        </div>
+
+        <!--timetable body-->
+        <div class="tt-body" [ngStyle]="{'width':'calc(120px * '+(10+numBreaks)+')'}">
+            <div class="tt-bd-row" *ngFor="let day of weekDays;index as row">
+
+                <div class="tt-bd-item" [ngClass]="{'tt-bd-item-action':col>0}"
+                    *ngFor="let day of timePeriod;index as col">
+
+                    <ng-container *ngIf="col===0; else editor">{{weekDays[row]}}</ng-container>
+
+                    <ng-template #editor>
+                        <div class="tt-details">
+                            <ng-container *ngIf="table && table[weekDays[row]] && table[weekDays[row]][col]">
+
+                                <div> Subject:{{table[weekDays[row]][col].subject}}</div>
+                                <div> Staff:{{table[weekDays[row]][col].staff}}</div>
+                                <div>{{table[weekDays[row]][col].startTime}}-{{table[weekDays[row]][col].endTime}}</div>
+
+                            </ng-container>
+                        </div>
+
+                        <div class="action-btn">
+                            <button class="edit-btn" (click)="selectPeriod(table[weekDays[row]][col])">
+                                <img src="../../../../../assets/edit.png" height="16px" weight="16px">
+                            </button>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

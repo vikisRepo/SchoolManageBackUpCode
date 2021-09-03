@@ -1,0 +1,38 @@
+<!-- *ngIf="!isSmScreen" -->
+<mat-toolbar  class="bg-app-bar text-secondary mat-elevation-z4" > 
+  <button mat-icon-button class="menuIcon" (click)="menuToggleAction()">
+    <img src="../../../assets/menu.png" alt="menu" style="width:25px">
+  </button>
+  <span>Menu</span>
+
+  <img class="headerImage" src="../../../assets/BVHeader.jpg" alt="logo">
+  <span>BV Public School</span>
+  <div class="right-content">
+    <ul type="none" class="profile-name">
+      <li>Hi {{account.firstName}}!</li>
+      <!-- <li>!</li> -->
+    </ul>
+
+    <ngx-avatar name={{account.firstName}}></ngx-avatar>
+    <!-- <img src="../../../assets/hipster.png" alt="profile" style="height:55px; padding: 5px;"> -->
+
+    <!-- <app-upload (onUploadFinished)="uploadFinished($event)">hai</app-upload>
+    <img [src]="createImgPath(imgPath)" alt="profile picture" style="width:60px; height:60px;"> -->
+
+
+    <button mat-icon-button class="menuIcon" style=" margin-left:15px;">
+      <img src="../../../assets/notification-bell.png" alt="Notify"
+        style="height:30px;margin-top:2px">
+    </button>
+
+    <div>
+      <button (click)="logout()" class="btn help-btn">LogOut</button>
+    </div>
+  </div>
+
+</mat-toolbar>
+
+<!--For Mobile page demo-->
+<!-- <div *ngIf="isSmScreen">
+  I am small screen I am working
+</div> -->

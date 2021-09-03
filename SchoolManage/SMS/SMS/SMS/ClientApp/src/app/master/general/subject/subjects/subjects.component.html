@@ -1,0 +1,27 @@
+<form [formGroup]="subjectForm">
+    <mat-card>
+        
+        <div class="row">
+            <div class="col-sm-6">
+                <mat-form-field apperance="standard" class="col-sm-6">
+                    <!-- <mat-label>Subject</mat-label> -->
+                    <input matInput required formControlName="subjectDescr">
+                </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+                <button mat-icon-button class="btnIcon" *ngIf="newFlag"  (click)="save()">
+                    <img src="../../../../assets/edit.png" class="icon">
+                </button>
+
+                <button mat-icon-button class="btnIcon" *ngIf="!newFlag" (click)="toggleButton()">
+                    <img src="../../../../assets/edit.png" class="icon">
+                </button>
+
+                <button mat-icon-button class="btnIcon" (click)="delete()">
+                    <img src="../../../../assets/trash.png" class="icon">
+                </button>
+            </div>
+            
+        </div>    
+    </mat-card>
+</form>

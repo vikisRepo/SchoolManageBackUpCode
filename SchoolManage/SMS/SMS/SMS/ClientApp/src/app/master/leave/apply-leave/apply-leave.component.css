@@ -1,0 +1,26 @@
+.headerstyle{background-color: #e8f6ff;
+    height: 60px;
+    padding: 15px;
+    margin:5px;
+    font-size: 40px;
+    color:	#676360;
+}
+.percentagebar{background-color: #f2f2f2;
+    height: 60px;
+    font-size: 24px;
+    color:	#676360;
+}
+.footer-n-stu{
+margin-top:10px;
+display: flex;
+justify-content: flex-end;  
+margin-right: 20px;
+}
+
+.footer-n-stu>button:first-child{
+    margin-right: 10px;
+}
+
+.gradient-button{
+    width: 100px;
+}

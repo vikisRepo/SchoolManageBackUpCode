@@ -1,0 +1,16 @@
+<app-header-action [index]='9'></app-header-action> 
+<!-- lesson  -->
+<div class="flex-content">
+
+    <!-- <app-classes [title]="std.class"  *ngFor="let std of standard; let i=index"></app-classes> -->
+    <div class="flex-child" *ngFor="let sub of standard; let i=index">
+        
+        <div class="card mat-body-strong" (click)="navigate(sub.subjectDescr)">
+            
+            <span class="mat-title">{{sub.subjectDescr}}</span>
+            <span class="mat-title">10 Activity</span>
+        </div>
+        <!-- <span class="circle" >in progress</span> -->
+        
+    </div>
+</div>   

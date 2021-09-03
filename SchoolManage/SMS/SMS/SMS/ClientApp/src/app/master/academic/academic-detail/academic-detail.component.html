@@ -1,0 +1,34 @@
+<app-header-action [index]='6'></app-header-action>
+
+<table mat-table [dataSource]="academicDetails">
+
+    <!--Class & Sections-->
+    <ng-container matColumnDef="classSections">
+        <th mat-header-cell *matHeaderCellDef> Class & Sections </th>
+        <td mat-cell *matCellDef="let element"> {{element.classSections}} </td>
+    </ng-container>
+
+    <!--Subjects-->
+    <ng-container matColumnDef="subjects">
+        <th mat-header-cell *matHeaderCellDef> Subjects </th>
+        <td mat-cell *matCellDef="let element"> {{element.subjects}} </td>
+    </ng-container>
+
+    <!--Lesson Plan-->
+    <ng-container matColumnDef="lessonPlan">
+        <th mat-header-cell *matHeaderCellDef> Lesson Plan </th>
+        <td mat-cell *matCellDef="let element"> <a mat-flat-button routerLink="/lesson-plan/subjectDetails">View</a></td>
+    </ng-container>
+
+
+    <!--Time Table-->
+    <ng-container matColumnDef="timeTable">
+        <th mat-header-cell *matHeaderCellDef> Time Table </th>
+        <td mat-cell *matCellDef="let element"><a mat-flat-button >View</a></td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+    
+</table>
+<mat-paginator [length]="10" [pageSize]="5" style="bottom: auto;"></mat-paginator>

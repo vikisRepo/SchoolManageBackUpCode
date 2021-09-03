@@ -1,0 +1,56 @@
+
+    <form [formGroup]="form">
+        <p class="mat-title">{{addressLabel}}</p>
+        <div *ngIf="pFlag">
+ 
+            <mat-checkbox color="primary" (change)="checkBoxAction($event)">Same as Current Address</mat-checkbox>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Line1</mat-label>
+                    <input matInput formControlName="line1">
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>City</mat-label>
+                    <mat-select  formControlName="city">
+                        <mat-option  *ngFor="let city of city" [value]="city.viewValue">
+                            {{city.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Pincode</mat-label>
+                    <input matInput formControlName="pincode">
+                </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Line2</mat-label>
+                    <input matInput formControlName="line2">
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>State</mat-label>
+                    <mat-select formControlName="sate">
+                        <mat-option  *ngFor="let sate of state" [value]="sate.viewValue">
+                            {{sate.viewValue}} 
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Line3</mat-label>
+                    <input matInput formControlName="line3">
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Country</mat-label>
+                    <mat-select formControlName="country">
+                        <mat-option *ngFor="let country  of country" [value]="country.viewValue">
+                            {{country.viewValue}} 
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>

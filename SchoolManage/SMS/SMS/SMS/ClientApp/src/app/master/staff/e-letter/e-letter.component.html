@@ -1,0 +1,79 @@
+
+<form [formGroup]="eletterfrm" (ngSubmit)="onSubmit()" class="p-base">
+    <app-header-action [index]='2'></app-header-action>
+    <div class="container-fluid" style="margin-top: 5px;">
+        <div class="row">
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Employee ID</mat-label>
+                    <input matInput value="" formControlName="empid" >
+                    <!-- <mat-error>  
+                        <span *ngIf="!f.empid.valid">Please enter Employee Id!!!</span>  
+                   </mat-error> -->
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Staff Name</mat-label>
+                    <input matInput   formControlName="staffName" >
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Letter Type</mat-label>
+                    <mat-select formControlName="letterType">
+                        <mat-option *ngFor="let letterType of letterTypes" [value]="letterType.value">
+                            {{letterType.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Department</mat-label>
+                    <input matInput value=""  formControlName="department" >
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Month</mat-label>
+                    <mat-select formControlName="month">
+                        <mat-option *ngFor="let months of month" [value]="months.viewValue">
+                            {{months.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Teacher ID</mat-label>
+                    <input matInput value=""  formControlName="teacherId" >
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Year</mat-label>
+                    <mat-select formControlName="year">
+                        <mat-option *ngFor="let year of years" [value]="year.viewValue">
+                            {{year.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <!-- <div class="row" style="width: 100%;">
+           <div class="col-sm-3" style="margin-Top: 20px;">
+                <label for="tCertificate">
+                    <h2>Attachment <img src="../../../../assets/attachment.png" class="icon"
+                            style="height: 25px;" />&nbsp;<mat-icon *ngIf="this.t1img" color="primary">check_circle
+                        </mat-icon>
+                    </h2>
+                    <p style="color:red; margin-top:-10px">{{this.t1fileName}}</p>
+                </label>
+            </div>
+            <div class="col-sm-3" style="margin-top: 20px;">
+                <input type="file" id="tCertificate" (change)="Onfilesave($event,0)" style="visibility: hidden;"
+                    formControlName="attachment">
+            </div>
+        </div>  -->
+    </div>
+    <div class="footer-n-stu">
+   
+        
+        <button type="button" class="gradient-button" (click) = "submit()">Submit</button>
+      
+      </div>
+      <!-- <p>{{eletterfrm.value|json}}</p> -->
+</form>

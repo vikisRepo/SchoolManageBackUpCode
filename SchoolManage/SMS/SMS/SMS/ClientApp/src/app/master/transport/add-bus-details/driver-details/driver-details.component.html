@@ -1,0 +1,20 @@
+<form [formGroup]="busDriverDetailForm" class="p-base">
+    <div class="container-fluid" style="margin-top:5px">
+        <div class="row">
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Driver Name</mat-label>
+                    <input matInput formControlName="driverName">
+                </mat-form-field>    
+                <mat-form-field appearance="standard">
+                    <mat-label>Driver Number</mat-label>
+                    <input matInput formControlName="driverNumber">
+                </mat-form-field> 
+                <mat-form-field appearance="standard">
+                    <mat-label>Driver Aadhar Number</mat-label>
+                    <input matInput formControlName="driverAadhar">
+                </mat-form-field>        
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,49 @@
+<app-header-action [index]='1'></app-header-action>
+<mat-tab-group [(selectedIndex)]="selectedTab">
+  <mat-tab>
+    <ng-template mat-tab-label>
+      Personal Details
+      <mat-icon *ngIf="formDetails[0]!=null && formDetails[0]" color="primary">check_circle</mat-icon>
+    </ng-template>
+    <app-personal-details [getFormValues]="_staff"(formDetails)="setTabFormDetails($event,0)" #dt></app-personal-details>
+  </mat-tab>
+
+  <mat-tab>
+  <ng-template mat-tab-label>
+    Employee Details
+    <mat-icon *ngIf="formDetails[1]!=null && formDetails[1]"  color="primary">check_circle</mat-icon>
+  </ng-template>
+   <app-employee-details (formDetails)="setTabFormDetails($event,1)" #dt></app-employee-details>
+</mat-tab>
+
+<mat-tab>
+<ng-template mat-tab-label>
+  Employee Experience
+  <mat-icon *ngIf="formDetails[2]!=null && formDetails[2]"  color="primary">check_circle</mat-icon>
+</ng-template>
+<app-employee-experience (formDetails)="setTabFormDetails($event,2)" #dt></app-employee-experience>
+</mat-tab>
+
+<mat-tab>
+<ng-template mat-tab-label>
+  Banking Details
+  <mat-icon *ngIf="formDetails[3]!=null && formDetails[3]" color="primary">check_circle</mat-icon>
+</ng-template>
+    <app-banking-details (formDetails)="setTabFormDetails($event,3)" #dt></app-banking-details>
+  </mat-tab> 
+</mat-tab-group>
+
+<div class="footer-n-stu">
+   
+  <button type="button" class="gradient-button" (click)="btnMovement('bck')" [disabled]="selectedTab<=0">
+    Back
+  </button>
+  <button type="button" class="gradient-button" (click)="btnMovement('frd')" >
+    <span *ngIf="!(selectedTab>=3)">Next</span>
+    <span *ngIf="selectedTab>=3">Submit</span>
+  </button>
+</div>
+
+<p>{{conResults.value | json}}</p>
+
+

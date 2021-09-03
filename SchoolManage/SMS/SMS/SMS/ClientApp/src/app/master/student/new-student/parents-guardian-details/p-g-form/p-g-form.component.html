@@ -1,0 +1,70 @@
+<div class="container-fluid ">
+    <form  [formGroup]="parents" class="p-base">
+        <p class="mat-title"> <mat-slide-toggle color="primary" labelPosition="before" [checked]="true" (click)="toggle()">{{titleLabel}}</mat-slide-toggle></p>
+        <div style="margin-top:5px">
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <mat-form-field appearance="standard">
+                        <mat-label>Salutation</mat-label>
+                        <mat-select formControlName="salutation">
+                            <mat-option *ngFor="let salutation of salutations" [value]="salutation.value">
+                                {{salutation.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Mobile Number</mat-label>
+                        <input matInput formControlName="mobileNumber">
+                    </mat-form-field>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Designation</mat-label>
+                        <input matInput formControlName="designation">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-3">
+                    <mat-form-field appearance="standard">
+                        <mat-label>First Name</mat-label>
+                        <input matInput formControlName="firstName">
+                    </mat-form-field>
+                    <mat-form-field appearance="standard">
+                        <mat-label>email</mat-label>
+                        <input matInput formControlName="email">
+                    </mat-form-field>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Salary</mat-label>
+                        <input matInput formControlName="annualIncome">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-3">
+                    <mat-form-field appearance="standard">
+                        <mat-label>Middle Name</mat-label>
+                        <input matInput formControlName="middleName">
+                    </mat-form-field>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Occupation</mat-label>
+                        <input matInput formControlName="occupation">
+                    </mat-form-field>
+
+                    <mat-slide-toggle color="primary" labelPosition="before" formControlName="bvEmployee">Employee of BV School?</mat-slide-toggle>
+
+
+                </div>
+                <div class="col-sm-3">
+                    <mat-form-field appearance="standard">
+                        <mat-label>Last Name</mat-label>
+                        <input matInput formControlName="lastName">
+                    </mat-form-field>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Company Name</mat-label>
+                        <input matInput formControlName="company">
+                    </mat-form-field>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Aadhar Number</mat-label>
+                        <input matInput formControlName="aadharNumber">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

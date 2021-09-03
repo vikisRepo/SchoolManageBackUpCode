@@ -1,0 +1,14 @@
+.footer-n-stu{
+    margin-top:10px;
+display: flex;
+justify-content: flex-end;  
+margin-right: 20px;
+}
+
+.footer-n-stu>button:first-child{
+    margin-right: 10px;
+}
+
+.gradient-button{
+    width:100px;
+}

@@ -1,0 +1,35 @@
+<app-header-action [index]='10'></app-header-action>
+<mat-tab-group [(selectedIndex)]="selectedTab">
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      Bus Details
+      <mat-icon *ngIf="BusAndDriverDetails[0]!=null && BusAndDriverDetails[0]" color="primary">check_circle</mat-icon>
+    </ng-template>
+    <!-- <app-student-details [getFormValues]="_student"(stuFormtDetails)="setTabFormDetails($event,0)" ></app-student-details>
+     -->
+    <app-add-bus (busFormOutput)="setTabFormDetails($event,0)"></app-add-bus>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      Driver Details
+      <!-- stuFormtDetails[1]!=null && stuFormtDetails[1] -->
+      <mat-icon *ngIf="BusAndDriverDetails[1]!=null && BusAndDriverDetails[1]" color="primary">check_circle</mat-icon>
+    </ng-template>
+    <!-- <app-parents-guardian-details (stuFormtDetails)="setTabFormDetails($event,1)"></app-parents-guardian-details> -->
+    <app-driver-details (driverFormOutput)="setTabFormDetails($event,1)"></app-driver-details>
+  </mat-tab>
+
+</mat-tab-group>
+
+<div class="footer-n-stu">
+  <button type="button" class="gradient-button" (click)="btnMovement('bck')" [disabled]="selectedTab<=0">
+    Back
+  </button>
+  <button type="button" class="gradient-button" (click)="btnMovement('frd')">
+    <span *ngIf="!(selectedTab>=1)">Next</span>
+    <span *ngIf="selectedTab>=1">Submit</span>
+  </button>
+
+</div>

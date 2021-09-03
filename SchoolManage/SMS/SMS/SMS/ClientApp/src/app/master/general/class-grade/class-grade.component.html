@@ -1,0 +1,11 @@
+<app-header-action [index]='5'></app-header-action>
+<div class="container-fluid" style="margin-top: 5px;">
+  <div *ngFor="let exp of experiences; let i=index">
+    <app-class-section [expData]="exp" (btnEvent)="eventCatch($event)"></app-class-section>
+  </div>
+</div>
+
+<button mat-icon-button class="btnIcon">
+<img src="../../../assets/plus.png" (click)="addExperience()" alt="profile"
+  style="height:55px;">
+  </button>

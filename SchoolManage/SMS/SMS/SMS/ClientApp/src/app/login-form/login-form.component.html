@@ -1,0 +1,32 @@
+<div id="backphoto" class="container-fluid">
+<div>
+  <div class="row">
+    <div class="col-sm-1" ></div>
+    <div class="col-sm-4 col-lg-3" >
+      <form class="box mat-elevation-z6" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <img src="../../assets/BVloginlogo.png"  class="logicon">
+        <div class="inputForm">
+        <mat-form-field  appearance="outline" >
+          <mat-label>Admission Number</mat-label>
+          <input matInput formControlName = "username" #AdmissionNumber>
+        </mat-form-field>
+        <mat-form-field  appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput formControlName = "password" #Password type="password">
+          <div *ngIf="f.password.touched && f.password.invalid" class="alert alert-danger">
+            <div *ngIf="f.password.errors.required">Password is required.</div>
+          </div>
+        </mat-form-field>
+        
+        <div class="submit">
+          <button class="submit-btn gradient-button " (click)="authUser()">Login</button><br /> 
+          <!-- (click) = "alertService.success('Success!!', options)" -->
+        </div>
+      </div>     
+      </form>
+    </div>
+</div>
+</div>
+</div>
+
+<!-- <button type="submit" id = "btnLogin" class="btn btn-primary rounded-pill" (click)="Authuser()">Submit</button> -->

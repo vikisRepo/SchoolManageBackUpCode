@@ -1,0 +1,214 @@
+<mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <img src="../../../assets/student.png" style="width:40px;">
+            </mat-panel-title>
+            <mat-panel-description>
+                Student
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+            <mat-list-item routerLink="student-list" >
+                Student Lists
+            </mat-list-item>
+            <mat-list-item routerLink="new-student">
+                 New Student
+            </mat-list-item>
+            <!-- <mat-list-item>
+                Student Promotion/Detain
+            </mat-list-item> -->
+            <!-- <mat-list-item>
+               Student Exit 
+            </mat-list-item> -->
+            <mat-list-item routerLink="student-feedback">
+                 Student Feedback 
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-expansion-panel>
+</mat-accordion>
+<mat-divider></mat-divider>
+<mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <img src="../../../assets/teacher.png" style="width:40px;">
+            </mat-panel-title>
+            <mat-panel-description>
+                Staff
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+            <mat-list-item routerLink='staff-list'>Staff List
+            </mat-list-item>
+            <mat-list-item routerLink='new-staff'>New Staff
+            </mat-list-item>
+            <mat-list-item routerLink='e-letter'>
+                e-Letter
+            </mat-list-item>
+            <mat-list-item routerLink='staff-feedback'>
+                Staff Feedback
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-expansion-panel>
+</mat-accordion>
+<mat-divider></mat-divider>
+<mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <img src="../../../assets/book.png" style="width:40px;">
+            </mat-panel-title>
+            <mat-panel-description>
+                Learning
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+            <mat-list-item routerLink="academic-Detail" >
+                Academic Details
+            </mat-list-item>
+            <mat-list-item routerLink="lesson-plan">
+                Lesson Plan
+            </mat-list-item>
+            <mat-list-item>
+                Class Details
+            </mat-list-item>
+            <mat-list-item routerLink="course">
+               Course
+            </mat-list-item>
+            <mat-list-item routerLink="class-timetable">
+                Time Table
+             </mat-list-item>
+        </mat-nav-list>
+    </mat-expansion-panel>
+</mat-accordion>
+<mat-divider></mat-divider>
+<mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <img src="../../../assets/Attendance.png" style="width:40px;">
+            </mat-panel-title>
+            <mat-panel-description>
+                Attendence
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+            <mat-list-item routerLink="my-attendance" >
+                My Attendence
+            </mat-list-item>
+            <mat-list-item routerLink="student-attendance">
+                Student attendence 
+            </mat-list-item>
+            <mat-list-item routerLink="staff-attendance">
+               Staff Attendence
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-expansion-panel>
+</mat-accordion>
+<mat-divider></mat-divider>
+<mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <img src="../../../assets/Leave.png" style="width:40px;">
+            </mat-panel-title>
+            <mat-panel-description>
+                Leave
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+            <mat-list-item routerLink="apply-leave" >
+                Apply Leave
+            </mat-list-item>
+            <mat-list-item routerLink="student-leave">
+                Student Leave
+            </mat-list-item>
+            <mat-list-item routerLink="staff-leave">
+                Staff Leave
+            </mat-list-item>
+            <!-- <mat-list-item routerLink="leave-config">
+               Leave Configuration
+            </mat-list-item> -->
+        </mat-nav-list>
+    </mat-expansion-panel>
+</mat-accordion>
+<mat-divider></mat-divider>
+<mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <img src="../../../assets/General.png" style="width:40px;">
+            </mat-panel-title>
+            <mat-panel-description>
+                General
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+            <mat-list-item routerLink="class-grade" >
+               Class/Grade
+            </mat-list-item>
+            <mat-list-item routerLink="subject">
+                Subjects
+            </mat-list-item>
+            <mat-list-item routerLink="timetable">
+                Timetable
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-expansion-panel>
+</mat-accordion>
+<mat-divider></mat-divider>
+<mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <img src="../../../assets/bus.png" style="width:40px;">
+            </mat-panel-title>
+            <mat-panel-description>
+                Transport
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+            <mat-list-item routerLink="track-my-bus" >
+               Track my bus  
+            </mat-list-item>
+            <mat-list-item routerLink="add-bus-details">
+                Add Bus Details
+            </mat-list-item>
+            <mat-list-item routerLink="timetable-classes">
+                List Bus Details
+            </mat-list-item>
+            <mat-list-item routerLink="timetable-classes">
+                Add Bus Trips
+            </mat-list-item>
+            <mat-list-item routerLink="timetable-classes">
+                List Bus Trips
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-expansion-panel>
+</mat-accordion>
+<mat-divider></mat-divider>
+<mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <img src="../../../assets/inventory.png" style="width:40px;">
+            </mat-panel-title>
+            <mat-panel-description>
+                Inventory
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+            <mat-list-item routerLink="add-inventory" >
+               Add Inventory
+            </mat-list-item>
+            <mat-list-item routerLink="list-inventory">
+                List Inventory
+            </mat-list-item>
+            <mat-list-item routerLink="inventory-defect">
+                Inventory Defects
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-expansion-panel>
+</mat-accordion>
+<mat-divider></mat-divider>

@@ -1,0 +1,50 @@
+<div class="row headerstyle">
+    <div class="col-sm-5">
+        <h2 *ngIf="index===0">Create New Student</h2>
+        <h2 *ngIf="index===1">Create New Staff</h2>
+        <h2 *ngIf="index===2">e-Letter</h2>
+        <h2 *ngIf="index===3">Staff FeedBack</h2>
+        <h2 *ngIf="index===4">Student FeedBack</h2>
+        <h2 *ngIf="index===5">Class & Section</h2>
+        <h2 *ngIf="index===6">Academic Details</h2>
+        <h2 *ngIf="index===7">Subjects</h2>
+        <h2 *ngIf="index===8">Lesson Plan</h2>
+        <h2 *ngIf="index===9">Course</h2>
+        <h2 *ngIf="index===10">Add Bus Details</h2>
+        <h2 *ngIf="index===11">My Attendence</h2>
+        <h2 *ngIf="index===12">Staff Attendence</h2>
+        <h2 *ngIf="index===13">Student Attendence</h2>
+        <h2 *ngIf="index===14">Apply Leave</h2>
+        <h2 *ngIf="index===15">Student Leave</h2>
+        <h2 *ngIf="index===16">Staff Leave</h2>
+        <h2 *ngIf="index===17">Leave Configuration</h2>
+        <h2 *ngIf="index===18">Add Inventory</h2>
+        <h2 *ngIf="index===19">Class table</h2>
+    </div>
+    <div class="col-sm-3">
+       <div *ngIf="index===6 || index===8 || index===11 || index===12 || index===13 || index===14 || index===15 || index===16 || index===17 || index===19" style="font-size: 12px;margin-top: -15px;">
+        <mat-form-field appearance="standard">
+            <mat-label>Enter a date range</mat-label>
+            <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+              <input matStartDate formControlName="start" placeholder="Start date">
+              <input matEndDate formControlName="end" placeholder="End date">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+          
+            <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+            <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+          </mat-form-field>
+         
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div *ngIf="index===6 || index===8 || index===11 || index===12 || index===13 || index===14 || index===15 || index===16 || index===17" style="font-size: 12px;margin-top: 10px;">
+            <p>(Current Academic Year)</p>
+        </div>
+        <div class="right-content" *ngIf="index!==5 && index!==6 && index!==8 && index!==9 && index!==11 && index!==12 && index!==13 && index!==14 && index!==15 && index!==16 && index!==17 && index!==19 ">
+            <img src="../../../assets/visible.png" style="height:35px;margin-top:-10px;margin-right: 40px; cursor: pointer;"
+                (click)="staffListOpen()" />
+        </div>
+    </div>
+</div>
