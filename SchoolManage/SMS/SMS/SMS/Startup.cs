@@ -49,9 +49,19 @@ namespace SMS
 
 			// using System.Net;
 
-			services.Configure<ForwardedHeadersOptions>(options =>
+			//services.Configure<ForwardedHeadersOptions>(options =>
+			//{
+			//	options.KnownProxies.Add(IPAddress.Parse("10.0.0.100"));
+			//});
+
+			services.Configure<IISOptions>(options =>
 			{
-				options.KnownProxies.Add(IPAddress.Parse("10.0.0.100"));
+				options.ForwardClientCertificate = false;
+			});
+
+			services.Configure<IISServerOptions>(options =>
+			{
+				options.AutomaticAuthentication = false;
 			});
 
 
@@ -113,10 +123,10 @@ namespace SMS
 			// migrate any database changes on startup (includes initial db creation)
 			dataContext.Database.Migrate();
 
-			app.UseForwardedHeaders(new ForwardedHeadersOptions
-			{
-				ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
-			});
+			//app.UseForwardedHeaders(new ForwardedHeadersOptions
+			//{
+			//	ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+			//});
 
 			if (env.IsDevelopment())
 			{
