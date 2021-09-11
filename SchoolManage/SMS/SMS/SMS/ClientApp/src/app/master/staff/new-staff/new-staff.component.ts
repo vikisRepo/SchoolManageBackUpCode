@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { MessageBoxComponent } from 'src/app/shared/dialog-boxes/message-box/message-box.component';
 import { FormTouched } from 'src/app/shared/interfaces/form-touched';
@@ -28,7 +28,8 @@ export class NewStaffComponent implements OnInit, AfterViewInit {
 
   @BlockUI() blockUI: NgBlockUI;
 
-  constructor(private staffApiService: StaffrestApiService, private route: ActivatedRoute, public dialog: MatDialog) { }
+  constructor(private staffApiService: StaffrestApiService, private route: ActivatedRoute, public dialog: MatDialog,
+    private router: Router) { }
 
   ngAfterViewInit(): void {
 
@@ -87,30 +88,25 @@ export class NewStaffComponent implements OnInit, AfterViewInit {
   }
 
   createStaff() {
-    this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"New Staff details successfully !"});
-      setTimeout(() => {
-        this.dialog.closeAll();
-      }, 2500);
+    
     this.staffApiService.createStaff(this.conResults).subscribe(_ => {
-      this.dialog.open(MessageBoxComponent, { width: '250px', height: '200px', data: "create" });
+      this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"New Staff details successfully !"});
       setTimeout(() => {
         this.dialog.closeAll();
-      }, 2500);
+        this.router.navigate(['/staff-list']);
+      }, 5000);
     });
   }
 
   updateSatff() {
-    this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"Staff details updated successfully !"});
-      setTimeout(() => {
-        this.dialog.closeAll();
-      }, 2500);
+    
     this.staffApiService.updateStaff(this.id, this.conResults).subscribe(_ => {
       
-      this.dialog.open(MessageBoxComponent, { width: '250px', height: '200px', data: "update" });
+      this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"Staff details updated successfully !"});
       setTimeout(() => {
         this.dialog.closeAll();
-        //routerlink needs
-      }, 2500);
+        this.router.navigate(['/staff-list']);
+      }, 5000);
     });
   }
 

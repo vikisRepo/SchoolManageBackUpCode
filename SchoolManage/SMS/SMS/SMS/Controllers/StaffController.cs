@@ -23,12 +23,12 @@ namespace SMS.Controllers
 	//[AllowAnonymous]
 	public class StaffController : ControllerBase
 	{
-		private readonly DataContext _dbcontext;
+		private readonly MysqlDataContext _dbcontext;
 
 		private readonly IAccountService _accountService;
 		private readonly IMapper _mapper;
 
-		public StaffController(DataContext dbcontext,
+		public StaffController(MysqlDataContext dbcontext,
 			IAccountService accountService,
 			IMapper mapper)
 		{
@@ -77,18 +77,69 @@ namespace SMS.Controllers
 
 		// PUT api/<StaffController>/5
 		[HttpPut("{id}")]
-		public async Task Put(long id, [FromBody] Staff staff)
+		public async Task<IActionResult> Put(long id, [FromBody] Staff staff)
 		{
-			try
-			{
-				_dbcontext.Entry(_dbcontext.Staffs.Where(X => X.Mobile == id).FirstOrDefault()).CurrentValues.SetValues(staff);
-				await _dbcontext.SaveChangesAsync();
-			}
-			catch (Exception Ex)
-			{ 
-				 
-			}
-		}
+
+            try
+            {
+                var updateStaff = _dbcontext.Staffs.Where(X => X.Mobile == id).FirstOrDefault();
+				//excluding Address, ecxperience, staffid 
+                updateStaff.AadharNumber = staff.AadharNumber;
+                updateStaff.ActiveId = staff.ActiveId;
+				updateStaff.BankAccountNumber = staff.BankAccountNumber;
+				updateStaff.BankBranch = staff.BankBranch;
+				updateStaff.BankIfscCode = staff.BankIfscCode;
+				updateStaff.BankName = staff.BankName;
+				updateStaff.BloodGroup = staff.BloodGroup;
+				updateStaff.DepartmentId = staff.DepartmentId;
+				updateStaff.DesignationId = staff.DesignationId;
+				updateStaff.Dob = staff.Dob;
+				updateStaff.EducationId = staff.EducationId;
+				updateStaff.EmailId = staff.EmailId;
+				updateStaff.EmployeeId = staff.EmployeeId;
+				updateStaff.EmployeementStatusId = staff.EmployeementStatusId;
+				updateStaff.Epfnumber = staff.Epfnumber;
+				updateStaff.Esinumber = staff.Esinumber;
+				updateStaff.FatherMobileNumber = staff.FatherMobileNumber;
+				updateStaff.FatherName = staff.FatherName;
+				updateStaff.FatherOccupation = staff.FatherOccupation;
+				updateStaff.FirstName = staff.FirstName;
+				updateStaff.Gender = staff.Gender;
+				updateStaff.JoiningDate = staff.JoiningDate;
+				updateStaff.LanguagesId = staff.LanguagesId;
+				updateStaff.LastName = staff.LastName;
+				updateStaff.Marritalsatus = staff.Marritalsatus;
+				updateStaff.MiddleName = staff.MiddleName;
+				updateStaff.Mobile = staff.Mobile;
+				updateStaff.MotherMobileNumber = staff.MotherMobileNumber;
+				updateStaff.MotherName = staff.MotherName;
+				updateStaff.MotherOccupation = staff.MotherOccupation;
+				updateStaff.MotherTongue = staff.MotherTongue;
+				updateStaff.NationalityId = staff.NationalityId;
+				updateStaff.OfficialEmailId = staff.OfficialEmailId;
+				updateStaff.PanNumber = staff.PanNumber;
+				updateStaff.ReligionId = staff.ReligionId;
+				updateStaff.ReportingTo = staff.ReportingTo;
+				updateStaff.RoleId = staff.RoleId;
+				updateStaff.SalutationId = staff.SalutationId;
+				updateStaff.SpouseMobileNumber = staff.SpouseMobileNumber;
+				updateStaff.SpouseName = staff.SpouseName;
+				updateStaff.SpouseOccupation = staff.SpouseOccupation;
+				updateStaff.StaffAddressId = staff.StaffAddressId;
+				updateStaff.StaffExperienceId = staff.StaffExperienceId;
+				updateStaff.StaffTypeId = staff.StaffTypeId;
+				updateStaff.TeacherId = staff.TeacherId;
+				updateStaff.Uannumber = staff.Uannumber;
+				updateStaff.WeddingDate = staff.WeddingDate;
+                await _dbcontext.SaveChangesAsync();
+
+				return Ok(staff);
+            }
+            catch (Exception Ex)
+            {
+				return BadRequest(Ex);
+            }
+        }
 
 		// DELETE api/<StaffController>/5
 		[HttpDelete("{id}")]
