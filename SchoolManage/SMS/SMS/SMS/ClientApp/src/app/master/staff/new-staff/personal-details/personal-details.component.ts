@@ -45,15 +45,15 @@ export class PersonalDetailsComponent implements OnInit, OnChanges, FormTouched 
         salutationId: ['', Validators.required],
         dob: ['', Validators.required],
         religionId: ['', Validators.required],
-        motherTonge: ['', Validators.required],
+        motherTongue: ['', Validators.required],
         firstName: ['', Validators.required],
         bloodGroup: ['', Validators.required],
         gender: ['', Validators.required],
         emailId: ['', Validators.required],
-        languages: ['', Validators.required],
+        languagesId: ['', Validators.required],
         middleName: [''],
         maritalStatus: ['', Validators.required],
-        nationality: [''],
+        nationalityId: [''],
         lastName: ['', Validators.required],
         weedingDate: [''],
         mobile: ['', Validators.required],
@@ -94,7 +94,6 @@ export class PersonalDetailsComponent implements OnInit, OnChanges, FormTouched 
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-
     if (changes.getFormValues.currentValue) {
       console.log(changes.getFormValues.currentValue);
       this.addressData = this.getFormValues["addresses"];
@@ -116,7 +115,6 @@ export class PersonalDetailsComponent implements OnInit, OnChanges, FormTouched 
   onSubmit() {
     // TODO: Use EventEmitter with form value
     // console.log("Hai");
-
     console.warn(this.profileForm.value);
   }
 

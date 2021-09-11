@@ -36,8 +36,8 @@ namespace SMS.Models
         public int MotherTongue { get; set; }
 
         //LanguagesDropdown
-        [JsonIgnore]
-        [IgnoreDataMember]
+        //[JsonIgnore]
+        //[IgnoreDataMember]
         public int LanguagesId { get; set; }
 		//public Languages[] Languages { get; set; }
         public string EmailId { get; set; }
@@ -88,24 +88,24 @@ namespace SMS.Models
         // Education Drop Dwon TBD
         public int EducationId { get; set; }
 
-        // Employee Status DropDown
-        public int EmployeementStatusId { get; set; }
-
         // Role Dropu Down
         public int RoleId { get; set; }
         public DateTime JoiningDate { get; set; }
         public int ActiveId { get; set; }
         public string Uannumber { get; set; }
 
+        public string maritalStatus { get; set; }
+        public int EmployeementStatusId { get; set; }
+        public string branchnumber { get; set; }
+
         //public byte[] ProfilePic { get; set; }
+
 
         [JsonIgnore]
         [IgnoreDataMember]
         public int StaffExperienceId { get; set; }
 
-        //public StaffExperience[] Experience { get; set; }
-
-        public virtual ICollection<StaffExperience> experiences { get; set; }
+        public virtual ICollection<StaffExperience> StaffExperiences { get; set; }
 
         //[JsonIgnore]
         //[IgnoreDataMember]

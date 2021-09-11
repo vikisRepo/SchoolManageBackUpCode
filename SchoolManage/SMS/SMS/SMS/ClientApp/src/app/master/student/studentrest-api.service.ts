@@ -7,13 +7,14 @@ import { CompileShallowModuleMetadata } from '@angular/compiler';
 import { Console } from 'console';
 import { Student, Dependents } from './student';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentrestApiService {
 
-  apiURL = 'api/Student/';
+  apiURL = environment.apiUrl + '/api/Student';
   apiFeedbackURL = 'api/StudentFeedback/';
   
   @BlockUI() blockUI: NgBlockUI;
@@ -36,8 +37,7 @@ export class StudentrestApiService {
 
   // HttpClient API get() method => Fetch Students list
   getStudents(): Observable<Student> {
-    debugger;
-    return this.http.get<Student>("http://localhost:3007/Students")
+    return this.http.get<Student>(this.apiURL)
     .pipe(
       retry(1),
       catchError((err)=>this.handleError(err))
@@ -46,7 +46,7 @@ export class StudentrestApiService {
 
   // HttpClient API get() method => Fetch Student
   getStudent(id : any): Observable<Student> {
-    return this.http.get<Student>(this.apiURL + id)
+    return this.http.get<Student>(this.apiURL + '/' + id)
     .pipe(
       retry(1),
       catchError((err)=>this.handleError(err))
@@ -56,7 +56,7 @@ export class StudentrestApiService {
   // HttpClient API post() method => Create Student
   createStudent(student : Student): Observable<Student> {
     console.log(JSON.stringify(student));
-    return this.http.post<Student>('api/Student',student, this.httpOptions)
+    return this.http.post<Student>(this.apiURL,student, this.httpOptions)
     .pipe(
       retry(1),
       catchError((err)=>this.handleError(err))

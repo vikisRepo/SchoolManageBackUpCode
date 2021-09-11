@@ -1,6 +1,7 @@
 import { Component, OnInit, Output,EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { FormTouched } from 'src/app/shared/interfaces/form-touched';
+import { StaffrestApiService } from '../../staffrest-api.service';
 
 @Component({
   selector: 'app-employee-experience',
@@ -15,12 +16,12 @@ export class EmployeeExperienceComponent implements OnInit,FormTouched {
   @Output() formDetails=new EventEmitter();
 
   get experiences() : FormArray {
-    return this.experienceForm.get('experiences') as FormArray;
+    return this.experienceForm.get('staffExperiences') as FormArray;
   };
 
-  constructor(private fb : FormBuilder) {
+  constructor(private fb : FormBuilder, private staffrestApiService : StaffrestApiService) {
     this.experienceForm = this.fb.group({
-      experiences: this.fb.array([this.buildExperiences()])
+      staffExperiences: this.fb.array([this.buildExperiences()])
     });
     this.experienceForm.valueChanges.subscribe(()=>{
       this.formDetails.emit({ value: this.experienceForm.value,
@@ -33,7 +34,9 @@ export class EmployeeExperienceComponent implements OnInit,FormTouched {
   }
 
   ngOnInit(): void {
-    
+    this.staffrestApiService.formValue$.subscribe((data : any) => {
+      this.experienceForm.patchValue(data);
+    });
   }
 
   addExperience(): void {

@@ -12,6 +12,7 @@ import { AngularMaterialModule } from 'src/angular-material.module';
 import { AngularFileUploaderModule } from "angular-file-uploader";
 
 import { AvatarModule } from 'ngx-avatar';
+import {MatIconModule} from '@angular/material/icon'
 
 
 
@@ -34,7 +35,8 @@ import { AvatarModule } from 'ngx-avatar';
     ReactiveFormsModule,
     AngularMaterialModule,
     AngularFileUploaderModule,
-    AvatarModule
+    AvatarModule,
+    MatIconModule
   ]
 })
 export class MasterModule { }

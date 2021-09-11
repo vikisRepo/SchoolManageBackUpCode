@@ -34,10 +34,12 @@ export class NewStudentComponent implements OnInit {
 
     if(!this.isAddMode)
     {
+      debugger;
       this.studentApiService.getStudent(this.id)
-        .subscribe(data => {
-          this._student = data;
-          this.studentApiService.setFormValue(data);
+        .subscribe(studentdetails => {
+          this._student = studentdetails;
+          debugger;
+          this.studentApiService.setFormValue(studentdetails);
           console.log(this._student);
         }, error => console.log(error));
     }
@@ -51,13 +53,13 @@ export class NewStudentComponent implements OnInit {
   }
 
   btnMovement(st: string) {
-    let flg = this.dt.toArray()[this.selectedTab].formTouched();
-    console.log(flg)
+  //  let flg = this.dt.toArray()[this.selectedTab].formTouched();
+   // console.log(flg)
    
       if (st === 'bck') {
         this.selectedTab--;
       }
-      else if (st === 'frd' && flg) {
+      else if (st === 'frd') {
         if (this.selectedTab >= 3) {
           this.submit();
           return;
@@ -94,6 +96,7 @@ export class NewStudentComponent implements OnInit {
 
   createStudent()
   {
+    console.log(JSON.stringify(this.stuJsonResult));
     this.studentApiService.createStudent(this.stuJsonResult).subscribe(_=>{
       this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"student feedback updated successfully !"});
       setTimeout(() => {

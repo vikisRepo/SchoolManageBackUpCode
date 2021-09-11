@@ -13,10 +13,10 @@ import { PGFormComponent } from './p-g-form/p-g-form.component';
 export class ParentsGuardianDetailsComponent implements OnInit, FormTouched {
   @Output() stuFormtDetails = new EventEmitter();
   arryoffPersonJson: any = {
-    fatherDetails: {},
-    motherDetails: {},
-    localGuardian: {},
-    legalGuardian: {}
+    dependentsdetails: [4],
+    // motherDetails: {},
+    // localGuardian: {},
+    // legalGuardian: {}
   };
   @ViewChildren("dt") dt: QueryList<FormTouched>;
   stuParentDetails: boolean[] = [false, false, false, false];
@@ -39,13 +39,13 @@ export class ParentsGuardianDetailsComponent implements OnInit, FormTouched {
   getParentsInfo(obj: any, flg: number) {
     this.stuParentDetails[flg] = obj.valid;
     switch (flg) {
-      case 0: this.arryoffPersonJson.fatherDetails = obj.value;
+      case 0: this.arryoffPersonJson.dependentsdetails[flg] = obj.value;
         break;
-      case 1: this.arryoffPersonJson.motherDetails = obj.value;
+      case 1: this.arryoffPersonJson.dependentsdetails[flg] = obj.value;
         break;
-      case 2: this.arryoffPersonJson.localGuardian = obj.value;
+      case 2: this.arryoffPersonJson.dependentsdetails[flg] = obj.value;
         break;
-      case 3: this.arryoffPersonJson.legalGuardian = obj.value;
+      case 3: this.arryoffPersonJson.dependentsdetails[flg] = obj.value;
         break;
 
     }

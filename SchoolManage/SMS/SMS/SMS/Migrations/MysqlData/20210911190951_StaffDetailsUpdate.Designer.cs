@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.Helpers;
 
 namespace SMS.Migrations.MysqlData
 {
     [DbContext(typeof(MysqlDataContext))]
-    partial class MysqlDataContextModelSnapshot : ModelSnapshot
+    [Migration("20210911190951_StaffDetailsUpdate")]
+    partial class StaffDetailsUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -657,6 +659,12 @@ namespace SMS.Migrations.MysqlData
                     b.Property<string>("branchnumber")
                         .HasColumnType("text");
 
+                    b.Property<int>("employeementStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("languages")
+                        .HasColumnType("text");
+
                     b.Property<string>("maritalStatus")
                         .HasColumnType("text");
 
@@ -714,7 +722,7 @@ namespace SMS.Migrations.MysqlData
                     b.Property<string>("Responsibilty")
                         .HasColumnType("text");
 
-                    b.Property<int?>("StaffId")
+                    b.Property<int>("StaffId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("To")
@@ -1187,8 +1195,10 @@ namespace SMS.Migrations.MysqlData
             modelBuilder.Entity("SMS.Models.StaffExperience", b =>
                 {
                     b.HasOne("SMS.Models.Staff", null)
-                        .WithMany("StaffExperiences")
-                        .HasForeignKey("StaffId");
+                        .WithMany("experiences")
+                        .HasForeignKey("StaffId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SMS.Models.TimeTable.PeriodDetail", b =>
@@ -1303,7 +1313,7 @@ namespace SMS.Migrations.MysqlData
                 {
                     b.Navigation("Addresses");
 
-                    b.Navigation("StaffExperiences");
+                    b.Navigation("experiences");
                 });
 
             modelBuilder.Entity("SMS.Models.TimeTable.ClassTimeTable", b =>

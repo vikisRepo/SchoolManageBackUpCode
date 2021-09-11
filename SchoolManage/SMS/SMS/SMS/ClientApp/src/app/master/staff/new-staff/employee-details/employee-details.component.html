@@ -24,14 +24,14 @@
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>ESI Number</mat-label>
-                    <input matInput formControlName="esiNumber" >
+                    <input matInput formControlName="esinumber" >
                 </mat-form-field>
             </div>
 
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
                     <mat-label>Staff Type</mat-label>
-                    <mat-select formControlName="staffId">
+                    <mat-select formControlName="staffTypeId">
                         <mat-option *ngFor="let staff of staffId" [value]="staff.value">
                             {{staff.viewValue}} 
                         </mat-option>
@@ -39,7 +39,7 @@
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Employeement Status</mat-label>
-                    <mat-select formControlName="employeementstatusId">
+                    <mat-select formControlName="employeementStatusId">
                         <mat-option *ngFor="let employeementstatusId of employeementStatus" [value]="employeementstatusId.value">
                             {{employeementstatusId.viewValue}} 
                         </mat-option>
@@ -55,7 +55,7 @@
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>EPF Number</mat-label>
-                    <input matInput formControlName="epfNumber">
+                    <input matInput formControlName="epfnumber">
                 </mat-form-field>
             </div>
 
@@ -84,7 +84,7 @@
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>UAN Number</mat-label>
-                    <input matInput formControlName="uanNumber" >
+                    <input matInput formControlName="uannumber" >
                 </mat-form-field>
             </div>
 

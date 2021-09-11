@@ -25,8 +25,8 @@ export class SmsConstant {
     { value: 3, viewValue: 'christian' }
   ];
   static readonly nationality = [
-    { value: 0, viewValue: '--select none--' },
-    {value: 1, viewValue: 'India'},
+    { value: 1, viewValue: '--select none--' },
+    {value: 0, viewValue: 'India'},
     {value: 2, viewValue: 'Algerian'},
     {value: 3, viewValue: 'American'},
     {value: 4, viewValue: 'Andorran'},

@@ -24,7 +24,7 @@ export class BankingDetailsComponent implements OnInit, OnDestroy,FormTouched {
       bankName : ['',Validators.required],
       bankAccountNumber : ['',Validators.required],
       panNumber : ['',Validators.required],
-      branchNumber : ['',Validators.required],
+      branchnumber : ['',Validators.required],
       bankIfscCode : ['',Validators.required]
     });
     this.bankingFrom.valueChanges.subscribe(()=>{

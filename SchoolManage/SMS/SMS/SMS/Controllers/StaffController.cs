@@ -41,14 +41,14 @@ namespace SMS.Controllers
 		[HttpGet]
 		public IEnumerable<Staff> Get()
 		{
-			return _dbcontext.Staffs.Include(X => X.Addresses).Include(g => g.experiences).ToList();
+			return _dbcontext.Staffs.Include(X => X.Addresses).Include(g => g.StaffExperiences).ToList();
 		}
 
 		// GET api/<StaffController>/5
 		[HttpGet("{id}")]
 		public IActionResult Get(long id)
 		{
-			return Ok(_dbcontext.Staffs.Where(X => X.Mobile == id).Include(X => X.Addresses).Include(g => g.experiences).FirstOrDefault());
+			return Ok(_dbcontext.Staffs.Where(X => X.Mobile == id).Include(X => X.Addresses).Include(g => g.StaffExperiences).FirstOrDefault());
 		}
 
 		// POST api/<StaffController>
@@ -131,7 +131,9 @@ namespace SMS.Controllers
 				updateStaff.TeacherId = staff.TeacherId;
 				updateStaff.Uannumber = staff.Uannumber;
 				updateStaff.WeddingDate = staff.WeddingDate;
-                await _dbcontext.SaveChangesAsync();
+				updateStaff.maritalStatus = staff.maritalStatus;
+				updateStaff.branchnumber = staff.branchnumber;
+				await _dbcontext.SaveChangesAsync();
 
 				return Ok(staff);
             }
@@ -149,13 +151,6 @@ namespace SMS.Controllers
 			await _dbcontext.SaveChangesAsync();
 		}
 
-		[HttpPost("PostStaffFeedback")]
-		public async Task<IActionResult> PostStaffFeedback([FromBody] StaffFeedback staffFeedback)
-		{
-			//_dbcontext.StaffFeedbacks.Add(staffFeedback);
-			//await _dbcontext.SaveChangesAsync();
-
-			return Ok();
-		}
+		
 	}
 }

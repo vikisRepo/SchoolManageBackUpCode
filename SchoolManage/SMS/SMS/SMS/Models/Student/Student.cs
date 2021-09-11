@@ -9,36 +9,7 @@ using System.Text.Json.Serialization;
 
 namespace SMS.Models
 {
- //   public partial class Dependents
- //   {
-	//	public int DependentsId { get; set; }
-
- //       [JsonIgnore]
-	//	public string DependentsType { get; set; }
-	//	public int StudentId { get; set; }
-	//	public string FirstName { get; set; }
- //       public String LastName { get; set; }
- //       public string MiddleName { get; set; }
- //       public long MobileNumber { get; set; }
- //       public string Occupation { get; set; }
- //       public string SalutationId { get; set; }
-
- //       public string AadharNumber { get; set; }
-	//	public long AnnualIncome { get; set; }
-
-	//	public bool BvEmployee { get; set; }
-
-	//	public string Company { get; set; }
-
-	//	public string Designation { get; set; }
-
-	//	public string  Email { get; set; }
-
- //       [JsonIgnore]
-	//	public virtual ICollection<Student> Students { get; set; }
-
-	//}
-    public partial class Student
+    public class Student
     {
 
         [JsonIgnore]
@@ -126,92 +97,84 @@ namespace SMS.Models
 
         public string PermenantPincode { get; set; }
 
-        public string FatherFirstName { get; set; }
-        public String FatherLastName { get; set; }
-        public string FatherMiddleName { get; set; }
-        public long FatherMobileNumber { get; set; }
-        public string FatherOccupation { get; set; }
-        public string FatherSalutationId { get; set; }
+        //public string FatherFirstName { get; set; }
+        //public String FatherLastName { get; set; }
+        //public string FatherMiddleName { get; set; }
+        //public long FatherMobileNumber { get; set; }
+        //public string FatherOccupation { get; set; }
+        //public string FatherSalutationId { get; set; }
 
-        public string FatherAadharNumber { get; set; }
-        public long FatherAnnualIncome { get; set; }
+        //public string FatherAadharNumber { get; set; }
+        //public long FatherAnnualIncome { get; set; }
 
-        public bool FatherBvEmployee { get; set; }
+        //public bool FatherBvEmployee { get; set; }
 
-        public string FatherCompany { get; set; }
+        //public string FatherCompany { get; set; }
 
-        public string FatherDesignation { get; set; }
+        //public string FatherDesignation { get; set; }
 
-        public string FatherEmail { get; set; }
+        //public string FatherEmail { get; set; }
 
-        public string MotherFirstName { get; set; }
-        public String MotherLastName { get; set; }
-        public string MotherMiddleName { get; set; }
-        public long MotherMobileNumber { get; set; }
-        public string MotherOccupation { get; set; }
-        public string MotherSalutationId { get; set; }
+        //public string MotherFirstName { get; set; }
+        //public String MotherLastName { get; set; }
+        //public string MotherMiddleName { get; set; }
+        //public long MotherMobileNumber { get; set; }
+        //public string MotherOccupation { get; set; }
+        //public string MotherSalutationId { get; set; }
 
-        public string MotherAadharNumber { get; set; }
-        public long MotherAnnualIncome { get; set; }
+        //public string MotherAadharNumber { get; set; }
+        //public long MotherAnnualIncome { get; set; }
 
-        public bool MotherBvEmployee { get; set; }
+        //public bool MotherBvEmployee { get; set; }
 
-        public string MotherCompany { get; set; }
+        //public string MotherCompany { get; set; }
 
-        public string MotherDesignation { get; set; }
+        //public string MotherDesignation { get; set; }
 
-        public string MotherEmail { get; set; }
+        //public string MotherEmail { get; set; }
 
-        public string LegalFirstName { get; set; }
-        public String LegalLastName { get; set; }
-        public string LegalMiddleName { get; set; }
-        public long LegalMobileNumber { get; set; }
-        public string LegalOccupation { get; set; }
-        public string LegalSalutationId { get; set; }
+        //public string LegalFirstName { get; set; }
+        //public String LegalLastName { get; set; }
+        //public string LegalMiddleName { get; set; }
+        //public long LegalMobileNumber { get; set; }
+        //public string LegalOccupation { get; set; }
+        //public string LegalSalutationId { get; set; }
 
-        public string LegalAadharNumber { get; set; }
-        public long LegalAnnualIncome { get; set; }
+        //public string LegalAadharNumber { get; set; }
+        //public long LegalAnnualIncome { get; set; }
 
-        public bool LegalBvEmployee { get; set; }
+        //public bool LegalBvEmployee { get; set; }
 
-        public string LegalCompany { get; set; }
+        //public string LegalCompany { get; set; }
 
-        public string LegalDesignation { get; set; }
+        //public string LegalDesignation { get; set; }
 
-        public string LegalEmail { get; set; }
-
-
-        public string LocalGuardianFirstName { get; set; }
-        public String LocalGuardianLastName { get; set; }
-        public string LocalGuardianMiddleName { get; set; }
-        public long LocalGuardianMobileNumber { get; set; }
-        public string LocalGuardianOccupation { get; set; }
-        public string LocalGuardianSalutationId { get; set; }
-
-        public string LocalGuardianAadharNumber { get; set; }
-        public long LocalGuardianAnnualIncome { get; set; }
-
-        public bool LocalGuardianBvEmployee { get; set; }
-
-        public string LocalGuardianCompany { get; set; }
-
-        public string LocalGuardianDesignation { get; set; }
-
-        public string LocalGuardianEmail { get; set; }
+        //public string LegalEmail { get; set; }
 
 
-        //[ForeignKey("DependentsId")]
-        //public int DependentsId { get; set; }
-        //public Dependents FatherDetails { get; set; }
+        //public string LocalGuardianFirstName { get; set; }
+        //public String LocalGuardianLastName { get; set; }
+        //public string LocalGuardianMiddleName { get; set; }
+        //public long LocalGuardianMobileNumber { get; set; }
+        //public string LocalGuardianOccupation { get; set; }
+        //public string LocalGuardianSalutationId { get; set; }
 
-        //[NotMapped]
-        //public Dependents MotherDetails { get; set; }
+        //public string LocalGuardianAadharNumber { get; set; }
+        //public long LocalGuardianAnnualIncome { get; set; }
 
-        //[NotMapped]
-        //public Dependents LocalGuardian { get; set; }
+        //public bool LocalGuardianBvEmployee { get; set; }
 
-        //[NotMapped]
-        //public Dependents LegalGuardian { get; set; }
+        //public string LocalGuardianCompany { get; set; }
+
+        //public string LocalGuardianDesignation { get; set; }
+
+        //public string LocalGuardianEmail { get; set; }
+
+        [JsonIgnore]
+        [IgnoreDataMember]
+        public int DependentsId { get; set; }
+
+        public virtual ICollection<Dependents> Dependentsdetails { get; set; }
 
     }
 }
