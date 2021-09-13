@@ -1,6 +1,6 @@
 <form [formGroup]="experienceForm" class="p-base">
     <div class="container-fluid" style="margin-top:5px" formArrayName="staffExperiences">
-        <div [formGroupName]="i" *ngFor="let address of experiences.controls; let i=index">
+        <div [formGroupName]="i" *ngFor="let experience of experiences.controls; let i=index">
             <div class="row">
                 <div class="col-sm-3">
                     <mat-form-field appearance="standard">
@@ -22,10 +22,8 @@
                 <div class="col-sm-3">
                     <mat-form-field appearance="fill" style="width:350px;">
                         <mat-label attr.for="{{'Responsiblity' + i}}">Responsiblity</mat-label>
-                        <textarea id="{{'Responsiblity' + i}}" matInput formControlName="responsiblity"></textarea>
+                        <textarea id="{{'Responsiblity' + i}}" matInput formControlName="responsibilty"></textarea>
                     </mat-form-field>
-
-
                 </div>
                 <img src="../../../../assets/trash.png" class="icon"
                     style="margin-Top: 25px; cursor: pointer; width: 25px;height: 25px;float:right" />
