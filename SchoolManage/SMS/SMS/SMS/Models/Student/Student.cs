@@ -35,15 +35,15 @@ namespace SMS.Models
         public string EmailId { get; set; }
         public string AadharNumber { get; set; }
 
+        [JsonIgnore]
+        [IgnoreDataMember]
+        public int StudentAddressId { get; set; }
+
         //[JsonIgnore]
         //[IgnoreDataMember]
-        //public int StudentAddressId { get; set; }
+        //public StudentAddress[] Addresses { get; set; }
 
-        ////[JsonIgnore]
-        ////[IgnoreDataMember]
-        ////public StudentAddress[] Addresses { get; set; }
-
-        //public virtual ICollection<StudentAddress> Addresses { get; set; }
+        public virtual ICollection<StudentAddress> Addresses { get; set; }
 
         public long Mobile { get; set; }
         public int AdmissionNumber { get; set; }
@@ -69,33 +69,33 @@ namespace SMS.Models
         //public byte[] StudentVisa {get;set;}
 
 
-        public string CurrentLine1 { get; set; }
+        //public string CurrentLine1 { get; set; }
 
-        public string CurrentLine2 { get; set; }
+        //public string CurrentLine2 { get; set; }
 
-        public string CurrentLine3 { get; set; }
+        //public string CurrentLine3 { get; set; }
 
-        public string CurrentCity { get; set; }
+        //public string CurrentCity { get; set; }
 
-        public string CurrentSate { get; set; }
+        //public string CurrentSate { get; set; }
 
-        public string CurrentCountry { get; set; }
+        //public string CurrentCountry { get; set; }
 
-        public string CurrentPincode { get; set; }
+        //public string CurrentPincode { get; set; }
 
-        public string PermenantLine1 { get; set; }
+        //public string PermenantLine1 { get; set; }
 
-        public string PermenantLine2 { get; set; }
+        //public string PermenantLine2 { get; set; }
 
-        public string PermenantLine3 { get; set; }
+        //public string PermenantLine3 { get; set; }
 
-        public string PermenantCity { get; set; }
+        //public string PermenantCity { get; set; }
 
-        public string PermenantSate { get; set; }
+        //public string PermenantSate { get; set; }
 
-        public string PermenantCountry { get; set; }
+        //public string PermenantCountry { get; set; }
 
-        public string PermenantPincode { get; set; }
+        //public string PermenantPincode { get; set; }
 
         //public string FatherFirstName { get; set; }
         //public String FatherLastName { get; set; }

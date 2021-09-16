@@ -71,13 +71,10 @@ export class PersonalDetailsComponent implements OnInit, OnChanges, FormTouched 
       }
     );
 
-
-
     this.profileForm.valueChanges.subscribe(() => {
       Object.assign(this.formValues, this.profileForm.value);
       this.formValues["mobile"] = Number.parseInt(this.formValues["mobile"]);
       this.formDetails.emit({ value: this.formValues, valid: (this.profileForm.valid && this.addressValidFlag) });
-
     });
   }
 

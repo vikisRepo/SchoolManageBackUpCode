@@ -25,7 +25,7 @@
                         <textarea id="{{'Responsiblity' + i}}" matInput formControlName="responsibilty"></textarea>
                     </mat-form-field>
                 </div>
-                <img src="../../../../assets/trash.png" class="icon"
+                <img *ngIf="enabletrash" src="../../../../assets/trash.png" class="icon"
                     style="margin-Top: 25px; cursor: pointer; width: 25px;height: 25px;float:right" />
             </div>
         </div>

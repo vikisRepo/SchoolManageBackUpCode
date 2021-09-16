@@ -38,14 +38,14 @@ namespace SMS.Controllers
 		[HttpGet]
 		public IEnumerable<Student> Get()
 		{
-			return _dbcontext.Students.Include(d => d.Dependentsdetails).ToList();
+			return _dbcontext.Students.Include(X => X.Addresses).Include(d => d.Dependentsdetails).ToList();
 		}
 
 		// GET api/<StudentController>/5
 		[HttpGet("{id}")]
 		public IActionResult Get(int id)
 		{
-			return Ok(_dbcontext.Students.Where(X => X.StudentId == id).Include(d => d.Dependentsdetails).FirstOrDefault());
+			return Ok(_dbcontext.Students.Where(X => X.AdmissionNumber == id).Include(X => X.Addresses).Include(d => d.Dependentsdetails).FirstOrDefault());
 		}
 
 		// POST api/<StudentController>
@@ -64,7 +64,7 @@ namespace SMS.Controllers
 			_accountService.Register(model, Request.Headers["origin"]);
 			var account = _dbcontext.Accounts.SingleOrDefault(x => x.Email == model.Email);
 			student.StudentId =  account.Id;
-			_dbcontext.Students.Add(student);
+            _dbcontext.Students.Add(student);
 			_dbcontext.SaveChanges();
 		}
 
@@ -72,7 +72,7 @@ namespace SMS.Controllers
 		[HttpPut("{id}")]
 		public void Put(int id, [FromBody] Student student)
 		{
-			var updatestudent = _dbcontext.Students.Where(X => X.StudentId == id).FirstOrDefault();
+			var updatestudent = _dbcontext.Students.Where(X => X.AdmissionNumber == id).FirstOrDefault();
 
             updatestudent.Salutation = student.Salutation;
             updatestudent.FirstName = student.FirstName;
@@ -98,20 +98,20 @@ namespace SMS.Controllers
             updatestudent.yearofattendence = student.yearofattendence;
             updatestudent.AcademicPrecentage = student.AcademicPrecentage;
             updatestudent.ReasonForLeaving = student.ReasonForLeaving;
-            updatestudent.CurrentLine1 = student.CurrentLine1;
-            updatestudent.CurrentLine2 = student.CurrentLine2;
-            updatestudent.CurrentLine3 = student.CurrentLine3;
-            updatestudent.CurrentCity = student.CurrentCity;
-            updatestudent.CurrentSate = student.CurrentSate;
-            updatestudent.CurrentCountry = student.CurrentCountry;
-            updatestudent.CurrentPincode = student.CurrentPincode;
-            updatestudent.PermenantLine1 = student.PermenantLine1;
-            updatestudent.PermenantLine2 = student.PermenantLine2;
-            updatestudent.PermenantLine3 = student.PermenantLine3;
-            updatestudent.PermenantCity = student.PermenantCity;
-            updatestudent.PermenantSate = student.PermenantSate;
-            updatestudent.PermenantCountry = student.PermenantCountry;
-            updatestudent.PermenantPincode = student.PermenantPincode;
+            //updatestudent.CurrentLine1 = student.CurrentLine1;
+            //updatestudent.CurrentLine2 = student.CurrentLine2;
+            //updatestudent.CurrentLine3 = student.CurrentLine3;
+            //updatestudent.CurrentCity = student.CurrentCity;
+            //updatestudent.CurrentSate = student.CurrentSate;
+            //updatestudent.CurrentCountry = student.CurrentCountry;
+            //updatestudent.CurrentPincode = student.CurrentPincode;
+            //updatestudent.PermenantLine1 = student.PermenantLine1;
+            //updatestudent.PermenantLine2 = student.PermenantLine2;
+            //updatestudent.PermenantLine3 = student.PermenantLine3;
+            //updatestudent.PermenantCity = student.PermenantCity;
+            //updatestudent.PermenantSate = student.PermenantSate;
+            //updatestudent.PermenantCountry = student.PermenantCountry;
+            //updatestudent.PermenantPincode = student.PermenantPincode;
             //updatestudent.FatherFirstName = student.FatherFirstName;
             //updatestudent.FatherLastName = student.FatherLastName;
             //updatestudent.FatherMiddleName = student.FatherMiddleName;

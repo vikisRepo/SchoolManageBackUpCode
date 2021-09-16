@@ -45,8 +45,8 @@ export class StudentrestApiService {
   }
 
   // HttpClient API get() method => Fetch Student
-  getStudent(id : any): Observable<Student> {
-    return this.http.get<Student>(this.apiURL + '/' + id)
+  getStudent(id : any): Observable<any> {
+    return this.http.get<any>(this.apiURL + '/' + id)
     .pipe(
       retry(1),
       catchError((err)=>this.handleError(err))
@@ -66,7 +66,7 @@ export class StudentrestApiService {
 
   // HttpClient API put() method => Update Student
   updateStudent(id : any, student : Student): Observable<Student> {
-    return this.http.put<Student>(this.apiURL + id, JSON.stringify(student), this.httpOptions)
+    return this.http.put<Student>(this.apiURL +'/'+ id, student, this.httpOptions)
     .pipe(
       retry(1),
       catchError((err)=>this.handleError(err))

@@ -15,6 +15,7 @@ export class EmployeeExperienceComponent implements OnInit,FormTouched {
   
   @Output() formDetails=new EventEmitter();
   @Input() getFormValues = {};
+  enabletrash : any = true;
 
   get experiences() : FormArray {
     return this.experienceForm.get('staffExperiences') as FormArray;
@@ -42,6 +43,12 @@ export class EmployeeExperienceComponent implements OnInit,FormTouched {
       data.staffExperiences.forEach((x) => {
         this.experiences.push(this.fb.group(x))
       });
+
+      if(this.experiences.length == 0)
+        this.enabletrash = false;
+      else
+        this.enabletrash = true;  
+         
     });
   }
 

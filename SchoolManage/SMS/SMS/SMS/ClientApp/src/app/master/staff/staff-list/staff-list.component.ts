@@ -67,12 +67,6 @@ export class StaffListComponent implements OnInit {
     
   }
 
-  // departmentchange(value)
-  // {
-    
-  //   this.staffListData.filter.search(value);
-  //     console.log(this.staffListData.filter.search(value));
-  // }
   loadStaff()
   {
     this.blockUI.start();
@@ -91,7 +85,6 @@ export class StaffListComponent implements OnInit {
 
   }
 
-
   applyFilter(event: any) {
     console.log(event)
   
@@ -101,13 +94,7 @@ export class StaffListComponent implements OnInit {
   
 
   ngOnInit(): void {
-    console.log("hai");
-   
-   
-    // this.staffListData = new MatTableDataSource(this.staffs);
-    // this.staffListData.paginator = this.paginator;
-    // this.staffListData.sort = this.sort;
-    
+      
   }
 
   filterToggle()
@@ -143,6 +130,11 @@ export class StaffListComponent implements OnInit {
         && data.joiningDate.toLowerCase().indexOf(searchTerms.joiningDate) !== -1;
     }
     return filterFunction;
+  }
+
+  clearFilter(): void {
+    this.staffListData.filter = '';
+    this.stafffilters.reset();
   }
 
 }

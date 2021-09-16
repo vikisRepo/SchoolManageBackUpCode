@@ -15,7 +15,7 @@
       <!-- stuFormtDetails[1]!=null && stuFormtDetails[1] -->
       <mat-icon *ngIf="stuFormtDetails[1]!=null && stuFormtDetails[1]" color="primary">check_circle</mat-icon>
     </ng-template>
-    <app-parents-guardian-details (stuFormtDetails)="setTabFormDetails($event,1)" #dt></app-parents-guardian-details>
+    <app-parents-guardian-details (stuFormtDetails)="setTabFormDetails($event,1)" [arryoffPersonJson]="parentG" #dt></app-parents-guardian-details>
   </mat-tab>
   
   

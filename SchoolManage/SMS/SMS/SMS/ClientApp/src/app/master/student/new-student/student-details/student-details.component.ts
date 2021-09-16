@@ -82,7 +82,6 @@ export class StudentDetailsComponent implements OnInit ,FormTouched{
   
     if (changes.getFormValues.currentValue)
     {
-      console.log("current value is"+changes.getFormValues.currentValue);
       this.addressData=this.getFormValues["addresses"];
       this.studentProfileForm.patchValue(this.getFormValues);
     }

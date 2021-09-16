@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChildren } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChildren } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import { StudentrestApiService } from './../studentrest-api.service'
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { Student } from '../student';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MessageBoxComponent } from 'src/app/shared/dialog-boxes/message-box/message-box.component';
 import { MatDialog } from '@angular/material/dialog';
 import { FormTouched } from 'src/app/shared/interfaces/form-touched';
@@ -18,6 +18,7 @@ import { QueryList } from '@angular/core';
 export class NewStudentComponent implements OnInit {
 
   stuFormtDetails: boolean[] =[]
+  // @Output() dependentsdetails = new EventEmitter();
   results : any =null;
   stuJsonResult: any ={};
   selectedTab:number=0;
@@ -27,20 +28,23 @@ export class NewStudentComponent implements OnInit {
 
   @ViewChildren("dt") dt: QueryList<FormTouched>;
   @BlockUI() blockUI: NgBlockUI;
+
+  parentG=null;
   
-  constructor(private studentApiService: StudentrestApiService, private route: ActivatedRoute, public dialog: MatDialog) { }
+  constructor(private studentApiService: StudentrestApiService, private route: ActivatedRoute, public dialog: MatDialog,
+    private router: Router) { }
 
   ngAfterViewInit(): void {
 
     if(!this.isAddMode)
     {
-      debugger;
       this.studentApiService.getStudent(this.id)
         .subscribe(studentdetails => {
           this._student = studentdetails;
-          debugger;
           this.studentApiService.setFormValue(studentdetails);
           console.log(this._student);
+          this.parentG={dependentsdetails:studentdetails.dependentsdetails};
+          // this.dependentsdetails.emit({ value: this.dependentsdetails, valid: this.dependentsdetails });
         }, error => console.log(error));
     }
     
@@ -87,28 +91,28 @@ export class NewStudentComponent implements OnInit {
      }
 
      this.blockUI.stop();
-
-    // if(!this.stuFormtDetails.includes(false)){
-    //   return;
-    // }
-    
   }
 
   createStudent()
   {
     console.log(JSON.stringify(this.stuJsonResult));
     this.studentApiService.createStudent(this.stuJsonResult).subscribe(_=>{
-      this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"student feedback updated successfully !"});
+      this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"New Student created successfully !"});
       setTimeout(() => {
         this.dialog.closeAll();
-      }, 2500);
+        this.router.navigate(['/student-list']);
+      }, 5000);
     });
   }
 
   updateStudent()
   {
     this.studentApiService.updateStudent(this.id, this.stuJsonResult).subscribe(_=>{
-
+      this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"Student details updated successfully !"});
+      setTimeout(() => {
+        this.dialog.closeAll();
+        this.router.navigate(['/student-list']);
+      }, 5000);
     });
   }
   
