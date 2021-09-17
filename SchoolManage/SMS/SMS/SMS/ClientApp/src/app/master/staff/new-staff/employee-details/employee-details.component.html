@@ -9,6 +9,9 @@
                 <mat-form-field appearance="standard">
                     <mat-label>Employee ID</mat-label>
                     <input matInput formControlName="employeeId" >
+                    <div *ngIf=" f.employeeId.errors" class="invalid-feedback">
+                        <div *ngIf="f.employeeId.errors.pattern">EmployeeId is required</div>
+                    </div>
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Education</mat-label>

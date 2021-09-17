@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { AccountService, AlertService } from '../_services';
+import { FactorydataService } from '../shared/factorydata.service';
 
 @Component({ templateUrl: 'login.component.html',
 styleUrls: ['./login.component.css'] })
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private accountService: AccountService,
-        private alertService: AlertService
+        private alertService: AlertService, 
+        private factorydataService :FactorydataService
     ) { }
 
     ngOnInit() {
@@ -48,6 +50,7 @@ export class LoginComponent implements OnInit {
                 next: () => {
                     // get return url from query parameters or default to home page
                     const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+                    this.factorydataService.Loadfactorydata();
                     this.router.navigateByUrl(returnUrl);
                 },
                 error: error => {
