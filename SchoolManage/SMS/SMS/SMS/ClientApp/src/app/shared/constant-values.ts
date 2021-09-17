@@ -62,10 +62,10 @@ export class SmsConstant {
     { value: "3", viewValue: 'Telugu' }
   ];
   static  city = [
-    { value: 0, viewValue: '--select none--' },
-    { value: 1, viewValue: 'Coimbatore' },
-    { value: 2, viewValue: 'Pollachi' },
-    { value: 3, viewValue: 'OOty' }
+    { CityId: 0, cityDescr: '--select none--' }
+    // { value: 1, viewValue: 'Coimbatore' },
+    // { value: 2, viewValue: 'Pollachi' },
+    // { value: 3, viewValue: 'OOty' }
   ];
   static  state = [
     { value: 0, viewValue: '--select none--' },
@@ -134,21 +134,8 @@ export class SmsConstant {
 
   ]
   static  department = [
-    { value: 0, viewValue: '--select none--' },
-    { value: 1, viewValue: 'Finance' },
-    { value: 2, viewValue: 'Transport'},
-    { value: 3, viewValue: 'Laboratory'},
-    { value: 4, viewValue: 'Administration'},
-    { value: 5, viewValue: 'Library'},
-    { value: 6, viewValue: 'Inventory'},
-    { value: 7, viewValue: 'English' },
-    { value: 8, viewValue: 'Tamil' },
-    { value: 9, viewValue: 'Maths' },
-    { value: 10, viewValue: 'Science' },  
-    { value: 11, viewValue: 'Social' },
-    { value: 12, viewValue: 'Computer Science'},
-    { value: 13, viewValue: 'Hindi' },
-    { value: 14, viewValue: 'Non Teaching' }
+    { departmentId: 0, departmentName: '--select none--' }
+
   ]
   static  education = [
     { value: 0, viewValue: '--select none--' },

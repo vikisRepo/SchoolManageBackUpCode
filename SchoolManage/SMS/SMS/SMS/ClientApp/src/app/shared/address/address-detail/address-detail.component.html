@@ -14,8 +14,8 @@
                 <mat-form-field appearance="standard">
                     <mat-label>City</mat-label>
                     <mat-select  formControlName="city">
-                        <mat-option  *ngFor="let city of city" [value]="city.viewValue">
-                            {{city.viewValue}}
+                        <mat-option  *ngFor="let city of city" [value]="city.cityDescr">
+                            {{city.cityDescr}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>

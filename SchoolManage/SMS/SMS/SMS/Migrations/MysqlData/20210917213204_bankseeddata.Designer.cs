@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.Helpers;
 
 namespace SMS.Migrations.MysqlData
 {
     [DbContext(typeof(MysqlDataContext))]
-    partial class MysqlDataContextModelSnapshot : ModelSnapshot
+    [Migration("20210917213204_bankseeddata")]
+    partial class bankseeddata
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -290,163 +292,6 @@ namespace SMS.Migrations.MysqlData
                     b.HasKey("CityId");
 
                     b.ToTable("Cities");
-
-                    b.HasData(
-                        new
-                        {
-                            CityId = 1,
-                            cityDescr = " Chennai"
-                        },
-                        new
-                        {
-                            CityId = 2,
-                            cityDescr = " Coimbatore"
-                        },
-                        new
-                        {
-                            CityId = 3,
-                            cityDescr = " Madurai"
-                        },
-                        new
-                        {
-                            CityId = 4,
-                            cityDescr = " Tiruchirappa"
-                        },
-                        new
-                        {
-                            CityId = 5,
-                            cityDescr = " Salem"
-                        },
-                        new
-                        {
-                            CityId = 6,
-                            cityDescr = " Tirunelveli"
-                        },
-                        new
-                        {
-                            CityId = 7,
-                            cityDescr = " Tiruppur"
-                        },
-                        new
-                        {
-                            CityId = 8,
-                            cityDescr = " Vellore"
-                        },
-                        new
-                        {
-                            CityId = 9,
-                            cityDescr = " Erode"
-                        },
-                        new
-                        {
-                            CityId = 10,
-                            cityDescr = " Thoothukkudi"
-                        },
-                        new
-                        {
-                            CityId = 11,
-                            cityDescr = " Dindigul"
-                        },
-                        new
-                        {
-                            CityId = 12,
-                            cityDescr = " Thanjavur"
-                        },
-                        new
-                        {
-                            CityId = 13,
-                            cityDescr = " Ranipet"
-                        },
-                        new
-                        {
-                            CityId = 14,
-                            cityDescr = " Sivakasi"
-                        },
-                        new
-                        {
-                            CityId = 15,
-                            cityDescr = " Karur"
-                        },
-                        new
-                        {
-                            CityId = 16,
-                            cityDescr = " Udhagamandal"
-                        },
-                        new
-                        {
-                            CityId = 17,
-                            cityDescr = " Hosur"
-                        },
-                        new
-                        {
-                            CityId = 18,
-                            cityDescr = " Nagercoil"
-                        },
-                        new
-                        {
-                            CityId = 19,
-                            cityDescr = " Kanchipuram"
-                        },
-                        new
-                        {
-                            CityId = 20,
-                            cityDescr = " Kumarapalaya"
-                        },
-                        new
-                        {
-                            CityId = 21,
-                            cityDescr = " Karaikkudi"
-                        },
-                        new
-                        {
-                            CityId = 22,
-                            cityDescr = " Neyveli"
-                        },
-                        new
-                        {
-                            CityId = 23,
-                            cityDescr = " Cuddalore"
-                        },
-                        new
-                        {
-                            CityId = 24,
-                            cityDescr = " Kumbakonam"
-                        },
-                        new
-                        {
-                            CityId = 25,
-                            cityDescr = " Tiruvannamal"
-                        },
-                        new
-                        {
-                            CityId = 26,
-                            cityDescr = " Pollachi"
-                        },
-                        new
-                        {
-                            CityId = 27,
-                            cityDescr = " Rajapalayam"
-                        },
-                        new
-                        {
-                            CityId = 28,
-                            cityDescr = " Gudiyatham"
-                        },
-                        new
-                        {
-                            CityId = 29,
-                            cityDescr = " Pudukkottai"
-                        },
-                        new
-                        {
-                            CityId = 30,
-                            cityDescr = " Vaniyambadi"
-                        },
-                        new
-                        {
-                            CityId = 31,
-                            cityDescr = " Ambur"
-                        });
                 });
 
             modelBuilder.Entity("SMS.Models.Country", b =>
@@ -475,83 +320,6 @@ namespace SMS.Migrations.MysqlData
                     b.HasKey("DepartmentId");
 
                     b.ToTable("Departments");
-
-                    b.HasData(
-                        new
-                        {
-                            DepartmentId = 1,
-                            DepartmentName = " Admin"
-                        },
-                        new
-                        {
-                            DepartmentId = 2,
-                            DepartmentName = " Finance"
-                        },
-                        new
-                        {
-                            DepartmentId = 3,
-                            DepartmentName = " Library"
-                        },
-                        new
-                        {
-                            DepartmentId = 4,
-                            DepartmentName = " IT"
-                        },
-                        new
-                        {
-                            DepartmentId = 5,
-                            DepartmentName = " Non Teaching"
-                        },
-                        new
-                        {
-                            DepartmentId = 6,
-                            DepartmentName = " English"
-                        },
-                        new
-                        {
-                            DepartmentId = 7,
-                            DepartmentName = " Tamil"
-                        },
-                        new
-                        {
-                            DepartmentId = 8,
-                            DepartmentName = " Maths"
-                        },
-                        new
-                        {
-                            DepartmentId = 9,
-                            DepartmentName = " Science"
-                        },
-                        new
-                        {
-                            DepartmentId = 10,
-                            DepartmentName = " Social Studies"
-                        },
-                        new
-                        {
-                            DepartmentId = 11,
-                            DepartmentName = " Hindi"
-                        },
-                        new
-                        {
-                            DepartmentId = 12,
-                            DepartmentName = " Commerce"
-                        },
-                        new
-                        {
-                            DepartmentId = 13,
-                            DepartmentName = " Economics"
-                        },
-                        new
-                        {
-                            DepartmentId = 14,
-                            DepartmentName = " Accounts"
-                        },
-                        new
-                        {
-                            DepartmentId = 15,
-                            DepartmentName = " PET"
-                        });
                 });
 
             modelBuilder.Entity("SMS.Models.Dependents", b =>

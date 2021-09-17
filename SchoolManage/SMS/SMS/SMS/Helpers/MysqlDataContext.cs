@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using SMS.Middleware;
 using SMS.Models;
 using SMS.Models.Academics;
 using SMS.Models.Inventory;
@@ -98,6 +99,11 @@ namespace WebApi.Helpers
             // connect to sqlite database
             options.UseMySQL(Configuration.GetConnectionString("WebApiDatabaseMySQL_Dev"));
             //options.
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Seed();
         }
     }
 }

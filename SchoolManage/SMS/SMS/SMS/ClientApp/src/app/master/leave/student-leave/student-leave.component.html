@@ -26,8 +26,8 @@
                     <mat-form-field appearance="standard">
                         <mat-label>Department</mat-label>
                         <mat-select formControlName="departmentIdFilter" (selectionChange)="applyFilter('departmentIdFilter')">
-                            <mat-option *ngFor="let departmentIdFilter  of department " [value]="departmentIdFilter .viewValue">
-                                {{departmentIdFilter .viewValue}} 
+                            <mat-option *ngFor="let departmentIdFilter  of department " [value]="departmentIdFilter .departmentName">
+                                {{departmentIdFilter .departmentName}} 
                             </mat-option>
                         </mat-select>
                     </mat-form-field>

@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.Helpers;
 
 namespace SMS.Migrations.MysqlData
 {
     [DbContext(typeof(MysqlDataContext))]
-    partial class MysqlDataContextModelSnapshot : ModelSnapshot
+    [Migration("20210917214657_citiseeddata")]
+    partial class citiseeddata
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -475,83 +477,6 @@ namespace SMS.Migrations.MysqlData
                     b.HasKey("DepartmentId");
 
                     b.ToTable("Departments");
-
-                    b.HasData(
-                        new
-                        {
-                            DepartmentId = 1,
-                            DepartmentName = " Admin"
-                        },
-                        new
-                        {
-                            DepartmentId = 2,
-                            DepartmentName = " Finance"
-                        },
-                        new
-                        {
-                            DepartmentId = 3,
-                            DepartmentName = " Library"
-                        },
-                        new
-                        {
-                            DepartmentId = 4,
-                            DepartmentName = " IT"
-                        },
-                        new
-                        {
-                            DepartmentId = 5,
-                            DepartmentName = " Non Teaching"
-                        },
-                        new
-                        {
-                            DepartmentId = 6,
-                            DepartmentName = " English"
-                        },
-                        new
-                        {
-                            DepartmentId = 7,
-                            DepartmentName = " Tamil"
-                        },
-                        new
-                        {
-                            DepartmentId = 8,
-                            DepartmentName = " Maths"
-                        },
-                        new
-                        {
-                            DepartmentId = 9,
-                            DepartmentName = " Science"
-                        },
-                        new
-                        {
-                            DepartmentId = 10,
-                            DepartmentName = " Social Studies"
-                        },
-                        new
-                        {
-                            DepartmentId = 11,
-                            DepartmentName = " Hindi"
-                        },
-                        new
-                        {
-                            DepartmentId = 12,
-                            DepartmentName = " Commerce"
-                        },
-                        new
-                        {
-                            DepartmentId = 13,
-                            DepartmentName = " Economics"
-                        },
-                        new
-                        {
-                            DepartmentId = 14,
-                            DepartmentName = " Accounts"
-                        },
-                        new
-                        {
-                            DepartmentId = 15,
-                            DepartmentName = " PET"
-                        });
                 });
 
             modelBuilder.Entity("SMS.Models.Dependents", b =>

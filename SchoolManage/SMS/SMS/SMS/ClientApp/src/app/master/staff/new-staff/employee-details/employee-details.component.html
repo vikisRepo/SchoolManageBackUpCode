@@ -66,8 +66,8 @@
                 <mat-form-field appearance="standard">
                     <mat-label>Department</mat-label>
                     <mat-select formControlName="departmentId">
-                        <mat-option *ngFor="let departmentId  of department " [value]="departmentId .value">
-                            {{departmentId .viewValue}} 
+                        <mat-option *ngFor="let departmentId  of department " [value]="departmentId .departmentId">
+                            {{departmentId .departmentName}} 
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
