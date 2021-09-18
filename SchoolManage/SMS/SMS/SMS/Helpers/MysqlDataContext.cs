@@ -9,6 +9,7 @@ using SMS.Models.Setup;
 using SMS.Models.TimeTable;
 using SMS.Models.Transport;
 using WebApi.Entities;
+using Role = SMS.Models.Role;
 
 namespace WebApi.Helpers
 {
@@ -61,6 +62,10 @@ namespace WebApi.Helpers
         public virtual DbSet<SchoolName> SchoolNames { get; set; }
 
         public virtual DbSet<Bank> Banks { get; set; }
+
+        public virtual DbSet<EmployeementStatus> EmployeementStatuses { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+
         #endregion
 
         //public virtual DbSet<ClassTimeTable> ClassTimeTable { get; set; }

@@ -7,7 +7,7 @@ using System.Text.Json.Serialization;
 
 namespace SMS.Models
 {
-    public partial class Designation
+    public  class Designation
     {
 		//public Designation()
 		//{

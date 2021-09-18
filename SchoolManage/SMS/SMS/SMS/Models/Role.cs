@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 
 namespace SMS.Models
 {
-    public partial class Role
+    public class Role
     {
         public Role()
         {

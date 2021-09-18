@@ -61,11 +61,11 @@ namespace SMS.Controllers
 
         #region  EmployeeStatus
 
-        //[HttpGet("EmployeeStatus")]
-        //public IEnumerable<EmployeementStatus> EmployeeStatus()
-        //{
-        //	return _dbcontext.EmployeementStatuses.ToList();
-        //}
+        [HttpGet("EmployeeStatus")]
+        public IEnumerable<EmployeementStatus> EmployeeStatus()
+        {
+            return _dbcontext.EmployeementStatuses.ToList();
+        }
         #endregion
 
         #region  Language
@@ -145,5 +145,14 @@ namespace SMS.Controllers
 			return _dbcontext.Banks.ToList();
         }
         #endregion
+
+        #region Role
+        [HttpGet("Roles")]
+        public IEnumerable<Role> Roles()
+        {
+            return _dbcontext.Roles.ToList();
+        }
+        #endregion
+
     }
 }

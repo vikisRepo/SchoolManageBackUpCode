@@ -37,8 +37,8 @@
                     <mat-form-field appearance="standard">
                         <mat-label>Status</mat-label>
                         <mat-select formControlName="statusvalueFilter" (selectionChange)="applyFilter('statusvalueFilter')">
-                            <mat-option *ngFor="let statusvalueFilter of status" [value]="statusvalueFilter.viewValue">
-                                {{statusvalueFilter.viewValue}}
+                            <mat-option *ngFor="let statusvalueFilter of status" [value]="statusvalueFilter.description">
+                                {{statusvalueFilter.description}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>

@@ -43,8 +43,8 @@
                 <mat-form-field appearance="standard">
                     <mat-label>Employeement Status</mat-label>
                     <mat-select formControlName="employeementStatusId">
-                        <mat-option *ngFor="let employeementstatusId of employeementStatus" [value]="employeementstatusId.value">
-                            {{employeementstatusId.viewValue}} 
+                        <mat-option *ngFor="let employeementstatusIds of employeementStatus" [value]="employeementstatusIds.description">
+                            {{employeementstatusIds.description}} 
                         </mat-option>
                     </mat-select>
                 </mat-form-field>

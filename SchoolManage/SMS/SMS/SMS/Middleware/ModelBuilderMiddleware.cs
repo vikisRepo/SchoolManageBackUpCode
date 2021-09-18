@@ -52,57 +52,84 @@ namespace SMS.Middleware
             );
 
             modelBuilder.Entity<City>().HasData(
-                new City { CityId = 1, cityDescr = " Chennai" },
-                new City { CityId = 2, cityDescr = " Coimbatore" },
-                new City { CityId = 3, cityDescr = " Madurai" },
-                new City { CityId = 4, cityDescr = " Tiruchirappa" },
-                new City { CityId = 5, cityDescr = " Salem" },
-                new City { CityId = 6, cityDescr = " Tirunelveli" },
-                new City { CityId = 7, cityDescr = " Tiruppur" },
-                new City { CityId = 8, cityDescr = " Vellore" },
-                new City { CityId = 9, cityDescr = " Erode" },
-                new City { CityId = 10, cityDescr = " Thoothukkudi" },
-                new City { CityId = 11, cityDescr = " Dindigul" },
-                new City { CityId = 12, cityDescr = " Thanjavur" },
-                new City { CityId = 13, cityDescr = " Ranipet" },
-                new City { CityId = 14, cityDescr = " Sivakasi" },
-                new City { CityId = 15, cityDescr = " Karur" },
-                new City { CityId = 16, cityDescr = " Udhagamandal" },
-                new City { CityId = 17, cityDescr = " Hosur" },
-                new City { CityId = 18, cityDescr = " Nagercoil" },
-                new City { CityId = 19, cityDescr = " Kanchipuram" },
-                new City { CityId = 20, cityDescr = " Kumarapalaya" },
-                new City { CityId = 21, cityDescr = " Karaikkudi" },
-                new City { CityId = 22, cityDescr = " Neyveli" },
-                new City { CityId = 23, cityDescr = " Cuddalore" },
-                new City { CityId = 24, cityDescr = " Kumbakonam" },
-                new City { CityId = 25, cityDescr = " Tiruvannamal" },
-                new City { CityId = 26, cityDescr = " Pollachi" },
-                new City { CityId = 27, cityDescr = " Rajapalayam" },
-                new City { CityId = 28, cityDescr = " Gudiyatham" },
-                new City { CityId = 29, cityDescr = " Pudukkottai" },
-                new City { CityId = 30, cityDescr = " Vaniyambadi" },
-                new City { CityId = 31, cityDescr = " Ambur" }
+                new City { CityId = 1, cityDescr = "Chennai" },
+                new City { CityId = 2, cityDescr = "Coimbatore" },
+                new City { CityId = 3, cityDescr = "Madurai" },
+                new City { CityId = 4, cityDescr = "Tiruchirappa" },
+                new City { CityId = 5, cityDescr = "Salem" },
+                new City { CityId = 6, cityDescr = "Tirunelveli" },
+                new City { CityId = 7, cityDescr = "Tiruppur" },
+                new City { CityId = 8, cityDescr = "Vellore" },
+                new City { CityId = 9, cityDescr = "Erode" },
+                new City { CityId = 10, cityDescr = "Thoothukkudi" },
+                new City { CityId = 11, cityDescr = "Dindigul" },
+                new City { CityId = 12, cityDescr = "Thanjavur" },
+                new City { CityId = 13, cityDescr = "Ranipet" },
+                new City { CityId = 14, cityDescr = "Sivakasi" },
+                new City { CityId = 15, cityDescr = "Karur" },
+                new City { CityId = 16, cityDescr = "Udhagamandal" },
+                new City { CityId = 17, cityDescr = "Hosur" },
+                new City { CityId = 18, cityDescr = "Nagercoil" },
+                new City { CityId = 19, cityDescr = "Kanchipuram" },
+                new City { CityId = 20, cityDescr = "Kumarapalaya" },
+                new City { CityId = 21, cityDescr = "Karaikkudi" },
+                new City { CityId = 22, cityDescr = "Neyveli" },
+                new City { CityId = 23, cityDescr = "Cuddalore" },
+                new City { CityId = 24, cityDescr = "Kumbakonam" },
+                new City { CityId = 25, cityDescr = "Tiruvannamal" },
+                new City { CityId = 26, cityDescr = "Pollachi" },
+                new City { CityId = 27, cityDescr = "Rajapalayam" },
+                new City { CityId = 28, cityDescr = "Gudiyatham" },
+                new City { CityId = 29, cityDescr = "Pudukkottai" },
+                new City { CityId = 30, cityDescr = "Vaniyambadi" },
+                new City { CityId = 31, cityDescr = "Ambur" }
                 );
 
             modelBuilder.Entity<Department>().HasData(
-                  new Department { DepartmentId = 1, DepartmentName = " Admin" },
-                  new Department { DepartmentId = 2, DepartmentName = " Finance" },
-                  new Department { DepartmentId = 3, DepartmentName = " Library" },
-                  new Department { DepartmentId = 4, DepartmentName = " IT" },
-                  new Department { DepartmentId = 5, DepartmentName = " Non Teaching" },
-                  new Department { DepartmentId = 6, DepartmentName = " English" },
-                  new Department { DepartmentId = 7, DepartmentName = " Tamil" },
-                  new Department { DepartmentId = 8, DepartmentName = " Maths" },
-                  new Department { DepartmentId = 9, DepartmentName = " Science" },
-                  new Department { DepartmentId = 10, DepartmentName = " Social Studies" },
-                  new Department { DepartmentId = 11, DepartmentName = " Hindi" },
-                  new Department { DepartmentId = 12, DepartmentName = " Commerce" },
-                  new Department { DepartmentId = 13, DepartmentName = " Economics" },
-                  new Department { DepartmentId = 14, DepartmentName = " Accounts" },
-                  new Department { DepartmentId = 15, DepartmentName = " PET" }
+                  new Department { DepartmentId = 1, DepartmentName = "Admin" },
+                  new Department { DepartmentId = 2, DepartmentName = "Finance" },
+                  new Department { DepartmentId = 3, DepartmentName = "Library" },
+                  new Department { DepartmentId = 4, DepartmentName = "IT" },
+                  new Department { DepartmentId = 5, DepartmentName = "Non Teaching" },
+                  new Department { DepartmentId = 6, DepartmentName = "English" },
+                  new Department { DepartmentId = 7, DepartmentName = "Tamil" },
+                  new Department { DepartmentId = 8, DepartmentName = "Maths" },
+                  new Department { DepartmentId = 9, DepartmentName = "Science" },
+                  new Department { DepartmentId = 10, DepartmentName = "Social Studies" },
+                  new Department { DepartmentId = 11, DepartmentName = "Hindi" },
+                  new Department { DepartmentId = 12, DepartmentName = "Commerce" },
+                  new Department { DepartmentId = 13, DepartmentName = "Economics" },
+                  new Department { DepartmentId = 14, DepartmentName = "Accounts" },
+                  new Department { DepartmentId = 15, DepartmentName = "PET" }
              );
 
+            modelBuilder.Entity<EmployeementStatus>().HasData(
+                  new EmployeementStatus { EmployeementStatusId = 1, Description = "Active" },
+                  new EmployeementStatus { EmployeementStatusId = 2, Description = "In active" },
+                  new EmployeementStatus { EmployeementStatusId = 3, Description = "Terminated" },
+                  new EmployeementStatus { EmployeementStatusId = 4, Description = "In Leave" }
+                );
+
+            modelBuilder.Entity<Designation>().HasData(
+                 new Designation { DesignationId = 1, DesignationName = "Teacher" },
+                 new Designation { DesignationId = 2, DesignationName = "Co-ordinator" },
+                 new Designation { DesignationId = 3, DesignationName = "HOD" },
+                 new Designation { DesignationId = 4, DesignationName = "Non-Teaching" },
+                 new Designation { DesignationId = 5, DesignationName = "Office Associate" },
+                 new Designation { DesignationId = 6, DesignationName = "Finance Associate" },
+                 new Designation { DesignationId = 7, DesignationName = "Principal" },
+                 new Designation { DesignationId = 8, DesignationName = "Librarian" },
+                 new Designation { DesignationId = 9, DesignationName = "Vice Principal" }
+               );
         }
     }
 }
+//modelBuilder.Entity<Role>().HasData(
+//      new Role { RoleId = 1, Description = " Super Admin" },
+//      new Role { RoleId = 2, Description = " Admin" },
+//      new Role { RoleId = 3, Description = " Finance Admin" },
+//      new Role { RoleId = 4, Description = " Student" },
+//      new Role { RoleId = 2, Description = " Teacher" },
+//      new Role { RoleId = 3, Description = " Inventory Admin" },
+//      new Role { RoleId = 4, Description = " Library Admin" }
+//    );

@@ -144,12 +144,7 @@ export class SmsConstant {
     { value: 3, viewValue: 'MPhil' }
   ]
   static  employmentStatus = [
-    { value: 0, viewValue: '--select none--' },
-    { value: 1, viewValue: 'Active' },
-    { value: 2, viewValue: 'Inactive'},
-    { value: 3, viewValue: 'Maternity Leave' },
-    { value: 4, viewValue: 'Paternity Leave' },
-    { value: 5, viewValue: 'LOP Leave' }
+    { employeementStatusId: 0, description: '--select none--' }
   ]
   static  status = [
     { value: 0, viewValue: '--select none--' },

@@ -16,18 +16,23 @@ export class FactorydataService {
 
    Loadfactorydata()
    {
+
     forkJoin({
       banks: this.getfactorydata('/api/Factory/Bank', 1000),
       cities: this.getfactorydata('/api/Factory/City', 2000),
       departments: this.getfactorydata('/api/Factory/Departments', 3000),
-      // requestTwo: this.getfactorydata('/api/Factory/schoolName'),
+      employeestatus: this.getfactorydata('/api/Factory/EmployeeStatus', 4000),
+      department: this.getfactorydata('/api/Factory/EmployeeStatus', 5000),
       // requestThree: this.getfactorydata('/api​/Factory​/RepotingTo')
     })
-    .subscribe(({banks, cities,departments}) => {
+    .subscribe(({banks, cities,departments,employeestatus,department}) => {
       SmsConstant.bank = banks;
       SmsConstant.city = cities;
       SmsConstant.department = departments;
+      SmsConstant.employmentStatus = employeestatus;
+      SmsConstant.department = department;
     });
+
    }
 
 

@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.Helpers;
 
 namespace SMS.Migrations.MysqlData
 {
     [DbContext(typeof(MysqlDataContext))]
-    partial class MysqlDataContextModelSnapshot : ModelSnapshot
+    [Migration("20210918181207_employeementstatus")]
+    partial class employeementstatus
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -613,53 +615,6 @@ namespace SMS.Migrations.MysqlData
                     b.HasKey("DesignationId");
 
                     b.ToTable("Designations");
-
-                    b.HasData(
-                        new
-                        {
-                            DesignationId = 1,
-                            DesignationName = " Teacher"
-                        },
-                        new
-                        {
-                            DesignationId = 2,
-                            DesignationName = " Co-ordinator"
-                        },
-                        new
-                        {
-                            DesignationId = 3,
-                            DesignationName = " HOD"
-                        },
-                        new
-                        {
-                            DesignationId = 4,
-                            DesignationName = " Non-Teaching"
-                        },
-                        new
-                        {
-                            DesignationId = 5,
-                            DesignationName = " Office Associate"
-                        },
-                        new
-                        {
-                            DesignationId = 6,
-                            DesignationName = " Finance Associate"
-                        },
-                        new
-                        {
-                            DesignationId = 7,
-                            DesignationName = " Principal"
-                        },
-                        new
-                        {
-                            DesignationId = 8,
-                            DesignationName = " Librarian"
-                        },
-                        new
-                        {
-                            DesignationId = 9,
-                            DesignationName = " Vice Principal"
-                        });
                 });
 
             modelBuilder.Entity("SMS.Models.Education", b =>
