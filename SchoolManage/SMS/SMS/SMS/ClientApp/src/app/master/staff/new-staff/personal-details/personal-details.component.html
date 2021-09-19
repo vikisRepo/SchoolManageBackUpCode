@@ -5,8 +5,8 @@
                 <mat-form-field appearance="standard">
                     <mat-label>Salutation</mat-label>
                     <mat-select formControlName="salutationId">
-                        <mat-option *ngFor="let salu of salutations;" [value]="salu.viewValue">
-                            {{salu.viewValue}}
+                        <mat-option *ngFor="let salu of salutations;" [value]="salu.salutationName">
+                            {{salu.salutationName}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -19,16 +19,16 @@
                 <mat-form-field appearance="standard">
                     <mat-label>Religion</mat-label>
                     <mat-select formControlName="religionId">
-                        <mat-option *ngFor="let religionId of religion" [value]="religionId.value">
-                            {{religionId.viewValue}}
+                        <mat-option *ngFor="let religionId of religion" [value]="religionId.religionId">
+                            {{religionId.religionName}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Mother Tonuge</mat-label>
                     <mat-select formControlName="motherTongue">
-                        <mat-option *ngFor="let mothertonge of motherTon" [value]="mothertonge.value">
-                            {{mothertonge.viewValue}}
+                        <mat-option *ngFor="let mothertonge of motherTon" [value]="mothertonge.languageId">
+                            {{mothertonge.languageDescription}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -41,24 +41,24 @@
                 <mat-form-field appearance="standard">
                     <mat-label>Blood Group</mat-label>
                     <mat-select formControlName="bloodGroup">
-                        <mat-option *ngFor="let bloodGroup of blood" [value]="bloodGroup.viewValue">
-                            {{bloodGroup.viewValue}}
+                        <mat-option *ngFor="let bloodGroup of blood" [value]="bloodGroup.bloodgroupId">
+                            {{bloodGroup.bloodgroupName}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Gender</mat-label>
                     <mat-select formControlName="gender">
-                        <mat-option *ngFor="let gender of gender " [value]="gender.value">
-                            {{gender.viewValue}}
+                        <mat-option *ngFor="let gender of gender " [value]="gender.genderId">
+                            {{gender.genderName}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Languages Known</mat-label>
                     <mat-select formControlName="languagesId">
-                        <mat-option *ngFor="let languages of languageknown " [value]="languages.value">
-                            {{languages.viewValue}}
+                        <mat-option *ngFor="let languages of languageknown" [value]="languages.languageId">
+                            {{languages.languageDescription}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -71,16 +71,16 @@
                 <mat-form-field appearance="standard">
                     <mat-label>Marital Status</mat-label>
                     <mat-select formControlName="maritalStatus">
-                        <mat-option *ngFor="let maritalStatus of maritalstatus" [value]="maritalStatus.viewValue">
-                            {{maritalStatus.viewValue}}
+                        <mat-option *ngFor="let maritalStatus of maritalstatus" [value]="maritalStatus.maritalStatusName">
+                            {{maritalStatus.maritalStatusName}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Nationality</mat-label>
                     <mat-select formControlName="nationalityId">
-                        <mat-option *ngFor="let national of nationality" [value]="national.value">
-                            {{national.viewValue}}
+                        <mat-option *ngFor="let national of nationality" [value]="national.nationalityId">
+                            {{national.nationalityName}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>

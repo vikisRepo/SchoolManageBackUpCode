@@ -1,94 +1,107 @@
 export class SmsConstant {
 
   static  bloods = [
-    { value: 0, viewValue: '--select none--' },
-    { value: "1", viewValue: 'A+ ve' },
-    { value: "2", viewValue: 'B+ ve' },
-    { value: "3", viewValue: 'O+ ve' }
+    { bloodgroupId: 0, bloodgroupName: '--select none--' }
+    // { value: "1", viewValue: 'A+ ve' },
+    // { value: "2", viewValue: 'B+ ve' },
+    // { value: "3", viewValue: 'O+ ve' }
   ];
 
   static  salutations = [
-    { value: 0, viewValue: '--select none--' },
-    { value: "1", viewValue: 'MR' },
-    { value: "2", viewValue: 'MISS' },
-    { value: "3", viewValue: 'MR' + "'" + 'S' }
+    { salutationId: 0, salutationName: '--select none--' }
+    // { value: "1", viewValue: 'MR' },
+    // { value: "2", viewValue: 'MISS' },
+    // { value: "3", viewValue: 'MR' + "'" + 'S' }
   ];
+
   static  maritalStatus = [
-    { value: 2, viewValue: 'Unmarried' },
-    { value: 1, viewValue: 'Married' },
-    { value: 3, viewValue: 'Widow' }
+    { maritalStatusId: 2, maritalStatusName: 'Unmarried' }
+    // { value: 1, viewValue: 'Married' },
+    // { value: 3, viewValue: 'Widow' }
   ];
+
   static  religion = [
-    { value: 0, viewValue: '--select none--' },
-    { value: 1, viewValue: 'Hindu' },
-    { value: 2, viewValue: 'Muslim' },
-    { value: 3, viewValue: 'christian' }
+    { religionId: 0, religionName: '--select none--' },
+    // { value: 1, viewValue: 'Hindu' },
+    // { value: 2, viewValue: 'Muslim' },
+    // { value: 3, viewValue: 'christian' }
   ];
+
   static  nationality = [
-    { value: 1, viewValue: '--select none--' },
-    {value: 0, viewValue: 'India'},
-    {value: 2, viewValue: 'Algerian'},
-    {value: 3, viewValue: 'American'},
-    {value: 4, viewValue: 'Andorran'},
-    {value: 5, viewValue: 'Angolan'},
-    {value: 6, viewValue: 'Antiguans'},
-    {value: 7, viewValue: 'Argentinean'},
-    {value: 8, viewValue: 'Armenian'},
-    {value: 9, viewValue: 'Australian'},
-    {value: 10, viewValue: 'Albanian'},
+    { nationalityId: 1, nationalityName: '--select none--' },
+    // {value: 0, viewValue: 'India'},
+    // {value: 2, viewValue: 'Algerian'},
+    // {value: 3, viewValue: 'American'},
+    // {value: 4, viewValue: 'Andorran'},
+    // {value: 5, viewValue: 'Angolan'},
+    // {value: 6, viewValue: 'Antiguans'},
+    // {value: 7, viewValue: 'Argentinean'},
+    // {value: 8, viewValue: 'Armenian'},
+    // {value: 9, viewValue: 'Australian'},
+    // {value: 10, viewValue: 'Albanian'},
   ];
+
   static  motherTongue = [
-    { value: 0, viewValue: '--select none--' },
-    { value: 1, viewValue: 'Tamil' },
-    { value: 2, viewValue: 'English' },
-    { value: 3, viewValue: 'Telugu' }
+    { languageId: 0, languageDescription: '--select none--' }
+    // { value: 1, viewValue: 'Tamil' },
+    // { value: 2, viewValue: 'English' },
+    // { value: 3, viewValue: 'Telugu' }
   ];
+
   static  languageKnown = [
-    { value: 0, viewValue: '--select none--' },
-    { value: 1, viewValue: 'Tamil' },
-    { value: 2, viewValue: 'English' },
-    { value: 3, viewValue: 'Telugu' }
+    { languageId: 0, languageDescription: '--select none--' }
+    // { value: 1, viewValue: 'Tamil' },
+    // { value: 2, viewValue: 'English' },
+    // { value: 3, viewValue: 'Telugu' }
   ];
+
   static  firstLanguage = [
-    { value: "0", viewValue: '--select none--' },
-    { value: "1", viewValue: 'Tamil' },
-    { value: "2", viewValue: 'English' },
-    { value: "3", viewValue: 'Telugu' }
+    { languageId: "0", languageDescription: '--select none--' }
+    // { value: "1", viewValue: 'Tamil' },
+    // { value: "2", viewValue: 'English' },
+    // { value: "3", viewValue: 'Telugu' }
   ];
+
   static  secondLanguage = [
-    { value: "0", viewValue: '--select none--' },
-    { value: "1", viewValue: 'Tamil' },
-    { value: "2", viewValue: 'English' },
-    { value: "3", viewValue: 'Telugu' }
+    { languageId: "0", languageDescription: '--select none--' }
+    // { value: "1", viewValue: 'Tamil' },
+    // { value: "2", viewValue: 'English' },
+    // { value: "3", viewValue: 'Telugu' }
   ];
+
   static  city = [
     { CityId: 0, cityDescr: '--select none--' }
     // { value: 1, viewValue: 'Coimbatore' },
     // { value: 2, viewValue: 'Pollachi' },
     // { value: 3, viewValue: 'OOty' }
   ];
+
   static  state = [
-    { value: 0, viewValue: '--select none--' },
-    { value: 1, viewValue: 'Tamil Nadu' },
-    { value: 2, viewValue: 'Kerala' },
-    { value: 3, viewValue: 'Aandhra' }
+    { stateId: 0, stateDescr: '--select none--' }
+    // { value: 1, viewValue: 'Tamil Nadu' },
+    // { value: 2, viewValue: 'Kerala' },
+    // { value: 3, viewValue: 'Aandhra' }
   ];
+
   static  country = [
-    { value: 0, viewValue: '--select none--' },
-    { value: 1, viewValue: 'India' }
+    { countryId: 0, countryDescr: '--select none--' }
+    // { value: 1, viewValue: 'India' }
   ];
+
   static  classes = [
     { value: "0", viewValue: '--select none--' },
     { value: "1", viewValue: '1st' },
     { value: "2", viewValue: '2nd' },
     { value: "3", viewValue: '3rd' }
   ];
+
   static  section = [
     { value: 0, viewValue: '--select none--' },
     { value: "1", viewValue: 'A' },
     { value: "2", viewValue: 'B' },
     { value: "3", viewValue: 'C' }
   ];
+
   static  schoolBrand = [
     { value: 0, viewValue: '--select none--' },
     { value: 1, viewValue: 'CBSE' },
@@ -97,23 +110,23 @@ export class SmsConstant {
     { value: 4, viewValue: 'State Board' },
     { value: 5, viewValue: 'others' }
   ];
+
   static  passingOutSchool = [
     { value: 0, viewValue: '--select none--' },
     { value: 1, viewValue: '2020' },
     { value: 2, viewValue: '2019' },
     { value: 3, viewValue: '2018' }
   ];
+
   static  yearOfAttendence = [
     { value: 0, viewValue: '--select none--' },
     { value: 1, viewValue: '2020' },
     { value: 2, viewValue: '2019' },
     { value: 3, viewValue: '2018' }
   ]
+
   static  staffType = [
-    { value: 0, viewValue: '--select none--' },
-    { value: 1, viewValue: 'School Admin' },
-    { value: 2, viewValue: 'Teaching' },
-    { value: 3, viewValue: 'Non Teaching' }
+    { staffTypeId: 0, description: '--select none--' }
   ]
 
   static  staffName = [
@@ -122,63 +135,57 @@ export class SmsConstant {
     { value: 2, viewValue: 'Arun Prasanth' },
     { value: 3, viewValue: 'Dinesh' }
   ]
+
   static  designation = [
-    { value: 0, viewValue: '--select none--' },
-    { value: 1, viewValue: 'Teacher' },
-    { value: 2, viewValue: 'Student' },
-    { value: 3, viewValue: 'Non Teaching' },
-    { value: 4, viewValue: 'Librarian' },
-    { value: 5, viewValue: 'Transport c' },
-    { value: 6, viewValue: 'Inventory Coordinator' },
-    { value: 7, viewValue: 'Finance Coordinator' }
+    { designationId: 0, designationName: '--select none--' }
 
   ]
+
   static  department = [
     { departmentId: 0, departmentName: '--select none--' }
 
   ]
+
   static  education = [
     { value: 0, viewValue: '--select none--' },
     { value: 1, viewValue: '10th' },
     { value: 2, viewValue: '12th' },
     { value: 3, viewValue: 'MPhil' }
   ]
+
   static  employmentStatus = [
     { employeementStatusId: 0, description: '--select none--' }
   ]
+
   static  status = [
     { value: 0, viewValue: '--select none--' },
     { value: 1, viewValue: 'Active' },
     { value: 2, viewValue: 'Inactive'},
   ]
+
   static  role = [
-    { value: 0, viewValue: '--select none--' },
-    { value: 1, viewValue: 'Finance Admin' },
-    { value: 2, viewValue: 'Transport Admin' },
-    { value: 4, viewValue: 'Lab Admin'},
-    { value: 5, viewValue: 'Principal'},
-    { value: 6, viewValue: 'Teacher'},
-    { value: 7, viewValue: 'Student'},
-    { value: 8, viewValue: 'Parents'},
-    { value: 9, viewValue: 'Library Admin'},
-    { value: 10, viewValue: 'Inventory Admin'} 
+    { roleId: 0, description: '--select none--' }
   ]
+
   static  gender = [
-    { value: "U", viewValue: '--select none--' },
-    { value: "M", viewValue: 'Male' },
-    { value: "F", viewValue: 'Female' }
+    { genderId: 0, genderName: '--select none--' }
+    // { value: "M", viewValue: 'Male' },
+    // { value: "F", viewValue: 'Female' }
   ]
+
   static  reportingTo = [
     { value: 0, viewValue: '--select none--' },
     { value: 1, viewValue: 'Hod' },
     { value: 2, viewValue: 'Principal' }
   ]
+
   static  active = [
     { value: 0, viewValue: '--select none--' },
     { value: 1, viewValue: 'yes' },
     { value: 2, viewValue: 'No' }
     
   ]
+
   static  letterType = [
     { value: "0", viewValue: '--select none--' },
     { value: "1", viewValue: 'Pay-slip' },
@@ -186,6 +193,7 @@ export class SmsConstant {
     { value: "3", viewValue: 'Promotion' },
     { value: "4", viewValue: 'General' }
   ]
+
   static  feedbackTypes = [
     { value: "0", viewValue: '--select none--' },
     { value: "1", viewValue: 'Achievement' },

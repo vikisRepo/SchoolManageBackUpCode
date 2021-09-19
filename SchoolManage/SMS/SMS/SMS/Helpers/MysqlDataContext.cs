@@ -65,6 +65,12 @@ namespace WebApi.Helpers
 
         public virtual DbSet<EmployeementStatus> EmployeementStatuses { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<Bloodgroup> Bloodgroups { get; set; }
+        public virtual DbSet<MaritalStatus> Maritalstatus { get; set; }
+        public virtual DbSet<Gender> Genders { get; set; }
+        public virtual DbSet<Salutation> Salutations { get; set; }
+
+
 
         #endregion
 

@@ -27,8 +27,8 @@
                     <mat-form-field appearance="standard">
                         <mat-label>Designation</mat-label>
                         <mat-select formControlName="designationFilter" (selectionChange)="applyFilter('designationFilter')">
-                            <mat-option *ngFor="let designationFilter  of designationList " [value]="designationFilter .viewValue">
-                                {{designationFilter .viewValue}} 
+                            <mat-option *ngFor="let designationFilter  of designationList " [value]="designationFilter .designationName">
+                                {{designationFilter .designationName}} 
                             </mat-option>
                         </mat-select>
                     </mat-form-field>

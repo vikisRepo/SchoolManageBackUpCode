@@ -90,9 +90,9 @@ namespace SMS.Models
                     .WithMany(p => p.RoleFunctions)
                     .HasForeignKey(d => d.FunctionId);
 
-                entity.HasOne(d => d.Role)
-                    .WithMany(p => p.RoleFunctions)
-                    .HasForeignKey(d => d.RoleId);
+                //entity.HasOne(d => d.Role)
+                //    //.WithMany(p => p.RoleFunctions)
+                //    .HasForeignKey(d => d.RoleId);
             });
 
             modelBuilder.Entity<Staff>(entity =>

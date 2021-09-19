@@ -78,7 +78,7 @@ namespace SMS.Controllers
         #endregion
 
         #region StaffType
-		
+		 
 		[HttpGet("StaffType")]
 		public IEnumerable<StaffType> StaffTypes()
         {
@@ -144,10 +144,43 @@ namespace SMS.Controllers
         {
 			return _dbcontext.Banks.ToList();
         }
-        #endregion
+		#endregion
 
-        #region Role
-        [HttpGet("Roles")]
+		#region bloodgroup
+		[HttpGet("Bloodgroup")]
+		public IEnumerable<Bloodgroup> bloodgroup()
+		{
+			return _dbcontext.Bloodgroups.ToList();
+		}
+		#endregion
+
+		#region maritalstatus
+		[HttpGet("MaritalStatus")]
+		public IEnumerable<MaritalStatus> maritalStatus()
+		{
+			return _dbcontext.Maritalstatus.ToList();
+		}
+		#endregion
+
+		#region gender
+		[HttpGet("Gender")]
+		public IEnumerable<Gender> gender()
+		{
+			return _dbcontext.Genders.ToList();
+		}
+		#endregion
+
+		#region salutation
+
+		[HttpGet("Salutation")]
+		public IEnumerable<Salutation> Salutationes()
+		{
+			return _dbcontext.Salutations.ToList();
+		}
+		#endregion
+
+		#region Role
+		[HttpGet("Roles")]
         public IEnumerable<Role> Roles()
         {
             return _dbcontext.Roles.ToList();

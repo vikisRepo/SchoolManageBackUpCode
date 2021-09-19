@@ -35,8 +35,8 @@
                 <mat-form-field appearance="standard">
                     <mat-label>Staff Type</mat-label>
                     <mat-select formControlName="staffTypeId">
-                        <mat-option *ngFor="let staff of staffId" [value]="staff.value">
-                            {{staff.viewValue}} 
+                        <mat-option *ngFor="let staff of staffId" [value]="staff.staffTypeId">
+                            {{staff.description}} 
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -95,16 +95,16 @@
                 <mat-form-field appearance="standard">
                     <mat-label>Designation</mat-label>
                     <mat-select formControlName="designationId">
-                        <mat-option *ngFor="let designationId  of designation " [value]="designationId .value">
-                            {{designationId .viewValue}} 
+                        <mat-option *ngFor="let designationId  of designation " [value]="designationId.designationId">
+                            {{designationId.designationName}} 
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Role</mat-label>
                     <mat-select formControlName="roleId">
-                        <mat-option *ngFor="let roleId  of role" [value]="roleId .value">
-                            {{roleId .viewValue}} 
+                        <mat-option *ngFor="let roleId  of role" [value]="roleId.roleId">
+                            {{roleId.description}} 
                         </mat-option>
                     </mat-select>
                 </mat-form-field>

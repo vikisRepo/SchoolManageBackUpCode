@@ -36,8 +36,8 @@
                     <mat-form-field appearance="standard">
                         <mat-label>Staff Type</mat-label>
                         <mat-select formControlName="stafftypeFilter" (selectionChange)="applyFilter('stafftypeFilter')">
-                            <mat-option *ngFor="let stafftypeFilter  of stafftype " [value]="stafftypeFilter .viewValue">
-                                {{stafftypeFilter .viewValue}} 
+                            <mat-option *ngFor="let stafftypeFilter  of stafftype " [value]="stafftypeFilter.staffTypeId">
+                                {{stafftypeFilter.description}} 
                             </mat-option>
                         </mat-select>
                     </mat-form-field>

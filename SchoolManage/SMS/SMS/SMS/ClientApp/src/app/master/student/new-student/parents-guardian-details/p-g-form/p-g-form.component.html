@@ -8,8 +8,8 @@
                     <mat-form-field appearance="standard">
                         <mat-label>Salutation</mat-label>
                         <mat-select formControlName="salutation">
-                            <mat-option *ngFor="let salutation of salutations" [value]="salutation.value">
-                                {{salutation.viewValue}}
+                            <mat-option *ngFor="let salutation of salutations" [value]="salutation.salutationId">
+                                {{salutation.salutationName}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>

@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.Helpers;
 
 namespace SMS.Migrations.MysqlData
 {
     [DbContext(typeof(MysqlDataContext))]
-    partial class MysqlDataContextModelSnapshot : ModelSnapshot
+    [Migration("20210919121722_roleseeddatafornow")]
+    partial class roleseeddatafornow
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -275,62 +277,6 @@ namespace SMS.Migrations.MysqlData
                         {
                             BankId = 36,
                             BankDescr = "Union Bank of India (Andhra Bank & Corporation Bank)"
-                        });
-                });
-
-            modelBuilder.Entity("SMS.Models.Bloodgroup", b =>
-                {
-                    b.Property<int>("BloodgroupId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("BloodgroupName")
-                        .HasColumnType("text");
-
-                    b.HasKey("BloodgroupId");
-
-                    b.ToTable("Bloodgroups");
-
-                    b.HasData(
-                        new
-                        {
-                            BloodgroupId = 1,
-                            BloodgroupName = "(A +)"
-                        },
-                        new
-                        {
-                            BloodgroupId = 2,
-                            BloodgroupName = "(A -)"
-                        },
-                        new
-                        {
-                            BloodgroupId = 3,
-                            BloodgroupName = "(B +)"
-                        },
-                        new
-                        {
-                            BloodgroupId = 4,
-                            BloodgroupName = "(B -)"
-                        },
-                        new
-                        {
-                            BloodgroupId = 5,
-                            BloodgroupName = "(O +)"
-                        },
-                        new
-                        {
-                            BloodgroupId = 6,
-                            BloodgroupName = "(O -)"
-                        },
-                        new
-                        {
-                            BloodgroupId = 7,
-                            BloodgroupName = "(AB +)"
-                        },
-                        new
-                        {
-                            BloodgroupId = 8,
-                            BloodgroupName = "(AB -)"
                         });
                 });
 
@@ -768,40 +714,27 @@ namespace SMS.Migrations.MysqlData
                         });
                 });
 
-            modelBuilder.Entity("SMS.Models.Gender", b =>
+            modelBuilder.Entity("SMS.Models.Function", b =>
                 {
-                    b.Property<int>("GenderId")
+                    b.Property<int>("FunctionId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("GenderName")
+                    b.Property<string>("Decription")
                         .HasColumnType("text");
 
-                    b.HasKey("GenderId");
+                    b.Property<string>("DisplayOrder")
+                        .HasColumnType("text");
 
-                    b.ToTable("Genders");
+                    b.Property<string>("DisplayValue")
+                        .HasColumnType("text");
 
-                    b.HasData(
-                        new
-                        {
-                            GenderId = 1,
-                            GenderName = "Male"
-                        },
-                        new
-                        {
-                            GenderId = 2,
-                            GenderName = "Female"
-                        },
-                        new
-                        {
-                            GenderId = 3,
-                            GenderName = "Trans"
-                        },
-                        new
-                        {
-                            GenderId = 4,
-                            GenderName = "Not willing to disclose"
-                        });
+                    b.Property<int?>("ParentFunctionId")
+                        .HasColumnType("int");
+
+                    b.HasKey("FunctionId");
+
+                    b.ToTable("Function");
                 });
 
             modelBuilder.Entity("SMS.Models.Inventory.Inventory", b =>
@@ -922,83 +855,6 @@ namespace SMS.Migrations.MysqlData
                     b.HasKey("LanguageId");
 
                     b.ToTable("Languages");
-
-                    b.HasData(
-                        new
-                        {
-                            LanguageId = 1,
-                            LanguageDescription = "Hindi"
-                        },
-                        new
-                        {
-                            LanguageId = 2,
-                            LanguageDescription = "English"
-                        },
-                        new
-                        {
-                            LanguageId = 3,
-                            LanguageDescription = "Bengali"
-                        },
-                        new
-                        {
-                            LanguageId = 4,
-                            LanguageDescription = "Marathi"
-                        },
-                        new
-                        {
-                            LanguageId = 5,
-                            LanguageDescription = "Telugu"
-                        },
-                        new
-                        {
-                            LanguageId = 6,
-                            LanguageDescription = "Tamil"
-                        },
-                        new
-                        {
-                            LanguageId = 7,
-                            LanguageDescription = "Gujarati"
-                        },
-                        new
-                        {
-                            LanguageId = 8,
-                            LanguageDescription = "Urdu"
-                        },
-                        new
-                        {
-                            LanguageId = 9,
-                            LanguageDescription = "Kannada"
-                        },
-                        new
-                        {
-                            LanguageId = 10,
-                            LanguageDescription = "Odia"
-                        },
-                        new
-                        {
-                            LanguageId = 11,
-                            LanguageDescription = "Malayalam"
-                        },
-                        new
-                        {
-                            LanguageId = 12,
-                            LanguageDescription = "Punjabi"
-                        },
-                        new
-                        {
-                            LanguageId = 13,
-                            LanguageDescription = "Assamese"
-                        },
-                        new
-                        {
-                            LanguageId = 14,
-                            LanguageDescription = "French"
-                        },
-                        new
-                        {
-                            LanguageId = 15,
-                            LanguageDescription = "Others"
-                        });
                 });
 
             modelBuilder.Entity("SMS.Models.Leave.StaffLeave", b =>
@@ -1063,47 +919,6 @@ namespace SMS.Migrations.MysqlData
                     b.ToTable("StudentLeaves");
                 });
 
-            modelBuilder.Entity("SMS.Models.MaritalStatus", b =>
-                {
-                    b.Property<int>("MaritalStatusId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("MaritalStatusName")
-                        .HasColumnType("text");
-
-                    b.HasKey("MaritalStatusId");
-
-                    b.ToTable("Maritalstatus");
-
-                    b.HasData(
-                        new
-                        {
-                            MaritalStatusId = 1,
-                            MaritalStatusName = "Married"
-                        },
-                        new
-                        {
-                            MaritalStatusId = 2,
-                            MaritalStatusName = "Widowed"
-                        },
-                        new
-                        {
-                            MaritalStatusId = 3,
-                            MaritalStatusName = "Separated"
-                        },
-                        new
-                        {
-                            MaritalStatusId = 4,
-                            MaritalStatusName = "Divorced"
-                        },
-                        new
-                        {
-                            MaritalStatusId = 5,
-                            MaritalStatusName = "Single"
-                        });
-                });
-
             modelBuilder.Entity("SMS.Models.Nationality", b =>
                 {
                     b.Property<int>("NationalityId")
@@ -1116,23 +931,6 @@ namespace SMS.Migrations.MysqlData
                     b.HasKey("NationalityId");
 
                     b.ToTable("Nationalities");
-
-                    b.HasData(
-                        new
-                        {
-                            NationalityId = 1,
-                            NationalityName = "Indian"
-                        },
-                        new
-                        {
-                            NationalityId = 2,
-                            NationalityName = "Others"
-                        },
-                        new
-                        {
-                            NationalityId = 3,
-                            NationalityName = "Not willing to disclose"
-                        });
                 });
 
             modelBuilder.Entity("SMS.Models.Religion", b =>
@@ -1147,48 +945,6 @@ namespace SMS.Migrations.MysqlData
                     b.HasKey("ReligionId");
 
                     b.ToTable("Religions");
-
-                    b.HasData(
-                        new
-                        {
-                            ReligionId = 1,
-                            ReligionName = "Hindu"
-                        },
-                        new
-                        {
-                            ReligionId = 2,
-                            ReligionName = "Christian"
-                        },
-                        new
-                        {
-                            ReligionId = 3,
-                            ReligionName = "Muslim"
-                        },
-                        new
-                        {
-                            ReligionId = 4,
-                            ReligionName = "Sikh"
-                        },
-                        new
-                        {
-                            ReligionId = 5,
-                            ReligionName = "Buddhist"
-                        },
-                        new
-                        {
-                            ReligionId = 6,
-                            ReligionName = "Jains"
-                        },
-                        new
-                        {
-                            ReligionId = 7,
-                            ReligionName = "Others"
-                        },
-                        new
-                        {
-                            ReligionId = 8,
-                            ReligionName = "Not willing to disclose"
-                        });
                 });
 
             modelBuilder.Entity("SMS.Models.ReportingTo", b =>
@@ -1256,40 +1012,25 @@ namespace SMS.Migrations.MysqlData
                         });
                 });
 
-            modelBuilder.Entity("SMS.Models.Salutation", b =>
+            modelBuilder.Entity("SMS.Models.RoleFunction", b =>
                 {
-                    b.Property<int>("SalutationId")
+                    b.Property<int>("RoleFunctionId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("SalutationName")
-                        .HasColumnType("text");
+                    b.Property<int>("FunctionId")
+                        .HasColumnType("int");
 
-                    b.HasKey("SalutationId");
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
 
-                    b.ToTable("Salutations");
+                    b.HasKey("RoleFunctionId");
 
-                    b.HasData(
-                        new
-                        {
-                            SalutationId = 1,
-                            SalutationName = "Mr."
-                        },
-                        new
-                        {
-                            SalutationId = 2,
-                            SalutationName = "Mrs."
-                        },
-                        new
-                        {
-                            SalutationId = 3,
-                            SalutationName = "Miss"
-                        },
-                        new
-                        {
-                            SalutationId = 4,
-                            SalutationName = "Master"
-                        });
+                    b.HasIndex("FunctionId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("RoleFunction");
                 });
 
             modelBuilder.Entity("SMS.Models.SchoolName", b =>
@@ -1594,68 +1335,6 @@ namespace SMS.Migrations.MysqlData
                     b.HasKey("StaffTypeId");
 
                     b.ToTable("StaffTypes");
-
-                    b.HasData(
-                        new
-                        {
-                            StaffTypeId = 1,
-                            Description = "Teacher"
-                        },
-                        new
-                        {
-                            StaffTypeId = 2,
-                            Description = "Admin"
-                        },
-                        new
-                        {
-                            StaffTypeId = 3,
-                            Description = "Principal"
-                        },
-                        new
-                        {
-                            StaffTypeId = 4,
-                            Description = "Co-ordinator"
-                        },
-                        new
-                        {
-                            StaffTypeId = 5,
-                            Description = "Support Staff"
-                        },
-                        new
-                        {
-                            StaffTypeId = 6,
-                            Description = "Driver"
-                        },
-                        new
-                        {
-                            StaffTypeId = 7,
-                            Description = "IT Technician"
-                        },
-                        new
-                        {
-                            StaffTypeId = 8,
-                            Description = "Vice Principal"
-                        },
-                        new
-                        {
-                            StaffTypeId = 9,
-                            Description = "Librarian"
-                        },
-                        new
-                        {
-                            StaffTypeId = 10,
-                            Description = "Lab Staff"
-                        },
-                        new
-                        {
-                            StaffTypeId = 11,
-                            Description = "PET"
-                        },
-                        new
-                        {
-                            StaffTypeId = 12,
-                            Description = "HOD"
-                        });
                 });
 
             modelBuilder.Entity("SMS.Models.State", b =>
@@ -2090,6 +1769,25 @@ namespace SMS.Migrations.MysqlData
                     b.Navigation("Students");
                 });
 
+            modelBuilder.Entity("SMS.Models.RoleFunction", b =>
+                {
+                    b.HasOne("SMS.Models.Function", "Function")
+                        .WithMany("RoleFunctions")
+                        .HasForeignKey("FunctionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SMS.Models.Role", "Role")
+                        .WithMany("RoleFunctions")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Function");
+
+                    b.Navigation("Role");
+                });
+
             modelBuilder.Entity("SMS.Models.StaffAddress", b =>
                 {
                     b.HasOne("SMS.Models.Staff", null)
@@ -2221,6 +1919,16 @@ namespace SMS.Migrations.MysqlData
                         });
 
                     b.Navigation("RefreshTokens");
+                });
+
+            modelBuilder.Entity("SMS.Models.Function", b =>
+                {
+                    b.Navigation("RoleFunctions");
+                });
+
+            modelBuilder.Entity("SMS.Models.Role", b =>
+                {
+                    b.Navigation("RoleFunctions");
                 });
 
             modelBuilder.Entity("SMS.Models.Staff", b =>
