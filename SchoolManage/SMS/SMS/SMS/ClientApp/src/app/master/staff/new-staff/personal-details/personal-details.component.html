@@ -88,6 +88,9 @@
                     <mat-label>Personal Email</mat-label>
                     <input formControlName="emailId" matInput>
                 </mat-form-field>
+                <div *ngIf="f.emailId.errors">
+                    <div *ngIf="f.emailId.errors.email">Invalid email address</div>
+                </div>   
             </div>
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
@@ -106,6 +109,10 @@
                     <mat-label>Mobile Number</mat-label>
                     <input formControlName="mobile" matInput>
                 </mat-form-field>
+                <div *ngIf="f.mobile.errors">
+                    <div *ngIf="f.mobile.errors.maxlength">Mobile Number can't be more than 10 digit's.</div>
+                    <div *ngIf="f.mobile.errors.pattern">Mobile Number can only be numbers.</div>
+                </div>   
                 <mat-form-field appearance="standard">
                     <mat-label>Aadhar Number</mat-label>
                     <input formControlName="aadharNumber" matInput>

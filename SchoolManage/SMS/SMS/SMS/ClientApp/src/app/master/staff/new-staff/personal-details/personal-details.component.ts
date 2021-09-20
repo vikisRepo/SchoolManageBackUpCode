@@ -1,5 +1,6 @@
 import { ViewChild } from '@angular/core';
 import { Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { validateBasis } from '@angular/flex-layout';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormControl, FormGroup, FormArray } from '@angular/forms';
@@ -49,14 +50,14 @@ export class PersonalDetailsComponent implements OnInit, OnChanges, FormTouched 
         firstName: ['', Validators.required],
         bloodGroup: ['', Validators.required],
         gender: ['', Validators.required],
-        emailId: ['', Validators.required],
+        emailId: ['', [Validators.required, Validators.email]],
         languagesId: ['', Validators.required],
         middleName: [''],
         maritalStatus: ['', Validators.required],
         nationalityId: [''],
         lastName: ['', Validators.required],
         weedingDate: [''],
-        mobile: ['', Validators.required],
+        mobile: [, [Validators.required, Validators.maxLength(9), Validators.pattern(/^[0-9]\d*$/)]],
         aadharNumber: ['', Validators.required],
         fatherName: ['', Validators.required],
         motherName: ['', Validators.required],
@@ -89,6 +90,9 @@ export class PersonalDetailsComponent implements OnInit, OnChanges, FormTouched 
   ngOnInit(): void {
 
   }
+
+      // convenience getter for easy access to form fields
+      get f() { return this.profileForm.controls; }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.getFormValues.currentValue) {

@@ -71,7 +71,7 @@ namespace SMS.Models
         public int StaffTypeId { get; set; }
         public int DepartmentId { get; set; }
         public int DesignationId { get; set; }
-        public int EmployeeId { get; set; }
+        public string EmployeeId { get; set; }
         public string OfficialEmailId { get; set; }
         public string Esinumber { get; set; }
         public string Epfnumber { get; set; }

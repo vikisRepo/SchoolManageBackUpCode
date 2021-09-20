@@ -32,7 +32,7 @@ export class EmployeeDetailsComponent implements OnInit,FormTouched {
     this.empDetailsForm = this.fb.group(
       {
         teacherId : ['',Validators.required],
-        employeeId : ['',Validators.required],  //, Validators.pattern(/\-?\d*\.?\d{1,2}/)
+        employeeId : [,[Validators.required, Validators.pattern(/^[0-9]\d*$/)]],  //, 
         educationId : ['',Validators.required],
         officialEmailId : ['',Validators.required],
         esinumber : ['',Validators.required],
@@ -60,7 +60,7 @@ export class EmployeeDetailsComponent implements OnInit,FormTouched {
   }
 
       // convenience getter for easy access to form fields
-      get f() { return this.empDetailsForm.controls; }
+  get f() { return this.empDetailsForm.controls; }
 
 onSubmit(){
 

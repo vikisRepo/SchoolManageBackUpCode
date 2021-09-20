@@ -8,11 +8,12 @@
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Employee ID</mat-label>
-                    <input matInput formControlName="employeeId" >
-                    <div *ngIf=" f.employeeId.errors" class="invalid-feedback">
-                        <div *ngIf="f.employeeId.errors.pattern">EmployeeId is required</div>
-                    </div>
+                    <input matInput formControlName="employeeId"
+                    [ngClass] = "f.employeeId.errors"/>
                 </mat-form-field>
+                <div *ngIf="f.employeeId.errors">
+                    <div *ngIf="f.employeeId.errors.pattern">EmployeeId can only be integer</div>
+                </div>           
                 <mat-form-field appearance="standard">
                     <mat-label>Education</mat-label>
                     <mat-select formControlName="educationId">
