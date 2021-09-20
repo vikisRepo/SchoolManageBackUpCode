@@ -38,6 +38,10 @@
                     <mat-label>First Name</mat-label>
                     <input formControlName="firstName" matInput>
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.firstName.errors">
+                    <div *ngIf="f.firstName.errors.pattern" >Only charecters allowed.</div>
+                </div>   
+
                 <mat-form-field appearance="standard">
                     <mat-label>Blood Group</mat-label>
                     <mat-select formControlName="bloodGroup">
@@ -68,6 +72,9 @@
                     <mat-label>Middle Name</mat-label>
                     <input formControlName="middleName" matInput>
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.middleName.errors">
+                    <div *ngIf="f.middleName.errors.pattern" >Only charecters allowed.</div>
+                </div>  
                 <mat-form-field appearance="standard">
                     <mat-label>Marital Status</mat-label>
                     <mat-select formControlName="maritalStatus">
@@ -88,7 +95,7 @@
                     <mat-label>Personal Email</mat-label>
                     <input formControlName="emailId" matInput>
                 </mat-form-field>
-                <div *ngIf="f.emailId.errors">
+                <div class="formfield-validation" *ngIf="f.emailId.errors">
                     <div *ngIf="f.emailId.errors.email">Invalid email address</div>
                 </div>   
             </div>
@@ -97,6 +104,9 @@
                     <mat-label>Last Name</mat-label>
                     <input formControlName="lastName" matInput>
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.lastName.errors">
+                    <div *ngIf="f.lastName.errors.pattern" >Only charecters allowed.</div>
+                </div>   
 
                 <mat-form-field appearance="standard">
                     <mat-label>WeedingDate</mat-label>
@@ -109,14 +119,19 @@
                     <mat-label>Mobile Number</mat-label>
                     <input formControlName="mobile" matInput>
                 </mat-form-field>
-                <div *ngIf="f.mobile.errors">
+                <div class="formfield-validation" *ngIf="f.mobile.errors">
                     <div *ngIf="f.mobile.errors.maxlength">Mobile Number can't be more than 10 digit's.</div>
                     <div *ngIf="f.mobile.errors.pattern">Mobile Number can only be numbers.</div>
                 </div>   
+
                 <mat-form-field appearance="standard">
                     <mat-label>Aadhar Number</mat-label>
                     <input formControlName="aadharNumber" matInput>
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.aadharNumber.errors">
+                    <div *ngIf="f.aadharNumber.errors.pattern">Aadhar Number can only be numbers.</div>
+                </div> 
+
             </div>
         </div>
 
@@ -129,42 +144,78 @@
                     <mat-label>Father Name</mat-label>
                     <input formControlName="fatherName" matInput>
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.fatherName.errors">
+                    <div *ngIf="f.fatherName.errors.pattern" >Only charecters allowed.</div>
+                </div>   
+
                 <mat-form-field appearance="standard">
                     <mat-label>Mother Name</mat-label>
                     <input formControlName="motherName" matInput>
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.motherName.errors">
+                    <div *ngIf="f.motherName.errors.pattern" >Only charecters allowed.</div>
+                </div> 
+
                 <mat-form-field appearance="standard">
                     <mat-label>Spouse Name</mat-label>
                     <input formControlName="spouseName" matInput>
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.spouseName.errors">
+                    <div *ngIf="f.spouseName.errors.pattern" >Only charecters allowed.</div>
+                </div> 
             </div>
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
                     <mat-label>Father Occupation</mat-label>
                     <input formControlName="fatherOccupation" matInput>
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.fatherOccupation.errors">
+                    <div *ngIf="f.fatherOccupation.errors.pattern" >Only charecters allowed.</div>
+                </div> 
+
                 <mat-form-field appearance="standard">
                     <mat-label>Mother Occupation</mat-label>
                     <input formControlName="motherOccupation" matInput>
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.motherOccupation.errors">
+                    <div *ngIf="f.spousmotherOccupationeName.errors.pattern" >Only charecters allowed.</div>
+                </div> 
+
                 <mat-form-field appearance="standard">
                     <mat-label>Spouse Occupation</mat-label>
                     <input formControlName="souseOccupation" matInput>
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.souseOccupation.errors">
+                    <div *ngIf="f.souseOccupation.errors.pattern" >Only charecters allowed.</div>
+                </div> 
             </div>
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
                     <mat-label>Father Contact Number</mat-label>
                     <input formControlName="fatherMobileNumber" matInput>
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.fatherMobileNumber.errors">
+                    <div *ngIf="f.fatherMobileNumber.errors.maxlength">Mobile Number can't be more than 10 digit's.</div>
+                    <div *ngIf="f.fatherMobileNumber.errors.pattern">Mobile Number can only be numbers.</div>
+                </div>   
+
                 <mat-form-field appearance="standard">
                     <mat-label>Mother Contact Number</mat-label>
                     <input formControlName="motherMobileNumber" matInput>
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.motherMobileNumber.errors">
+                    <div *ngIf="f.motherMobileNumber.errors.maxlength">Mobile Number can't be more than 10 digit's.</div>
+                    <div *ngIf="f.motherMobileNumber.errors.pattern">Mobile Number can only be numbers.</div>
+                </div>   
+
                 <mat-form-field appearance="standard">
                     <mat-label>Spouse Contact Number</mat-label>
                     <input formControlName="spouseMobileNumber" matInput>
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.spouseMobileNumber.errors">
+                    <div *ngIf="f.spouseMobileNumber.errors.maxlength">Mobile Number can't be more than 10 digit's.</div>
+                    <div *ngIf="f.spouseMobileNumber.errors.pattern">Mobile Number can only be numbers.</div>
+                </div>   
             </div>
             <!-- <div class="col-sm-3">
                 <div class="col-sm-2">

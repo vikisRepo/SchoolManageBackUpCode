@@ -1,4 +1,5 @@
 import { Component, OnInit, Output,EventEmitter } from '@angular/core';
+import { validateBasis } from '@angular/flex-layout';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormControl, FormGroup, FormArray } from '@angular/forms';
@@ -29,21 +30,23 @@ export class EmployeeDetailsComponent implements OnInit,FormTouched {
 
   constructor(private fb: FormBuilder, private staffrestApiService : StaffrestApiService) {     
     
-    this.empDetailsForm = this.fb.group(
+    this.empDetailsForm = this.fb.group(  
+      // Validators.pattern('^[a-zA-Z ]*$')]],  
+      //  Validators.pattern(/^[0-9]\d*$/)
       {
-        teacherId : ['',Validators.required],
-        employeeId : [,[Validators.required, Validators.pattern(/^[0-9]\d*$/)]],  //, 
+        teacherId : [,[Validators.required, Validators.pattern(/^[a-zA-Z0-9_]*$/)]],
+        employeeId : [,[Validators.required, Validators.pattern(/^[a-zA-Z0-9_]*$/)]],  //, 
         educationId : ['',Validators.required],
-        officialEmailId : ['',Validators.required],
-        esinumber : ['',Validators.required],
+        officialEmailId : [,[Validators.required,Validators.email]],
+        esinumber : [''],
         staffTypeId : ['',Validators.required],
         employeementStatusId : ['',Validators.required],
         reportingTo : ['',Validators.required],
-        epfnumber : ['',Validators.required],
+        epfnumber : [''],
         departmentId : ['',Validators.required],
         joiningDate : ['',Validators.required],
         activeId : ['',Validators.required],
-        uannumber : ['',Validators.required],
+        uannumber : [''],
         designationId : ['',Validators.required],
         roleId : ['',Validators.required]
       }

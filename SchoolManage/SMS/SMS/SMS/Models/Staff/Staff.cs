@@ -53,7 +53,7 @@ namespace SMS.Models
         public string SpouseMobileNumber { get; set; }
         public string BankName { get; set; }
         public string BankBranch { get; set; }
-        public string BankAccountNumber { get; set; }
+        public long BankAccountNumber { get; set; }
         public string BankIfscCode { get; set; }
         public string PanNumber { get; set; }
 
