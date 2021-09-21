@@ -57,7 +57,7 @@ export class PersonalDetailsComponent implements OnInit, OnChanges, FormTouched 
         nationalityId: [''],
         lastName: [, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
         weedingDate: [''],
-        mobile: [, [Validators.required, Validators.maxLength(9), Validators.pattern(/^[0-9]\d*$/)]],
+        mobile: [, [Validators.required, Validators.maxLength(10), Validators.pattern(/^[0-9]\d*$/)]],
         aadharNumber: [, [Validators.required, Validators.maxLength(12),Validators.minLength(12), Validators.pattern(/^[0-9]\d*$/)]],
         fatherName: [,[Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
         motherName: [,[Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],

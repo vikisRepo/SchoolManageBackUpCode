@@ -25,6 +25,7 @@ export class NewStudentComponent implements OnInit {
   isAddMode?: boolean;
   _student : Student;
   id : any;
+  submitted = false;
 
   @ViewChildren("dt") dt: QueryList<FormTouched>;
   @BlockUI() blockUI: NgBlockUI;
@@ -57,14 +58,15 @@ export class NewStudentComponent implements OnInit {
   }
 
   btnMovement(st: string) {
-  //  let flg = this.dt.toArray()[this.selectedTab].formTouched();
-   // console.log(flg)
+debugger;
+   let flg = this.dt.toArray()[this.selectedTab].formTouched();
+   console.log(flg)
    
       if (st === 'bck') {
         this.selectedTab--;
       }
-      else if (st === 'frd') {
-        if (this.selectedTab >= 3) {
+      else if (st === 'frd' && flg) {
+        if (this.selectedTab >= 1) {
           this.submit();
           return;
         }
@@ -76,13 +78,13 @@ export class NewStudentComponent implements OnInit {
   submit(){
 
     this.blockUI.start();
-    // this.submitted = true;
+    this.submitted = true;
 
 
-   if (this.stuFormtDetails.includes(false)) {
-       this.blockUI.stop();
-      return;
-    }
+  //  if (this.stuFormtDetails.includes(false)) {
+  //      this.blockUI.stop();
+  //     // return;
+  //   }
 
     if (this.isAddMode) {
       this.createStudent();

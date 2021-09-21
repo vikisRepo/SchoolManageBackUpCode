@@ -31,6 +31,9 @@
                     <mat-label>First Name</mat-label>
                     <input matInput formControlName="firstName">
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.firstName.errors">
+                    <div *ngIf="f.firstName.errors.pattern" >Only charecters allowed.</div>
+                </div>   
                 <mat-form-field appearance="standard">
                     <mat-label>Blood Group</mat-label>
                     <mat-select formControlName="bloodGroup">
@@ -65,20 +68,35 @@
                     <mat-label>Personal Email</mat-label>
                     <input matInput formControlName="emailId">
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.emailId.errors">
+                    <div *ngIf="f.emailId.errors.email">Invalid email address</div>
+                </div>
             </div>
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
                     <mat-label>Last Name</mat-label>
                     <input matInput formControlName="lastName">
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.lastName.errors">
+                    <div *ngIf="f.lastName.errors.pattern" >Only charecters allowed.</div>
+                </div>
+
                 <mat-form-field appearance="standard">
                     <mat-label>Mobile Number</mat-label>
                     <input matInput formControlName="mobile">
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.mobile.errors">
+                    <div *ngIf="f.mobile.errors.maxlength">Mobile Number can't be more than 10 digit's.</div>
+                    <div *ngIf="f.mobile.errors.pattern">Mobile Number can only be numbers.</div>
+                </div>
+
                 <mat-form-field appearance="standard">
                     <mat-label>Aadhar Number</mat-label>
                     <input matInput formControlName="aadharNumber">
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.aadharNumber.errors">
+                    <div *ngIf="f.aadharNumber.errors.pattern">Aadhar Number can only be numbers.</div>
+                </div> 
             </div>
         </div>
         <!-- <div class="row">

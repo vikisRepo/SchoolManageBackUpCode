@@ -36,17 +36,17 @@ export class StudentDetailsComponent implements OnInit ,FormTouched{
   constructor(private fb: FormBuilder) {
     this.studentProfileForm = this.fb.group({
         salutation: ['',Validators.required]
-      , firstName: ['',Validators.required]
+      , firstName: [,[Validators.required, Validators.pattern('^[a-zA-Z ]*$')]]
       , middleName: ['']
-      , lastName: ['',Validators.required]
+      , lastName:  [, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]]
       , dob: ['',Validators.required]
       , bloodGroup: ['',Validators.required]
       , nationalityId: ['',Validators.required]
       , religionId: ['',Validators.required]
       , gender: ['',Validators.required]
-      , emailId: ['',Validators.required]
-      , aadharNumber: ['',Validators.required]
-      , mobile: ['',Validators.required]
+      , emailId: ['', [Validators.required, Validators.email]]
+      , aadharNumber: [, [Validators.required, Validators.maxLength(12),Validators.minLength(12), Validators.pattern(/^[0-9]\d*$/)]]
+      , mobile: [, [Validators.required, Validators.maxLength(10), Validators.pattern(/^[0-9]\d*$/)]]
       , admissionNumber: ['',Validators.required]
       , admissionDate: ['',Validators.required]
       , class: ['',Validators.required]
@@ -92,6 +92,9 @@ export class StudentDetailsComponent implements OnInit ,FormTouched{
 
   ngOnInit(): void {
   }
+
+        // convenience getter for easy access to form fields
+        get f() { return this.studentProfileForm.controls; }
   getAddress(arrValue: any) {
     let value = Array.from(arrValue, (obj: any) => obj.value) as never[];
     this.formValues.addresses = value;
