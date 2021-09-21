@@ -167,7 +167,7 @@ namespace SMS.Controllers
 		[HttpDelete("{id}")]
 		public void Delete(int id)
 		{
-			_dbcontext.Remove(_dbcontext.Students.Where(X => X.StudentId == id).FirstOrDefault());
+			_dbcontext.Remove(_dbcontext.Students.Where(X => X.AdmissionNumber == id).FirstOrDefault());
 			_dbcontext.SaveChanges();
 		}
 	}

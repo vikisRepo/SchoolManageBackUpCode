@@ -51,7 +51,7 @@ export class PersonalDetailsComponent implements OnInit, OnChanges, FormTouched 
         bloodGroup: ['', Validators.required],
         gender: ['', Validators.required],
         emailId: ['', [Validators.required, Validators.email]],
-        languagesId: ['', Validators.required],
+        languagesId: [[], Validators.required],
         middleName: ['',Validators.pattern('^[a-zA-Z ]*$')],
         maritalStatus: ['', Validators.required],
         nationalityId: [''],
@@ -74,6 +74,7 @@ export class PersonalDetailsComponent implements OnInit, OnChanges, FormTouched 
 
     this.profileForm.valueChanges.subscribe(() => {
       Object.assign(this.formValues, this.profileForm.value);
+      debugger;
       this.formValues["mobile"] = Number.parseInt(this.formValues["mobile"]);
       this.formDetails.emit({ value: this.formValues, valid: (this.profileForm.valid && this.addressValidFlag) });
     });
@@ -98,6 +99,7 @@ export class PersonalDetailsComponent implements OnInit, OnChanges, FormTouched 
     if (changes.getFormValues.currentValue) {
       console.log(changes.getFormValues.currentValue);
       this.addressData = this.getFormValues["addresses"];
+      this.getFormValues["languagesId"] = this.getFormValues["languagesId"].split(',');
       this.profileForm.patchValue(this.getFormValues);
     }
   }

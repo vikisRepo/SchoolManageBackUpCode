@@ -60,7 +60,7 @@
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Languages Known</mat-label>
-                    <mat-select formControlName="languagesId">
+                    <mat-select formControlName="languagesId" multiple>
                         <mat-option *ngFor="let languages of languageknown" [value]="languages.languageId">
                             {{languages.languageDescription}}
                         </mat-option>

@@ -75,7 +75,7 @@ export class StudentrestApiService {
 
   // HttpClient API delete() method => Delete Student
   deleteStudent(id : any){
-    return this.http.delete<Student>(this.apiURL + id, this.httpOptions)
+    return this.http.delete<Student>(this.apiURL + '/' + id, this.httpOptions)
     .pipe(
       retry(1),
       catchError((err)=>this.handleError(err))

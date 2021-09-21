@@ -77,15 +77,15 @@ export class SmsConstant {
   ];
 
   static  state = [
-    { stateId: 0, stateDescr: '--select none--' }
-    // { value: 1, viewValue: 'Tamil Nadu' },
+    { stateId: 0, stateDescr: '--select none--' },
+    { stateId: 1, stateDescr: 'Tamil Nadu' }
     // { value: 2, viewValue: 'Kerala' },
     // { value: 3, viewValue: 'Aandhra' }
   ];
 
   static  country = [
-    { countryId: 0, countryDescr: '--select none--' }
-    // { value: 1, viewValue: 'India' }
+    { countryId: 0, countryDescr: '--select none--' },
+    { countryId: 1, countryDescr: 'India' }
   ];
 
   static  classes = [

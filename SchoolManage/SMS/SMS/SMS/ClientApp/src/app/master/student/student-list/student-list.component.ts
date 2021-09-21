@@ -61,6 +61,7 @@ export class StudentListComponent implements OnInit {
     this.blockUI.start();
 
     this.currentUserSubscription = this.studentrestApiService.getStudents().subscribe((student:any) => {
+      debugger;
       this.currentStudent = student;
       this.studentListData = new MatTableDataSource(student);
        this.studentListData.paginator = this.paginator;
@@ -97,6 +98,11 @@ export class StudentListComponent implements OnInit {
     this.router.navigate(['/new-student',student.admissionNumber]);
     // this.staffApiService.deleteStaff(staff.mobile).subscribe(_=>{
     // });
+  }
+
+  clearFilter(): void {
+    this.studentListData.filter = '';
+    this.studentfilters.reset();
   }
 
 }
