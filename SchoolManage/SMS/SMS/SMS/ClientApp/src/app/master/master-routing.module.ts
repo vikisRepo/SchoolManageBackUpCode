@@ -38,10 +38,12 @@ const routes: Routes = [
       { path: 'add-inventory', loadChildren: () => import('./inventory/add-inventory/add-inventory.module').then(m => m.AddInventoryModule) },
       { path: 'list-inventory', loadChildren: () => import('./inventory/list-inventory/list-inventory.module').then(m => m.ListInventoryModule) },
       { path: 'inventory-defect', loadChildren: () => import('./inventory/inventory-defect/inventory-defect.module').then(m => m.InventoryDefectModule) },
-      { path: 'class-timetable', loadChildren: () => import('./academic/class-timetable/class-timetable.module').then(m => m.ClassTimetableModule) }
-      
+      { path: 'class-timetable', loadChildren: () => import('./academic/class-timetable/class-timetable.module').then(m => m.ClassTimetableModule) },
+      { path: 'list-bus-detail', loadChildren: () => import('./transport/list-bus-detail/list-bus-detail.module').then(m => m.ListBusDetailModule) }    
     ]
   },
+  { path: 'add-bus-trip', loadChildren: () => import('./transport/add-bus-trip/add-bus-trip.module').then(m => m.AddBusTripModule) },
+  
   
   // { path: 'timetable', loadChildren: () => import('./timetable/scheduler/scheduler.module').then(m => m.SchedulerModule) },
   

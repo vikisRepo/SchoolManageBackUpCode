@@ -48,5 +48,8 @@ export class HeaderActionComponent implements OnInit {
     else if (this.index ===18){
        this.router.navigate(['list-inventory'])
     }
+    else if (this.index ===10){
+        this.router.navigate(['list-bus-detail']);
+    }
   }
 }
