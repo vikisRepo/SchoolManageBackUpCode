@@ -6,8 +6,8 @@
                 <mat-form-field appearance="standard">
                     <mat-label>Salutation</mat-label>
                     <mat-select formControlName="salutation">
-                        <mat-option *ngFor="let salutation of salutations" [value]="salutation.value">
-                            {{salutation.viewValue}}
+                        <mat-option *ngFor="let salutation of salutations" [value]="salutation.salutationId">
+                            {{salutation.salutationName}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -20,8 +20,8 @@
                 <mat-form-field appearance="standard">
                     <mat-label>Religion</mat-label>
                     <mat-select formControlName="religionId">
-                        <mat-option *ngFor="let religionId of religion" [value]="religionId.value">
-                            {{religionId.viewValue}}
+                        <mat-option *ngFor="let religionId of religion" [value]="religionId.religionId">
+                            {{religionId.religionName}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -31,19 +31,22 @@
                     <mat-label>First Name</mat-label>
                     <input matInput formControlName="firstName">
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.firstName.errors">
+                    <div *ngIf="f.firstName.errors.pattern" >Only charecters allowed.</div>
+                </div>   
                 <mat-form-field appearance="standard">
                     <mat-label>Blood Group</mat-label>
                     <mat-select formControlName="bloodGroup">
-                        <mat-option *ngFor="let bloodGroup of blood" [value]="bloodGroup.viewValue">
-                            {{bloodGroup.viewValue}}
+                        <mat-option *ngFor="let bloodGroup of blood" [value]="bloodGroup.bloodgroupId">
+                            {{bloodGroup.bloodgroupName}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Gender</mat-label>
                     <mat-select formControlName="gender">
-                        <mat-option *ngFor="let gender of gender " [value]="gender.value">
-                            {{gender.viewValue}}
+                        <mat-option *ngFor="let gender of gender " [value]="gender.genderId">
+                            {{gender.genderName}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -56,8 +59,8 @@
                 <mat-form-field appearance="standard">
                     <mat-label>Nationality</mat-label>
                     <mat-select formControlName="nationalityId">
-                        <mat-option *ngFor="let national of nationality" [value]="national.value">
-                            {{national.viewValue}}
+                        <mat-option *ngFor="let national of nationality" [value]="national.nationalityId">
+                            {{national.nationalityName}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -65,20 +68,35 @@
                     <mat-label>Personal Email</mat-label>
                     <input matInput formControlName="emailId">
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.emailId.errors">
+                    <div *ngIf="f.emailId.errors.email">Invalid email address</div>
+                </div>
             </div>
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
                     <mat-label>Last Name</mat-label>
                     <input matInput formControlName="lastName">
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.lastName.errors">
+                    <div *ngIf="f.lastName.errors.pattern" >Only charecters allowed.</div>
+                </div>
+
                 <mat-form-field appearance="standard">
                     <mat-label>Mobile Number</mat-label>
                     <input matInput formControlName="mobile">
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.mobile.errors">
+                    <div *ngIf="f.mobile.errors.maxlength">Mobile Number can't be more than 10 digit's.</div>
+                    <div *ngIf="f.mobile.errors.pattern">Mobile Number can only be numbers.</div>
+                </div>
+
                 <mat-form-field appearance="standard">
-                    <mat-label>AAdhar Number</mat-label>
+                    <mat-label>Aadhar Number</mat-label>
                     <input matInput formControlName="aadharNumber">
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.aadharNumber.errors">
+                    <div *ngIf="f.aadharNumber.errors.pattern">Aadhar Number can only be numbers.</div>
+                </div> 
             </div>
         </div>
         <!-- <div class="row">
@@ -126,15 +144,15 @@
                 <mat-form-field appearance="standard">
                     <mat-label>First Language</mat-label>
                     <mat-select formControlName="firstLanguage">
-                        <mat-option *ngFor="let firstLanguage of firstLang " [value]="firstLanguage.value">
-                            {{firstLanguage.viewValue}}
+                        <mat-option *ngFor="let firstLanguage of firstLang " [value]="firstLanguage.languageId">
+                            {{firstLanguage.languageDescription}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
-                    <mat-label>class</mat-label>
+                    <mat-label>Class</mat-label>
                     <mat-select formControlName="class">
                         <mat-option *ngFor="let classes of class" [value]="classes.value">
                             {{classes.viewValue}}
@@ -144,8 +162,8 @@
                 <mat-form-field appearance="standard">
                     <mat-label>Second Language</mat-label>
                     <mat-select formControlName="secondLanguage">
-                        <mat-option *ngFor="let secondLanguage of secndLanguage " [value]="secondLanguage.value">
-                            {{secondLanguage.viewValue}}
+                        <mat-option *ngFor="let secondLanguage of secndLanguage " [value]="secondLanguage.languageId">
+                            {{secondLanguage.languageDescription}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>

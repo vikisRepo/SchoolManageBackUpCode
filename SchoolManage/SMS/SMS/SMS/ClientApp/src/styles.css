@@ -28,6 +28,10 @@ footer {
   margin-left:10px;
 }
 
+.formfield-validation{
+  color: red;
+}
+
 
 
 .gradient-button {

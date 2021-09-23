@@ -6,10 +6,17 @@
                     <mat-label>Teacher ID</mat-label>
                     <input matInput formControlName="teacherId"  >
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.teacherId.errors">
+                    <div *ngIf="f.teacherId.errors.pattern">Teacher ID can not be allow spacial character</div>
+                </div>  
                 <mat-form-field appearance="standard">
                     <mat-label>Employee ID</mat-label>
-                    <input matInput formControlName="employeeId" >
+                    <input matInput formControlName="employeeId"
+                    [ngClass] = "f.employeeId.errors"/>
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.employeeId.errors">
+                    <div *ngIf="f.employeeId.errors.pattern">Teacher ID can not be allow spacial character</div>
+                </div>           
                 <mat-form-field appearance="standard">
                     <mat-label>Education</mat-label>
                     <mat-select formControlName="educationId">
@@ -22,26 +29,30 @@
                     <mat-label>Official Email</mat-label>
                     <input matInput formControlName="officialEmailId" >
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.officialEmailId.errors">
+                    <div *ngIf="f.officialEmailId.errors.email">Invalid email address</div>
+                </div>
+
                 <mat-form-field appearance="standard">
                     <mat-label>ESI Number</mat-label>
-                    <input matInput formControlName="esiNumber" >
+                    <input matInput formControlName="esinumber" >
                 </mat-form-field>
             </div>
 
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
                     <mat-label>Staff Type</mat-label>
-                    <mat-select formControlName="staffId">
-                        <mat-option *ngFor="let staff of staffId" [value]="staff.value">
-                            {{staff.viewValue}} 
+                    <mat-select formControlName="staffTypeId">
+                        <mat-option *ngFor="let staff of staffId" [value]="staff.staffTypeId">
+                            {{staff.description}} 
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Employeement Status</mat-label>
-                    <mat-select formControlName="employeementstatusId">
-                        <mat-option *ngFor="let employeementstatusId of employeementStatus" [value]="employeementstatusId.value">
-                            {{employeementstatusId.viewValue}} 
+                    <mat-select formControlName="employeementStatusId">
+                        <mat-option *ngFor="let employeementstatusIds of employeementStatus" [value]="employeementstatusIds.description">
+                            {{employeementstatusIds.description}} 
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -55,7 +66,7 @@
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>EPF Number</mat-label>
-                    <input matInput formControlName="epfNumber">
+                    <input matInput formControlName="epfnumber">
                 </mat-form-field>
             </div>
 
@@ -63,8 +74,8 @@
                 <mat-form-field appearance="standard">
                     <mat-label>Department</mat-label>
                     <mat-select formControlName="departmentId">
-                        <mat-option *ngFor="let departmentId  of department " [value]="departmentId .value">
-                            {{departmentId .viewValue}} 
+                        <mat-option *ngFor="let departmentId  of department " [value]="departmentId .departmentId">
+                            {{departmentId .departmentName}} 
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -84,7 +95,7 @@
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>UAN Number</mat-label>
-                    <input matInput formControlName="uanNumber" >
+                    <input matInput formControlName="uannumber" >
                 </mat-form-field>
             </div>
 
@@ -92,16 +103,16 @@
                 <mat-form-field appearance="standard">
                     <mat-label>Designation</mat-label>
                     <mat-select formControlName="designationId">
-                        <mat-option *ngFor="let designationId  of designation " [value]="designationId .value">
-                            {{designationId .viewValue}} 
+                        <mat-option *ngFor="let designationId  of designation " [value]="designationId.designationId">
+                            {{designationId.designationName}} 
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Role</mat-label>
                     <mat-select formControlName="roleId">
-                        <mat-option *ngFor="let roleId  of role" [value]="roleId .value">
-                            {{roleId .viewValue}} 
+                        <mat-option *ngFor="let roleId  of role" [value]="roleId.roleId">
+                            {{roleId.description}} 
                         </mat-option>
                     </mat-select>
                 </mat-form-field>

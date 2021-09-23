@@ -5,8 +5,8 @@
                 <mat-form-field appearance="standard">
                     <mat-label>Salutation</mat-label>
                     <mat-select formControlName="salutationId">
-                        <mat-option *ngFor="let salu of salutations;" [value]="salu.viewValue">
-                            {{salu.viewValue}}
+                        <mat-option *ngFor="let salu of salutations;" [value]="salu.salutationName">
+                            {{salu.salutationName}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -19,16 +19,16 @@
                 <mat-form-field appearance="standard">
                     <mat-label>Religion</mat-label>
                     <mat-select formControlName="religionId">
-                        <mat-option *ngFor="let religionId of religion" [value]="religionId.value">
-                            {{religionId.viewValue}}
+                        <mat-option *ngFor="let religionId of religion" [value]="religionId.religionId">
+                            {{religionId.religionName}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Mother Tonuge</mat-label>
-                    <mat-select formControlName="motherTonge">
-                        <mat-option *ngFor="let mothertonge of motherTon" [value]="mothertonge.value">
-                            {{mothertonge.viewValue}}
+                    <mat-select formControlName="motherTongue">
+                        <mat-option *ngFor="let mothertonge of motherTon" [value]="mothertonge.languageId">
+                            {{mothertonge.languageDescription}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -38,27 +38,31 @@
                     <mat-label>First Name</mat-label>
                     <input formControlName="firstName" matInput>
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.firstName.errors">
+                    <div *ngIf="f.firstName.errors.pattern" >Only charecters allowed.</div>
+                </div>   
+
                 <mat-form-field appearance="standard">
                     <mat-label>Blood Group</mat-label>
                     <mat-select formControlName="bloodGroup">
-                        <mat-option *ngFor="let bloodGroup of blood" [value]="bloodGroup.viewValue">
-                            {{bloodGroup.viewValue}}
+                        <mat-option *ngFor="let bloodGroup of blood" [value]="bloodGroup.bloodgroupId">
+                            {{bloodGroup.bloodgroupName}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Gender</mat-label>
                     <mat-select formControlName="gender">
-                        <mat-option *ngFor="let gender of gender " [value]="gender.value">
-                            {{gender.viewValue}}
+                        <mat-option *ngFor="let gender of gender " [value]="gender.genderId">
+                            {{gender.genderName}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Languages Known</mat-label>
-                    <mat-select formControlName="languages">
-                        <mat-option *ngFor="let languages of languageknown " [value]="languages.value">
-                            {{languages.viewValue}}
+                    <mat-select formControlName="languagesId" multiple>
+                        <mat-option *ngFor="let languages of languageknown" [value]="languages.languageId">
+                            {{languages.languageDescription}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -68,19 +72,22 @@
                     <mat-label>Middle Name</mat-label>
                     <input formControlName="middleName" matInput>
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.middleName.errors">
+                    <div *ngIf="f.middleName.errors.pattern" >Only charecters allowed.</div>
+                </div>  
                 <mat-form-field appearance="standard">
                     <mat-label>Marital Status</mat-label>
                     <mat-select formControlName="maritalStatus">
-                        <mat-option *ngFor="let maritalStatus of maritalstatus" [value]="maritalStatus.viewValue">
-                            {{maritalStatus.viewValue}}
+                        <mat-option *ngFor="let maritalStatus of maritalstatus" [value]="maritalStatus.maritalStatusName">
+                            {{maritalStatus.maritalStatusName}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Nationality</mat-label>
-                    <mat-select formControlName="nationality">
-                        <mat-option *ngFor="let national of nationality" [value]="national.value">
-                            {{national.viewValue}}
+                    <mat-select formControlName="nationalityId">
+                        <mat-option *ngFor="let national of nationality" [value]="national.nationalityId">
+                            {{national.nationalityName}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -88,12 +95,18 @@
                     <mat-label>Personal Email</mat-label>
                     <input formControlName="emailId" matInput>
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.emailId.errors">
+                    <div *ngIf="f.emailId.errors.email">Invalid email address</div>
+                </div>   
             </div>
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
                     <mat-label>Last Name</mat-label>
                     <input formControlName="lastName" matInput>
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.lastName.errors">
+                    <div *ngIf="f.lastName.errors.pattern" >Only charecters allowed.</div>
+                </div>   
 
                 <mat-form-field appearance="standard">
                     <mat-label>WeedingDate</mat-label>
@@ -106,10 +119,19 @@
                     <mat-label>Mobile Number</mat-label>
                     <input formControlName="mobile" matInput>
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.mobile.errors">
+                    <div *ngIf="f.mobile.errors.maxlength">Mobile Number can't be more than 10 digit's.</div>
+                    <div *ngIf="f.mobile.errors.pattern">Mobile Number can only be numbers.</div>
+                </div>   
+
                 <mat-form-field appearance="standard">
-                    <mat-label>AAdhar Number</mat-label>
+                    <mat-label>Aadhar Number</mat-label>
                     <input formControlName="aadharNumber" matInput>
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.aadharNumber.errors">
+                    <div *ngIf="f.aadharNumber.errors.pattern">Aadhar Number can only be numbers.</div>
+                </div> 
+
             </div>
         </div>
 
@@ -122,42 +144,78 @@
                     <mat-label>Father Name</mat-label>
                     <input formControlName="fatherName" matInput>
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.fatherName.errors">
+                    <div *ngIf="f.fatherName.errors.pattern" >Only charecters allowed.</div>
+                </div>   
+
                 <mat-form-field appearance="standard">
                     <mat-label>Mother Name</mat-label>
                     <input formControlName="motherName" matInput>
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.motherName.errors">
+                    <div *ngIf="f.motherName.errors.pattern" >Only charecters allowed.</div>
+                </div> 
+
                 <mat-form-field appearance="standard">
                     <mat-label>Spouse Name</mat-label>
                     <input formControlName="spouseName" matInput>
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.spouseName.errors">
+                    <div *ngIf="f.spouseName.errors.pattern" >Only charecters allowed.</div>
+                </div> 
             </div>
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
                     <mat-label>Father Occupation</mat-label>
                     <input formControlName="fatherOccupation" matInput>
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.fatherOccupation.errors">
+                    <div *ngIf="f.fatherOccupation.errors.pattern" >Only charecters allowed.</div>
+                </div> 
+
                 <mat-form-field appearance="standard">
                     <mat-label>Mother Occupation</mat-label>
                     <input formControlName="motherOccupation" matInput>
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.motherOccupation.errors">
+                    <div *ngIf="f.spousmotherOccupationeName.errors.pattern" >Only charecters allowed.</div>
+                </div> 
+
                 <mat-form-field appearance="standard">
                     <mat-label>Spouse Occupation</mat-label>
                     <input formControlName="souseOccupation" matInput>
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.souseOccupation.errors">
+                    <div *ngIf="f.souseOccupation.errors.pattern" >Only charecters allowed.</div>
+                </div> 
             </div>
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
                     <mat-label>Father Contact Number</mat-label>
                     <input formControlName="fatherMobileNumber" matInput>
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.fatherMobileNumber.errors">
+                    <div *ngIf="f.fatherMobileNumber.errors.maxlength">Mobile Number can't be more than 10 digit's.</div>
+                    <div *ngIf="f.fatherMobileNumber.errors.pattern">Mobile Number can only be numbers.</div>
+                </div>   
+
                 <mat-form-field appearance="standard">
                     <mat-label>Mother Contact Number</mat-label>
                     <input formControlName="motherMobileNumber" matInput>
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.motherMobileNumber.errors">
+                    <div *ngIf="f.motherMobileNumber.errors.maxlength">Mobile Number can't be more than 10 digit's.</div>
+                    <div *ngIf="f.motherMobileNumber.errors.pattern">Mobile Number can only be numbers.</div>
+                </div>   
+
                 <mat-form-field appearance="standard">
                     <mat-label>Spouse Contact Number</mat-label>
                     <input formControlName="spouseMobileNumber" matInput>
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.spouseMobileNumber.errors">
+                    <div *ngIf="f.spouseMobileNumber.errors.maxlength">Mobile Number can't be more than 10 digit's.</div>
+                    <div *ngIf="f.spouseMobileNumber.errors.pattern">Mobile Number can only be numbers.</div>
+                </div>   
             </div>
             <!-- <div class="col-sm-3">
                 <div class="col-sm-2">

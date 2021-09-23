@@ -17,6 +17,21 @@ namespace SMS.Migrations.MysqlData
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
                 .HasAnnotation("ProductVersion", "5.0.5");
 
+            modelBuilder.Entity("DependentsStudent", b =>
+                {
+                    b.Property<int>("DependentsdetailsDependentsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentsStudentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("DependentsdetailsDependentsId", "StudentsStudentId");
+
+                    b.HasIndex("StudentsStudentId");
+
+                    b.ToTable("DependentsStudent");
+                });
+
             modelBuilder.Entity("SMS.Models.Academics.LessonPlan", b =>
                 {
                     b.Property<int>("LessonPlanId")
@@ -79,6 +94,244 @@ namespace SMS.Migrations.MysqlData
                     b.HasKey("BankId");
 
                     b.ToTable("Banks");
+
+                    b.HasData(
+                        new
+                        {
+                            BankId = 1,
+                            BankDescr = "State Bank of India (SBI)"
+                        },
+                        new
+                        {
+                            BankId = 2,
+                            BankDescr = "Punjab National Bank"
+                        },
+                        new
+                        {
+                            BankId = 3,
+                            BankDescr = "Bank of Baroda (With Merger of Dena Bank & Vijaya Bank)"
+                        },
+                        new
+                        {
+                            BankId = 4,
+                            BankDescr = "Canara Bank (With Merger of Syndicate Bank)"
+                        },
+                        new
+                        {
+                            BankId = 5,
+                            BankDescr = "Union Bank of India (With Merger of Andhra Bank and Corporation Bank)"
+                        },
+                        new
+                        {
+                            BankId = 6,
+                            BankDescr = "Indian Bank (With Merger of Allahabad Bank)"
+                        },
+                        new
+                        {
+                            BankId = 7,
+                            BankDescr = "Central Bank of India"
+                        },
+                        new
+                        {
+                            BankId = 8,
+                            BankDescr = "UCO Bank"
+                        },
+                        new
+                        {
+                            BankId = 9,
+                            BankDescr = "Bank of Maharashtra"
+                        },
+                        new
+                        {
+                            BankId = 10,
+                            BankDescr = "Punjab & Sindh Bank"
+                        },
+                        new
+                        {
+                            BankId = 11,
+                            BankDescr = "Bandhan Bank"
+                        },
+                        new
+                        {
+                            BankId = 12,
+                            BankDescr = "Catholic Syrian Bank"
+                        },
+                        new
+                        {
+                            BankId = 13,
+                            BankDescr = "City Union Bank"
+                        },
+                        new
+                        {
+                            BankId = 14,
+                            BankDescr = "DCB Bank"
+                        },
+                        new
+                        {
+                            BankId = 15,
+                            BankDescr = "Dhanlaxmi Bank"
+                        },
+                        new
+                        {
+                            BankId = 16,
+                            BankDescr = "Federal Bank"
+                        },
+                        new
+                        {
+                            BankId = 17,
+                            BankDescr = "HDFC Bank"
+                        },
+                        new
+                        {
+                            BankId = 18,
+                            BankDescr = "ICICI Bank"
+                        },
+                        new
+                        {
+                            BankId = 19,
+                            BankDescr = "IDBI Bank"
+                        },
+                        new
+                        {
+                            BankId = 20,
+                            BankDescr = "IDFC First Bank"
+                        },
+                        new
+                        {
+                            BankId = 21,
+                            BankDescr = "Jammu & Kashmir Bank"
+                        },
+                        new
+                        {
+                            BankId = 22,
+                            BankDescr = "Karur Vysya Bank"
+                        },
+                        new
+                        {
+                            BankId = 23,
+                            BankDescr = "Lakshmi Vilas Bank"
+                        },
+                        new
+                        {
+                            BankId = 24,
+                            BankDescr = "Nainital Bank"
+                        },
+                        new
+                        {
+                            BankId = 25,
+                            BankDescr = "RBL Bank"
+                        },
+                        new
+                        {
+                            BankId = 26,
+                            BankDescr = "South Indian Bank"
+                        },
+                        new
+                        {
+                            BankId = 27,
+                            BankDescr = "Tamilnad Mercantile Bank Limited"
+                        },
+                        new
+                        {
+                            BankId = 28,
+                            BankDescr = "Axis Bank"
+                        },
+                        new
+                        {
+                            BankId = 29,
+                            BankDescr = "Kotak Mahindra Bank"
+                        },
+                        new
+                        {
+                            BankId = 30,
+                            BankDescr = "Bank of India"
+                        },
+                        new
+                        {
+                            BankId = 31,
+                            BankDescr = "Canara Bank"
+                        },
+                        new
+                        {
+                            BankId = 32,
+                            BankDescr = "IndusInd Bank"
+                        },
+                        new
+                        {
+                            BankId = 33,
+                            BankDescr = "YES Bank"
+                        },
+                        new
+                        {
+                            BankId = 34,
+                            BankDescr = "Karnataka Bank"
+                        },
+                        new
+                        {
+                            BankId = 35,
+                            BankDescr = "Indian Overseas Bank"
+                        },
+                        new
+                        {
+                            BankId = 36,
+                            BankDescr = "Union Bank of India (Andhra Bank & Corporation Bank)"
+                        });
+                });
+
+            modelBuilder.Entity("SMS.Models.Bloodgroup", b =>
+                {
+                    b.Property<int>("BloodgroupId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("BloodgroupName")
+                        .HasColumnType("text");
+
+                    b.HasKey("BloodgroupId");
+
+                    b.ToTable("Bloodgroups");
+
+                    b.HasData(
+                        new
+                        {
+                            BloodgroupId = 1,
+                            BloodgroupName = "(A +)"
+                        },
+                        new
+                        {
+                            BloodgroupId = 2,
+                            BloodgroupName = "(A -)"
+                        },
+                        new
+                        {
+                            BloodgroupId = 3,
+                            BloodgroupName = "(B +)"
+                        },
+                        new
+                        {
+                            BloodgroupId = 4,
+                            BloodgroupName = "(B -)"
+                        },
+                        new
+                        {
+                            BloodgroupId = 5,
+                            BloodgroupName = "(O +)"
+                        },
+                        new
+                        {
+                            BloodgroupId = 6,
+                            BloodgroupName = "(O -)"
+                        },
+                        new
+                        {
+                            BloodgroupId = 7,
+                            BloodgroupName = "(AB +)"
+                        },
+                        new
+                        {
+                            BloodgroupId = 8,
+                            BloodgroupName = "(AB -)"
+                        });
                 });
 
             modelBuilder.Entity("SMS.Models.City", b =>
@@ -93,6 +346,163 @@ namespace SMS.Migrations.MysqlData
                     b.HasKey("CityId");
 
                     b.ToTable("Cities");
+
+                    b.HasData(
+                        new
+                        {
+                            CityId = 1,
+                            cityDescr = "Chennai"
+                        },
+                        new
+                        {
+                            CityId = 2,
+                            cityDescr = "Coimbatore"
+                        },
+                        new
+                        {
+                            CityId = 3,
+                            cityDescr = "Madurai"
+                        },
+                        new
+                        {
+                            CityId = 4,
+                            cityDescr = "Tiruchirappa"
+                        },
+                        new
+                        {
+                            CityId = 5,
+                            cityDescr = "Salem"
+                        },
+                        new
+                        {
+                            CityId = 6,
+                            cityDescr = "Tirunelveli"
+                        },
+                        new
+                        {
+                            CityId = 7,
+                            cityDescr = "Tiruppur"
+                        },
+                        new
+                        {
+                            CityId = 8,
+                            cityDescr = "Vellore"
+                        },
+                        new
+                        {
+                            CityId = 9,
+                            cityDescr = "Erode"
+                        },
+                        new
+                        {
+                            CityId = 10,
+                            cityDescr = "Thoothukkudi"
+                        },
+                        new
+                        {
+                            CityId = 11,
+                            cityDescr = "Dindigul"
+                        },
+                        new
+                        {
+                            CityId = 12,
+                            cityDescr = "Thanjavur"
+                        },
+                        new
+                        {
+                            CityId = 13,
+                            cityDescr = "Ranipet"
+                        },
+                        new
+                        {
+                            CityId = 14,
+                            cityDescr = "Sivakasi"
+                        },
+                        new
+                        {
+                            CityId = 15,
+                            cityDescr = "Karur"
+                        },
+                        new
+                        {
+                            CityId = 16,
+                            cityDescr = "Udhagamandal"
+                        },
+                        new
+                        {
+                            CityId = 17,
+                            cityDescr = "Hosur"
+                        },
+                        new
+                        {
+                            CityId = 18,
+                            cityDescr = "Nagercoil"
+                        },
+                        new
+                        {
+                            CityId = 19,
+                            cityDescr = "Kanchipuram"
+                        },
+                        new
+                        {
+                            CityId = 20,
+                            cityDescr = "Kumarapalaya"
+                        },
+                        new
+                        {
+                            CityId = 21,
+                            cityDescr = "Karaikkudi"
+                        },
+                        new
+                        {
+                            CityId = 22,
+                            cityDescr = "Neyveli"
+                        },
+                        new
+                        {
+                            CityId = 23,
+                            cityDescr = "Cuddalore"
+                        },
+                        new
+                        {
+                            CityId = 24,
+                            cityDescr = "Kumbakonam"
+                        },
+                        new
+                        {
+                            CityId = 25,
+                            cityDescr = "Tiruvannamal"
+                        },
+                        new
+                        {
+                            CityId = 26,
+                            cityDescr = "Pollachi"
+                        },
+                        new
+                        {
+                            CityId = 27,
+                            cityDescr = "Rajapalayam"
+                        },
+                        new
+                        {
+                            CityId = 28,
+                            cityDescr = "Gudiyatham"
+                        },
+                        new
+                        {
+                            CityId = 29,
+                            cityDescr = "Pudukkottai"
+                        },
+                        new
+                        {
+                            CityId = 30,
+                            cityDescr = "Vaniyambadi"
+                        },
+                        new
+                        {
+                            CityId = 31,
+                            cityDescr = "Ambur"
+                        });
                 });
 
             modelBuilder.Entity("SMS.Models.Country", b =>
@@ -121,6 +531,130 @@ namespace SMS.Migrations.MysqlData
                     b.HasKey("DepartmentId");
 
                     b.ToTable("Departments");
+
+                    b.HasData(
+                        new
+                        {
+                            DepartmentId = 1,
+                            DepartmentName = "Admin"
+                        },
+                        new
+                        {
+                            DepartmentId = 2,
+                            DepartmentName = "Finance"
+                        },
+                        new
+                        {
+                            DepartmentId = 3,
+                            DepartmentName = "Library"
+                        },
+                        new
+                        {
+                            DepartmentId = 4,
+                            DepartmentName = "IT"
+                        },
+                        new
+                        {
+                            DepartmentId = 5,
+                            DepartmentName = "Non Teaching"
+                        },
+                        new
+                        {
+                            DepartmentId = 6,
+                            DepartmentName = "English"
+                        },
+                        new
+                        {
+                            DepartmentId = 7,
+                            DepartmentName = "Tamil"
+                        },
+                        new
+                        {
+                            DepartmentId = 8,
+                            DepartmentName = "Maths"
+                        },
+                        new
+                        {
+                            DepartmentId = 9,
+                            DepartmentName = "Science"
+                        },
+                        new
+                        {
+                            DepartmentId = 10,
+                            DepartmentName = "Social Studies"
+                        },
+                        new
+                        {
+                            DepartmentId = 11,
+                            DepartmentName = "Hindi"
+                        },
+                        new
+                        {
+                            DepartmentId = 12,
+                            DepartmentName = "Commerce"
+                        },
+                        new
+                        {
+                            DepartmentId = 13,
+                            DepartmentName = "Economics"
+                        },
+                        new
+                        {
+                            DepartmentId = 14,
+                            DepartmentName = "Accounts"
+                        },
+                        new
+                        {
+                            DepartmentId = 15,
+                            DepartmentName = "PET"
+                        });
+                });
+
+            modelBuilder.Entity("SMS.Models.Dependents", b =>
+                {
+                    b.Property<int>("DependentsId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("AadharNumber")
+                        .HasColumnType("text");
+
+                    b.Property<long>("AnnualIncome")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("BvEmployee")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("Company")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Designation")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("text");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("MiddleName")
+                        .HasColumnType("text");
+
+                    b.Property<long>("MobileNumber")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Occupation")
+                        .HasColumnType("text");
+
+                    b.Property<string>("SalutationId")
+                        .HasColumnType("text");
+
+                    b.HasKey("DependentsId");
+
+                    b.ToTable("Dependents");
                 });
 
             modelBuilder.Entity("SMS.Models.Designation", b =>
@@ -135,6 +669,53 @@ namespace SMS.Migrations.MysqlData
                     b.HasKey("DesignationId");
 
                     b.ToTable("Designations");
+
+                    b.HasData(
+                        new
+                        {
+                            DesignationId = 1,
+                            DesignationName = "Teacher"
+                        },
+                        new
+                        {
+                            DesignationId = 2,
+                            DesignationName = "Co-ordinator"
+                        },
+                        new
+                        {
+                            DesignationId = 3,
+                            DesignationName = "HOD"
+                        },
+                        new
+                        {
+                            DesignationId = 4,
+                            DesignationName = "Non-Teaching"
+                        },
+                        new
+                        {
+                            DesignationId = 5,
+                            DesignationName = "Office Associate"
+                        },
+                        new
+                        {
+                            DesignationId = 6,
+                            DesignationName = "Finance Associate"
+                        },
+                        new
+                        {
+                            DesignationId = 7,
+                            DesignationName = "Principal"
+                        },
+                        new
+                        {
+                            DesignationId = 8,
+                            DesignationName = "Librarian"
+                        },
+                        new
+                        {
+                            DesignationId = 9,
+                            DesignationName = "Vice Principal"
+                        });
                 });
 
             modelBuilder.Entity("SMS.Models.Education", b =>
@@ -149,6 +730,78 @@ namespace SMS.Migrations.MysqlData
                     b.HasKey("EducationId");
 
                     b.ToTable("Educations");
+                });
+
+            modelBuilder.Entity("SMS.Models.EmployeementStatus", b =>
+                {
+                    b.Property<int>("EmployeementStatusId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.HasKey("EmployeementStatusId");
+
+                    b.ToTable("EmployeementStatuses");
+
+                    b.HasData(
+                        new
+                        {
+                            EmployeementStatusId = 1,
+                            Description = "Active"
+                        },
+                        new
+                        {
+                            EmployeementStatusId = 2,
+                            Description = "In active"
+                        },
+                        new
+                        {
+                            EmployeementStatusId = 3,
+                            Description = "Terminated"
+                        },
+                        new
+                        {
+                            EmployeementStatusId = 4,
+                            Description = "In Leave"
+                        });
+                });
+
+            modelBuilder.Entity("SMS.Models.Gender", b =>
+                {
+                    b.Property<int>("GenderId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("GenderName")
+                        .HasColumnType("text");
+
+                    b.HasKey("GenderId");
+
+                    b.ToTable("Genders");
+
+                    b.HasData(
+                        new
+                        {
+                            GenderId = 1,
+                            GenderName = "Male"
+                        },
+                        new
+                        {
+                            GenderId = 2,
+                            GenderName = "Female"
+                        },
+                        new
+                        {
+                            GenderId = 3,
+                            GenderName = "Trans"
+                        },
+                        new
+                        {
+                            GenderId = 4,
+                            GenderName = "Not willing to disclose"
+                        });
                 });
 
             modelBuilder.Entity("SMS.Models.Inventory.Inventory", b =>
@@ -269,6 +922,83 @@ namespace SMS.Migrations.MysqlData
                     b.HasKey("LanguageId");
 
                     b.ToTable("Languages");
+
+                    b.HasData(
+                        new
+                        {
+                            LanguageId = 1,
+                            LanguageDescription = "Hindi"
+                        },
+                        new
+                        {
+                            LanguageId = 2,
+                            LanguageDescription = "English"
+                        },
+                        new
+                        {
+                            LanguageId = 3,
+                            LanguageDescription = "Bengali"
+                        },
+                        new
+                        {
+                            LanguageId = 4,
+                            LanguageDescription = "Marathi"
+                        },
+                        new
+                        {
+                            LanguageId = 5,
+                            LanguageDescription = "Telugu"
+                        },
+                        new
+                        {
+                            LanguageId = 6,
+                            LanguageDescription = "Tamil"
+                        },
+                        new
+                        {
+                            LanguageId = 7,
+                            LanguageDescription = "Gujarati"
+                        },
+                        new
+                        {
+                            LanguageId = 8,
+                            LanguageDescription = "Urdu"
+                        },
+                        new
+                        {
+                            LanguageId = 9,
+                            LanguageDescription = "Kannada"
+                        },
+                        new
+                        {
+                            LanguageId = 10,
+                            LanguageDescription = "Odia"
+                        },
+                        new
+                        {
+                            LanguageId = 11,
+                            LanguageDescription = "Malayalam"
+                        },
+                        new
+                        {
+                            LanguageId = 12,
+                            LanguageDescription = "Punjabi"
+                        },
+                        new
+                        {
+                            LanguageId = 13,
+                            LanguageDescription = "Assamese"
+                        },
+                        new
+                        {
+                            LanguageId = 14,
+                            LanguageDescription = "French"
+                        },
+                        new
+                        {
+                            LanguageId = 15,
+                            LanguageDescription = "Others"
+                        });
                 });
 
             modelBuilder.Entity("SMS.Models.Leave.StaffLeave", b =>
@@ -333,6 +1063,47 @@ namespace SMS.Migrations.MysqlData
                     b.ToTable("StudentLeaves");
                 });
 
+            modelBuilder.Entity("SMS.Models.MaritalStatus", b =>
+                {
+                    b.Property<int>("MaritalStatusId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("MaritalStatusName")
+                        .HasColumnType("text");
+
+                    b.HasKey("MaritalStatusId");
+
+                    b.ToTable("Maritalstatus");
+
+                    b.HasData(
+                        new
+                        {
+                            MaritalStatusId = 1,
+                            MaritalStatusName = "Married"
+                        },
+                        new
+                        {
+                            MaritalStatusId = 2,
+                            MaritalStatusName = "Widowed"
+                        },
+                        new
+                        {
+                            MaritalStatusId = 3,
+                            MaritalStatusName = "Separated"
+                        },
+                        new
+                        {
+                            MaritalStatusId = 4,
+                            MaritalStatusName = "Divorced"
+                        },
+                        new
+                        {
+                            MaritalStatusId = 5,
+                            MaritalStatusName = "Single"
+                        });
+                });
+
             modelBuilder.Entity("SMS.Models.Nationality", b =>
                 {
                     b.Property<int>("NationalityId")
@@ -345,6 +1116,23 @@ namespace SMS.Migrations.MysqlData
                     b.HasKey("NationalityId");
 
                     b.ToTable("Nationalities");
+
+                    b.HasData(
+                        new
+                        {
+                            NationalityId = 1,
+                            NationalityName = "Indian"
+                        },
+                        new
+                        {
+                            NationalityId = 2,
+                            NationalityName = "Others"
+                        },
+                        new
+                        {
+                            NationalityId = 3,
+                            NationalityName = "Not willing to disclose"
+                        });
                 });
 
             modelBuilder.Entity("SMS.Models.Religion", b =>
@@ -359,6 +1147,48 @@ namespace SMS.Migrations.MysqlData
                     b.HasKey("ReligionId");
 
                     b.ToTable("Religions");
+
+                    b.HasData(
+                        new
+                        {
+                            ReligionId = 1,
+                            ReligionName = "Hindu"
+                        },
+                        new
+                        {
+                            ReligionId = 2,
+                            ReligionName = "Christian"
+                        },
+                        new
+                        {
+                            ReligionId = 3,
+                            ReligionName = "Muslim"
+                        },
+                        new
+                        {
+                            ReligionId = 4,
+                            ReligionName = "Sikh"
+                        },
+                        new
+                        {
+                            ReligionId = 5,
+                            ReligionName = "Buddhist"
+                        },
+                        new
+                        {
+                            ReligionId = 6,
+                            ReligionName = "Jains"
+                        },
+                        new
+                        {
+                            ReligionId = 7,
+                            ReligionName = "Others"
+                        },
+                        new
+                        {
+                            ReligionId = 8,
+                            ReligionName = "Not willing to disclose"
+                        });
                 });
 
             modelBuilder.Entity("SMS.Models.ReportingTo", b =>
@@ -373,6 +1203,93 @@ namespace SMS.Migrations.MysqlData
                     b.HasKey("ReportingToId");
 
                     b.ToTable("ReportingTos");
+                });
+
+            modelBuilder.Entity("SMS.Models.Role", b =>
+                {
+                    b.Property<int>("RoleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.HasKey("RoleId");
+
+                    b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            RoleId = 1,
+                            Description = " Super Admin"
+                        },
+                        new
+                        {
+                            RoleId = 2,
+                            Description = " Admin"
+                        },
+                        new
+                        {
+                            RoleId = 3,
+                            Description = " Finance Admin"
+                        },
+                        new
+                        {
+                            RoleId = 4,
+                            Description = " Student"
+                        },
+                        new
+                        {
+                            RoleId = 5,
+                            Description = " Teacher"
+                        },
+                        new
+                        {
+                            RoleId = 6,
+                            Description = " Inventory Admin"
+                        },
+                        new
+                        {
+                            RoleId = 7,
+                            Description = " Library Admin"
+                        });
+                });
+
+            modelBuilder.Entity("SMS.Models.Salutation", b =>
+                {
+                    b.Property<int>("SalutationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("SalutationName")
+                        .HasColumnType("text");
+
+                    b.HasKey("SalutationId");
+
+                    b.ToTable("Salutations");
+
+                    b.HasData(
+                        new
+                        {
+                            SalutationId = 1,
+                            SalutationName = "Mr."
+                        },
+                        new
+                        {
+                            SalutationId = 2,
+                            SalutationName = "Mrs."
+                        },
+                        new
+                        {
+                            SalutationId = 3,
+                            SalutationName = "Miss"
+                        },
+                        new
+                        {
+                            SalutationId = 4,
+                            SalutationName = "Master"
+                        });
                 });
 
             modelBuilder.Entity("SMS.Models.SchoolName", b =>
@@ -457,8 +1374,8 @@ namespace SMS.Migrations.MysqlData
                     b.Property<int>("ActiveId")
                         .HasColumnType("int");
 
-                    b.Property<string>("BankAccountNumber")
-                        .HasColumnType("text");
+                    b.Property<long>("BankAccountNumber")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("BankBranch")
                         .HasColumnType("text");
@@ -487,8 +1404,8 @@ namespace SMS.Migrations.MysqlData
                     b.Property<string>("EmailId")
                         .HasColumnType("text");
 
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int");
+                    b.Property<string>("EmployeeId")
+                        .HasColumnType("text");
 
                     b.Property<int>("EmployeementStatusId")
                         .HasColumnType("int");
@@ -517,8 +1434,8 @@ namespace SMS.Migrations.MysqlData
                     b.Property<DateTime>("JoiningDate")
                         .HasColumnType("datetime");
 
-                    b.Property<int>("LanguagesId")
-                        .HasColumnType("int");
+                    b.Property<string>("LanguagesId")
+                        .HasColumnType("text");
 
                     b.Property<string>("LastName")
                         .HasColumnType("text");
@@ -592,6 +1509,12 @@ namespace SMS.Migrations.MysqlData
                     b.Property<DateTime>("WeddingDate")
                         .HasColumnType("datetime");
 
+                    b.Property<string>("branchnumber")
+                        .HasColumnType("text");
+
+                    b.Property<string>("maritalStatus")
+                        .HasColumnType("text");
+
                     b.HasKey("StaffId");
 
                     b.ToTable("Staffs");
@@ -646,7 +1569,7 @@ namespace SMS.Migrations.MysqlData
                     b.Property<string>("Responsibilty")
                         .HasColumnType("text");
 
-                    b.Property<int>("StaffId")
+                    b.Property<int?>("StaffId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("To")
@@ -671,6 +1594,68 @@ namespace SMS.Migrations.MysqlData
                     b.HasKey("StaffTypeId");
 
                     b.ToTable("StaffTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            StaffTypeId = 1,
+                            Description = "Teacher"
+                        },
+                        new
+                        {
+                            StaffTypeId = 2,
+                            Description = "Admin"
+                        },
+                        new
+                        {
+                            StaffTypeId = 3,
+                            Description = "Principal"
+                        },
+                        new
+                        {
+                            StaffTypeId = 4,
+                            Description = "Co-ordinator"
+                        },
+                        new
+                        {
+                            StaffTypeId = 5,
+                            Description = "Support Staff"
+                        },
+                        new
+                        {
+                            StaffTypeId = 6,
+                            Description = "Driver"
+                        },
+                        new
+                        {
+                            StaffTypeId = 7,
+                            Description = "IT Technician"
+                        },
+                        new
+                        {
+                            StaffTypeId = 8,
+                            Description = "Vice Principal"
+                        },
+                        new
+                        {
+                            StaffTypeId = 9,
+                            Description = "Librarian"
+                        },
+                        new
+                        {
+                            StaffTypeId = 10,
+                            Description = "Lab Staff"
+                        },
+                        new
+                        {
+                            StaffTypeId = 11,
+                            Description = "PET"
+                        },
+                        new
+                        {
+                            StaffTypeId = 12,
+                            Description = "HOD"
+                        });
                 });
 
             modelBuilder.Entity("SMS.Models.State", b =>
@@ -710,26 +1695,8 @@ namespace SMS.Migrations.MysqlData
                     b.Property<string>("Class")
                         .HasColumnType("text");
 
-                    b.Property<string>("CurrentCity")
-                        .HasColumnType("text");
-
-                    b.Property<string>("CurrentCountry")
-                        .HasColumnType("text");
-
-                    b.Property<string>("CurrentLine1")
-                        .HasColumnType("text");
-
-                    b.Property<string>("CurrentLine2")
-                        .HasColumnType("text");
-
-                    b.Property<string>("CurrentLine3")
-                        .HasColumnType("text");
-
-                    b.Property<string>("CurrentPincode")
-                        .HasColumnType("text");
-
-                    b.Property<string>("CurrentSate")
-                        .HasColumnType("text");
+                    b.Property<int>("DependentsId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Dob")
                         .HasColumnType("datetime");
@@ -738,42 +1705,6 @@ namespace SMS.Migrations.MysqlData
                         .HasColumnType("text");
 
                     b.Property<string>("EmisNumber")
-                        .HasColumnType("text");
-
-                    b.Property<string>("FatherAadharNumber")
-                        .HasColumnType("text");
-
-                    b.Property<long>("FatherAnnualIncome")
-                        .HasColumnType("bigint");
-
-                    b.Property<bool>("FatherBvEmployee")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("FatherCompany")
-                        .HasColumnType("text");
-
-                    b.Property<string>("FatherDesignation")
-                        .HasColumnType("text");
-
-                    b.Property<string>("FatherEmail")
-                        .HasColumnType("text");
-
-                    b.Property<string>("FatherFirstName")
-                        .HasColumnType("text");
-
-                    b.Property<string>("FatherLastName")
-                        .HasColumnType("text");
-
-                    b.Property<string>("FatherMiddleName")
-                        .HasColumnType("text");
-
-                    b.Property<long>("FatherMobileNumber")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("FatherOccupation")
-                        .HasColumnType("text");
-
-                    b.Property<string>("FatherSalutationId")
                         .HasColumnType("text");
 
                     b.Property<string>("FirstLanguage")
@@ -788,143 +1719,14 @@ namespace SMS.Migrations.MysqlData
                     b.Property<string>("LastName")
                         .HasColumnType("text");
 
-                    b.Property<string>("LegalAadharNumber")
-                        .HasColumnType("text");
-
-                    b.Property<long>("LegalAnnualIncome")
-                        .HasColumnType("bigint");
-
-                    b.Property<bool>("LegalBvEmployee")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("LegalCompany")
-                        .HasColumnType("text");
-
-                    b.Property<string>("LegalDesignation")
-                        .HasColumnType("text");
-
-                    b.Property<string>("LegalEmail")
-                        .HasColumnType("text");
-
-                    b.Property<string>("LegalFirstName")
-                        .HasColumnType("text");
-
-                    b.Property<string>("LegalLastName")
-                        .HasColumnType("text");
-
-                    b.Property<string>("LegalMiddleName")
-                        .HasColumnType("text");
-
-                    b.Property<long>("LegalMobileNumber")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("LegalOccupation")
-                        .HasColumnType("text");
-
-                    b.Property<string>("LegalSalutationId")
-                        .HasColumnType("text");
-
-                    b.Property<string>("LocalGuardianAadharNumber")
-                        .HasColumnType("text");
-
-                    b.Property<long>("LocalGuardianAnnualIncome")
-                        .HasColumnType("bigint");
-
-                    b.Property<bool>("LocalGuardianBvEmployee")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("LocalGuardianCompany")
-                        .HasColumnType("text");
-
-                    b.Property<string>("LocalGuardianDesignation")
-                        .HasColumnType("text");
-
-                    b.Property<string>("LocalGuardianEmail")
-                        .HasColumnType("text");
-
-                    b.Property<string>("LocalGuardianFirstName")
-                        .HasColumnType("text");
-
-                    b.Property<string>("LocalGuardianLastName")
-                        .HasColumnType("text");
-
-                    b.Property<string>("LocalGuardianMiddleName")
-                        .HasColumnType("text");
-
-                    b.Property<long>("LocalGuardianMobileNumber")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("LocalGuardianOccupation")
-                        .HasColumnType("text");
-
-                    b.Property<string>("LocalGuardianSalutationId")
-                        .HasColumnType("text");
-
                     b.Property<string>("MiddleName")
                         .HasColumnType("text");
 
                     b.Property<long>("Mobile")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("MotherAadharNumber")
-                        .HasColumnType("text");
-
-                    b.Property<long>("MotherAnnualIncome")
-                        .HasColumnType("bigint");
-
-                    b.Property<bool>("MotherBvEmployee")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("MotherCompany")
-                        .HasColumnType("text");
-
-                    b.Property<string>("MotherDesignation")
-                        .HasColumnType("text");
-
-                    b.Property<string>("MotherEmail")
-                        .HasColumnType("text");
-
-                    b.Property<string>("MotherFirstName")
-                        .HasColumnType("text");
-
-                    b.Property<string>("MotherLastName")
-                        .HasColumnType("text");
-
-                    b.Property<string>("MotherMiddleName")
-                        .HasColumnType("text");
-
-                    b.Property<long>("MotherMobileNumber")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("MotherOccupation")
-                        .HasColumnType("text");
-
-                    b.Property<string>("MotherSalutationId")
-                        .HasColumnType("text");
-
                     b.Property<int?>("NationalityId")
                         .HasColumnType("int");
-
-                    b.Property<string>("PermenantCity")
-                        .HasColumnType("text");
-
-                    b.Property<string>("PermenantCountry")
-                        .HasColumnType("text");
-
-                    b.Property<string>("PermenantLine1")
-                        .HasColumnType("text");
-
-                    b.Property<string>("PermenantLine2")
-                        .HasColumnType("text");
-
-                    b.Property<string>("PermenantLine3")
-                        .HasColumnType("text");
-
-                    b.Property<string>("PermenantPincode")
-                        .HasColumnType("text");
-
-                    b.Property<string>("PermenantSate")
-                        .HasColumnType("text");
 
                     b.Property<string>("ReasonForLeaving")
                         .HasColumnType("text");
@@ -944,6 +1746,9 @@ namespace SMS.Migrations.MysqlData
                     b.Property<string>("Section")
                         .HasColumnType("text");
 
+                    b.Property<int>("StudentAddressId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("passingOutSchool")
                         .HasColumnType("int");
 
@@ -959,6 +1764,43 @@ namespace SMS.Migrations.MysqlData
                     b.HasKey("StudentId");
 
                     b.ToTable("Students");
+                });
+
+            modelBuilder.Entity("SMS.Models.StudentAddress", b =>
+                {
+                    b.Property<int>("StudentAddressId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("City")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Line1")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Line2")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Line3")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Pincode")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Sate")
+                        .HasColumnType("text");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("StudentAddressId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("StudentAddress");
                 });
 
             modelBuilder.Entity("SMS.Models.TimeTable.ClassTimeTable", b =>
@@ -999,13 +1841,13 @@ namespace SMS.Migrations.MysqlData
                     b.Property<int>("Period")
                         .HasColumnType("int");
 
-                    b.Property<int?>("StaffId")
+                    b.Property<int>("StaffId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("StartTime")
                         .HasColumnType("datetime");
 
-                    b.Property<int?>("SubjectID")
+                    b.Property<int>("SubjectID")
                         .HasColumnType("int");
 
                     b.HasKey("PeriodDetailId");
@@ -1181,6 +2023,21 @@ namespace SMS.Migrations.MysqlData
                     b.ToTable("Accounts");
                 });
 
+            modelBuilder.Entity("DependentsStudent", b =>
+                {
+                    b.HasOne("SMS.Models.Dependents", null)
+                        .WithMany()
+                        .HasForeignKey("DependentsdetailsDependentsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SMS.Models.Student", null)
+                        .WithMany()
+                        .HasForeignKey("StudentsStudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("SMS.Models.Inventory.Inventory", b =>
                 {
                     b.HasOne("SMS.Models.Inventory.InventoryItemType", "InventoryItemType")
@@ -1245,8 +2102,15 @@ namespace SMS.Migrations.MysqlData
             modelBuilder.Entity("SMS.Models.StaffExperience", b =>
                 {
                     b.HasOne("SMS.Models.Staff", null)
-                        .WithMany("experiences")
-                        .HasForeignKey("StaffId")
+                        .WithMany("StaffExperiences")
+                        .HasForeignKey("StaffId");
+                });
+
+            modelBuilder.Entity("SMS.Models.StudentAddress", b =>
+                {
+                    b.HasOne("SMS.Models.Student", null)
+                        .WithMany("Addresses")
+                        .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -1261,11 +2125,15 @@ namespace SMS.Migrations.MysqlData
 
                     b.HasOne("SMS.Models.Staff", "Staffs")
                         .WithMany()
-                        .HasForeignKey("StaffId");
+                        .HasForeignKey("StaffId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("SMS.Models.Setup.Subject", "Subject")
                         .WithMany()
-                        .HasForeignKey("SubjectID");
+                        .HasForeignKey("SubjectID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("ClassTimeTable");
 
@@ -1359,7 +2227,12 @@ namespace SMS.Migrations.MysqlData
                 {
                     b.Navigation("Addresses");
 
-                    b.Navigation("experiences");
+                    b.Navigation("StaffExperiences");
+                });
+
+            modelBuilder.Entity("SMS.Models.Student", b =>
+                {
+                    b.Navigation("Addresses");
                 });
 
             modelBuilder.Entity("SMS.Models.TimeTable.ClassTimeTable", b =>

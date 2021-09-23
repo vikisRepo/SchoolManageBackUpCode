@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using SMS.Middleware;
 using SMS.Models;
 using SMS.Models.Academics;
 using SMS.Models.Inventory;
@@ -8,6 +9,7 @@ using SMS.Models.Setup;
 using SMS.Models.TimeTable;
 using SMS.Models.Transport;
 using WebApi.Entities;
+using Role = SMS.Models.Role;
 
 namespace WebApi.Helpers
 {
@@ -60,6 +62,16 @@ namespace WebApi.Helpers
         public virtual DbSet<SchoolName> SchoolNames { get; set; }
 
         public virtual DbSet<Bank> Banks { get; set; }
+
+        public virtual DbSet<EmployeementStatus> EmployeementStatuses { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<Bloodgroup> Bloodgroups { get; set; }
+        public virtual DbSet<MaritalStatus> Maritalstatus { get; set; }
+        public virtual DbSet<Gender> Genders { get; set; }
+        public virtual DbSet<Salutation> Salutations { get; set; }
+
+
+
         #endregion
 
         //public virtual DbSet<ClassTimeTable> ClassTimeTable { get; set; }
@@ -98,6 +110,11 @@ namespace WebApi.Helpers
             // connect to sqlite database
             options.UseMySQL(Configuration.GetConnectionString("WebApiDatabaseMySQL_Dev"));
             //options.
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Seed();
         }
     }
 }

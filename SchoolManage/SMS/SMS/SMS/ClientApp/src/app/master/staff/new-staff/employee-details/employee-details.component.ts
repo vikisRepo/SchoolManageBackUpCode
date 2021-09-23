@@ -1,4 +1,5 @@
 import { Component, OnInit, Output,EventEmitter } from '@angular/core';
+import { validateBasis } from '@angular/flex-layout';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormControl, FormGroup, FormArray } from '@angular/forms';
@@ -23,26 +24,29 @@ export class EmployeeDetailsComponent implements OnInit,FormTouched {
   education = SmsConstant.education;
   reportingTo =SmsConstant.reportingTo;
   active_value = SmsConstant.active;
+  submitted = true;
 
 
 
   constructor(private fb: FormBuilder, private staffrestApiService : StaffrestApiService) {     
     
-    this.empDetailsForm = this.fb.group(
+    this.empDetailsForm = this.fb.group(  
+      // Validators.pattern('^[a-zA-Z ]*$')]],  
+      //  Validators.pattern(/^[0-9]\d*$/)
       {
-        teacherId : ['',Validators.required],
-        employeeId : ['',Validators.required],
+        teacherId : [,[Validators.required, Validators.pattern(/^[a-zA-Z0-9_]*$/)]],
+        employeeId : [,[Validators.required, Validators.pattern(/^[a-zA-Z0-9_]*$/)]],  //, 
         educationId : ['',Validators.required],
-        officialEmailId : ['',Validators.required],
-        esiNumber : ['',Validators.required],
-        staffId : ['',Validators.required],
-        employeementstatusId : ['',Validators.required],
+        officialEmailId : [,[Validators.required,Validators.email]],
+        esinumber : [''],
+        staffTypeId : ['',Validators.required],
+        employeementStatusId : ['',Validators.required],
         reportingTo : ['',Validators.required],
-        epfNumber : ['',Validators.required],
+        epfnumber : [''],
         departmentId : ['',Validators.required],
         joiningDate : ['',Validators.required],
         activeId : ['',Validators.required],
-        uanNumber : ['',Validators.required],
+        uannumber : [''],
         designationId : ['',Validators.required],
         roleId : ['',Validators.required]
       }
@@ -57,6 +61,9 @@ export class EmployeeDetailsComponent implements OnInit,FormTouched {
    this.empDetailsForm.markAllAsTouched();
    return this.empDetailsForm.valid;
   }
+
+      // convenience getter for easy access to form fields
+  get f() { return this.empDetailsForm.controls; }
 
 onSubmit(){
 

@@ -7,13 +7,13 @@ import { map, finalize } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Account } from '../_models/account';
 
-const baseUrl = `${environment.apiUrl}/accounts`;
+const baseUrl = `/api/accounts`; //${environment.apiUrl}
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
     private accountSubject: BehaviorSubject<Account>;
     public account: Observable<Account>;
-
+    
     constructor(
         private router: Router,
         private http: HttpClient

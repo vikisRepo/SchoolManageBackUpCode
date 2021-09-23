@@ -1,6 +1,8 @@
-import { Component, OnInit, Output,EventEmitter } from '@angular/core';
+import { Component, OnInit, Output,EventEmitter, SimpleChanges, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
+import { Console } from 'console';
 import { FormTouched } from 'src/app/shared/interfaces/form-touched';
+import { StaffrestApiService } from '../../staffrest-api.service';
 
 @Component({
   selector: 'app-employee-experience',
@@ -11,29 +13,43 @@ export class EmployeeExperienceComponent implements OnInit,FormTouched {
 
   experienceForm : FormGroup;
   
-  toppingList:string[]=['Tamil','English','Maths','Science','social'];
   @Output() formDetails=new EventEmitter();
+  @Input() getFormValues = {};
+  enabletrash : any = true;
 
   get experiences() : FormArray {
-    return this.experienceForm.get('experiences') as FormArray;
+    return this.experienceForm.get('staffExperiences') as FormArray;
   };
 
-  constructor(private fb : FormBuilder) {
+  constructor(private fb : FormBuilder, private staffrestApiService : StaffrestApiService) {
     this.experienceForm = this.fb.group({
-      experiences: this.fb.array([this.buildExperiences()])
+      staffExperiences: this.fb.array([this.buildExperiences()]) //
     });
     this.experienceForm.valueChanges.subscribe(()=>{
       this.formDetails.emit({ value: this.experienceForm.value,
                valid: this.experienceForm.valid });
     });
    }
+
   formTouched(): boolean {
     this.experienceForm.markAllAsTouched();
    return this.experienceForm.valid;
   }
 
   ngOnInit(): void {
-    
+    this.staffrestApiService.formValue$.subscribe((data : any) => {
+      console.log("inside ngoninit experience" + JSON.stringify(data.staffExperiences));
+      this.experienceForm.patchValue(data);
+      data.staffExperiences.forEach((x) => {
+        this.experiences.push(this.fb.group(x))
+      });
+
+      if(this.experiences.length == 0)
+        this.enabletrash = false;
+      else
+        this.enabletrash = true;  
+         
+    });
   }
 
   addExperience(): void {
@@ -42,9 +58,9 @@ export class EmployeeExperienceComponent implements OnInit,FormTouched {
 
   buildExperiences(): FormGroup {
     return this.fb.group({
-      from: ['', Validators.required],
-      to: ['', Validators.required],
-      responsiblity: ['', Validators.required],
+      from: [''],
+      to: [''],
+      responsibilty: [''],
     });
     
   }

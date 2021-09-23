@@ -10,7 +10,7 @@ using WebApi.Services;
 namespace WebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class AccountsController : BaseController
     {
         private readonly IAccountService _accountService;
@@ -22,6 +22,12 @@ namespace WebApi.Controllers
         {
             _accountService = accountService;
             _mapper = mapper;
+        }
+
+        [HttpGet("GetResult")]
+        public ActionResult GetResult()
+        {
+            return Ok();
         }
 
         [HttpPost("authenticate")]

@@ -30,8 +30,8 @@ export class PGFormComponent implements OnInit, FormTouched {
       , aadharNumber: ['', Validators.required]
       , company: ['', Validators.required]
       , designation: ['', Validators.required]
-      , annualIncome: ['0', Validators.required]
-      , bvEmployee: [true]
+      , annualIncome: [, Validators.required]
+      , bvEmployee: [false]
     });
 
     this.parents.valueChanges.subscribe(() => {

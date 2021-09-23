@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SmsConstant } from 'src/app/shared/constant-values';
 import { FormTouched } from 'src/app/shared/interfaces/form-touched';
@@ -16,6 +16,7 @@ export class InventoryDetailComponent implements OnInit,FormTouched {
  itemtype = SmsConstant.itemName;
  itemusageAreaType = SmsConstant.itemUsageArea;
  formValues = {};
+ disabled = false;
   constructor(private fb:FormBuilder) {
 
     this.inventoryDetailForm = this.fb.group({
@@ -23,13 +24,14 @@ export class InventoryDetailComponent implements OnInit,FormTouched {
       ,itemTypeId : ['',Validators.required]
       ,modelNumber : ['',Validators.required]
       ,serialNumber : ['',Validators.required]
-      ,warrenOrGarenInfo : ['',Validators.required]
+      ,warrenOrGarenInfo : [{ value: '', disabled: this.disabled },Validators.required, ]
       ,itemUsageId : ['',Validators.required]
       ,warrenOrGarantee: [true]
       ,brandName : ['',Validators.required]
       ,quantity : ['',Validators.required]
     })
     this.inventoryDetailForm.valueChanges.subscribe(()=>{
+      this.disabled = !this.inventoryDetailForm['warrenOrGarantee'].value;
       Object.assign(this.formValues, this.inventoryDetailForm.value);
       this.inventoryFormDetails.emit({value: this.formValues, valid:this.inventoryDetailForm.valid});
       // this.inventoryFormDetails.emit({value:this.inventoryDetailForm.value,valid:this.inventoryDetailForm.valid});
@@ -41,7 +43,13 @@ export class InventoryDetailComponent implements OnInit,FormTouched {
     this.inventoryDetailForm.markAllAsTouched();
     return this.inventoryDetailForm.valid;
   }
-  
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.getFormValues.currentValue) {
+        
+    }
+  }
+
   ngOnDestroy(): void {
 
     //this.destroy.unsubscribe();

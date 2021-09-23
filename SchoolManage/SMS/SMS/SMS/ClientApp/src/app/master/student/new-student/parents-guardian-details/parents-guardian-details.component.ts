@@ -1,4 +1,4 @@
-import { ViewChildren } from '@angular/core';
+import { Input, SimpleChanges, ViewChildren } from '@angular/core';
 import { QueryList } from '@angular/core';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -12,15 +12,18 @@ import { PGFormComponent } from './p-g-form/p-g-form.component';
 })
 export class ParentsGuardianDetailsComponent implements OnInit, FormTouched {
   @Output() stuFormtDetails = new EventEmitter();
-  arryoffPersonJson: any = {
-    fatherDetails: {},
-    motherDetails: {},
-    localGuardian: {},
-    legalGuardian: {}
+  @Input() getFormValues = {};
+  @Input() arryoffPersonJson: any = {
+    dependentsdetails: [4],
+    // motherDetails: {},
+    // localGuardian: {},
+    // legalGuardian: {}
   };
   @ViewChildren("dt") dt: QueryList<FormTouched>;
+  @ViewChildren('dt') pgFroms:QueryList<PGFormComponent>;
   stuParentDetails: boolean[] = [false, false, false, false];
-  constructor() { }
+  constructor() {
+   }
 
   formTouched(): boolean {
     // return this.stuParentDetails.reduce((pre: boolean, current) => pre && current, true);
@@ -34,27 +37,39 @@ export class ParentsGuardianDetailsComponent implements OnInit, FormTouched {
   }
 
   ngOnInit(): void {
+   
+  }
+  
+  ngOnChanges(changes: SimpleChanges): void {
+    //debugger;
+    console.log("json" + JSON.stringify(this.getFormValues));
+    if(changes?.arryoffPersonJson){
+     // console.log(this.arryoffPersonJson)
+      setTimeout(()=>{
+        let g=this.pgFroms.toArray();
+        console.log(g.length,g[0])
+        this.arryoffPersonJson.dependentsdetails.forEach((element,index) => {
+         
+        g[index].parents.patchValue(element);
+      });},0)
+    
+    }
+   // this.arryoffPersonJson.dependentsdetails=this.getFormValues["dependentsdetails"];
   }
 
   getParentsInfo(obj: any, flg: number) {
     this.stuParentDetails[flg] = obj.valid;
     switch (flg) {
-      case 0: this.arryoffPersonJson.fatherDetails = obj.value;
+      case 0: this.arryoffPersonJson.dependentsdetails[flg] = obj.value;
         break;
-      case 1: this.arryoffPersonJson.motherDetails = obj.value;
+      case 1: this.arryoffPersonJson.dependentsdetails[flg] = obj.value;
         break;
-      case 2: this.arryoffPersonJson.localGuardian = obj.value;
+      case 2: this.arryoffPersonJson.dependentsdetails[flg] = obj.value;
         break;
-      case 3: this.arryoffPersonJson.legalGuardian = obj.value;
+      case 3: this.arryoffPersonJson.dependentsdetails[flg] = obj.value;
         break;
 
     }
-    console.log(true);
-    console.log(this.arryoffPersonJson);
-    console.log(this.stuParentDetails[flg]);
     this.stuFormtDetails.emit({ value: this.arryoffPersonJson, valid: this.stuParentDetails[flg] });
-    // this.adderessArray[flg] = value;
-    // this.addresses.emit(this.adderessArray);
-
   }
 }

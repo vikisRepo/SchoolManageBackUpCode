@@ -17,8 +17,8 @@
                     <mat-form-field appearance="standard">
                         <mat-label>Department</mat-label>
                         <mat-select formControlName="departmentIdFilter" (selectionChange)="applyFilter('departmentIdFilter')">
-                            <mat-option *ngFor="let departmentIdFilter  of department " [value]="departmentIdFilter.viewValue">
-                                {{departmentIdFilter .viewValue}} 
+                            <mat-option *ngFor="let departmentIdFilter  of department " [value]="departmentIdFilter.departmentName">
+                                {{departmentIdFilter .departmentName}} 
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -27,8 +27,8 @@
                     <mat-form-field appearance="standard">
                         <mat-label>Designation</mat-label>
                         <mat-select formControlName="designationFilter" (selectionChange)="applyFilter('designationFilter')">
-                            <mat-option *ngFor="let designationFilter  of designationList " [value]="designationFilter .viewValue">
-                                {{designationFilter .viewValue}} 
+                            <mat-option *ngFor="let designationFilter  of designationList " [value]="designationFilter .designationName">
+                                {{designationFilter .designationName}} 
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -37,8 +37,8 @@
                     <mat-form-field appearance="standard">
                         <mat-label>Status</mat-label>
                         <mat-select formControlName="statusvalueFilter" (selectionChange)="applyFilter('statusvalueFilter')">
-                            <mat-option *ngFor="let statusvalueFilter of status" [value]="statusvalueFilter.viewValue">
-                                {{statusvalueFilter.viewValue}}
+                            <mat-option *ngFor="let statusvalueFilter of status" [value]="statusvalueFilter.description">
+                                {{statusvalueFilter.description}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -63,8 +63,8 @@
                     <div class="right-content" style="margin-top:5px;">
                         <ul type="none" class="profile-name">
                           <li>Count:{{rows}}</li>
-                          <br><br>
-                          <!-- <li>Clear_All</li> -->
+                          <br>
+                          <button (click)="clearFilter()">ClearAll</button>
                         </ul>
                     </div>
                 </div>
@@ -143,8 +143,8 @@
     <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef> </th>
         <td mat-cell *matCellDef="let element">
-            <img src="../../../../assets/mind-map.png" class="icon" style="margin-right: 10px;" />
-            <img src="../../../../assets/edit.png" class="icon" style="margin-right: 10px;"
+            <!-- <img src="../../../../assets/mind-map.png" class="icon" style="margin-right: 10px;" /> -->
+            <img src="../../../../assets/edit.png" class="icon" style="margin-right: 10px; cursor: pointer;"
                 (click)="editStaff(element)" />
             <img src="../../../../assets/trash.png" class="icon" (click)="removeStaff(element)"
                 style="margin-right: 10px; cursor: pointer;" />

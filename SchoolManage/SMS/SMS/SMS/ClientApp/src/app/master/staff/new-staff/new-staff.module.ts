@@ -11,6 +11,7 @@ import { EmployeeExperienceComponent } from './employee-experience/employee-expe
 import { BankingDetailsComponent } from './banking-details/banking-details.component';
 import { MasterModule } from '../../master.module';
 
+import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
@@ -21,9 +22,10 @@ import { MasterModule } from '../../master.module';
     CommonModule,
     NewStaffRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule,     
     SharedModule,
-    MasterModule
+    MasterModule,
+    MatIconModule
   ]
 })
 export class NewStaffModule { }

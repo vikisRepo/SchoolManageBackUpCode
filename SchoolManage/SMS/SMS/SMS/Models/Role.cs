@@ -6,17 +6,17 @@ using System.Runtime.Serialization;
 
 namespace SMS.Models
 {
-    public partial class Role
+    public class Role
     {
-        public Role()
-        {
-            RoleFunctions = new HashSet<RoleFunction>();
-        }
+        //public Role()
+        //{
+        //    RoleFunctions = new HashSet<RoleFunction>();
+        //}
 
         public int RoleId { get; set; }
         public string Description { get; set; }
 
-        [IgnoreDataMember]
-        public virtual ICollection<RoleFunction> RoleFunctions { get; set; }
+        //[IgnoreDataMember]
+        //public virtual ICollection<RoleFunction> RoleFunctions { get; set; }
     }
 }

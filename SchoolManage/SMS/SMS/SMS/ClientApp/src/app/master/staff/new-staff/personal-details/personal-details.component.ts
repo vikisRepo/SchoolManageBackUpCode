@@ -1,5 +1,6 @@
 import { ViewChild } from '@angular/core';
 import { Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { validateBasis } from '@angular/flex-layout';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormControl, FormGroup, FormArray } from '@angular/forms';
@@ -45,39 +46,37 @@ export class PersonalDetailsComponent implements OnInit, OnChanges, FormTouched 
         salutationId: ['', Validators.required],
         dob: ['', Validators.required],
         religionId: ['', Validators.required],
-        motherTonge: ['', Validators.required],
-        firstName: ['', Validators.required],
+        motherTongue: ['', Validators.required],
+        firstName: [,[Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
         bloodGroup: ['', Validators.required],
         gender: ['', Validators.required],
-        emailId: ['', Validators.required],
-        languages: ['', Validators.required],
-        middleName: [''],
+        emailId: ['', [Validators.required, Validators.email]],
+        languagesId: [[], Validators.required],
+        middleName: ['',Validators.pattern('^[a-zA-Z ]*$')],
         maritalStatus: ['', Validators.required],
-        nationality: [''],
-        lastName: ['', Validators.required],
+        nationalityId: [''],
+        lastName: [, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
         weedingDate: [''],
-        mobile: ['', Validators.required],
-        aadharNumber: ['', Validators.required],
-        fatherName: ['', Validators.required],
-        motherName: ['', Validators.required],
-        spouseName: [''],
-        fatherOccupation: ['', Validators.required],
-        motherOccupation: ['', Validators.required],
-        souseOccupation: [''],
-        fatherMobileNumber: ['', Validators.required],
-        motherMobileNumber: ['', Validators.required],
-        spouseMobileNumber: [''],
+        mobile: [, [Validators.required, Validators.maxLength(10), Validators.pattern(/^[0-9]\d*$/)]],
+        aadharNumber: [, [Validators.required, Validators.maxLength(12),Validators.minLength(12), Validators.pattern(/^[0-9]\d*$/)]],
+        fatherName: [,[Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
+        motherName: [,[Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
+        spouseName: [, Validators.pattern('^[a-zA-Z ]*$')],
+        fatherOccupation: [, Validators.pattern('^[a-zA-Z ]*$')],
+        motherOccupation: [, Validators.pattern('^[a-zA-Z ]*$')],
+        souseOccupation: [, Validators.pattern('^[a-zA-Z ]*$')],
+        fatherMobileNumber: [, [Validators.maxLength(9), Validators.pattern(/^[0-9]\d*$/)]],
+        motherMobileNumber: [, [Validators.maxLength(9), Validators.pattern(/^[0-9]\d*$/)]],
+        spouseMobileNumber: [, [Validators.maxLength(9), Validators.pattern(/^[0-9]\d*$/)]],
 
       }
     );
 
-
-
     this.profileForm.valueChanges.subscribe(() => {
       Object.assign(this.formValues, this.profileForm.value);
+      debugger;
       this.formValues["mobile"] = Number.parseInt(this.formValues["mobile"]);
       this.formDetails.emit({ value: this.formValues, valid: (this.profileForm.valid && this.addressValidFlag) });
-
     });
   }
 
@@ -93,11 +92,14 @@ export class PersonalDetailsComponent implements OnInit, OnChanges, FormTouched 
 
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
+      // convenience getter for easy access to form fields
+      get f() { return this.profileForm.controls; }
 
+  ngOnChanges(changes: SimpleChanges): void {
     if (changes.getFormValues.currentValue) {
       console.log(changes.getFormValues.currentValue);
       this.addressData = this.getFormValues["addresses"];
+      this.getFormValues["languagesId"] = this.getFormValues["languagesId"].split(',');
       this.profileForm.patchValue(this.getFormValues);
     }
   }
@@ -116,7 +118,6 @@ export class PersonalDetailsComponent implements OnInit, OnChanges, FormTouched 
   onSubmit() {
     // TODO: Use EventEmitter with form value
     // console.log("Hai");
-
     console.warn(this.profileForm.value);
   }
 

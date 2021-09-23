@@ -22,10 +22,10 @@ export class BankingDetailsComponent implements OnInit, OnDestroy,FormTouched {
 
     this.bankingFrom = this.fb.group({
       bankName : ['',Validators.required],
-      bankAccountNumber : ['',Validators.required],
-      panNumber : ['',Validators.required],
-      branchNumber : ['',Validators.required],
-      bankIfscCode : ['',Validators.required]
+      bankAccountNumber : [,[Validators.required, Validators.pattern(/^[0-9]*$/)]],
+      panNumber : [''],
+      branchnumber : [,[Validators.required, Validators.pattern(/^[a-zA-Z0-9_]*$/)]],
+      bankIfscCode : [,[Validators.required, Validators.pattern(/^[a-zA-Z0-9_]*$/)]]
     });
     this.bankingFrom.valueChanges.subscribe(()=>{
       
@@ -43,6 +43,8 @@ export class BankingDetailsComponent implements OnInit, OnDestroy,FormTouched {
     this.destroy.unsubscribe();
     
   }
+
+  get f() { return this.bankingFrom.controls; }
 
   ngOnInit(): void {
      this.destroy = this.staffrestApiService.formValue$.subscribe((data : any) => {

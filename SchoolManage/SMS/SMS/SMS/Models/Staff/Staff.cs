@@ -36,9 +36,9 @@ namespace SMS.Models
         public int MotherTongue { get; set; }
 
         //LanguagesDropdown
-        [JsonIgnore]
-        [IgnoreDataMember]
-        public int LanguagesId { get; set; }
+        //[JsonIgnore]
+        //[IgnoreDataMember]
+        public string LanguagesId { get; set; }
 		//public Languages[] Languages { get; set; }
         public string EmailId { get; set; }
         public string AadharNumber { get; set; }
@@ -53,7 +53,7 @@ namespace SMS.Models
         public string SpouseMobileNumber { get; set; }
         public string BankName { get; set; }
         public string BankBranch { get; set; }
-        public string BankAccountNumber { get; set; }
+        public long BankAccountNumber { get; set; }
         public string BankIfscCode { get; set; }
         public string PanNumber { get; set; }
 
@@ -71,7 +71,7 @@ namespace SMS.Models
         public int StaffTypeId { get; set; }
         public int DepartmentId { get; set; }
         public int DesignationId { get; set; }
-        public int EmployeeId { get; set; }
+        public string EmployeeId { get; set; }
         public string OfficialEmailId { get; set; }
         public string Esinumber { get; set; }
         public string Epfnumber { get; set; }
@@ -88,24 +88,24 @@ namespace SMS.Models
         // Education Drop Dwon TBD
         public int EducationId { get; set; }
 
-        // Employee Status DropDown
-        public int EmployeementStatusId { get; set; }
-
         // Role Dropu Down
         public int RoleId { get; set; }
         public DateTime JoiningDate { get; set; }
         public int ActiveId { get; set; }
         public string Uannumber { get; set; }
 
+        public string maritalStatus { get; set; }
+        public int EmployeementStatusId { get; set; }
+        public string branchnumber { get; set; }
+
         //public byte[] ProfilePic { get; set; }
+
 
         [JsonIgnore]
         [IgnoreDataMember]
         public int StaffExperienceId { get; set; }
 
-        //public StaffExperience[] Experience { get; set; }
-
-        public virtual ICollection<StaffExperience> experiences { get; set; }
+        public virtual ICollection<StaffExperience> StaffExperiences { get; set; }
 
         //[JsonIgnore]
         //[IgnoreDataMember]

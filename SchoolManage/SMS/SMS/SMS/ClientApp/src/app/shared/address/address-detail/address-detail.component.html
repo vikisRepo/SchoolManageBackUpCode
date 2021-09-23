@@ -14,8 +14,8 @@
                 <mat-form-field appearance="standard">
                     <mat-label>City</mat-label>
                     <mat-select  formControlName="city">
-                        <mat-option  *ngFor="let city of city" [value]="city.viewValue">
-                            {{city.viewValue}}
+                        <mat-option  *ngFor="let city of city" [value]="city.cityDescr">
+                            {{city.cityDescr}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -32,8 +32,8 @@
                 <mat-form-field appearance="standard">
                     <mat-label>State</mat-label>
                     <mat-select formControlName="sate">
-                        <mat-option  *ngFor="let sate of state" [value]="sate.viewValue">
-                            {{sate.viewValue}} 
+                        <mat-option  *ngFor="let sate of state" [value]="sate.stateId">
+                            {{sate.stateDescr}} 
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -46,8 +46,8 @@
                 <mat-form-field appearance="standard">
                     <mat-label>Country</mat-label>
                     <mat-select formControlName="country">
-                        <mat-option *ngFor="let country  of country" [value]="country.viewValue">
-                            {{country.viewValue}} 
+                        <mat-option *ngFor="let country  of country" [value]="country.countryDescr">
+                            {{country.countryDescr}} 
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
