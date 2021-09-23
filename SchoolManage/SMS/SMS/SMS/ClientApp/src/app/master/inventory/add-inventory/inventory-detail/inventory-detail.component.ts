@@ -31,7 +31,7 @@ export class InventoryDetailComponent implements OnInit,FormTouched {
     })
     this.inventoryDetailForm.valueChanges.subscribe(()=>{
       Object.assign(this.formValues, this.inventoryDetailForm.value);
-      this.inventoryFormDetails.emit({value: this.formValues});
+      this.inventoryFormDetails.emit({value: this.formValues, valid:this.inventoryDetailForm.valid});
       // this.inventoryFormDetails.emit({value:this.inventoryDetailForm.value,valid:this.inventoryDetailForm.valid});
     
     });
