@@ -12,7 +12,7 @@
   
     <mat-tab>
     <ng-template mat-tab-label>
-      vendor Details
+      Vendor Details
        <mat-icon *ngIf="inventoryFormDetails[1]!=null && inventoryFormDetails[1]"  color="primary">check_circle</mat-icon>
     </ng-template>
      <app-vendor-details (vendorFormDetails)="setTabFormDetails($event,1)" #dt></app-vendor-details>
