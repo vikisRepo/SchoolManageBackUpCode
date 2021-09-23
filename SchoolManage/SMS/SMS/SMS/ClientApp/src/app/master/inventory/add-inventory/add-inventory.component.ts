@@ -15,7 +15,7 @@ import {Inventory} from '../inventory'
 })
 export class AddInventoryComponent implements OnInit {
 
-  inventoryFormDetails: boolean[] =[]
+  inventoryFormDetails: boolean[] =[];
   // results : any =null;
   invJsonResult: any ={};
   selectedTab:any=0;
@@ -23,7 +23,7 @@ export class AddInventoryComponent implements OnInit {
   _Inventory: Inventory;
   id : any;
   
-  // @ViewChildren("dt") dt: QueryList<FormTouched>;
+   @ViewChildren("dt") dt: QueryList<FormTouched>;
 
   @BlockUI() blockUI: NgBlockUI;
   
@@ -50,10 +50,11 @@ export class AddInventoryComponent implements OnInit {
   }
 
   btnMovement(st: string) {
+    let flg = this.dt.toArray()[this.selectedTab].formTouched();
     if (st === 'bck') {
       this.selectedTab--;
     }
-    else if (st === 'frd') {
+    else if (st === 'frd' && flg) {
       if (this.selectedTab >= 1) {
         this.submit();
         return;
@@ -63,7 +64,6 @@ export class AddInventoryComponent implements OnInit {
   }
 
   submit(){
-debugger
     this.blockUI.start();
     // this.submitted = true;
 
@@ -103,10 +103,11 @@ debugger
     this._InventoryAPI.updateInventory(this.id, this.invJsonResult).subscribe(_=>{});
   }
   
-  setTabFormDetails(value: any,tab:number){
+  setTabFormDetails(value: any,tab:number){    
+    
     this.inventoryFormDetails[tab] = value.valid;
+
     Object.assign(this.invJsonResult,value.value);
-    // console.log(value.value);
   }
 
 

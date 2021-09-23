@@ -116,7 +116,7 @@ export class NewStaffComponent implements OnInit, AfterViewInit {
     this.formDetails[tab] = value.valid;
 
     Object.assign(this.conResults, value.value);
-    console.log(this.conResults);
+    // console.log(this.conResults);
 
   }
 
