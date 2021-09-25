@@ -10,8 +10,8 @@
                 <mat-form-field appearance="standard">
                     <mat-label>Item Type</mat-label>
                     <mat-select formControlName="itemTypeId">
-                        <mat-option *ngFor="let item of itemtype" [value]="item.value">
-                            {{item.viewValue}}
+                        <mat-option *ngFor="let item of itemtype" [value]="item.inventoryItemTypeId">
+                            {{item.description}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>    
@@ -19,11 +19,14 @@
                     <mat-label>Model Number</mat-label>
                     <input matInput formControlName="modelNumber">
                 </mat-form-field> 
+                <div class="formfield-validation" *ngIf="f.modelNumber.errors">
+                    <div *ngIf="f.modelNumber.errors.pattern">Model Number cannot contain special character.</div>
+                </div>  
                 <mat-form-field appearance="standard">
                     <mat-label>Item Usage Area</mat-label>
                     <mat-select formControlName="itemUsageId">
-                        <mat-option *ngFor="let ItemUsage of itemusageAreaType" [value]="ItemUsage.value">
-                            {{ItemUsage.viewValue}}
+                        <mat-option *ngFor="let ItemUsage of itemusageAreaType" [value]="ItemUsage.inventoryItemUsageAreaId">
+                            {{ItemUsage.description}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>   
@@ -31,12 +34,14 @@
                     <mat-label>Serial Number</mat-label>
                     <input matInput formControlName="serialNumber">
                 </mat-form-field>   
-                
-                <mat-slide-toggle color="primary" labelPosition="before" formControlName="warrenOrGarantee">Is Warranty/Guarantee</mat-slide-toggle>
+                <div class="formfield-validation" *ngIf="f.serialNumber.errors">
+                    <div *ngIf="f.serialNumber.errors.pattern">Serial Number cannot contain special character.</div>
+                </div>  
+                <mat-slide-toggle color="primary" labelPosition="before" formControlName="warrenOrGarantee" (click)="toggle()">Is Warranty/Guarantee</mat-slide-toggle>
 
                 <mat-form-field appearance="standard">
                     <mat-label>Details of Warranty/Guarantee</mat-label>
-                    <input matInput formControlName="warrenOrGarenInfo">
+                    <input matInput formControlName="warrenOrGarenInfo" [disabled]=true>
                 </mat-form-field> 
               
             </div>

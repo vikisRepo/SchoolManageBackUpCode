@@ -11,7 +11,7 @@ namespace SMS.Models.Inventory
 
         public string itemName { get; set; }
 
-        public int modelNumber { get; set; }
+        public string modelNumber { get; set; }
 
         public int itemTypeId { get; set; }
 

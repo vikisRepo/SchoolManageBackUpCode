@@ -7,7 +7,7 @@
                     <input matInput formControlName="teacherId"  >
                 </mat-form-field>
                 <div class="formfield-validation" *ngIf="f.teacherId.errors">
-                    <div *ngIf="f.teacherId.errors.pattern">Teacher ID can not be allow spacial character</div>
+                    <div *ngIf="f.teacherId.errors.pattern">Teacher ID cannot contain special character</div>
                 </div>  
                 <mat-form-field appearance="standard">
                     <mat-label>Employee ID</mat-label>
@@ -15,7 +15,7 @@
                     [ngClass] = "f.employeeId.errors"/>
                 </mat-form-field>
                 <div class="formfield-validation" *ngIf="f.employeeId.errors">
-                    <div *ngIf="f.employeeId.errors.pattern">Teacher ID can not be allow spacial character</div>
+                    <div *ngIf="f.employeeId.errors.pattern">Teacher ID cannot contain special character</div>
                 </div>           
                 <mat-form-field appearance="standard">
                     <mat-label>Education</mat-label>

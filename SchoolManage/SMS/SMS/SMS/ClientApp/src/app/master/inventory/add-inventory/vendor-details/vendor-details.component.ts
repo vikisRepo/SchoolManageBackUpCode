@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { InventoryService } from '../../inventory.service';
 
 @Component({
   selector: 'app-vendor-details',
@@ -13,27 +14,34 @@ export class VendorDetailsComponent implements OnInit {
   vendorDetailForm: FormGroup;
   formValues = {};
 
-  constructor(private fb:FormBuilder) {
+  constructor(private fb:FormBuilder, private _InventoryAPI: InventoryService) {
 
     this.vendorDetailForm = this.fb.group({
       vendorName : ['', Validators.required]
-      ,itemPriceorPerUnit : ['', Validators.required]
+      ,itemPriceorPerUnit : ['', [Validators.required,Validators.pattern(/^[0-9]\d*$/)]]
       ,vendorAddress : ['', Validators.required]
       ,vendorNumber : ['', Validators.required]
     });
     
     this.vendorDetailForm.valueChanges.subscribe(()=>{      
-      Object.assign(this.formValues, this.vendorDetailForm.value);
-      this.vendorFormDetails.emit({value: this.formValues, valid:this.vendorDetailForm.valid});  
+  
+      // Object.assign(this.formValues, this.vendorDetailForm.value);
+      this.vendorFormDetails.emit({value: this.vendorDetailForm.value, valid:this.vendorDetailForm.valid});  
     });
    }
 
    formTouched(): boolean {
+
     this.vendorDetailForm.markAllAsTouched();
     return this.vendorDetailForm.valid;
     }
 
   ngOnInit(): void {
+
+    this._InventoryAPI.formValue$.subscribe((data : any) => {
+      console.log("Vendor Details" + JSON.stringify(data));
+      this.vendorDetailForm.patchValue(data);
+    });
   }
 
 }

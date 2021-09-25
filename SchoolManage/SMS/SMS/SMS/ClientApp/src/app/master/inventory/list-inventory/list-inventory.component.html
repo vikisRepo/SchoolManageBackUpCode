@@ -16,8 +16,8 @@
                     <mat-form-field appearance="standard">
                         <mat-label>Item type</mat-label>
                         <mat-select formControlName="itemTypeFilter" (selectionChange)="applyFilter('itemTypeFilter')">
-                            <mat-option *ngFor="let itemTypeFilter  of itemstypes " [value]="itemTypeFilter .viewValue">
-                                {{itemTypeFilter.viewValue}} 
+                            <mat-option *ngFor="let itemTypeFilter  of itemstypes " [value]="itemTypeFilter .description">
+                                {{itemTypeFilter.description}} 
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -26,8 +26,8 @@
                     <mat-form-field appearance="standard">
                         <mat-label>Item Usage Area</mat-label>
                         <mat-select formControlName="itemUsageAreaFilter" (selectionChange)="applyFilter('itemUsageAreaFilter')">
-                            <mat-option *ngFor="let itemUsageAreaFilter  of itemusageArea " [value]="itemUsageAreaFilter .viewValue">
-                                {{itemUsageAreaFilter .viewValue}} 
+                            <mat-option *ngFor="let itemUsageAreaFilter  of itemusageArea " [value]="itemUsageAreaFilter .description">
+                                {{itemUsageAreaFilter .description}} 
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -37,8 +37,8 @@
                     <div class="right-content" style="margin-top: -10px;float:right">
                         <ul type="none" class="profile-name">
                           <li>Count:{{rows}}</li>
-                          <br><br>
-                          <li>Clear_All</li>
+                          <br>
+                          <button (click)="clearFilter()">ClearAll</button>
                         </ul>
                     </div>
                 </div>
@@ -57,11 +57,11 @@
   <p>{{name.value}}</p> -->
 <table mat-table [dataSource]="inventoryListData">
     <!--itemCode-->
-    <ng-container matColumnDef="itemCode">
+    <!-- <ng-container matColumnDef="itemCode">
         <th mat-header-cell *matHeaderCellDef> Item Code </th>
         <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
 
-    </ng-container>
+    </ng-container> -->
 <!-- 
     staffType
     <ng-container matColumnDef="staffType">
@@ -72,68 +72,67 @@
     <!--itemName-->
     <ng-container matColumnDef="itemName">
         <th mat-header-cell *matHeaderCellDef> Item Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.employeeId}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.itemName}} </td>
     </ng-container>
 
     <!--serialNumber-->
     <ng-container matColumnDef="serialNumber">
         <th mat-header-cell *matHeaderCellDef> Serial Number </th>
-        <td mat-cell *matCellDef="let element"> {{element.departmentId}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.serialNumber}} </td>
     </ng-container>
 
     <!--brand-->
     <ng-container matColumnDef="brand">
         <th mat-header-cell *matHeaderCellDef> Brand </th>
-        <td mat-cell *matCellDef="let element"> {{element.designationId}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.brand}} </td>
     </ng-container>
 
     <!--itemType-->
     <ng-container matColumnDef="itemType">
-        <th mat-header-cell *matHeaderCellDef> Iten type </th>
-        <td mat-cell *matCellDef="let element"> {{element.employeementstatusId}} </td>
+        <th mat-header-cell *matHeaderCellDef> Item type </th>
+        <td mat-cell *matCellDef="let element"> {{element.inventoryItemTypeId}} </td>
     </ng-container>
 
     <!--itemUsageArea-->
     <ng-container matColumnDef="itemUsageArea">
         <th mat-header-cell *matHeaderCellDef> Item Usage Area </th>
-        <td mat-cell *matCellDef="let element"> {{element.joiningDate}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.inventoryItemUsageAreaId}} </td>
     </ng-container>
 
     <!--priperunit-->
     <ng-container matColumnDef="priperunit">
         <th mat-header-cell *matHeaderCellDef> Price / per Unit  </th>
-        <td mat-cell *matCellDef="let element"> {{element.mobile}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.price}} </td>
     </ng-container>
 
     <!--quantity-->
     <ng-container matColumnDef="quantity">
         <th mat-header-cell *matHeaderCellDef> Quantity </th>
-        <td mat-cell *matCellDef="let element"> {{element.emailId}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
     </ng-container>
 
     <!--vendor-->
     <ng-container matColumnDef="vendor">
         <th mat-header-cell *matHeaderCellDef> Vendor </th>
-        <td mat-cell *matCellDef="let element"> {{element.emailId}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.vendorName}} </td>
     </ng-container>
 
     <!--attachment-->
     <ng-container matColumnDef="attachment">
         <th mat-header-cell *matHeaderCellDef> Attachment </th>
-        <td mat-cell *matCellDef="let element"> {{element.emailId}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.attachment}} </td>
     </ng-container>
     
-
     
 
     <!--actions-->
     <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef> </th>
         <td mat-cell *matCellDef="let element">
-            <img src="../../../../assets/mind-map.png" class="icon" style="margin-right: 10px; cursor: pointer;" />
+            <!-- <img src="../../../../assets/mind-map.png" class="icon" style="margin-right: 10px; cursor: pointer;" /> -->
             <img src="../../../../assets/edit.png" class="icon" style="margin-right: 10px; cursor: pointer;"
-                (click)="editStaff(element)" />
-            <img src="../../../../assets/trash.png" class="icon" (click)="removeStaff(element)"
+                (click)="editInventory(element)" />
+            <img src="../../../../assets/trash.png" class="icon" (click)="removeInventory(element)"
                 style="margin-right: 10px; cursor: pointer;" />
         </td>
     </ng-container>
