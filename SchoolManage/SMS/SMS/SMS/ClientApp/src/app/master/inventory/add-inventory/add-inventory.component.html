@@ -22,6 +22,11 @@
   </mat-tab-group>
   
   <div class="footer-n-stu">
+
+       
+  <button type="button" class="gradient-button" (click)="btnMovement('bck')" [disabled]="selectedTab<=0">
+    Back
+  </button>
      
     <button type="button" class="gradient-button" (click)="btnMovement('frd')" >
       <span *ngIf="!(selectedTab>=1)">Next</span>

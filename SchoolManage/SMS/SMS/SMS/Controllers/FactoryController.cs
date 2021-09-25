@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SMS.Models;
+using SMS.Models.Inventory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -185,7 +186,23 @@ namespace SMS.Controllers
         {
             return _dbcontext.Roles.ToList();
         }
-        #endregion
+		#endregion
 
-    }
+		#region InventoryItemType
+		[HttpGet("InventoryItemTypes")]
+		public IEnumerable<InventoryItemType> InventoryItemTypes()
+		{
+			return _dbcontext.InventoryItemTypes.ToList();
+		}
+		#endregion
+
+		#region InventoryItemUsageArea
+		[HttpGet("InventoryItemUsageAreas")]
+		public IEnumerable<InventoryItemUsageArea> InventoryItemUsageAreas()
+		{
+			return _dbcontext.InventoryItemUsageAreas.ToList();
+		}
+		#endregion
+
+	}
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SMS.Models;
+using SMS.Models.Inventory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -206,14 +207,22 @@ namespace SMS.Middleware
             );
 
             modelBuilder.Entity<Role>().HasData(
-                            new Role { RoleId = 1, Description = " Super Admin" },
-                            new Role { RoleId = 2, Description = " Admin" },
-                            new Role { RoleId = 3, Description = " Finance Admin" },
-                            new Role { RoleId = 4, Description = " Student" },
-                            new Role { RoleId = 5, Description = " Teacher" },
-                            new Role { RoleId = 6, Description = " Inventory Admin" },
-                            new Role { RoleId = 7, Description = " Library Admin" }
+                            new Role { RoleId = 1, Description = "Super Admin" },
+                            new Role { RoleId = 2, Description = "Admin" },
+                            new Role { RoleId = 3, Description = "Finance Admin" },
+                            new Role { RoleId = 4, Description = "Student" },
+                            new Role { RoleId = 5, Description = "Teacher" },
+                            new Role { RoleId = 6, Description = "Inventory Admin" },
+                            new Role { RoleId = 7, Description = "Library Admin" }
                                 );
+
+            modelBuilder.Entity<InventoryItemType>().HasData(
+                new InventoryItemType { InventoryItemTypeId = 1, Description = "Furniture" }
+                    );
+
+            modelBuilder.Entity<InventoryItemUsageArea>().HasData(
+                new InventoryItemUsageArea { InventoryItemUsageAreaId = 1, Description = "Computer Lab" }
+                    );
 
         }
     }

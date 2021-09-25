@@ -36,6 +36,7 @@ const routes: Routes = [
       { path: 'track-my-bus', loadChildren: () => import('./transport/track-my-bus/track-my-bus.module').then(m => m.TrackMyBusModule) },
       { path: 'add-bus-details', loadChildren: () => import('./transport/add-bus-details/add-bus-details.module').then(m => m.AddBusDetailsModule) },
       { path: 'add-inventory', loadChildren: () => import('./inventory/add-inventory/add-inventory.module').then(m => m.AddInventoryModule) },
+      { path: 'add-inventory/:id', loadChildren: () => import('./inventory/add-inventory/add-inventory.module').then(m => m.AddInventoryModule) },
       { path: 'list-inventory', loadChildren: () => import('./inventory/list-inventory/list-inventory.module').then(m => m.ListInventoryModule) },
       { path: 'inventory-defect', loadChildren: () => import('./inventory/inventory-defect/inventory-defect.module').then(m => m.InventoryDefectModule) },
       { path: 'class-timetable', loadChildren: () => import('./academic/class-timetable/class-timetable.module').then(m => m.ClassTimetableModule) }

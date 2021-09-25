@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.Helpers;
 
 namespace SMS.Migrations.MysqlData
 {
     [DbContext(typeof(MysqlDataContext))]
-    partial class MysqlDataContextModelSnapshot : ModelSnapshot
+    [Migration("20210924210454_InventoryupdateV1")]
+    partial class InventoryupdateV1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -810,9 +812,6 @@ namespace SMS.Migrations.MysqlData
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<byte>("BillCopy")
-                        .HasColumnType("tinyint unsigned");
-
                     b.Property<string>("Brand")
                         .HasColumnType("text");
 
@@ -867,16 +866,20 @@ namespace SMS.Migrations.MysqlData
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("DefectDesc")
+                    b.Property<string>("DefectInfo")
                         .HasColumnType("text");
 
-                    b.Property<string>("ItemCode")
-                        .HasColumnType("text");
+                    b.Property<int?>("InventoryItemTypeId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("ItemName")
-                        .HasColumnType("text");
+                    b.Property<int?>("InventoryItemUsageAreaId")
+                        .HasColumnType("int");
 
                     b.HasKey("InventoryDefectId");
+
+                    b.HasIndex("InventoryItemTypeId");
+
+                    b.HasIndex("InventoryItemUsageAreaId");
 
                     b.ToTable("InventoryDefects");
                 });
@@ -893,13 +896,6 @@ namespace SMS.Migrations.MysqlData
                     b.HasKey("InventoryItemTypeId");
 
                     b.ToTable("InventoryItemTypes");
-
-                    b.HasData(
-                        new
-                        {
-                            InventoryItemTypeId = 1,
-                            Description = "Furniture"
-                        });
                 });
 
             modelBuilder.Entity("SMS.Models.Inventory.InventoryItemUsageArea", b =>
@@ -914,13 +910,6 @@ namespace SMS.Migrations.MysqlData
                     b.HasKey("InventoryItemUsageAreaId");
 
                     b.ToTable("InventoryItemUsageAreas");
-
-                    b.HasData(
-                        new
-                        {
-                            InventoryItemUsageAreaId = 1,
-                            Description = "Computer Lab"
-                        });
                 });
 
             modelBuilder.Entity("SMS.Models.Language", b =>
@@ -1235,37 +1224,37 @@ namespace SMS.Migrations.MysqlData
                         new
                         {
                             RoleId = 1,
-                            Description = "Super Admin"
+                            Description = " Super Admin"
                         },
                         new
                         {
                             RoleId = 2,
-                            Description = "Admin"
+                            Description = " Admin"
                         },
                         new
                         {
                             RoleId = 3,
-                            Description = "Finance Admin"
+                            Description = " Finance Admin"
                         },
                         new
                         {
                             RoleId = 4,
-                            Description = "Student"
+                            Description = " Student"
                         },
                         new
                         {
                             RoleId = 5,
-                            Description = "Teacher"
+                            Description = " Teacher"
                         },
                         new
                         {
                             RoleId = 6,
-                            Description = "Inventory Admin"
+                            Description = " Inventory Admin"
                         },
                         new
                         {
                             RoleId = 7,
-                            Description = "Library Admin"
+                            Description = " Library Admin"
                         });
                 });
 
@@ -2064,6 +2053,21 @@ namespace SMS.Migrations.MysqlData
                         .HasForeignKey("InventoryItemUsageAreaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("InventoryItemType");
+
+                    b.Navigation("InventoryItemUsageArea");
+                });
+
+            modelBuilder.Entity("SMS.Models.Inventory.InventoryDefect", b =>
+                {
+                    b.HasOne("SMS.Models.Inventory.InventoryItemType", "InventoryItemType")
+                        .WithMany()
+                        .HasForeignKey("InventoryItemTypeId");
+
+                    b.HasOne("SMS.Models.Inventory.InventoryItemUsageArea", "InventoryItemUsageArea")
+                        .WithMany()
+                        .HasForeignKey("InventoryItemUsageAreaId");
 
                     b.Navigation("InventoryItemType");
 

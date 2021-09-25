@@ -1,8 +1,6 @@
 import {  Component, OnInit, Output,EventEmitter, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router'
 import { FormBuilder, FormControl,FormGroup } from '@angular/forms';
-import { StaffrestApiService } from '../../staff/staffrest-api.service';
- import { Staff } from '../inventorydetails';
 import { Subscription} from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -10,6 +8,7 @@ import { MatSort } from '@angular/material/sort';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { SmsConstant } from 'src/app/shared/constant-values';
 import { Console } from 'console';
+import { InventoryService } from '../inventory.service';
 
 @Component({
   selector: 'app-list-inventory',
@@ -28,8 +27,8 @@ export class ListInventoryComponent implements OnInit {
   @ViewChild(MatSort) sort !: MatSort;
  
   currentUserSubscription !: Subscription;
-  currentStaff? : Staff;
-  staffs: Staff[] = [];
+   currentInventory? : any;
+  // Inventorys: Inventory[] = [];
   inventoryListData!: MatTableDataSource<any>;
 
   itemTypeFilter = new FormControl('');
@@ -38,7 +37,8 @@ export class ListInventoryComponent implements OnInit {
   joiningDateFrom = new FormControl('');
   
 
-  columnsToDisplay = ['itemCode', 'itemName','serialNumber','brand','itemType','itemUsageArea','priperunit','quantity','vendor','attachment','actions'];
+  columnsToDisplay = ['itemName','serialNumber','brand','itemType','itemUsageArea',
+                     'priperunit','quantity','vendor','attachment','actions'];
   
   // filterValues = {
   //   //department: 
@@ -55,13 +55,13 @@ export class ListInventoryComponent implements OnInit {
    @BlockUI() blockUI: NgBlockUI;
   listinventoryfilters: FormGroup;
   
-  constructor(private fb: FormBuilder,private router:Router, private staffApiService: StaffrestApiService) {
+  constructor(private fb: FormBuilder,private router:Router, private inventoryService: InventoryService) {
     this.listinventoryfilters = this.fb.group({
       itemTypeFilter: [''],
       itemUsageAreaFilter: ['']
     });
 
-    this.loadStaff();
+    this.loadInventory();
     
   }
 
@@ -71,13 +71,13 @@ export class ListInventoryComponent implements OnInit {
   //   this.inventoryListData.filter.search(value);
   //     console.log(this.inventoryListData.filter.search(value));
   // }
-  loadStaff()
+  loadInventory()
   {
     this.blockUI.start();
 
-    this.currentUserSubscription = this.staffApiService.getStaffs().subscribe((staff:any) => {
-      this.currentStaff = staff;
-      this.inventoryListData = new MatTableDataSource(staff);
+    this.currentUserSubscription = this.inventoryService.getInventories().subscribe((inventory:any) => {
+      this.currentInventory = inventory;
+      this.inventoryListData = new MatTableDataSource(inventory);
        this.inventoryListData.paginator = this.paginator;
       this.inventoryListData.sort = this.sort;
       console.log(this.inventoryListData);
@@ -113,18 +113,23 @@ export class ListInventoryComponent implements OnInit {
     this.inventoryListData.filter = filterValue.trim().toLowerCase();
   }
   
-  removeStaff(staff : Staff)
+  removeInventory(inventory : any)
   {
-    this.staffApiService.deleteStaff(staff.mobile).subscribe(_=>{
-      this.loadStaff();
+    this.inventoryService.deleteInventory(inventory.inventoryId).subscribe(_=>{
+      this.loadInventory();
     });
   }
 
-  editStaff(staff : Staff)
+  editInventory(inventory : any)
   {
-    this.router.navigate(['/main/add-inventory',staff.mobile]);
-    // this.staffApiService.deleteStaff(staff.mobile).subscribe(_=>{
+    this.router.navigate(['/add-inventory',inventory.inventoryId]);
+    // this.InventoryApiService.deleteInventory(Inventory.mobile).subscribe(_=>{
     // });
+  }
+
+  clearFilter(): void {
+    this.inventoryListData.filter = '';
+    this.listinventoryfilters.reset();
   }
 
   // createFilter(): (data: any, filter: string) => boolean {

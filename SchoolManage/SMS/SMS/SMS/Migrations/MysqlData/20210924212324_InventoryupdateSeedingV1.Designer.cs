@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.Helpers;
 
 namespace SMS.Migrations.MysqlData
 {
     [DbContext(typeof(MysqlDataContext))]
-    partial class MysqlDataContextModelSnapshot : ModelSnapshot
+    [Migration("20210924212324_InventoryupdateSeedingV1")]
+    partial class InventoryupdateSeedingV1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -867,16 +869,20 @@ namespace SMS.Migrations.MysqlData
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("DefectDesc")
+                    b.Property<string>("DefectInfo")
                         .HasColumnType("text");
 
-                    b.Property<string>("ItemCode")
-                        .HasColumnType("text");
+                    b.Property<int?>("InventoryItemTypeId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("ItemName")
-                        .HasColumnType("text");
+                    b.Property<int?>("InventoryItemUsageAreaId")
+                        .HasColumnType("int");
 
                     b.HasKey("InventoryDefectId");
+
+                    b.HasIndex("InventoryItemTypeId");
+
+                    b.HasIndex("InventoryItemUsageAreaId");
 
                     b.ToTable("InventoryDefects");
                 });
@@ -2064,6 +2070,21 @@ namespace SMS.Migrations.MysqlData
                         .HasForeignKey("InventoryItemUsageAreaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("InventoryItemType");
+
+                    b.Navigation("InventoryItemUsageArea");
+                });
+
+            modelBuilder.Entity("SMS.Models.Inventory.InventoryDefect", b =>
+                {
+                    b.HasOne("SMS.Models.Inventory.InventoryItemType", "InventoryItemType")
+                        .WithMany()
+                        .HasForeignKey("InventoryItemTypeId");
+
+                    b.HasOne("SMS.Models.Inventory.InventoryItemUsageArea", "InventoryItemUsageArea")
+                        .WithMany()
+                        .HasForeignKey("InventoryItemUsageAreaId");
 
                     b.Navigation("InventoryItemType");
 

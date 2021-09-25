@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit, QueryList,ViewChildren } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { MessageBoxComponent } from 'src/app/shared/dialog-boxes/message-box/message-box.component';
 import { FormTouched } from 'src/app/shared/interfaces/form-touched';
@@ -27,7 +27,8 @@ export class AddInventoryComponent implements OnInit {
 
   @BlockUI() blockUI: NgBlockUI;
   
-  constructor(private route: ActivatedRoute, public dialog: MatDialog, private _InventoryAPI: InventoryService) { }
+  constructor(private route: ActivatedRoute, public dialog: MatDialog, private _InventoryAPI: InventoryService,
+    private router: Router) { }
 
   ngAfterViewInit(): void {
 
@@ -37,7 +38,7 @@ export class AddInventoryComponent implements OnInit {
         .subscribe(data => {
           this._Inventory = data;
           this._InventoryAPI.setFormValue(data);
-          // console.log(this._Inventory);
+           console.log(this._Inventory);
         }, error => console.log(error));
     }
     
@@ -91,16 +92,23 @@ export class AddInventoryComponent implements OnInit {
   {
     console.log(JSON.stringify(this.invJsonResult));
     this._InventoryAPI.createInventory(this.invJsonResult).subscribe( _=> {
-      this.dialog.open(MessageBoxComponent, { width: '350px', height: '100px', data: "Inventory Details updated successfully !" });
+      this.dialog.open(MessageBoxComponent, { width: '350px', height: '100px', data: "Inventory Details saved successfully !" });
       setTimeout(() => {
         this.dialog.closeAll();
-      }, 2500);
+        this.router.navigate(['/list-inventory']);
+      }, 5000);
     });
   }
 
   updateInventory()
   {
-    this._InventoryAPI.updateInventory(this.id, this.invJsonResult).subscribe(_=>{});
+    this._InventoryAPI.updateInventory(this.id, this.invJsonResult).subscribe( _=> {
+      this.dialog.open(MessageBoxComponent, { width: '350px', height: '100px', data: "Inventory Details updated successfully !" });
+      setTimeout(() => {
+        this.dialog.closeAll();
+        this.router.navigate(['/list-inventory']);
+      }, 5000);
+    });
   }
   
   setTabFormDetails(value: any,tab:number){    

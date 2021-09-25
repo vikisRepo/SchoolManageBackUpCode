@@ -322,15 +322,15 @@ export class SmsConstant {
     { value: "2", viewValue: '25 days before' }
   ]
   static  itemName = [
-    { value: 0, viewValue: '--select none--' },
-    { value: "1", viewValue: 'item 1' },
-    { value: "2", viewValue: 'item 2' }
+  //  { inventoryItemTypeId: 0, description: '--select none--' }
+    // { value: "1", viewValue: 'item 1' },
+    // { value: "2", viewValue: 'item 2' }
   ]
 
   static  itemUsageArea = [
-    { value: 0, viewValue: '--select none--' },
-    { value: "1", viewValue: 'itemUsageArea 1' },
-    { value: "2", viewValue: 'itemUsageArea 2' }
+   // { inventoryItemUsageAreaId: 0, description: '--select none--' }
+    // { value: "1", viewValue: 'itemUsageArea 1' },
+    // { value: "2", viewValue: 'itemUsageArea 2' }
   ]
 
 

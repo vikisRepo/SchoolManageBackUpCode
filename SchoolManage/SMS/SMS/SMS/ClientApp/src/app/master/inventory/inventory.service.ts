@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class InventoryService {
   apiURL = environment.apiUrl + '/api/Inventory/';
+  inventoryDefectsapiURL = environment.apiUrl + '/api/InventoryDefects/';
 
   private formvalueSource = new Subject<string>();
   formValue$ = this.formvalueSource.asObservable();
@@ -25,6 +26,14 @@ export class InventoryService {
   }
 
   // HttpClient API get() method => Fetch Invemtory list
+  getInventoryDefects(): Observable<any> {
+    return this.http.get<any>(this.inventoryDefectsapiURL)
+      .pipe(
+        retry(1),
+        catchError((err) => this.handleError(err))
+      )
+  }
+
   getInventories(): Observable<any> {
     return this.http.get<any>(this.apiURL + 'Inventory')
       .pipe(
@@ -36,6 +45,14 @@ export class InventoryService {
   // HttpClient API get() method => Fetch Inventory
   getInventory(id: any): Observable<any> {
     return this.http.get<any>(this.apiURL + 'Inventory/' + id)
+      .pipe(
+        retry(1),
+        catchError((err) => this.handleError(err))
+      )
+  }
+
+  getInventoryDefect(id: any): Observable<any> {
+    return this.http.get<any>(this.inventoryDefectsapiURL + id)
       .pipe(
         retry(1),
         catchError((err) => this.handleError(err))
@@ -55,11 +72,30 @@ export class InventoryService {
 
   }
 
+  createInventoryDefect(Inventory: any): Observable<any> {
+    console.log(JSON.stringify(Inventory));
+    return this.http.post<any>(this.inventoryDefectsapiURL, Inventory, this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError((err) => this.handleError(err))
+      )
+
+  }
+
   // HttpClient API put() method => Update Inventory
-  updateInventory(id: any, Inventory: any): Observable<any> {
+  updateInventory(id: any, InventoryDefect: any): Observable<any> {
     var apiURLUpdate = environment.apiUrl + '/api/Inventory/UpdateInventory/';
 
-    return this.http.put<any>(apiURLUpdate + id, JSON.stringify(Inventory), this.httpOptions)
+    return this.http.put<any>(apiURLUpdate + id, JSON.stringify(InventoryDefect), this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError((err) => this.handleError(err))
+      )
+  }
+
+  updateInventoryDefect(id: any, InventoryDefect: any): Observable<any> {
+
+    return this.http.put<any>(this.inventoryDefectsapiURL + id, JSON.stringify(InventoryDefect), this.httpOptions)
       .pipe(
         retry(1),
         catchError((err) => this.handleError(err))
@@ -75,6 +111,16 @@ export class InventoryService {
         catchError((err) => this.handleError(err))
       )
   }
+
+  deleteInventoryDefects(id: any) {
+
+    return this.http.delete<any>(this.inventoryDefectsapiURL + id, this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError((err) => this.handleError(err))
+      )
+  }
+
 
   setFormValue(value: any) {
     this.formvalueSource.next(value);

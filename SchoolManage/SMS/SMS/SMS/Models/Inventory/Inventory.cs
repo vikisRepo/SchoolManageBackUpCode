@@ -14,7 +14,7 @@ namespace SMS.Models.Inventory
 
         public string ItemName{ get; set; }
 
-        public int ModelNumber { get; set; }
+        public string ModelNumber { get; set; }
 
         public int InventoryItemTypeId { get; set; }
 
@@ -44,7 +44,7 @@ namespace SMS.Models.Inventory
 
         public string VendorAddress { get; set; }
 
-        //public byte BillCopy { get; set; }
+        public byte BillCopy { get; set; }
 
     }
 }

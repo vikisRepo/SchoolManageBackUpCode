@@ -31,9 +31,30 @@ namespace SMS.Controllers
 
 		// GET api/<InventoryController>/5
 		[HttpGet("Inventory/{id}")]
-		public IEnumerable<Inventory> Inventory(int id)
+		public IActionResult Inventory(int id)
 		{
-			return this._dbContext.Inventorys.Where(X => X.InventoryId == id).ToList();
+			InventoryReq IR = new InventoryReq();
+			Inventory resp = this._dbContext.Inventorys.Where(X => X.InventoryId == id).First();
+			if (resp != null)
+			{
+				IR.itemName = resp.ItemName;
+				IR.itemTypeId = resp.InventoryItemTypeId;
+				IR.modelNumber = resp.ModelNumber;
+				IR.itemUsageId = resp.InventoryItemUsageAreaId;
+				IR.serialNumber = resp.SerialNumber;
+				IR.warrenOrGarantee = resp.WarrenOrGarantee;
+				IR.warrenOrGarenInfo = resp.WarrenOrGarenInfo;
+				IR.brandName = resp.Brand;
+				IR.quantity = resp.Quantity;
+				IR.itemPriceorPerUnit = resp.Price;
+				IR.vendorName = resp.VendorName;
+				IR.vendorNumber = resp.VendorNumber;
+				IR.vendorAddress = resp.VendorAddress;
+				return Ok(IR);
+			}
+			else
+				return BadRequest("Not able to find the Inventory");
+
 		}
 
 		// POST api/<InventoryController>
@@ -56,6 +77,7 @@ namespace SMS.Controllers
 			I.VendorName = IR.vendorName;
 			I.VendorNumber = IR.vendorNumber;
 			I.VendorAddress = IR.vendorAddress;
+			I.BillCopy = new byte();
 
 			_dbContext.Inventorys.Add(I);
 			_dbContext.SaveChanges();
@@ -64,10 +86,34 @@ namespace SMS.Controllers
 
 		// PUT api/<InventoryController>/5
 		[HttpPut("UpdateInventory/{id}")]
-		public void UpdateInventory(int id, [FromBody] InventoryReq value)
+		public IActionResult UpdateInventory(int id, [FromBody] InventoryReq inventoryReq)
 		{
-			_dbContext.Entry(_dbContext.Inventorys.Where(X => X.InventoryId == id).SingleOrDefault()).CurrentValues.SetValues(value);
-			_dbContext.SaveChanges();
+			try
+			{
+				var updateInventory = _dbContext.Inventorys.Where(X => X.InventoryId == id).FirstOrDefault();
+				updateInventory.ItemName = inventoryReq.itemName;
+				updateInventory.InventoryItemTypeId = inventoryReq.itemTypeId;
+				updateInventory.ModelNumber = inventoryReq.modelNumber;
+				updateInventory.InventoryItemUsageAreaId = inventoryReq.itemUsageId;
+				updateInventory.SerialNumber = inventoryReq.serialNumber;
+				updateInventory.WarrenOrGarantee = inventoryReq.warrenOrGarantee;
+				updateInventory.WarrenOrGarenInfo = inventoryReq.warrenOrGarenInfo;
+				updateInventory.Brand = inventoryReq.brandName;
+				updateInventory.Quantity = inventoryReq.quantity;
+				updateInventory.Price = inventoryReq.itemPriceorPerUnit;
+				updateInventory.VendorName = inventoryReq.vendorName;
+				updateInventory.VendorNumber = inventoryReq.vendorNumber;
+				updateInventory.VendorAddress = inventoryReq.vendorAddress;
+				updateInventory.BillCopy = new byte();
+
+				_dbContext.SaveChanges();
+				return Ok();
+			}
+			catch (Exception Ex)
+			{
+				return BadRequest(Ex);
+			}
+
 		}
 
 		// DELETE api/<InventoryController>/5

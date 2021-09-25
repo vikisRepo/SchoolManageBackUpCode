@@ -1,6 +1,9 @@
 import { Component, OnInit, Output,EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
+import { MessageBoxComponent } from 'src/app/shared/dialog-boxes/message-box/message-box.component';
 import { FormTouched } from 'src/app/shared/interfaces/form-touched';
+import { InventoryService } from '../inventory.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-inventory-defect',
@@ -13,14 +16,15 @@ export class InventoryDefectComponent implements OnInit {
   
   //toppingList:string[]=['Tamil','English','Maths','Science','social'];
   @Output() formDetails=new EventEmitter();
+  id: any;
 
   get defect() : FormArray {
-    return this.inventoryDefectForm.get('defect') as FormArray;
+    return this.inventoryDefectForm.get('InventoryDefects') as FormArray;
   };
 
-  constructor(private fb : FormBuilder) {
+  constructor(private fb : FormBuilder, private inventoryDefectService : InventoryService, public dialog: MatDialog) {
     this.inventoryDefectForm = this.fb.group({
-      defect: this.fb.array([this.buildDefects()])
+      InventoryDefects: this.fb.array([]) //[this.buildDefects()]
     });
     this.inventoryDefectForm.valueChanges.subscribe(()=>{
       this.formDetails.emit({ value: this.inventoryDefectForm.value,
@@ -33,6 +37,14 @@ export class InventoryDefectComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.inventoryDefectService.getInventoryDefects().subscribe((data : any) => {
+      console.log(JSON.stringify(data));
+      this.inventoryDefectForm.patchValue(data);
+      data.inventoryDefects.forEach((x) => {
+        this.defect.push(this.fb.group(x))
+      });
+         
+    });
     
   }
 
@@ -42,11 +54,31 @@ export class InventoryDefectComponent implements OnInit {
 
   buildDefects(): FormGroup {
     return this.fb.group({
-      ItemName: ['', Validators.required],
-      ItemCode: ['', Validators.required],
-      DefectDesc: ['', Validators.required],
+      itemName: ['', Validators.required],
+      itemCode: ['', Validators.required],
+      defectDesc: ['', Validators.required],
     });
     
   }
-  
+
+  CreateInventoryDefect()
+  {
+    this.inventoryDefectService.createInventoryDefect(this.inventoryDefectForm.value).subscribe( _=> {
+      this.dialog.open(MessageBoxComponent, { width: '350px', height: '100px', data: "InventoryDefects Saved successfully !" });
+      setTimeout(() => {
+        this.dialog.closeAll();
+      }, 5000);
+    });
+  }
+
+  updateInventoryDefect()
+  {
+    this.inventoryDefectService.updateInventoryDefect(this.id, this.inventoryDefectForm.value).subscribe( _=> {
+      this.dialog.open(MessageBoxComponent, { width: '350px', height: '100px', data: "Inventory Details updated successfully !" });
+      setTimeout(() => {
+        this.dialog.closeAll();
+      }, 5000);
+    });
+  }
+
 }
