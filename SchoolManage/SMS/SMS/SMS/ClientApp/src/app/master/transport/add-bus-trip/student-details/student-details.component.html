@@ -1,0 +1,27 @@
+<form [formGroup]="studentDetailForm" class="p-base">
+    <div class="container-fluid" style="margin-top:5px">
+        <div class="row">
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Class</mat-label>
+                    <mat-select formControlName="class">
+                        <mat-option *ngFor="let class of classes" [value]="class.value">
+                            {{class.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>    
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>section</mat-label>
+                    <mat-select formControlName="section">
+                        <mat-option *ngFor="let section of sections" [value]="section.value">
+                            {{section.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>   
+            </div>
+        </div>
+    </div>
+
+</form>

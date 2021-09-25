@@ -90,7 +90,7 @@ namespace WebApi.Services
             removeOldRefreshTokens(account);
 
             _context.Update(account);
-            _context.SaveChanges();
+             _context.SaveChanges();
 
             // generate new jwt
             var jwtToken = generateJwtToken(account);

@@ -38,6 +38,7 @@
     "ngx-avatar": "^4.1.0",
     "ngx-bootstrap": "^6.2.0",
     "ngx-doc-viewer": "^1.4.1",
+    "ngx-material-timepicker": "^5.5.3",
     "rxjs": "~6.6.0",
     "save": "^2.4.0",
     "tslib": "^2.0.0",

@@ -13,7 +13,8 @@ import { AngularFileUploaderModule } from "angular-file-uploader";
 
 import { AvatarModule } from 'ngx-avatar';
 import {MatIconModule} from '@angular/material/icon';
-import { TripDetailsComponent } from './transport/trip-details/trip-details.component'
+import { TripDetailsComponent } from './transport/trip-details/trip-details.component';
+
 
 
 
