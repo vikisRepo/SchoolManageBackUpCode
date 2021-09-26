@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StaffLeaveComponent } from './staff-leave.component';
 
-describe('StaffLeaveComponent', () => {
+describe('StudentLeaveComponent', () => {
   let component: StaffLeaveComponent;
   let fixture: ComponentFixture<StaffLeaveComponent>;
 
