@@ -21,9 +21,20 @@
                         <textarea id="{{'defectDesc' + i}}" matInput formControlName="defectDesc"></textarea>
                     </mat-form-field>
                 </div>
-                <mat-icon style="cursor: pointer;" color="primary"(click)="CreateInventoryDefect()">check_circle</mat-icon>
+                <input #myInput [hidden]="true" formControlName="id">
+                <img *ngIf="address.enabled" src="../../../../assets/save.png" (click)="changeandunchange(true,i)" 
+                class="icon" style="margin-Top: 25px; cursor: pointer; width: 25px;height: 25px;float:right">
+
+                <img *ngIf="address.disabled"  src="../../../../assets/edit.png" (click)="changeandunchange(false,i)" 
+                class="icon" style="margin-Top: 25px; cursor: pointer; width: 25px;height: 25px;float:right">
+
+                <img *ngIf="enabletrash" src="../../../../assets/trash.png" (click)="deleteDefect(i)" 
+                class="icon"
+                    style="margin-Top: 25px; cursor: pointer; width: 25px;height: 25px;float:right;padding-left:5px;"/>
+
+                <!-- <mat-icon style="cursor: pointer;" color="primary"(click)="CreateInventoryDefect()">check_circle</mat-icon>
                 <img src="../../../../assets/trash.png" class="icon"
-                style="margin-Top: 25px; cursor: pointer; width: 25px;height: 25px;float:right" />
+                style="margin-Top: 25px; cursor: pointer; width: 25px;height: 25px;float:right" /> -->
             </div>
         </div>
         <div class="row">

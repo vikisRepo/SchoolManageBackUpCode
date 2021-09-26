@@ -23,7 +23,7 @@ export class EmployeeExperienceComponent implements OnInit,FormTouched {
 
   constructor(private fb : FormBuilder, private staffrestApiService : StaffrestApiService) {
     this.experienceForm = this.fb.group({
-      staffExperiences: this.fb.array([this.buildExperiences()]) //
+      staffExperiences: this.fb.array([]) //this.buildExperiences()
     });
     this.experienceForm.valueChanges.subscribe(()=>{
       this.formDetails.emit({ value: this.experienceForm.value,
@@ -40,10 +40,11 @@ export class EmployeeExperienceComponent implements OnInit,FormTouched {
     this.staffrestApiService.formValue$.subscribe((data : any) => {
       console.log("inside ngoninit experience" + JSON.stringify(data.staffExperiences));
       this.experienceForm.patchValue(data);
-      data.staffExperiences.forEach((x) => {
+      data.staffExperiences.forEach((x,index) => {
         this.experiences.push(this.fb.group(x))
+      //  this.experiences.at(index).disable();
       });
-
+     this.experiences.disable()
       if(this.experiences.length == 0)
         this.enabletrash = false;
       else
@@ -58,11 +59,21 @@ export class EmployeeExperienceComponent implements OnInit,FormTouched {
 
   buildExperiences(): FormGroup {
     return this.fb.group({
-      from: [''],
-      to: [''],
-      responsibilty: [''],
+      from: ['',Validators.required],
+      to: ['',Validators.required],
+      responsibilty: ['',Validators.required]
     });
     
+  }
+  changeandunchange(flg:boolean , index : number){
+    if(flg)
+      {
+        this.experiences.at(index).disable();
+      }
+    else{
+        this.experiences.at(index).enable();
+    }
+
   }
   
 }

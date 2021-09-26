@@ -25,8 +25,10 @@
                         <textarea id="{{'Responsiblity' + i}}" matInput formControlName="responsibilty"></textarea>
                     </mat-form-field>
                 </div>
-                <img *ngIf="enabletrash" src="../../../../assets/trash.png" class="icon"
-                    style="margin-Top: 25px; cursor: pointer; width: 25px;height: 25px;float:right" />
+                <img *ngIf="experience.enabled" src="../../../../assets/save.png" (click)="changeandunchange(true,i)" class="icon" style="margin-Top: 25px; cursor: pointer; width: 25px;height: 25px;float:right">
+                <img *ngIf="experience.disabled"  src="../../../../assets/edit.png" (click)="changeandunchange(false,i)" class="icon" style="margin-Top: 25px; cursor: pointer; width: 25px;height: 25px;float:right">
+                <img *ngIf="enabletrash" src="../../../../assets/trash.png" (click)="experiences.removeAt(i)" class="icon"
+                    style="margin-Top: 25px; cursor: pointer; width: 25px;height: 25px;float:right;padding-left:5px;"/>
             </div>
         </div>
         <div class="row">

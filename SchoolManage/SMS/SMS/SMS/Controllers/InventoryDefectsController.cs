@@ -40,9 +40,11 @@ namespace SMS.Controllers
 		}
 
 		// POST api/<InventoryDefectsController>
-		[HttpPost]
-		public void Post([FromBody] InventoryDefectRequest request)
+		[HttpPost("CreateandupdateInventoryDefects/{id}")]
+		public void Post(int id,[FromBody] InventoryDefectRequest request)
 		{
+			var updateInventoryDefect = _dbContext.InventoryDefects.Where(X => X.InventoryDefectId == id).FirstOrDefault();
+
 			_dbContext.InventoryDefects.AddRange(request.InventoryDefects);
 			_dbContext.SaveChanges();
 		}

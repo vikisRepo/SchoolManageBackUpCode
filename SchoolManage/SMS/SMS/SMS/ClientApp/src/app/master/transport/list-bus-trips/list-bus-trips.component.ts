@@ -5,7 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { BusanddriverService } from '../add-bus-details/busanddriver.service';
-import { BusTrips } from '../list-bus-trips/bustrips';
+import { BusTrips } from '../list-bus-trips/BusTrips';
 
 @Component({
   selector: 'app-list-bus-trips',

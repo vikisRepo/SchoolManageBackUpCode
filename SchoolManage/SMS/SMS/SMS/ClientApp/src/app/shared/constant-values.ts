@@ -69,7 +69,7 @@ export class SmsConstant {
     // { value: "3", viewValue: 'Telugu' }
   ];
 
-  static  city = [
+  static city = [
     { CityId: 0, cityDescr: '--select none--' }
     // { value: 1, viewValue: 'Coimbatore' },
     // { value: 2, viewValue: 'Pollachi' },

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, EventEmitter, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { SmsConstant } from '../../constant-values';
+import { FactorydataService } from '../../factorydata.service';
 import { FormTouched } from '../../interfaces/form-touched';
 
 @Component({
@@ -18,11 +19,13 @@ export class AddressDetailComponent implements OnInit, OnChanges, FormTouched {
   @Output() pFlagEmit = new EventEmitter<boolean>();
 
   form: FormGroup;
-  city = SmsConstant.city;
+  city:any = SmsConstant.city;
   state = SmsConstant.state;
   country = SmsConstant.country;
 
-  constructor(fb: FormBuilder) {
+  constructor(fb: FormBuilder,private factroy:FactorydataService) {
+    this.city = this.factroy.city;
+    console.log(this.factroy.city);
     this.form = fb.group(
       {
         "line1": ['', [Validators.required, Validators.maxLength(30)]],

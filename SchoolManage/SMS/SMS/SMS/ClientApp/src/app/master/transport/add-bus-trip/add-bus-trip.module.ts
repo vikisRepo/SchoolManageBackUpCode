@@ -9,7 +9,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MasterModule } from '../../master.module';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
-import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 
 @NgModule({
@@ -21,8 +20,7 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
     ReactiveFormsModule,
     SharedModule,
     MasterModule,
-    NgxDocViewerModule,
-    NgxMaterialTimepickerModule
+    NgxDocViewerModule
   ]
 })
 export class AddBusTripModule { }

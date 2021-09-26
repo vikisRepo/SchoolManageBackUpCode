@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Local } from 'protractor/built/driverProviders';
 import { forkJoin, Observable, throwError } from 'rxjs';
 import { catchError, delay, retry } from 'rxjs/operators';
 import { SmsConstant } from 'src/app/shared/constant-values';
@@ -40,6 +41,7 @@ export class FactorydataService {
              inventoryItemUsageAreas, inventoryItemTypes}) => {
       SmsConstant.bank = banks;
       SmsConstant.city = cities;
+      sessionStorage.setItem('city',JSON.stringify(cities));
       SmsConstant.department = departments;
       SmsConstant.employmentStatus = employeestatus;
       SmsConstant.bloods = bloodgroup;
@@ -85,6 +87,9 @@ export class FactorydataService {
     window.alert(errorMessage);
     return throwError(errorMessage);
   }
-
+  
+  get city(){
+    return JSON.parse(sessionStorage.getItem("city"));
+  }
 
 }

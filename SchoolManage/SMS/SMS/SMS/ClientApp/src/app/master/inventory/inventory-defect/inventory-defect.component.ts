@@ -17,6 +17,7 @@ export class InventoryDefectComponent implements OnInit {
   //toppingList:string[]=['Tamil','English','Maths','Science','social'];
   @Output() formDetails=new EventEmitter();
   id: any;
+  enabletrash : any = true;
 
   get defect() : FormArray {
     return this.inventoryDefectForm.get('InventoryDefects') as FormArray;
@@ -40,9 +41,14 @@ export class InventoryDefectComponent implements OnInit {
     this.inventoryDefectService.getInventoryDefects().subscribe((data : any) => {
       console.log(JSON.stringify(data));
       this.inventoryDefectForm.patchValue(data);
-      data.inventoryDefects.forEach((x) => {
+      data.inventoryDefects.forEach((x, index) => {
         this.defect.push(this.fb.group(x))
       });
+      this.defect.disable()
+      if(this.defect.length == 0)
+        this.enabletrash = false;
+      else
+        this.enabletrash = true;  
          
     });
     
@@ -57,13 +63,14 @@ export class InventoryDefectComponent implements OnInit {
       itemName: ['', Validators.required],
       itemCode: ['', Validators.required],
       defectDesc: ['', Validators.required],
+  
     });
     
   }
 
-  CreateInventoryDefect()
+  CreateInventoryDefect(deffectData : any)
   {
-    this.inventoryDefectService.createInventoryDefect(this.inventoryDefectForm.value).subscribe( _=> {
+    this.inventoryDefectService.CreateandupdateInventoryDefects(deffectData).subscribe( _=> {
       this.dialog.open(MessageBoxComponent, { width: '350px', height: '100px', data: "InventoryDefects Saved successfully !" });
       setTimeout(() => {
         this.dialog.closeAll();
@@ -79,6 +86,30 @@ export class InventoryDefectComponent implements OnInit {
         this.dialog.closeAll();
       }, 5000);
     });
+  }
+
+  deleteDefect(index: number)
+  {
+    this.defect.removeAt(index);
+    this.inventoryDefectService.deleteInventory(2).subscribe( _=> {
+      this.dialog.open(MessageBoxComponent, { width: '350px', height: '100px', data: "Inventory Details deleted successfully !" });
+      setTimeout(() => {
+        this.dialog.closeAll();
+      }, 5000);
+    });
+  }
+
+  changeandunchange(flg:boolean , index : number){
+    if(flg)
+      {
+        console.log(this.defect.at(index).value)
+       this.CreateInventoryDefect(this.defect.at(index).value);
+        this.defect.at(index).disable();
+      }
+    else{
+        this.defect.at(index).enable();
+    }
+
   }
 
 }
