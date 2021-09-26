@@ -6,7 +6,7 @@ import { SmsConstant } from 'src/app/shared/constant-values';
 
 
 export interface PeriodicElement {
-  staffName: number;
+  studentName: number;
   admissionnumber: number;
   leaveType: string;
   noofdays: number;
@@ -16,39 +16,52 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {staffName: 1, admissionnumber: 54, leaveType:'seek leave', noofdays: 1,datefrom:new Date(),reason:1,status:"approved"}
+  {studentName: 1, admissionnumber: 54, leaveType:'seek leave', noofdays: 1,datefrom:new Date(),reason:1,status:"approved"}
  
 ];
+
 @Component({
-  selector: 'app-staff-leave',
+  selector: 'app-student-leave',
   templateUrl: './staff-leave.component.html',
   styleUrls: ['./staff-leave.component.css']
 })
 export class StaffLeaveComponent implements OnInit {
-
-  classFilter = new FormControl('');
-  sectionFilter = new FormControl('');
+  departmentIdFilter = new FormControl('');
+  stafftypeFilter = new FormControl('');
   joiningDateFrom = new FormControl('');
 
   displayedColumns: string[] = ['studentName','admissionnumber','leaveType','noofdays','datefrom','reason','status'];
-  
+  filterValues = {
+    //department: 
+    departmentId :'',
+   // designation: '',
+    designationId: '',
+    //status: '',
+    employeementstatusId: '',
+    //joiningDateFrom: '',
+    joiningDate: ''
+    //joiningDateTo: '',
+  };
 
-  stafffilters: FormGroup;
+  staffFilter: FormGroup;
   
   dataSource1 = ELEMENT_DATA;
   
-  class = SmsConstant.classes;
-  section = SmsConstant.section;
+  department = SmsConstant.department;
+  stafftype = SmsConstant.staffType;
   constructor(private fb: FormBuilder) {
-    this.stafffilters = this.fb.group({
-      classFilter: [''],
-      sectionFilter: [''],
+    this.staffFilter = this.fb.group({
+      departmentIdFilter: [''],
+      stafftypeFilter: [''],
       joiningDateFrom: ['']
     });
-    this.loadStaff();
+    this.loadStudent();
    }
 
-   loadStaff()
+  ngOnInit(): void {
+  }
+
+  loadStudent()
   {
    // this.blockUI.start();
 
@@ -67,13 +80,10 @@ export class StaffLeaveComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
-  }
-  
   applyFilter(event: any) {
-    console.log(event)
+    console.log(event,this.staffFilter.value)
   
-    const filterValue = this.stafffilters.value[event];
+    const filterValue = this.staffFilter.value[event];
     this.dataSource1.filter = filterValue.trim().toLowerCase();
     //this.staffListData.filter = filterValue.trim().toLowerCase();
   }

@@ -32,12 +32,13 @@ export class FactorydataService {
       language: this.getfactorydata('/api/Factory/Language', 2000),
       staffType: this.getfactorydata('/api/Factory/StaffType', 2000),
       inventoryItemTypes : this.getfactorydata('/api/Factory/InventoryItemTypes', 2000),
-      inventoryItemUsageAreas : this.getfactorydata('/api/Factory/InventoryItemUsageAreas', 2000)
+      inventoryItemUsageAreas : this.getfactorydata('/api/Factory/InventoryItemUsageAreas', 2000), 
+      factoryClasses : this.getfactorydata('/api/AcademicClass/GetFactoryClassNames', 2000)
       
       // requestThree: this.getfactorydata('/api​/Factory​/RepotingTo')
     })
     .subscribe(({banks, cities,departments,employeestatus,bloodgroup,maritalStatus,religion,gender,salutations,language,staffType,nationalities,designation,
-             inventoryItemUsageAreas, inventoryItemTypes}) => {
+             inventoryItemUsageAreas, inventoryItemTypes, factoryClasses}) => {
       SmsConstant.bank = banks;
       SmsConstant.city = cities;
       SmsConstant.department = departments;
@@ -56,6 +57,7 @@ export class FactorydataService {
       SmsConstant.designation = designation;
       SmsConstant.itemUsageArea = inventoryItemUsageAreas;
       SmsConstant.itemName = inventoryItemTypes;
+      SmsConstant.classes = factoryClasses;
 
     });
 

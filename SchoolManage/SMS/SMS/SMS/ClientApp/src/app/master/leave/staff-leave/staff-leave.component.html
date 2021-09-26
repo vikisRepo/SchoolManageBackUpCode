@@ -1,6 +1,6 @@
 <!-- <div class="row headerstyle">
     <div class="col-sm-5">
-      <h2>Staff Leave </h2>  
+      <h2>Student Leave </h2> 
     </div>
     <div class="col-sm-3">
       <mat-form-field appearance="standard" style="font-size: 12px;margin-top:-18px;">
@@ -17,27 +17,27 @@
         
     </div>  
 </div> -->
-<app-header-action [index]='16'></app-header-action>
+<app-header-action [index]='15'></app-header-action>
 <div class=" percentagebar">
-    <form [formGroup]="stafffilters">
+    <form [formGroup]="staffFilter">
         <div class="container-fluid" style="margin-top:5px">
             <div class="row" style="font-size: 12px;">
                 <div class="col-sm-2">
                     <mat-form-field appearance="standard">
-                        <mat-label>Class</mat-label>
-                        <mat-select formControlName="classFilter" (selectionChange)="applyFilter('classFilter')">
-                            <mat-option *ngFor="let classFilter  of class " [value]="classFilter.viewValue">
-                                {{classFilter .viewValue}} 
+                        <mat-label>Department</mat-label>
+                        <mat-select formControlName="departmentIdFilter" (selectionChange)="applyFilter('departmentIdFilter')">
+                            <mat-option *ngFor="let departmentIdFilter  of department " [value]="departmentIdFilter .departmentName">
+                                {{departmentIdFilter .departmentName}} 
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
                 <div class="col-sm-2">
                     <mat-form-field appearance="standard">
-                        <mat-label>Section</mat-label>
-                        <mat-select formControlName="sectionFilter" (selectionChange)="applyFilter('sectionFilter')">
-                            <mat-option *ngFor="let sectionFilter  of section " [value]="sectionFilter.viewValue">
-                                {{sectionFilter .viewValue}} 
+                        <mat-label>Staff Type</mat-label>
+                        <mat-select formControlName="stafftypeFilter" (selectionChange)="applyFilter('stafftypeFilter')">
+                            <mat-option *ngFor="let stafftypeFilter  of stafftype " [value]="stafftypeFilter.staffTypeId">
+                                {{stafftypeFilter.description}} 
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -61,8 +61,8 @@
       
         <!-- month Column -->
         <ng-container matColumnDef="studentName">
-          <th mat-header-cell *matHeaderCellDef> staff Name</th>
-          <td mat-cell *matCellDef="let element"> {{element.staffName}} </td>
+          <th mat-header-cell *matHeaderCellDef> student Name</th>
+          <td mat-cell *matCellDef="let element"> {{element.studentName}} </td>
         </ng-container>
       
         <!-- Attendance Column -->

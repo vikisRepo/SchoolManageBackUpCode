@@ -218,6 +218,16 @@ namespace SMS.Controllers
 				}));
 		}
 
+		[HttpGet("GetFactoryClassNames")]
+		public IActionResult GetFactoryClassNames()
+		{
+			return Ok(_dbconext.AcademicClasses.AsEnumerable().GroupBy(Y => new { Y.ClassName, Y.AcademicClassId }).Select(
+				X => new {
+					className = X.Key.ClassName,
+					id = X.Key.AcademicClassId
+				}));
+		}
+
 		[HttpGet("GetClassSubjects/{ClassName}")]
 		public IActionResult GetClassSubjects(string ClassName)
 		{
