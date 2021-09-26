@@ -3,7 +3,9 @@ import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormControl, FormGroup, FormArray } from '@angular/forms';
 import { Console } from 'console';
+import { MatDialog } from '@angular/material/dialog';
 import { SmsConstant } from 'src/app/shared/constant-values';
+import { MyLeaveBalanceComponent } from './my-leave-balance/my-leave-balance.component';
 @Component({
   selector: 'app-apply-leave',
   templateUrl: './apply-leave.component.html',
@@ -19,7 +21,7 @@ export class ApplyLeaveComponent implements OnInit {
   snodays : any;
 
 
-  constructor(private fb:FormBuilder) { 
+  constructor(private fb:FormBuilder,public dialog: MatDialog) { 
     this.leaveform = this.fb.group({
       leavetype : [''],
       datefrom : [''],
@@ -52,7 +54,11 @@ export class ApplyLeaveComponent implements OnInit {
     return Math.round(differenceMs / ONE_DAY);
 
 }
-
+ 
+getmyleaveblc()
+{
+  this.dialog.open(MyLeaveBalanceComponent);
+}
   // ngOnInit(): void {
   //   this.staffrestApiService.formValue$.subscribe((data : any) => {
   //     this.empDetailsForm.patchValue(data);

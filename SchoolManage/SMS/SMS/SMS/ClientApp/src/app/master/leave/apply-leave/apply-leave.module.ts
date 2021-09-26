@@ -6,10 +6,11 @@ import { ApplyLeaveComponent } from './apply-leave.component';
 import { AngularMaterialModule } from 'src/angular-material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { MyLeaveBalanceComponent } from './my-leave-balance/my-leave-balance.component';
 
 
 @NgModule({
-  declarations: [ApplyLeaveComponent],
+  declarations: [ApplyLeaveComponent, MyLeaveBalanceComponent],
   imports: [
     CommonModule,
     ApplyLeaveRoutingModule,

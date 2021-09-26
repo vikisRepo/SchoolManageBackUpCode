@@ -1,0 +1,22 @@
+<form [formGroup] = "leaveblcform" class="p-base" style="width: 250px;height:400px;">
+    <div class="container-fluid" style="margin-top:5px">
+        <div class="row">
+            <div class="col-sm-9" >
+                <p style="color: green;">My leave balance</p>
+                <br/>
+                <p>Medical Leavel:</p>
+                <br/>
+                <p>Personal Leave:</p>
+                <br/>
+                <p>Marrige Leave:</p>
+                <br/>
+                <p>Earned Leave:</p>
+                <br/>
+                <p>Maternity Leave:</p>
+            </div>
+		</div>
+        <div mat-dialog-actions class="action-btn" style="float: right;">
+            <button mat-button (click)="close(false)">Cancel</button>
+        </div>
+	</div>
+</form>
