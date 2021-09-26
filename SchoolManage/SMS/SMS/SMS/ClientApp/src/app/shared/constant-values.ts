@@ -89,10 +89,10 @@ export class SmsConstant {
   ];
 
   static  classes = [
-    { value: "0", viewValue: '--select none--' },
-    { value: "1", viewValue: '1st' },
-    { value: "2", viewValue: '2nd' },
-    { value: "3", viewValue: '3rd' }
+    // { value: "0", viewValue: '--select none--' },
+    // { value: "1", viewValue: '1st' },
+    // { value: "2", viewValue: '2nd' },
+    // { value: "3", viewValue: '3rd' }
   ];
 
   static  section = [

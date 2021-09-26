@@ -16,7 +16,7 @@
                     <mat-form-field appearance="standard">
                         <mat-label>Item type</mat-label>
                         <mat-select formControlName="itemTypeFilter" (selectionChange)="applyFilter('itemTypeFilter')">
-                            <mat-option *ngFor="let itemTypeFilter  of itemstypes " [value]="itemTypeFilter .description">
+                            <mat-option *ngFor="let itemTypeFilter  of itemstypes " [value]="itemTypeFilter.description">
                                 {{itemTypeFilter.description}} 
                             </mat-option>
                         </mat-select>
@@ -26,7 +26,7 @@
                     <mat-form-field appearance="standard">
                         <mat-label>Item Usage Area</mat-label>
                         <mat-select formControlName="itemUsageAreaFilter" (selectionChange)="applyFilter('itemUsageAreaFilter')">
-                            <mat-option *ngFor="let itemUsageAreaFilter  of itemusageArea " [value]="itemUsageAreaFilter .description">
+                            <mat-option *ngFor="let itemUsageAreaFilter  of itemusageArea " [value]="itemUsageAreaFilter.description">
                                 {{itemUsageAreaFilter .description}} 
                             </mat-option>
                         </mat-select>
