@@ -84,4 +84,5 @@ export class SubjectsComponent implements OnInit {
 
     this.btnEvent.emit(2);
   }
+
 }

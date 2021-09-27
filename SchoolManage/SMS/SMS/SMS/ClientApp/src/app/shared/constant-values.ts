@@ -266,13 +266,13 @@ export class SmsConstant {
 
 
   static  Subjectsdropdown=[
-    { value: 0, viewValue: '--select none--' }, 
-    { value: "1", viewValue: 'Tamil' }, 
-    { value: "2", viewValue: 'English' },
-    { value: "3", viewValue: 'Maths' },
-    { value: "4", viewValue: 'Science' },
-    { value: "5", viewValue: 'Science' },
-    { value: "6", viewValue: 'Social' }
+    { subjectID: 0, subjectDescr: '--select none--' }
+    // { value: "1", viewValue: 'Tamil' }, 
+    // { value: "2", viewValue: 'English' },
+    // { value: "3", viewValue: 'Maths' },
+    // { value: "4", viewValue: 'Science' },
+    // { value: "5", viewValue: 'Science' },
+    // { value: "6", viewValue: 'Social' }
 
   ]
 
@@ -336,7 +336,7 @@ export class SmsConstant {
 
 
 
-   subjects = ['Tamil','English','Maths','Science','Social']
+  static subjects = ['Tamil','English','Maths','Science','Social']
 
 
 

@@ -1,6 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl,FormGroup } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { Subscription } from 'rxjs';
 import { SmsConstant } from 'src/app/shared/constant-values';
+import { FactorydataService } from 'src/app/shared/factorydata.service';
+import { AttendancerestApiService } from '../attendancerest-api.service';
 
 export interface PeriodicElement {
   staffName: number;
@@ -11,27 +17,28 @@ export interface PeriodicElement {
   leave: number;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {staffName: 1, employeeId: 54, present:1, absent: 0,halfday:0,leave:0}
- 
-];
-
 @Component({
   selector: 'app-staff-attendance',
   templateUrl: './staff-attendance.component.html',
   styleUrls: ['./staff-attendance.component.css']
 })
+
 export class StaffAttendanceComponent implements OnInit {
 
-  subjectFilter = new FormControl('');
-  staffFilter = new FormControl('');
-  joiningDateFrom = new FormControl('');
+  department = new FormControl('');
+  staffType = new FormControl('');
+  DateFor = new FormControl('');
+  currentUserSubscription !: Subscription;
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
+  @ViewChild(MatSort) sort !: MatSort;
+  rows: number;
 
-  displayedColumns: string[] = ['staffName','employeeId','present','absent','halfday','leave'];
+  displayedColumns: string[] = ['staffName', 'employeeId', 'present', 'absent', 'halfday', 'leave'];
   filterValues = {
     //department: 
-    departmentId :'',
-   // designation: '',
+    departmentId: '',
+    // designation: '',
     designationId: '',
     //status: '',
     employeementstatusId: '',
@@ -41,48 +48,45 @@ export class StaffAttendanceComponent implements OnInit {
   };
 
   stafffilters: FormGroup;
-  
-  dataSource1 = ELEMENT_DATA;
-  
-  subjectlist = SmsConstant.Subjectsdropdown;
+
+  staffListData: MatTableDataSource<any> = new MatTableDataSource();
+
+  departmentList = SmsConstant.department;
   stafflist = SmsConstant.staffType;
-  constructor(private fb: FormBuilder) {
+
+  constructor(private fb: FormBuilder, private factory: FactorydataService, private attendanceService: AttendancerestApiService) {
+    this.departmentList = this.factory.department;
+    this.stafflist = this.factory.staffType;
     this.stafffilters = this.fb.group({
-      subjectFilter: [''],
-      staffFilter: [''],
-      joiningDateFrom: ['']
+      department: [''],
+      staffType: [''],
+      DateFor: ['']
     });
-    this.loadStaff();
-   }
+    // this.loadStaffsForSelection();
+  }
 
   ngOnInit(): void {
   }
-  
-  loadStaff()
-  {
-   // this.blockUI.start();
 
-    // this.currentUserSubscription = this.staffApiService.getStaffs().subscribe((staff:any) => {
-    //   this.currentStaff = staff;
-    //   this.staffListData.data =staff;
-    //    this.staffListData.paginator = this.paginator;
-    //   this.staffListData.sort = this.sort;
-    //   console.log(this.staffListData);
-     
-    //    this.blockUI.stop();
-      
-    //   this.rows = this.staffListData.data.length;
-    //});
-   // this.blockUI.stop();
+  loadStaffsForSelection() {
+
+    this.currentUserSubscription = this.attendanceService.SearchStaffbyDepartmentAndStaffType(
+      this.stafffilters.value).subscribe((staff: any) => {
+        this.staffListData.data = staff;
+        this.staffListData.paginator = this.paginator;
+        this.staffListData.sort = this.sort;
+        console.log(this.staffListData);
+        this.rows = this.staffListData.data.length;
+      });
 
   }
 
-  applyFilter(event: any) {
-    console.log(event)
-  
-    const filterValue = this.stafffilters.value[event];
-    this.dataSource1.filter = filterValue.trim().toLowerCase();
-    //this.staffListData.filter = filterValue.trim().toLowerCase();
-  }
+  // applyFilter(event: any) {
+  //   console.log(event)
+
+  //   const filterValue = this.stafffilters.value[event];
+  //   this.dataSource1.filter = filterValue.trim().toLowerCase();
+  //   //this.staffListData.filter = filterValue.trim().toLowerCase();
+  // }
 
 }

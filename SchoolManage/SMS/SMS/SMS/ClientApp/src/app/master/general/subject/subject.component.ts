@@ -33,7 +33,6 @@ export class SubjectComponent implements OnInit {
   {
     this.subjectApi.getSubjects().subscribe(data => {
       this.subjectlist = data;
-      this.alertservice.success('Update successful', { keepAfterRouteChange: true });
     });
   }
 

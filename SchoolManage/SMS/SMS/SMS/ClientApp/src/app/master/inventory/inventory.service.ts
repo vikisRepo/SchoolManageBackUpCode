@@ -82,6 +82,17 @@ export class InventoryService {
 
   }
 
+  
+  createAndUpdateInventoryDefect(Inventory: any): Observable<any> {
+    console.log(JSON.stringify(Inventory));
+    return this.http.post<any>(this.inventoryDefectsapiURL + 'CreateandupdateInventoryDefects', Inventory, this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError((err) => this.handleError(err))
+      )
+
+  }
+
   // HttpClient API put() method => Update Inventory
   updateInventory(id: any, InventoryDefect: any): Observable<any> {
     var apiURLUpdate = environment.apiUrl + '/api/Inventory/UpdateInventory/';

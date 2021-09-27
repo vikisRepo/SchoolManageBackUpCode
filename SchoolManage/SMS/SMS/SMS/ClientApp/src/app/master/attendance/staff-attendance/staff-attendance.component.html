@@ -9,10 +9,10 @@
        
         <div class="col-sm-2">
           <mat-form-field appearance="standard">
-            <mat-label>Subject</mat-label>
-            <mat-select formControlName="subjectFilter" (selectionChange)="applyFilter('subjectFilter')">
-              <mat-option *ngFor="let subjectFilter  of subjectlist " [value]="subjectFilter .viewValue">
-                {{subjectFilter .viewValue}}
+            <mat-label>Department</mat-label>
+            <mat-select formControlName="department">
+              <mat-option *ngFor="let departmentFilter  of departmentList " [value]="departmentFilter.departmentId">
+                {{departmentFilter.departmentName}}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -21,7 +21,8 @@
         <div class="col-sm-2">
           <mat-form-field appearance="standard">
             <mat-label>Staff Type</mat-label>
-            <mat-select formControlName="staffFilter" (selectionChange)="applyFilter('staffFilter')">
+            <!-- <mat-select formControlName="staffFilter" (selectionChange)="applyFilter('staffFilter')"> -->
+              <mat-select formControlName="staffType">
               <mat-option *ngFor="let staffFilter  of stafflist " [value]="staffFilter.staffTypeId">
                 {{staffFilter.description}}
               </mat-option>
@@ -32,16 +33,21 @@
         <div class="col-sm-2">
           <mat-form-field appearance="standard" style="width: 180px;">
             <mat-label>Date</mat-label>
-            <input matInput [matDatepicker]="pickerToFilter">
+            <input matInput [matDatepicker]="pickerToFilter" formControlName="DateFor"> 
             <mat-datepicker-toggle matSuffix [for]="pickerToFilter"></mat-datepicker-toggle>
             <mat-datepicker #pickerToFilter></mat-datepicker>
           </mat-form-field>
         </div>
 
+        <div class="col-sm-2">
+            <button mat-button style="margin-top: 15px;background-color: forestgreen; color: ghostwhite;"
+            (click)="loadStaffsForSelection()">Search</button>
+        </div>
+         <!-- <p>{{stafffilters.value | json}}</p> -->
       </div>
     </div>
   </form>
-  <table mat-table [dataSource]="dataSource1" style="margin-top: 5px;">
+  <table mat-table [dataSource]="staffListData" style="margin-top: 5px;">
 
     <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->

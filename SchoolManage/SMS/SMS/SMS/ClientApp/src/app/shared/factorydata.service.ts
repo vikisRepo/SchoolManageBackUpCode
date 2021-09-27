@@ -31,19 +31,21 @@ export class FactorydataService {
       gender: this.getfactorydata('/api/Factory/Gender', 2000),
       salutations: this.getfactorydata('/api/Factory/Salutation', 2000),
       language: this.getfactorydata('/api/Factory/Language', 2000),
-      staffType: this.getfactorydata('/api/Factory/StaffType', 2000),
+      staffTypes: this.getfactorydata('/api/Factory/StaffType', 2000),
       inventoryItemTypes : this.getfactorydata('/api/Factory/InventoryItemTypes', 2000),
       inventoryItemUsageAreas : this.getfactorydata('/api/Factory/InventoryItemUsageAreas', 2000), 
-      factoryClasses : this.getfactorydata('/api/AcademicClass/GetFactoryClassNames', 2000)
+      factoryClasses : this.getfactorydata('/api/AcademicClass/GetFactoryClassNames', 2000),
+      factorySubjects : this.getfactorydata('/api/Subject', 2000)
       
       // requestThree: this.getfactorydata('/api​/Factory​/RepotingTo')
     })
-    .subscribe(({banks, cities,departments,employeestatus,bloodgroup,maritalStatus,religion,gender,salutations,language,staffType,nationalities,designation,
-             inventoryItemUsageAreas, inventoryItemTypes, factoryClasses}) => {
+    .subscribe(({banks, cities,departments,employeestatus,bloodgroup,maritalStatus,religion,gender,salutations,language,staffTypes,nationalities,designation,
+             inventoryItemUsageAreas, inventoryItemTypes, factoryClasses, factorySubjects}) => {
       SmsConstant.bank = banks;
       SmsConstant.city = cities;
       sessionStorage.setItem('city',JSON.stringify(cities));
       SmsConstant.department = departments;
+      sessionStorage.setItem('department',JSON.stringify(departments));
       SmsConstant.employmentStatus = employeestatus;
       SmsConstant.bloods = bloodgroup;
       SmsConstant.maritalStatus = maritalStatus;
@@ -54,12 +56,15 @@ export class FactorydataService {
       SmsConstant.firstLanguage = language;
       SmsConstant.secondLanguage = language;
       SmsConstant.motherTongue = language;
-      SmsConstant.staffType = staffType;
+      SmsConstant.staffType = staffTypes;
+      sessionStorage.setItem('staffType',JSON.stringify(staffTypes));
       SmsConstant.nationality = nationalities;
       SmsConstant.designation = designation;
       SmsConstant.itemUsageArea = inventoryItemUsageAreas;
       SmsConstant.itemName = inventoryItemTypes;
       SmsConstant.classes = factoryClasses;
+      SmsConstant.Subjectsdropdown = factorySubjects;
+      sessionStorage.setItem('Subjectsdropdown',JSON.stringify(factorySubjects));
 
     });
 
@@ -93,5 +98,19 @@ export class FactorydataService {
   get city(){
     return JSON.parse(sessionStorage.getItem("city"));
   }
+
+  get Subjectsdropdown(){
+    return JSON.parse(sessionStorage.getItem("Subjectsdropdown"));
+  }
+
+  get department(){
+    return JSON.parse(sessionStorage.getItem("department"));
+  }
+
+  get staffType(){
+    return JSON.parse(sessionStorage.getItem("staffType"));
+  }
+
+
 
 }
