@@ -26,3 +26,7 @@ table{
 .status-circle-bt{
    background-color: green;
 }
+
+:deep .mat-checkbox-background, .mat-checkbox-frame {
+    border-radius: 70% !important;
+  }

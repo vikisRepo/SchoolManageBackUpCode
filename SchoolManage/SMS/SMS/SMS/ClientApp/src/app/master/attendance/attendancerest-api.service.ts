@@ -40,6 +40,14 @@ export class AttendancerestApiService {
       )
   }
 
+  UpdateStaffAttendance(staffAttendanceUpdateRequest : any): Observable<any> {
+    return this.http.post<any>(this.apiURL + 'UpdateStaffAttendance', staffAttendanceUpdateRequest, this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError((err) => this.handleError(err))
+      )
+  }
+
   // Error handling 
   handleError(error: any) {
     this.blockUI.stop();
