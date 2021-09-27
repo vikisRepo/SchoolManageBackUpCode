@@ -17,6 +17,7 @@ export class InventoryDefectComponent implements OnInit {
   //toppingList:string[]=['Tamil','English','Maths','Science','social'];
   @Output() formDetails=new EventEmitter();
   id: any;
+  obj: any;
   enabletrash : any = true;
 
   get defect() : FormArray {
@@ -38,6 +39,13 @@ export class InventoryDefectComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
+    this.LoadInventoryDefect();
+  }
+
+  LoadInventoryDefect()
+  {
+    this.inventoryDefectForm.reset();
     this.inventoryDefectService.getInventoryDefects().subscribe((data : any) => {
       console.log(JSON.stringify(data));
       this.inventoryDefectForm.patchValue(data);
@@ -51,7 +59,6 @@ export class InventoryDefectComponent implements OnInit {
         this.enabletrash = true;  
          
     });
-    
   }
 
   addDefects(): void {
@@ -60,6 +67,7 @@ export class InventoryDefectComponent implements OnInit {
 
   buildDefects(): FormGroup {
     return this.fb.group({
+      inventoryDefectId: [0],
       itemName: ['', Validators.required],
       itemCode: ['', Validators.required],
       defectDesc: ['', Validators.required],
@@ -70,30 +78,22 @@ export class InventoryDefectComponent implements OnInit {
 
   CreateInventoryDefect(deffectData : any)
   {
-    this.inventoryDefectService.CreateandupdateInventoryDefects(deffectData).subscribe( _=> {
+    this.inventoryDefectService.createAndUpdateInventoryDefect(deffectData).subscribe( _=> {
       this.dialog.open(MessageBoxComponent, { width: '350px', height: '100px', data: "InventoryDefects Saved successfully !" });
       setTimeout(() => {
         this.dialog.closeAll();
-      }, 5000);
-    });
-  }
-
-  updateInventoryDefect()
-  {
-    this.inventoryDefectService.updateInventoryDefect(this.id, this.inventoryDefectForm.value).subscribe( _=> {
-      this.dialog.open(MessageBoxComponent, { width: '350px', height: '100px', data: "Inventory Details updated successfully !" });
-      setTimeout(() => {
-        this.dialog.closeAll();
+        this.LoadInventoryDefect();
       }, 5000);
     });
   }
 
   deleteDefect(index: number)
   {
-    this.defect.removeAt(index);
-    this.inventoryDefectService.deleteInventory(2).subscribe( _=> {
+    console.log(this.defect.at(index).value.inventoryDefectId);
+    this.inventoryDefectService.deleteInventoryDefects(this.defect.at(index).value.inventoryDefectId).subscribe( _=> {
       this.dialog.open(MessageBoxComponent, { width: '350px', height: '100px', data: "Inventory Details deleted successfully !" });
       setTimeout(() => {
+        this.defect.removeAt(index);
         this.dialog.closeAll();
       }, 5000);
     });

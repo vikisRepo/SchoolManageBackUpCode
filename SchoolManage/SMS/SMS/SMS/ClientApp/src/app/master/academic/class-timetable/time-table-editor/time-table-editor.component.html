@@ -5,7 +5,7 @@
                 <mat-form-field appearance="standard">
                     <mat-label>Subjects</mat-label>
                     <mat-select formControlName="subject">
-                        <mat-option *ngFor="let i of subjects" [value]="i.viewValue">{{i.viewValue}}</mat-option>
+                        <mat-option *ngFor="let i of subjects" [value]="i.subjectDescr">{{i.subjectDescr}}</mat-option>
                     </mat-select>
                 </mat-form-field>
 

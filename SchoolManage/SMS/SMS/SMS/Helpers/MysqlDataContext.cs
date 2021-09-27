@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using SMS.Middleware;
 using SMS.Models;
 using SMS.Models.Academics;
+using SMS.Models.Attendance;
 using SMS.Models.Inventory;
 using SMS.Models.Leave;
 using SMS.Models.Setup;
@@ -93,6 +94,12 @@ namespace WebApi.Helpers
         public virtual DbSet<BusTrip> BusTrips { get; set; }
         public virtual DbSet<NotificationSpan> NotificationSpans { get; set; }
         #endregion "Transport"
+
+        #region Attendance
+
+        public virtual DbSet<StaffAttendance> StaffAttendances { get; set; }
+
+        #endregion 
 
         public virtual DbSet<ClassTimeTable> ClassTimeTables { get; set; }
 

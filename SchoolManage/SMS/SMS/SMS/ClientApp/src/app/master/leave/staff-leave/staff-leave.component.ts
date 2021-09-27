@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl,FormGroup } from '@angular/forms';
 import { matMenuAnimations } from '@angular/material/menu';
 import { SmsConstant } from 'src/app/shared/constant-values';
+import { FactorydataService } from 'src/app/shared/factorydata.service';
 
 
 
@@ -49,7 +50,9 @@ export class StaffLeaveComponent implements OnInit {
   
   department = SmsConstant.department;
   stafftype = SmsConstant.staffType;
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private factory : FactorydataService) {
+    this.department = this.factory.department;
+    this.stafftype = this.factory.staffType;
     this.staffFilter = this.fb.group({
       departmentIdFilter: [''],
       stafftypeFilter: [''],
