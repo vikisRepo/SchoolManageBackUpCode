@@ -5,6 +5,7 @@ import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormControl, FormGroup, FormArray } from '@angular/forms';
 import { SmsConstant } from 'src/app/shared/constant-values';
+import { FactorydataService } from 'src/app/shared/factorydata.service';
 import { FormTouched } from 'src/app/shared/interfaces/form-touched';
 
 @Component({
@@ -39,8 +40,15 @@ export class PersonalDetailsComponent implements OnInit, OnChanges, FormTouched 
   //   return this.profileForm.get('aliases') as FormArray;
   // }
 
-  constructor(private fb: FormBuilder) {
-
+  constructor(private fb: FormBuilder, private factory: FactorydataService) {
+    this.blood = factory.bloods;
+    this.salutations = factory.salutations;
+    this.maritalstatus = factory.maritalStatus;
+    this.religion = factory.religion;
+    this.gender = factory.gender;
+    this.nationality = factory.nationality;
+    this.motherTon = factory.motherTongue;
+    this.languageknown = factory.language;
     this.profileForm = this.fb.group(
       {
         salutationId: ['', Validators.required],
@@ -65,17 +73,17 @@ export class PersonalDetailsComponent implements OnInit, OnChanges, FormTouched 
         fatherOccupation: [, Validators.pattern('^[a-zA-Z ]*$')],
         motherOccupation: [, Validators.pattern('^[a-zA-Z ]*$')],
         souseOccupation: [, Validators.pattern('^[a-zA-Z ]*$')],
-        fatherMobileNumber: [, [Validators.maxLength(9), Validators.pattern(/^[0-9]\d*$/)]],
-        motherMobileNumber: [, [Validators.maxLength(9), Validators.pattern(/^[0-9]\d*$/)]],
-        spouseMobileNumber: [, [Validators.maxLength(9), Validators.pattern(/^[0-9]\d*$/)]],
+        fatherMobileNumber: [, [Validators.maxLength(10), Validators.pattern(/^[0-9]\d*$/)]],
+        motherMobileNumber: [, [Validators.maxLength(10), Validators.pattern(/^[0-9]\d*$/)]],
+        spouseMobileNumber: [, [Validators.maxLength(10), Validators.pattern(/^[0-9]\d*$/)]],
 
       }
     );
 
     this.profileForm.valueChanges.subscribe(() => {
       Object.assign(this.formValues, this.profileForm.value);
-      debugger;
       this.formValues["mobile"] = Number.parseInt(this.formValues["mobile"]);
+      debugger;
       this.formDetails.emit({ value: this.formValues, valid: (this.profileForm.valid && this.addressValidFlag) });
     });
   }

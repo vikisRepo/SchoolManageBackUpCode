@@ -63,8 +63,8 @@ export class StaffAttendanceComponent implements OnInit {
     this.stafflist = this.factory.staffType;
     this.staffAttendanceRequest = new staffAttendanceRequest();
     this.stafffilters = this.fb.group({
-      department: [''],
-      staffType: [''],
+      class: [''],
+      section: [''],
       DateFor: ['']
     });
     // this.loadStaffsForSelection();

@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { constants } from 'buffer';
 import { Observable, Observer } from 'rxjs';
 import { SmsConstant } from 'src/app/shared/constant-values';
+import { FactorydataService } from 'src/app/shared/factorydata.service';
 import { FormTouched } from 'src/app/shared/interfaces/form-touched';
 import { StaffrestApiService } from '../../staffrest-api.service';
 
@@ -18,8 +19,8 @@ export class BankingDetailsComponent implements OnInit, OnDestroy,FormTouched {
   @Output() formDetails=new EventEmitter();
   bank = SmsConstant.bank;
   destroy!: any;
-  constructor(private fb: FormBuilder, private staffrestApiService : StaffrestApiService ) { 
-
+  constructor(private fb: FormBuilder, private staffrestApiService : StaffrestApiService, private factory: FactorydataService ) { 
+    this.bank = factory.banks;
     this.bankingFrom = this.fb.group({
       bankName : ['',Validators.required],
       bankAccountNumber : [,[Validators.required, Validators.pattern(/^[0-9]*$/)]],

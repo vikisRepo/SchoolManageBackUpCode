@@ -40,8 +40,25 @@ export class AttendancerestApiService {
       )
   }
 
+  // HttpClient API get() method => Fetch Staffs list
+  SearchStudentbyClassAndSection(searchrequest : any): Observable<any> {
+    return this.http.post<any>(this.apiURL + 'SearchStudentbyClassAndSection', searchrequest, this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError((err) => this.handleError(err))
+      )
+  }
+
   UpdateStaffAttendance(staffAttendanceUpdateRequest : any): Observable<any> {
     return this.http.post<any>(this.apiURL + 'UpdateStaffAttendance', staffAttendanceUpdateRequest, this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError((err) => this.handleError(err))
+      )
+  }
+
+  UpdateStudentAttendance(studentAttendanceUpdateRequest : any): Observable<any> {
+    return this.http.post<any>(this.apiURL + 'UpdateStudentAttendance', studentAttendanceUpdateRequest, this.httpOptions)
       .pipe(
         retry(1),
         catchError((err) => this.handleError(err))

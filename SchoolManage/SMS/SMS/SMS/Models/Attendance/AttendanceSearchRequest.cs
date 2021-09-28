@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SMS.Models.Attendance
 {
-	enum StaffAttendanceTypes
+	enum AttendanceTypes
 	{
 		Present =1,
 		Absent = 2,
@@ -17,7 +17,6 @@ namespace SMS.Models.Attendance
 
 		public int department { get; set; }
 		public int staffType { get; set; }
-
 		public DateTime DateFor { get; set; }
 	}
 
@@ -27,4 +26,18 @@ namespace SMS.Models.Attendance
 		public string EmployeeId { get; set; }
         public int UpdateType { get; set; }
     }
+
+	public class StudentAttendanceSearchRequest
+	{
+		public string Class { get; set; }
+		public string Section { get; set; }
+		public DateTime DateFor { get; set; }
+	}
+
+	public class StudentAttendanceUpdateRequest
+	{
+		public int StudentAttendanceId { get; set; }
+		public int AdmissionNumber { get; set; }
+		public int UpdateType { get; set; }
+	}
 }

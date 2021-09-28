@@ -71,23 +71,23 @@ namespace SMS.Controllers
 
 			if (existingStaffAttendance != null)
 			{
-				switch ((StaffAttendanceTypes)request.UpdateType)
+				switch ((AttendanceTypes)request.UpdateType)
 				{
-					case (StaffAttendanceTypes.Present):
+					case (AttendanceTypes.Present):
 						{
 							existingStaffAttendance.Present = 1;
 							existingStaffAttendance.Absent = 0;
 							existingStaffAttendance.HalfDay = 0;
 							break;
 						}
-					case StaffAttendanceTypes.Absent:
+					case AttendanceTypes.Absent:
 						{
 							existingStaffAttendance.Present = 0;
 							existingStaffAttendance.Absent = 1;
 							existingStaffAttendance.HalfDay = 0;
 							break;
 						}
-					case StaffAttendanceTypes.HalfDay:
+					case AttendanceTypes.HalfDay:
 						{
 							existingStaffAttendance.Present = 0;
 							existingStaffAttendance.Absent = 0;
@@ -110,16 +110,85 @@ namespace SMS.Controllers
 
 		}
 
-			// PUT api/<AttendanceController>/5
-			[HttpPut("{id}")]
-		public void Put(int id, [FromBody] string value)
+		[HttpPost("SearchStudentbyClassAndSection")]
+		public async Task<IEnumerable<StudentAttendance>> SearchStudentbyClassAndSection(StudentAttendanceSearchRequest request)
 		{
+			var existingStudentAttendance = _dbcontext.StudentAttendances.Where(x => x.AttendanceDate == request.DateFor && x.Class == request.Class && x.Section == request.Section).ToList(); //
+
+			if (existingStudentAttendance.Count == 0)
+			{
+				var todaysStudent = _dbcontext.Students.ToList(); //.Where(x => x.Class == request.Class && x.Section == request.Section)
+				StudentAttendance[] _studentattendance = new StudentAttendance[todaysStudent.Count];
+				int i = 0;
+				foreach (var student in todaysStudent)
+				{
+					_studentattendance[i] = new StudentAttendance()
+					{
+						StudentName = student.FirstName,
+						AdmissionNumber = student.AdmissionNumber,
+						Class = student.Class,
+						Section = student.Section,
+						Absent = 0,
+						HalfDay = 0,
+						Present = 1,
+						AttendanceDate = request.DateFor,
+						RowInactive = 0
+					};
+					i++;
+				}
+				await _dbcontext.StudentAttendances.AddRangeAsync(_studentattendance);
+				await _dbcontext.SaveChangesAsync();
+			}
+
+			return _dbcontext.StudentAttendances.ToList(); //.Where(x => x.AttendanceDate == request.DateFor && x.Class == request.Class && x.Section == request.Section)
 		}
 
-		// DELETE api/<AttendanceController>/5
-		[HttpDelete("{id}")]
-		public void Delete(int id)
+		// POST api/<AttendanceController>
+		[HttpPost("UpdateStudentAttendance")]
+		public async Task<bool> UpdateStudentAttendance(StudentAttendanceUpdateRequest request)
 		{
+			bool Result = false;
+			var existingStudentAttendance = _dbcontext.StudentAttendances.Where(x => x.AdmissionNumber == request.AdmissionNumber && x.StudentAttendanceId == request.StudentAttendanceId).FirstOrDefault();
+
+			if (existingStudentAttendance != null)
+			{
+				switch ((AttendanceTypes)request.UpdateType)
+				{
+					case (AttendanceTypes.Present):
+						{
+							existingStudentAttendance.Present = 1;
+							existingStudentAttendance.Absent = 0;
+							existingStudentAttendance.HalfDay = 0;
+							break;
+						}
+					case AttendanceTypes.Absent:
+						{
+							existingStudentAttendance.Present = 0;
+							existingStudentAttendance.Absent = 1;
+							existingStudentAttendance.HalfDay = 0;
+							break;
+						}
+					case AttendanceTypes.HalfDay:
+						{
+							existingStudentAttendance.Present = 0;
+							existingStudentAttendance.Absent = 0;
+							existingStudentAttendance.HalfDay = 1;
+							break;
+						}
+					default:
+						{
+							break;
+						}
+
+				}
+
+				await _dbcontext.SaveChangesAsync();
+				Result = true;
+
+			}
+
+			return Result;
+
 		}
 	}
 }

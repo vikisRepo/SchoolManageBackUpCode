@@ -4,6 +4,7 @@ import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormControl, FormGroup, FormArray } from '@angular/forms';
 import { SmsConstant } from 'src/app/shared/constant-values';
+import { FactorydataService } from 'src/app/shared/factorydata.service';
 import { FormTouched } from 'src/app/shared/interfaces/form-touched';
 import { StaffrestApiService } from '../../staffrest-api.service';
 @Component({
@@ -28,7 +29,13 @@ export class EmployeeDetailsComponent implements OnInit,FormTouched {
 
 
 
-  constructor(private fb: FormBuilder, private staffrestApiService : StaffrestApiService) {     
+  constructor(private fb: FormBuilder, private staffrestApiService : StaffrestApiService, private factory: FactorydataService) {    
+    
+    
+    this.staffId=factory.staffType;  
+    this.department = factory.department;
+    this.designation = factory.designation;
+    this.role = factory.role;
     
     this.empDetailsForm = this.fb.group(  
       // Validators.pattern('^[a-zA-Z ]*$')]],  
