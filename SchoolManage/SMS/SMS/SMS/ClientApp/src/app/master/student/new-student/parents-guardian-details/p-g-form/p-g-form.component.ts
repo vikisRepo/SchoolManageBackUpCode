@@ -24,7 +24,7 @@ export class PGFormComponent implements OnInit, FormTouched {
       , firstName: ['', Validators.required]
       , middleName: ['', Validators.required]
       , lastName: ['', Validators.required]
-      , mobileNumber: ['0', Validators.required]
+      , mobileNumber: [, Validators.required]
       , occupation: ['', Validators.required]
       , email: ['', Validators.required]
       , aadharNumber: ['', Validators.required]

@@ -1,5 +1,6 @@
 import { Component, Input,EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FactorydataService } from 'src/app/shared/factorydata.service';
 import { Subject } from '../Models/subject';
 import { SubjectRestApiService } from '../subject-rest-api.service';
 
@@ -14,9 +15,10 @@ export class SubjectsComponent implements OnInit {
 
  newFlag:boolean=false;
  subjectForm: FormGroup;
-  constructor(private fb: FormBuilder, private subjectApi : SubjectRestApiService) {
+  constructor(private fb: FormBuilder, private subjectApi : SubjectRestApiService, private factory: FactorydataService) {
+    
     this.subjectForm = this.fb.group({
-      subjectDescr :[],
+      subjectDescr :[, Validators.required],
       subjectID :[0]
     })
    }

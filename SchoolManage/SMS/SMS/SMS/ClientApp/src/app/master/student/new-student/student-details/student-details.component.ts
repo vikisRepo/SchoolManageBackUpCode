@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter, Input, SimpleChanges, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AnyRecord } from 'dns';
 import { SmsConstant } from 'src/app/shared/constant-values';
+import { FactorydataService } from 'src/app/shared/factorydata.service';
 import { FormTouched } from 'src/app/shared/interfaces/form-touched';
 
 @Component({
@@ -8,6 +10,9 @@ import { FormTouched } from 'src/app/shared/interfaces/form-touched';
   templateUrl: './student-details.component.html',
   styleUrls: ['./student-details.component.css']
 })
+
+
+
 export class StudentDetailsComponent implements OnInit ,FormTouched{
   @Output() stuFormtDetails = new EventEmitter();
   @Input() getFormValues = {};
@@ -30,11 +35,21 @@ export class StudentDetailsComponent implements OnInit ,FormTouched{
   pasOutScl =SmsConstant.passingOutSchool;
   yearOfAttends =SmsConstant.yearOfAttendence;
   addressData = null;
+  ALL_Section: any = [];
 
   @ViewChild('dt') addressDt: FormTouched;
 
-  constructor(private fb: FormBuilder) {
-    this.studentProfileForm = this.fb.group({
+  constructor(private fb: FormBuilder, private factory: FactorydataService) {
+      this.blood = factory.bloods;
+      this.salutations = factory.salutations;
+      this.maritalstatus = factory.maritalStatus;
+      this.religion = factory.religion;
+      this.gender = factory.gender;
+      this.nationality = factory.nationality;
+      this.motherTon = factory.motherTongue;
+      this.languageknown = factory.language;
+      this.class = factory.classes;
+      this.studentProfileForm = this.fb.group({
         salutation: ['',Validators.required]
       , firstName: [,[Validators.required, Validators.pattern('^[a-zA-Z ]*$')]]
       , middleName: ['']
@@ -93,13 +108,21 @@ export class StudentDetailsComponent implements OnInit ,FormTouched{
   ngOnInit(): void {
   }
 
-        // convenience getter for easy access to form fields
-        get f() { return this.studentProfileForm.controls; }
+  // convenience getter for easy access to form fields
+  get f() { return this.studentProfileForm.controls; }
+  
   getAddress(arrValue: any) {
     let value = Array.from(arrValue, (obj: any) => obj.value) as never[];
     this.formValues.addresses = value;
     this.addressValidFlag = !((Array.from(arrValue, (obj: any) => obj.valid)).includes(false));
     this.stuFormtDetails.emit({ value: this.formValues, valid: (this.studentProfileForm.valid && this.addressValidFlag) });
+  }
+
+  LoadSections(className)
+  {
+    this.factory.GetSectionByClassName(className.value).subscribe((data) => {
+      this.ALL_Section = data; 
+    });
   }
 
 

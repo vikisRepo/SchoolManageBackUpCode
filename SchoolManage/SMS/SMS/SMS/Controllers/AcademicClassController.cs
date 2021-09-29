@@ -231,20 +231,39 @@ namespace SMS.Controllers
 		[HttpGet("GetClassSubjects/{ClassName}")]
 		public IActionResult GetClassSubjects(string ClassName)
 		{
-			var q = (from academicClasses in _dbconext.AcademicClasses 
-					 join academicClassSubject in _dbconext.AcademicClassSubjects on academicClasses.AcademicClassId equals academicClassSubject.AcademicClassId
-					 join sub in _dbconext.Subjects on academicClassSubject.SubjectID equals sub.SubjectID
-					 orderby sub.SubjectID
-					 select new
-					 {
-						 academicClasses.ClassName, 
-						 sub.SubjectDescr
-					 }).Where(X => X.ClassName == ClassName).ToList();
+			//var q = (from academicClasses in _dbconext.AcademicClasses 
+			//		 join academicClassSubject in _dbconext.AcademicClassSubjects on academicClasses.AcademicClassId equals academicClassSubject.AcademicClassId
+			//		 join sub in _dbconext.Subjects on academicClassSubject.SubjectID equals sub.SubjectID
+			//		 orderby sub.SubjectID
+			//		 select new
+			//		 {
+			//			 academicClasses.ClassName, 
+			//			 sub.SubjectDescr
+			//		 }).Where(X => X.ClassName == ClassName).ToList();
 
-			//_dbconext.AcademicClassSubjects.Join(_dbconext.Subjects, 
-			//Where(X => X.AcademicClassId == _classId).Join
+			var academicClassSubjectId = _dbconext.AcademicClasses.Where(x => x.ClassName == ClassName).FirstOrDefault().AcademicClassSubjectId;
+			List<string> academicclass = academicClassSubjectId.Split(',').ToList();
 
-			return Ok(q);
+			return Ok(academicclass);
+		}
+
+		[HttpGet("GetClassSections/{ClassName}")]
+		public IActionResult GetClassSections(string ClassName)
+		{
+			//var q = (from academicClasses in _dbconext.AcademicClasses 
+			//		 join academicClassSubject in _dbconext.AcademicClassSubjects on academicClasses.AcademicClassId equals academicClassSubject.AcademicClassId
+			//		 join sub in _dbconext.Subjects on academicClassSubject.SubjectID equals sub.SubjectID
+			//		 orderby sub.SubjectID
+			//		 select new
+			//		 {
+			//			 academicClasses.ClassName, 
+			//			 sub.SubjectDescr
+			//		 }).Where(X => X.ClassName == ClassName).ToList();
+
+			var section = _dbconext.AcademicClasses.Where(x => x.ClassName == ClassName).FirstOrDefault().Section;
+			List<string> academicsection = section.Split(',').ToList();
+
+			return Ok(academicsection);
 		}
 
 

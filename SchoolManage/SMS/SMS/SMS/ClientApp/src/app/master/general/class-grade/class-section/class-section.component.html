@@ -21,7 +21,7 @@
             <mat-form-field appearance="standard" class="col-sm-4">
                 <mat-label>Subject</mat-label>
                 <mat-select formControlName="subjects" multiple>
-                    <mat-option *ngFor="let sub of subjectList" [value]="sub">{{sub}}</mat-option>
+                    <mat-option *ngFor="let sub of subjectList" [value]="sub.subjectDescr">{{sub.subjectDescr}}</mat-option>
                 </mat-select>
             </mat-form-field>
 

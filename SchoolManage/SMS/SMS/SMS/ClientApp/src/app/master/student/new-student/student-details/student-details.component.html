@@ -153,9 +153,9 @@
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
                     <mat-label>Class</mat-label>
-                    <mat-select formControlName="class">
-                        <mat-option *ngFor="let classes of class" [value]="classes.value">
-                            {{classes.viewValue}}
+                    <mat-select formControlName="class" (selectionChange)="LoadSections($event)">
+                        <mat-option *ngFor="let classes of class" [value]="classes.className" >
+                            {{classes.className}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -173,8 +173,8 @@
                 <mat-form-field appearance="standard">
                     <mat-label>Section</mat-label>
                     <mat-select formControlName="section">
-                        <mat-option *ngFor="let section of section " [value]="section.value">
-                            {{section.viewValue}}
+                        <mat-option *ngFor="let sec of ALL_Section " [value]="sec">
+                            {{sec}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
