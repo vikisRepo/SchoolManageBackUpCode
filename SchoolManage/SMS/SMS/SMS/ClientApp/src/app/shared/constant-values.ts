@@ -1,5 +1,6 @@
 export class SmsConstant {
-
+  
+  static sectionapiURL :any;
   static  bloods = [
     { bloodgroupId: 0, bloodgroupName: '--select none--' }
     // { value: "1", viewValue: 'A+ ve' },
@@ -96,10 +97,10 @@ export class SmsConstant {
   ];
 
   static  section = [
-    { value: 0, viewValue: '--select none--' },
-    { value: "1", viewValue: 'A' },
-    { value: "2", viewValue: 'B' },
-    { value: "3", viewValue: 'C' }
+    // { value: 0, viewValue: '--select none--' },
+    // { value: "1", viewValue: 'A' },
+    // { value: "2", viewValue: 'B' },
+    // { value: "3", viewValue: 'C' }
   ];
 
   static  schoolBrand = [

@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class FactorydataService {
-
+  sectionapiURL :any= environment.apiUrl + "/api/AcademicClass/GetClassSections/";
   constructor(private http: HttpClient) {
     
    }
@@ -188,8 +188,12 @@ export class FactorydataService {
   }
 
 
-  
-
-  
+  GetSectionByClassName(className : any): Observable<any> {
+      return this.http.get<any>(this.sectionapiURL+className)
+      .pipe(
+        retry(1),
+        catchError((err)=>this.handleError(err))
+      )
+    }
 
 }

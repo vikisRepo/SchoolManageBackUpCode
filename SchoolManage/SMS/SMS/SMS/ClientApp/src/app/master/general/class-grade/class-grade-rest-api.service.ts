@@ -59,8 +59,8 @@ export class ClassGradeRestApiService {
 
   }  
 
-  updateClassGrade(id : any, staff : ClassGrade): Observable<ClassGrade> {
-    return this.http.put<ClassGrade>(this.apiURL +'/'+ id, JSON.stringify(staff))
+  updateClassGrade(id : any, staff : any): Observable<any> {
+    return this.http.put<any>(this.apiURL +'/'+ id, JSON.stringify(staff))
     .pipe(
       retry(1),
       catchError(this.handleError)

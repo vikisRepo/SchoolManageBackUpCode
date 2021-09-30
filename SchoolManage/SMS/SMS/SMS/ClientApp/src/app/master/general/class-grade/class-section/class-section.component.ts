@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SmsConstant } from 'src/app/shared/constant-values';
+import { FactorydataService } from 'src/app/shared/factorydata.service';
 import { ClassGradeRestApiService } from '../class-grade-rest-api.service';
 
 @Component({
@@ -17,16 +18,17 @@ export class ClassSectionComponent implements OnInit {
   // sectionList=SmsConstant.Sectiondropdown;
   _eventtype : any;
   newFlag:boolean=false;
-  sectionList: string[] = ['A', 'B', 'C', 'D', 'E'];
-  subjectList: string[] = ['English', 'Tamil', 'Maths', 'Science', 'Social'];
+  sectionList: string[] = ['A', 'B', 'C', 'D', 'E', 'F'];
+  subjectList = SmsConstant.Subjectsdropdown;
   csForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private classGradeRestApiService :ClassGradeRestApiService) {
+  constructor(private fb: FormBuilder, private classGradeRestApiService :ClassGradeRestApiService, private factory: FactorydataService) {
+    this.subjectList = factory.Subjectsdropdown;
     this.csForm = this.fb.group({
-      class: [''],
-      subjects: [''],
-      sections: [''],
-      group: [''],
+      class: ['', Validators.required],
+      subjects: ['', Validators.required],
+      sections: ['', Validators.required],
+      group: ['', Validators.required],
       academicYear: [Date.now]
     });
 
