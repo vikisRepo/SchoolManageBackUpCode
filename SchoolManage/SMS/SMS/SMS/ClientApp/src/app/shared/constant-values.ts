@@ -50,7 +50,7 @@ export class SmsConstant {
   ];
 
   static  languageKnown = [
-    { languageId: 0, languageDescription: '--select none--' }
+    // { languageId: 0, languageDescription: '--select none--' }
     // { value: 1, viewValue: 'Tamil' },
     // { value: 2, viewValue: 'English' },
     // { value: 3, viewValue: 'Telugu' }

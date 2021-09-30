@@ -54,7 +54,7 @@ namespace SMS.Controllers
 		public void Post([FromBody] Student student)
 		{
 			RegisterRequest model = new RegisterRequest();
-			model.Title = student.Salutation;
+			model.Title = _dbcontext.Salutations.Where(salutation => salutation.SalutationId == student.Salutation).FirstOrDefault().SalutationName;
 			model.FirstName = student.FirstName;
 			model.Email = Convert.ToString(student.AdmissionNumber);
 			model.LastName = student.LastName;

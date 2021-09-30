@@ -47,7 +47,10 @@ export class StudentDetailsComponent implements OnInit ,FormTouched{
       this.gender = factory.gender;
       this.nationality = factory.nationality;
       this.motherTon = factory.motherTongue;
+      debugger;
       this.languageknown = factory.language;
+      this.firstLang = factory.language;
+      this.secndLanguage = factory.language;
       this.class = factory.classes;
       this.studentProfileForm = this.fb.group({
         salutation: ['',Validators.required]
@@ -62,7 +65,7 @@ export class StudentDetailsComponent implements OnInit ,FormTouched{
       , emailId: ['', [Validators.required, Validators.email]]
       , aadharNumber: [, [Validators.required, Validators.maxLength(12),Validators.minLength(12), Validators.pattern(/^[0-9]\d*$/)]]
       , mobile: [, [Validators.required, Validators.maxLength(10), Validators.pattern(/^[0-9]\d*$/)]]
-      , admissionNumber: ['',Validators.required]
+      , admissionNumber: ['',[Validators.required,Validators.pattern(/^[0-9]\d*$/)]]
       , admissionDate: ['',Validators.required]
       , class: ['',Validators.required]
       , section: ['',Validators.required]

@@ -160,7 +160,8 @@ export class FactorydataService {
   }
 
   get language(){
-    return JSON.parse(sessionStorage.getItem("languageKnown"));
+    debugger;
+    return JSON.parse(sessionStorage.getItem("language"));//languageKnown
   }
 
   get banks(){
@@ -189,6 +190,7 @@ export class FactorydataService {
 
 
   GetSectionByClassName(className : any): Observable<any> {
+    debugger;
       return this.http.get<any>(this.sectionapiURL+className)
       .pipe(
         retry(1),

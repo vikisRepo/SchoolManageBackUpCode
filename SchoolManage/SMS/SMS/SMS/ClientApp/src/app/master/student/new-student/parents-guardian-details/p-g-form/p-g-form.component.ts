@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output, SimpleChange } from '@a
 import { Validators } from '@angular/forms';
 import { FormGroup, FormBuilder, Validator, FormControl } from '@angular/forms';
 import { SmsConstant } from 'src/app/shared/constant-values';
+import { FactorydataService } from 'src/app/shared/factorydata.service';
 import { FormTouched } from 'src/app/shared/interfaces/form-touched';
 
 @Component({
@@ -18,7 +19,8 @@ export class PGFormComponent implements OnInit, FormTouched {
   @Output() pflagEmit = new EventEmitter<boolean>();
   parents: FormGroup;
   salutations = SmsConstant.salutations;
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private factory: FactorydataService) {
+    this.salutations = factory.salutations;
     this.parents = fb.group({
       salutation: ['', Validators.required]
       , firstName: ['', Validators.required]
