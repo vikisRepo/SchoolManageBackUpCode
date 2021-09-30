@@ -23,15 +23,15 @@ namespace SMS.Models
         //[IgnoreDataMember]
         //public StudentUserCred StudentUserCred { get; set; }
 
-        public string Salutation { get; set; }
+        public int? Salutation { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
         public DateTime Dob { get; set; }
-        public string BloodGroup { get; set; }
+        public int? BloodGroup { get; set; }
         public int? NationalityId { get; set; }
         public int? ReligionId { get; set; }
-        public string Gender { get; set; }
+        public int? Gender { get; set; }
         public string EmailId { get; set; }
         public string AadharNumber { get; set; }
 
@@ -51,8 +51,8 @@ namespace SMS.Models
         public string Class { get; set; }
         public string Section { get; set; }
         public string RollNo { get; set; }
-        public string FirstLanguage { get; set; }
-        public string SecondLanguage { get; set; }
+        public int? FirstLanguage { get; set; }
+        public int? SecondLanguage { get; set; }
         public string EmisNumber { get; set; }
         public string schoolName { get; set; }
         public int? schoolBrand { get; set; }

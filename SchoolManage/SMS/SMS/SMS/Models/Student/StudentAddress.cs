@@ -29,11 +29,11 @@ namespace SMS.Models
 
 		public string Line3 { get; set; }
 
-		public string City { get; set; }
+		public int? City { get; set; }
 
-		public string Sate { get; set; }
+		public int? Sate { get; set; }
 
-		public string Country { get; set; }
+		public int? Country { get; set; }
 
 		public string Pincode { get; set; }
 
