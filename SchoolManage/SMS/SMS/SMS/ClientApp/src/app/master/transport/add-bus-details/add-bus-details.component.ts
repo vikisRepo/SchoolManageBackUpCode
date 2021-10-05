@@ -68,7 +68,7 @@ export class AddBusDetailsComponent implements OnInit {
   }
 
   submit() {
-    debugger
+   // debugger
     this.blockUI.start();
     // this.submitted = true;
 

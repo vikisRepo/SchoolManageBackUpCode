@@ -9,6 +9,7 @@ import { MatSort } from '@angular/material/sort';
 import { SmsConstant } from 'src/app/shared/constant-values';
 import { Student } from '../student';
 import { Router } from '@angular/router';
+import { FactorydataService } from 'src/app/shared/factorydata.service';
 @Component({
   selector: 'app-student-list',
   templateUrl: './student-list.component.html',
@@ -38,10 +39,13 @@ export class StudentListComponent implements OnInit {
   classes = SmsConstant.classes;
   sectiones =SmsConstant.Sectiondropdown;
   statuses = SmsConstant.status;
+  ALL_Section: any = [];
+  filterSelectObj = [];
 
   columnsToDisplay = ['StudentName','EsisNumber', 'MobileNumber','Email','Class','Section', 'Actions'];
 
-  constructor(private fb: FormBuilder,private studentrestApiService : StudentrestApiService, private router:Router) { 
+  constructor(private fb: FormBuilder,private studentrestApiService : StudentrestApiService, private router:Router, private factory: FactorydataService) { 
+    this.classes = factory.classes;
     this.studentfilters = this.fb.group({
       classFilter: [''],
       sectionFilter: [''],
@@ -61,7 +65,7 @@ export class StudentListComponent implements OnInit {
     this.blockUI.start();
 
     this.currentUserSubscription = this.studentrestApiService.getStudents().subscribe((student:any) => {
-      debugger;
+      //debugger;
       this.currentStudent = student;
       this.studentListData = new MatTableDataSource(student);
        this.studentListData.paginator = this.paginator;
@@ -82,17 +86,20 @@ export class StudentListComponent implements OnInit {
     });
     this.blockUI.stop();
   }
-  applyFilter(event: any) {
-    console.log(event)
-  
-    const filterValue = this.studentfilters.value[event];
-    this.studentListData.filter = filterValue.trim().toLowerCase();
+
+  applyFilterClass(event: any) {
+    const filterValues = {
+      Class: this.studentfilters.value["classFilter"].toLowerCase()
+    };
+    debugger;
+    this.studentListData.filter = JSON.stringify(filterValues);
   }
 
   filterToggle()
   {
     this.filters = !this.filters;
   }
+
   editStudent(student : Student)
   {
     this.router.navigate(['/new-student',student.admissionNumber]);
@@ -105,4 +112,10 @@ export class StudentListComponent implements OnInit {
     this.studentfilters.reset();
   }
 
+  LoadSections(className)
+  {
+    this.factory.GetSectionByClassName(className.value).subscribe((data) => {
+      this.ALL_Section = data; 
+    });
+  }
 }

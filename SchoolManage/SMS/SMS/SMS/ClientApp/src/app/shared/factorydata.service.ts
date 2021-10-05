@@ -160,7 +160,7 @@ export class FactorydataService {
   }
 
   get language(){
-    debugger;
+    //debugger;
     return JSON.parse(sessionStorage.getItem("language"));//languageKnown
   }
 
@@ -190,7 +190,7 @@ export class FactorydataService {
 
 
   GetSectionByClassName(className : any): Observable<any> {
-    debugger;
+   // debugger;
       return this.http.get<any>(this.sectionapiURL+className)
       .pipe(
         retry(1),

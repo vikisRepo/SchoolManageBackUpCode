@@ -53,7 +53,7 @@ export class NewStaffComponent implements OnInit, AfterViewInit {
   }
 
   btnMovement(st: string) {
-    debugger;
+    //debugger;
     let flg = this.dt.toArray()[this.selectedTab].formTouched();
     console.log(flg)
    

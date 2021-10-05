@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.Helpers;
 
 namespace SMS.Migrations.MysqlData
 {
     [DbContext(typeof(MysqlDataContext))]
-    partial class MysqlDataContextModelSnapshot : ModelSnapshot
+    [Migration("20211005124902_updateAcademicPercentagetoString")]
+    partial class updateAcademicPercentagetoString
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -725,8 +727,8 @@ namespace SMS.Migrations.MysqlData
                     b.Property<string>("Occupation")
                         .HasColumnType("text");
 
-                    b.Property<int>("SalutationId")
-                        .HasColumnType("int");
+                    b.Property<string>("SalutationId")
+                        .HasColumnType("text");
 
                     b.HasKey("DependentsId");
 

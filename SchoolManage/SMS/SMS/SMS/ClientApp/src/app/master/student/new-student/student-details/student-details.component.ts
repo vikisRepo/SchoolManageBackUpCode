@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input, SimpleChanges, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AnyRecord } from 'dns';
+import { FileDetector } from 'selenium-webdriver';
 import { SmsConstant } from 'src/app/shared/constant-values';
 import { FactorydataService } from 'src/app/shared/factorydata.service';
 import { FormTouched } from 'src/app/shared/interfaces/form-touched';
@@ -47,7 +48,7 @@ export class StudentDetailsComponent implements OnInit ,FormTouched{
       this.gender = factory.gender;
       this.nationality = factory.nationality;
       this.motherTon = factory.motherTongue;
-      debugger;
+      //debugger;
       this.languageknown = factory.language;
       this.firstLang = factory.language;
       this.secndLanguage = factory.language;
@@ -58,13 +59,13 @@ export class StudentDetailsComponent implements OnInit ,FormTouched{
       , middleName: ['']
       , lastName:  [, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]]
       , dob: ['',Validators.required]
-      , bloodGroup: ['',Validators.required]
-      , nationalityId: ['',Validators.required]
-      , religionId: ['',Validators.required]
-      , gender: ['',Validators.required]
+      , bloodGroup: [0,Validators.required]
+      , nationalityId: [0,Validators.required]
+      , religionId: [0,Validators.required]
+      , gender: [0,Validators.required]
       , emailId: ['', [Validators.required, Validators.email]]
       , aadharNumber: [, [Validators.required, Validators.maxLength(12),Validators.minLength(12), Validators.pattern(/^[0-9]\d*$/)]]
-      , mobile: [, [Validators.required, Validators.maxLength(10), Validators.pattern(/^[0-9]\d*$/)]]
+      , mobile: ['', [Validators.required, Validators.maxLength(10), Validators.pattern(/^[0-9]\d*$/)]]
       , admissionNumber: ['',[Validators.required,Validators.pattern(/^[0-9]\d*$/)]]
       , admissionDate: ['',Validators.required]
       , class: ['',Validators.required]
@@ -73,18 +74,17 @@ export class StudentDetailsComponent implements OnInit ,FormTouched{
       , firstLanguage: ['',Validators.required]
       , secondLanguage: ['',Validators.required]
       , emisNumber: ['',Validators.required]
-      , schoolName: ['',Validators.required]
-      , schoolBrand: ['',Validators.required]
-      , passingOutSchool: ['',Validators.required]
-      , yearofattendence: ['',Validators.required]
-      , academicPrecentage: ['',Validators.required]
-      , reasonForLeaving: ['',Validators.required]
-      
+      , schoolName: ['']
+      , schoolBrand: [0]
+      , passingOutSchool: [0]
+      , yearofattendence: [0]
+      , academicPrecentage: ['',[Validators.pattern(/^[0-9]\d*$/)]]
+      , reasonForLeaving: ['']
     });
 
     this.studentProfileForm.valueChanges.subscribe(() => {
       Object.assign(this.formValues, this.studentProfileForm.value);
-      this.stuFormtDetails.emit({ value: this.formValues, valid: (this.studentProfileForm.valid && this.addressValidFlag) });
+      this.stuFormtDetails.emit({ value: this.formValues, valid: (this.studentProfileForm.valid && this.addressValidFlag) }); // 
 
     })
     

@@ -17,7 +17,7 @@ namespace SMS.Models
         public string MiddleName { get; set; }
         public long MobileNumber { get; set; }
         public string Occupation { get; set; }
-        public string SalutationId { get; set; }
+        public int SalutationId { get; set; }
 
         public string AadharNumber { get; set; }
         public long AnnualIncome { get; set; }

@@ -57,8 +57,8 @@ namespace SMS.Models
         public string schoolName { get; set; }
         public int? schoolBrand { get; set; }
         public int? passingOutSchool { get; set; }
-        public int? yearofattendence { get; set; }
-        public int AcademicPrecentage { get; set; }
+        public int yearofattendence { get; set; }
+        public string AcademicPrecentage { get; set; }
         public string ReasonForLeaving { get; set; }
         //public byte[] ProfilePic { get; set; }
         //public byte[] TransferCertificate { get; set; }

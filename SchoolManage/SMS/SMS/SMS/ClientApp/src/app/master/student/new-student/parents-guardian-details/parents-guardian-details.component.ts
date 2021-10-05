@@ -13,7 +13,7 @@ import { PGFormComponent } from './p-g-form/p-g-form.component';
 export class ParentsGuardianDetailsComponent implements OnInit, FormTouched {
   @Output() stuFormtDetails = new EventEmitter();
   @Input() getFormValues = {};
-  @Input() arryoffPersonJson: any = {
+  @Input() arryoffPersonJson : any = {
     dependentsdetails: [4],
     // motherDetails: {},
     // localGuardian: {},
@@ -47,29 +47,39 @@ export class ParentsGuardianDetailsComponent implements OnInit, FormTouched {
      // console.log(this.arryoffPersonJson)
       setTimeout(()=>{
         let g=this.pgFroms.toArray();
-        console.log(g.length,g[0])
+        console.log(g.length,g[0]);
+        g[0].parents.disable(); 
+        g[0].parenttoggle = false;
+        g[1].parents.disable(); 
+        g[1].parenttoggle = false;
+        g[2].parents.disable(); 
+        g[2].parenttoggle = false;
+        g[3].parents.disable(); 
+        g[3].parenttoggle = false;
         this.arryoffPersonJson.dependentsdetails.forEach((element,index) => {
-         
+        g[index].parents.enable();  
+        g[index].parenttoggle = true;
         g[index].parents.patchValue(element);
-      });},0)
+      });},30)
     
     }
    // this.arryoffPersonJson.dependentsdetails=this.getFormValues["dependentsdetails"];
   }
 
   getParentsInfo(obj: any, flg: number) {
-    this.stuParentDetails[flg] = obj.valid;
-    switch (flg) {
-      case 0: this.arryoffPersonJson.dependentsdetails[flg] = obj.value;
-        break;
-      case 1: this.arryoffPersonJson.dependentsdetails[flg] = obj.value;
-        break;
-      case 2: this.arryoffPersonJson.dependentsdetails[flg] = obj.value;
-        break;
-      case 3: this.arryoffPersonJson.dependentsdetails[flg] = obj.value;
-        break;
-
+    if (!obj.disabled) {
+      this.stuParentDetails[flg] = obj.valid;
+      switch (flg) {
+        case 0: this.arryoffPersonJson.dependentsdetails[flg] = obj.value;
+          break;
+        case 1: this.arryoffPersonJson.dependentsdetails[flg] = obj.value;
+          break;
+        case 2: this.arryoffPersonJson.dependentsdetails[flg] = obj.value;
+          break;
+        case 3: this.arryoffPersonJson.dependentsdetails[flg] = obj.value;
+          break;
+      }
+      this.stuFormtDetails.emit({ value: this.arryoffPersonJson, valid: this.stuParentDetails[flg] });
     }
-    this.stuFormtDetails.emit({ value: this.arryoffPersonJson, valid: this.stuParentDetails[flg] });
   }
 }

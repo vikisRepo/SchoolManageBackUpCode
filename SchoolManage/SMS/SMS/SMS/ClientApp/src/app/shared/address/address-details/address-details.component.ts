@@ -48,7 +48,7 @@ export class AddressDetailsComponent implements OnInit, FormTouched {
 
   cTp(flag: boolean) {
     if (flag) {
-      debugger;
+     // debugger;
       this.cTpFlag = true;
       this.formPermanentAddress = this.adderessArray[0].value;
       this.adderessArray[1] = this.adderessArray[0];

@@ -1,5 +1,7 @@
 import { Component, Input,EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { MessageBoxComponent } from 'src/app/shared/dialog-boxes/message-box/message-box.component';
 import { FactorydataService } from 'src/app/shared/factorydata.service';
 import { Subject } from '../Models/subject';
 import { SubjectRestApiService } from '../subject-rest-api.service';
@@ -15,7 +17,8 @@ export class SubjectsComponent implements OnInit {
 
  newFlag:boolean=false;
  subjectForm: FormGroup;
-  constructor(private fb: FormBuilder, private subjectApi : SubjectRestApiService, private factory: FactorydataService) {
+  constructor(private fb: FormBuilder, private subjectApi : SubjectRestApiService, 
+    private factory: FactorydataService, public dialog: MatDialog) {
     
     this.subjectForm = this.fb.group({
       subjectDescr :[, Validators.required],
@@ -48,6 +51,11 @@ export class SubjectsComponent implements OnInit {
 
     this.subjectApi.createSubject(this.subjectForm.value).subscribe(_=>{
       this.btnEvent.emit();
+      this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"New Subject saved successfully !"});
+      setTimeout(() => {
+        this.dialog.closeAll();
+        this.factory.Loadfactorydata();
+      }, 1000);
     });
 
   }
@@ -61,6 +69,11 @@ export class SubjectsComponent implements OnInit {
     
     this.subjectApi.deleteSubject(this.expData.subjectID).subscribe(_=>{
       this.btnEvent.emit();
+      this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"Subject deleted successfully !"});
+      setTimeout(() => {
+        this.dialog.closeAll();
+        this.factory.Loadfactorydata();
+      }, 1000);
     });
 
   }
@@ -69,6 +82,11 @@ export class SubjectsComponent implements OnInit {
   {
     this.subjectApi.updateSubject(this.expData.subjectID, this.subjectForm.value).subscribe(_=>{
       this.btnEvent.emit();
+      this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"Subject updated successfully !"});
+      setTimeout(() => {
+        this.dialog.closeAll();
+        this.factory.Loadfactorydata();
+      }, 1000);
     });
 
   }

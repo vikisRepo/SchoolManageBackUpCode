@@ -69,7 +69,7 @@ export class InventoryDetailComponent implements OnInit,FormTouched {
   }
 
   toggle() {
-    debugger;
+   // debugger;
     if (this.inventoryDetailForm.get('warrenOrGarantee').enabled) {
       this.inventoryDetailForm.get('warrenOrGarenInfo').enable();
       return;

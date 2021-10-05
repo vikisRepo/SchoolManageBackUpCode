@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { SmsConstant } from 'src/app/shared/constant-values';
+import { MessageBoxComponent } from 'src/app/shared/dialog-boxes/message-box/message-box.component';
 import { FactorydataService } from 'src/app/shared/factorydata.service';
 import { ClassGradeRestApiService } from '../class-grade-rest-api.service';
 
@@ -22,7 +24,8 @@ export class ClassSectionComponent implements OnInit {
   subjectList = SmsConstant.Subjectsdropdown;
   csForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private classGradeRestApiService :ClassGradeRestApiService, private factory: FactorydataService) {
+  constructor(private fb: FormBuilder, private classGradeRestApiService :ClassGradeRestApiService, private factory: FactorydataService,
+    public dialog: MatDialog) {
     this.subjectList = factory.Subjectsdropdown;
     this.csForm = this.fb.group({
       class: ['', Validators.required],
@@ -69,6 +72,11 @@ export class ClassSectionComponent implements OnInit {
     console.log(this.csForm.value);
     this.classGradeRestApiService.createClassGrade(this.csForm.value).subscribe(_=>{
       this.btnEvent.emit();
+      this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"Class has been created successfully !"});
+      setTimeout(() => {
+        this.dialog.closeAll();
+        this.factory.Loadfactorydata();
+      }, 1000);
     });
 
  }
@@ -85,6 +93,11 @@ export class ClassSectionComponent implements OnInit {
     
     this.classGradeRestApiService.deleteClassGrade(this.expData.class).subscribe(_=>{
       this.btnEvent.emit();
+      this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"Class has been deleted successfully !"});
+      setTimeout(() => {
+        this.dialog.closeAll();
+        this.factory.Loadfactorydata();
+      }, 1000);
     });
 
   }
@@ -93,6 +106,11 @@ export class ClassSectionComponent implements OnInit {
   {
     this.classGradeRestApiService.updateClassGrade(this.expData.class, this.csForm.value).subscribe(_=>{
       this.btnEvent.emit();
+      this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"Class has been updated successfully !"});
+      setTimeout(() => {
+        this.dialog.closeAll();
+        this.factory.Loadfactorydata();
+      }, 1000);
     });
 
   }

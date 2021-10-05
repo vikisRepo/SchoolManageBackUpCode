@@ -14,7 +14,7 @@ export class SchedulerComponent implements OnInit {
   constructor(public sanitizer: DomSanitizer) { }
 
   ngOnInit() {
-    debugger;
+    //debugger;
     this.urlSafe= this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
   }
 

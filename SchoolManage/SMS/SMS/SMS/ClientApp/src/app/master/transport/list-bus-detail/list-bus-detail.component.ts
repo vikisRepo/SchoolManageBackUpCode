@@ -36,7 +36,7 @@ export class ListBusDetailComponent implements OnInit {
   
   columnsToDisplay = ['busNumber', 'companyName','driverName','driverNumber'];
   constructor(private router:Router,private busanddriverApiService: BusanddriverService) { 
-    debugger;
+    //debugger;
     this.loadBusDetails();
   }
 
@@ -52,7 +52,7 @@ export class ListBusDetailComponent implements OnInit {
       console.log(this.ListbusData);
      
        this.blockUI.stop();
-      debugger;
+     // debugger;
       this.rows = this.ListbusData.data.length;
     });
 

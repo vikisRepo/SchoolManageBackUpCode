@@ -8,6 +8,7 @@ import { MessageBoxComponent } from 'src/app/shared/dialog-boxes/message-box/mes
 import { MatDialog } from '@angular/material/dialog';
 import { FormTouched } from 'src/app/shared/interfaces/form-touched';
 import { QueryList } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-new-student',
@@ -48,6 +49,10 @@ export class NewStudentComponent implements OnInit {
           // this.dependentsdetails.emit({ value: this.dependentsdetails, valid: this.dependentsdetails });
         }, error => console.log(error));
     }
+    else 
+    {
+      this.parentG = {dependentsdetails:[]};
+    }
     
   }
   
@@ -58,7 +63,7 @@ export class NewStudentComponent implements OnInit {
   }
 
   btnMovement(st: string) {
-debugger;
+//debugger;
    let flg = this.dt.toArray()[this.selectedTab].formTouched();
    console.log(flg)
    
@@ -119,6 +124,8 @@ debugger;
   }
   
   setTabFormDetails(value: any,tab:number){
+    // if (!environment.production)
+    //     debugger;
     this.stuFormtDetails[tab] = value.valid;
     Object.assign(this.stuJsonResult,value.value);
     console.log(value.value);

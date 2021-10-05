@@ -109,7 +109,7 @@ export class StaffAttendanceComponent implements OnInit {
     //   row.present=0;
     //   return;
     // }
-    debugger;
+    //debugger;
     this.staffAttendanceRequest.employeeId = row.employeeId;
     this.staffAttendanceRequest.staffAttendanceId = row.staffAttendanceId;
     this.staffAttendanceRequest.updateType = 1;
@@ -132,7 +132,7 @@ export class StaffAttendanceComponent implements OnInit {
     //   row.absent=0;
     //   return;
     // }
-    debugger;
+    //debugger;
     this.staffAttendanceRequest.employeeId = row.employeeId;
     this.staffAttendanceRequest.staffAttendanceId = row.staffAttendanceId;
     this.staffAttendanceRequest.updateType = 2;
@@ -156,7 +156,7 @@ export class StaffAttendanceComponent implements OnInit {
     //   row.halfDay=0;
     //   return;
     // }
-    debugger;
+    //debugger;
     this.staffAttendanceRequest.employeeId = row.employeeId;
     this.staffAttendanceRequest.staffAttendanceId = row.staffAttendanceId;
     this.staffAttendanceRequest.updateType = 3;

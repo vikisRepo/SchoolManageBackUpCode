@@ -19,29 +19,34 @@ export class PGFormComponent implements OnInit, FormTouched {
   @Output() pflagEmit = new EventEmitter<boolean>();
   parents: FormGroup;
   salutations = SmsConstant.salutations;
+  enabletoggle: boolean[] = [false, false, false, false]; 
+  public parenttoggle : boolean = true;
+
   constructor(private fb: FormBuilder, private factory: FactorydataService) {
+
     this.salutations = factory.salutations;
     this.parents = fb.group({
-      salutation: ['', Validators.required]
+        salutationId: ['', Validators.required]
       , firstName: ['', Validators.required]
-      , middleName: ['', Validators.required]
+      , middleName: ['']
       , lastName: ['', Validators.required]
-      , mobileNumber: [, Validators.required]
+      , mobileNumber: ['', Validators.required]
       , occupation: ['', Validators.required]
       , email: ['', Validators.required]
       , aadharNumber: ['', Validators.required]
       , company: ['', Validators.required]
       , designation: ['', Validators.required]
-      , annualIncome: [, Validators.required]
+      , annualIncome: ['', Validators.required]
       , bvEmployee: [false]
     });
 
     this.parents.valueChanges.subscribe(() => {
       this.formValue.emit({
-        value: this.parents.value, valid: this.parents.valid
+        value: this.parents.value, valid: this.parents.valid, disabled: this.parents.disabled
       })
     });
   }
+
   formTouched(): boolean {
 
     this.parents.markAllAsTouched();
@@ -57,7 +62,7 @@ export class PGFormComponent implements OnInit, FormTouched {
       this.parents.enable();
       return;
     }
-    // this.parents.reset();
+   // this.parents.reset();
     this.parents.disable();
   }
 

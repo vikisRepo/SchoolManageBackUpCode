@@ -1,13 +1,15 @@
 <div class="container-fluid ">
     <form  [formGroup]="parents" class="p-base">
-        <p class="mat-title"> <mat-slide-toggle color="primary" labelPosition="before" [checked]="true" (click)="toggle()">{{titleLabel}}</mat-slide-toggle></p>
+        <p class="mat-title"> 
+            <mat-slide-toggle color="primary" labelPosition="before" [checked]="parenttoggle" (click)="toggle()">{{titleLabel}}</mat-slide-toggle>
+        </p>
         <div style="margin-top:5px">
 
             <div class="row">
                 <div class="col-sm-3">
                     <mat-form-field appearance="standard">
                         <mat-label>Salutation</mat-label>
-                        <mat-select formControlName="salutation">
+                        <mat-select formControlName="salutationId">
                             <mat-option *ngFor="let salutation of salutations" [value]="salutation.salutationId">
                                 {{salutation.salutationName}}
                             </mat-option>

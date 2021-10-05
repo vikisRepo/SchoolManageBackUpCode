@@ -11,19 +11,11 @@
    <div class="container-fluid" style="margin-top:-5px">
         <div class="row">
             <div class="col-sm-2">
-                <!-- <mat-form-field appearance="standard">
-                    <mat-label>Class</mat-label>
-                    <mat-select (selectionChange)="classchange($event.value)">
-                        <mat-option *ngFor="let class  of classes " [value]="class .value">
-                            {{class .viewValue}} 
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field> -->
                 <mat-form-field appearance="standard">
                     <mat-label>Class</mat-label>
-                    <mat-select formControlName="classFilter" (selectionChange)="applyFilter('classFilter')">
-                        <mat-option *ngFor="let classFilter  of classes " [value]="classFilter .viewValue">
-                            {{classFilter .viewValue}} 
+                    <mat-select formControlName="classFilter" (selectionChange)="applyFilterClass('classFilter')" (selectionChange)="LoadSections($event)">
+                        <mat-option *ngFor="let classes  of classes " [value]="classes.className">
+                            {{classes.className}} 
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -31,9 +23,9 @@
             <div class="col-sm-2">
                 <mat-form-field appearance="standard">
                     <mat-label>Section</mat-label>
-                    <mat-select formControlName="sectionFilter" (selectionChange)="applyFilter('sectionFilter')">
-                        <mat-option *ngFor="let sectionFilter  of sectiones " [value]="sectionFilter.viewValue">
-                            {{sectionFilter .viewValue}} 
+                    <mat-select formControlName="sectionFilter" (selectionChange)="applyFilterClass('sectionFilter')" >
+                        <mat-option *ngFor="let sec of ALL_Section " [value]="sec">
+                            {{sec}} 
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -41,7 +33,7 @@
             <div class="col-sm-2">
                 <mat-form-field appearance="standard">
                     <mat-label>Status</mat-label>
-                    <mat-select formControlName="statusvalueFilter" (selectionChange)="applyFilter('statusvalueFilter')">
+                    <mat-select formControlName="statusvalueFilter" (selectionChange)="applyFilterClass('statusvalueFilter')">
                         <mat-option *ngFor="let statusvalueFilter  of statuses " [value]="statusvalueFilter.viewValue">
                             {{statusvalueFilter .viewValue}} 
                         </mat-option>

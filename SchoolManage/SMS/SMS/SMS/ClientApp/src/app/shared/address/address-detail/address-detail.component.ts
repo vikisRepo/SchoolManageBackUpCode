@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, EventEmitter, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 import { SmsConstant } from '../../constant-values';
 import { FactorydataService } from '../../factorydata.service';
 import { FormTouched } from '../../interfaces/form-touched';
@@ -28,16 +29,18 @@ export class AddressDetailComponent implements OnInit, OnChanges, FormTouched {
     console.log(this.factroy.city);
     this.form = fb.group(
       {
-        "line1": ['', [Validators.required, Validators.maxLength(30)]],
-        "line2": ['', [Validators.required, Validators.maxLength(30)]],
-        "line3": ['', Validators.maxLength(30)],
-        "city": ['', [Validators.required, Validators.maxLength(30)]],
-        "sate": ['', [Validators.required, Validators.maxLength(30)]],
-        "country": ['', [Validators.required, Validators.maxLength(30)]],
-        "pincode": ['', [Validators.required, Validators.maxLength(30)]]
+        "line1": ['', [Validators.required]], //, Validators.maxLength(30)
+        "line2": ['', [Validators.required]], //, Validators.maxLength(30)
+        "line3": ['', ], //Validators.maxLength(30)
+        "city": ['', [Validators.required]], //, Validators.maxLength(30)
+        "sate": ['', [Validators.required]], //, Validators.maxLength(30)
+        "country": ['', [Validators.required]], //, Validators.maxLength(30)
+        "pincode": ['', [Validators.required]] //, Validators.maxLength(30)
       });
 
     this.form.valueChanges.subscribe(() => {
+      if (!environment.production)
+        debugger;
       this.formValue.emit({ value: this.form.value, valid: this.form.valid });
     });
 
