@@ -23,14 +23,14 @@ export class InventoryDetailComponent implements OnInit,FormTouched {
     this.itemtype = factory.itemName;
     this.itemusageAreaType = factory.itemUsageArea;
     this.inventoryDetailForm = this.fb.group({
-      itemName : ['',Validators.required]
+      itemName : [,[Validators.required,Validators.pattern(/^[a-zA-Z0-9_]*$/)]]
       ,itemTypeId : ['',Validators.required]
       ,modelNumber : ['',[Validators.required,Validators.pattern(/^[a-zA-Z0-9_]*$/)]]
       ,serialNumber : ['',[Validators.required,Validators.pattern(/^[a-zA-Z0-9_]*$/)]]
       ,warrenOrGarenInfo : ['',Validators.required] 
       ,itemUsageId : ['',Validators.required]
       ,warrenOrGarantee: [false, Validators.required]
-      ,brandName : ['',Validators.required]
+      ,brandName : [, [Validators.required,Validators.pattern('^[a-zA-Z ]*$')]]
       ,quantity : [,[Validators.required, Validators.pattern(/^[0-9]\d*$/)]]
     })
     this.inventoryDetailForm.valueChanges.subscribe(()=>{

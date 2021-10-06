@@ -17,10 +17,10 @@ export class VendorDetailsComponent implements OnInit {
   constructor(private fb:FormBuilder, private _InventoryAPI: InventoryService) {
 
     this.vendorDetailForm = this.fb.group({
-      vendorName : ['', Validators.required]
-      ,itemPriceorPerUnit : ['', [Validators.required,Validators.pattern(/^[0-9]\d*$/)]]
-      ,vendorAddress : ['', Validators.required]
-      ,vendorNumber : ['', Validators.required]
+      vendorName : ['']
+      ,itemPriceorPerUnit : [,[Validators.required, Validators.pattern(/^[0-9]\d*$/)]]
+      ,vendorAddress : ['']
+      ,vendorNumber : ['']
     });
     
     this.vendorDetailForm.valueChanges.subscribe(()=>{      
@@ -29,7 +29,7 @@ export class VendorDetailsComponent implements OnInit {
       this.vendorFormDetails.emit({value: this.vendorDetailForm.value, valid:this.vendorDetailForm.valid});  
     });
    }
-
+   get f() { return this.vendorDetailForm.controls; }
    formTouched(): boolean {
 
     this.vendorDetailForm.markAllAsTouched();
