@@ -57,7 +57,7 @@ namespace SMS.Controllers
 		{
 
 			RegisterRequest model = new RegisterRequest();
-			model.Title = staff.SalutationId;
+			model.Title = _dbcontext.Salutations.Where(x => x.SalutationId == staff.SalutationId).FirstOrDefault().SalutationName;
 			model.FirstName = staff.FirstName;
 			model.Email = Convert.ToString(staff.Mobile);
 			model.LastName = staff.LastName;

@@ -116,6 +116,7 @@ export class StaffListComponent implements OnInit {
 
   editStaff(staff : Staff)
   {
+    debugger;
     this.router.navigate(['new-staff',staff.mobile]);
     // this.staffApiService.deleteStaff(staff.mobile).subscribe(_=>{
     // });

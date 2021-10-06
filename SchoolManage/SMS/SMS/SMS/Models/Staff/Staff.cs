@@ -17,18 +17,18 @@ namespace SMS.Models
 		public int StaffId { get; set; }
 
 		//Salutation Dropdown
-		public string SalutationId { get; set; }
+		public int SalutationId { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
         public DateTime Dob { get; set; }
 
         //Blood Group Dropdown
-        public string BloodGroup { get; set; }
-        public string Marritalsatus { get; set; }
+        public int BloodGroup { get; set; }
+        public int Marritalsatus { get; set; }
         public DateTime WeddingDate { get; set; }
         public int ReligionId { get; set; }
-        public string Gender { get; set; }
+        public int Gender { get; set; }
         public int NationalityId { get; set; }
         public long Mobile { get; set; }
 
@@ -51,7 +51,7 @@ namespace SMS.Models
         public string FatherMobileNumber { get; set; }
         public string MotherMobileNumber { get; set; }
         public string SpouseMobileNumber { get; set; }
-        public string BankName { get; set; }
+        public int BankName { get; set; }
         public string BankBranch { get; set; }
         public long BankAccountNumber { get; set; }
         public string BankIfscCode { get; set; }

@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.Helpers;
 
 namespace SMS.Migrations.MysqlData
 {
     [DbContext(typeof(MysqlDataContext))]
-    partial class MysqlDataContextModelSnapshot : ModelSnapshot
+    [Migration("20211005193847_updateStaffTableLanguageArray")]
+    partial class updateStaffTableLanguageArray
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -725,8 +727,8 @@ namespace SMS.Migrations.MysqlData
                     b.Property<string>("Occupation")
                         .HasColumnType("text");
 
-                    b.Property<int>("SalutationId")
-                        .HasColumnType("int");
+                    b.Property<string>("SalutationId")
+                        .HasColumnType("text");
 
                     b.HasKey("DependentsId");
 
@@ -974,157 +976,7 @@ namespace SMS.Migrations.MysqlData
                         new
                         {
                             InventoryItemTypeId = 1,
-                            Description = "Stationery"
-                        },
-                        new
-                        {
-                            InventoryItemTypeId = 2,
-                            Description = "Chair"
-                        },
-                        new
-                        {
-                            InventoryItemTypeId = 3,
-                            Description = "Bench"
-                        },
-                        new
-                        {
-                            InventoryItemTypeId = 4,
-                            Description = "Plumbing Tools"
-                        },
-                        new
-                        {
-                            InventoryItemTypeId = 5,
-                            Description = "Light"
-                        },
-                        new
-                        {
-                            InventoryItemTypeId = 6,
-                            Description = "Gadgets"
-                        },
-                        new
-                        {
-                            InventoryItemTypeId = 7,
-                            Description = "Fan"
-                        },
-                        new
-                        {
-                            InventoryItemTypeId = 8,
-                            Description = "Board"
-                        },
-                        new
-                        {
-                            InventoryItemTypeId = 9,
-                            Description = "Medicines"
-                        },
-                        new
-                        {
-                            InventoryItemTypeId = 10,
-                            Description = "Printer"
-                        },
-                        new
-                        {
-                            InventoryItemTypeId = 11,
-                            Description = "Computer"
-                        },
-                        new
-                        {
-                            InventoryItemTypeId = 12,
-                            Description = "Laptops"
-                        },
-                        new
-                        {
-                            InventoryItemTypeId = 13,
-                            Description = "IT Accesories"
-                        },
-                        new
-                        {
-                            InventoryItemTypeId = 14,
-                            Description = "Office items"
-                        },
-                        new
-                        {
-                            InventoryItemTypeId = 15,
-                            Description = "Paper"
-                        },
-                        new
-                        {
-                            InventoryItemTypeId = 16,
-                            Description = "Xerox Machine"
-                        },
-                        new
-                        {
-                            InventoryItemTypeId = 17,
-                            Description = "Bathroom Items"
-                        },
-                        new
-                        {
-                            InventoryItemTypeId = 18,
-                            Description = "Projector"
-                        },
-                        new
-                        {
-                            InventoryItemTypeId = 19,
-                            Description = "Lab Chemicals"
-                        },
-                        new
-                        {
-                            InventoryItemTypeId = 20,
-                            Description = "Laboratory Product"
-                        },
-                        new
-                        {
-                            InventoryItemTypeId = 21,
-                            Description = "Specimen"
-                        },
-                        new
-                        {
-                            InventoryItemTypeId = 22,
-                            Description = "Paint"
-                        },
-                        new
-                        {
-                            InventoryItemTypeId = 23,
-                            Description = "Hardwares"
-                        },
-                        new
-                        {
-                            InventoryItemTypeId = 24,
-                            Description = "Kitchen Utensils"
-                        },
-                        new
-                        {
-                            InventoryItemTypeId = 25,
-                            Description = "Generator"
-                        },
-                        new
-                        {
-                            InventoryItemTypeId = 26,
-                            Description = "AC"
-                        },
-                        new
-                        {
-                            InventoryItemTypeId = 27,
-                            Description = "Water Doctor"
-                        },
-                        new
-                        {
-                            InventoryItemTypeId = 28,
-                            Description = "Celebration Kit"
-                        },
-                        new
-                        {
-                            InventoryItemTypeId = 29,
-                            Description = "Room Screen"
-                        },
-                        new
-                        {
-                            InventoryItemTypeId = 30,
-                            Description = "Sports Kit"
-                        },
-                        new
-                        {
-                            InventoryItemTypeId = 31,
-                            Description = "Swimming pool Kit"
+                            Description = "Furniture"
                         });
                 });
 
@@ -1145,62 +997,7 @@ namespace SMS.Migrations.MysqlData
                         new
                         {
                             InventoryItemUsageAreaId = 1,
-                            Description = "Lab"
-                        },
-                        new
-                        {
-                            InventoryItemUsageAreaId = 2,
-                            Description = "Office"
-                        },
-                        new
-                        {
-                            InventoryItemUsageAreaId = 3,
-                            Description = "Class"
-                        },
-                        new
-                        {
-                            InventoryItemUsageAreaId = 4,
-                            Description = "General"
-                        },
-                        new
-                        {
-                            InventoryItemUsageAreaId = 5,
-                            Description = "Bathroom"
-                        },
-                        new
-                        {
-                            InventoryItemUsageAreaId = 6,
-                            Description = "Sports room"
-                        },
-                        new
-                        {
-                            InventoryItemUsageAreaId = 7,
-                            Description = "Swimming pool"
-                        },
-                        new
-                        {
-                            InventoryItemUsageAreaId = 8,
-                            Description = "Play area"
-                        },
-                        new
-                        {
-                            InventoryItemUsageAreaId = 9,
-                            Description = "Server room"
-                        },
-                        new
-                        {
-                            InventoryItemUsageAreaId = 10,
-                            Description = "Hall"
-                        },
-                        new
-                        {
-                            InventoryItemUsageAreaId = 11,
-                            Description = "Veranda"
-                        },
-                        new
-                        {
-                            InventoryItemUsageAreaId = 12,
-                            Description = "Common area"
+                            Description = "Computer Lab"
                         });
                 });
 
@@ -1974,8 +1771,8 @@ namespace SMS.Migrations.MysqlData
                     b.Property<string>("AadharNumber")
                         .HasColumnType("text");
 
-                    b.Property<string>("AcademicPrecentage")
-                        .HasColumnType("text");
+                    b.Property<int>("AcademicPrecentage")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("AdmissionDate")
                         .HasColumnType("datetime");
@@ -2052,7 +1849,7 @@ namespace SMS.Migrations.MysqlData
                     b.Property<string>("schoolName")
                         .HasColumnType("text");
 
-                    b.Property<int>("yearofattendence")
+                    b.Property<int?>("yearofattendence")
                         .HasColumnType("int");
 
                     b.HasKey("StudentId");
