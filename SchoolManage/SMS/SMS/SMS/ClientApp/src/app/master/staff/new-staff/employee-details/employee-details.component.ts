@@ -36,6 +36,7 @@ export class EmployeeDetailsComponent implements OnInit,FormTouched {
     this.department = factory.department;
     this.designation = factory.designation;
     this.role = factory.role;
+    this.employeementStatus = factory.employmentStatus;
     
     this.empDetailsForm = this.fb.group(  
       // Validators.pattern('^[a-zA-Z ]*$')]],  

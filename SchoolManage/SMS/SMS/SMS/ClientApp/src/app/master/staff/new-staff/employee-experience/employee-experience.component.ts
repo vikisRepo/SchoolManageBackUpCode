@@ -59,9 +59,9 @@ export class EmployeeExperienceComponent implements OnInit,FormTouched {
 
   buildExperiences(): FormGroup {
     return this.fb.group({
-      from: ['',Validators.required],
-      to: ['',Validators.required],
-      responsibilty: ['',Validators.required]
+      from: [''],
+      to: [''],
+      responsibilty: ['']
     });
     
   }

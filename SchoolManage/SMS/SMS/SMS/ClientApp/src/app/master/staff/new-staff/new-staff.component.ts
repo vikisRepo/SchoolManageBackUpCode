@@ -55,7 +55,7 @@ export class NewStaffComponent implements OnInit, AfterViewInit {
   btnMovement(st: string) {
     //debugger;
     let flg = this.dt.toArray()[this.selectedTab].formTouched();
-    console.log(flg)
+    console.log(flg);
    
       if (st === 'bck') {
         this.selectedTab--;
@@ -77,7 +77,7 @@ export class NewStaffComponent implements OnInit, AfterViewInit {
 
     if (this.formDetails.includes(false)) {
       this.blockUI.stop();
-      return;
+     // return;
     }
 
     if (this.isAddMode) {
