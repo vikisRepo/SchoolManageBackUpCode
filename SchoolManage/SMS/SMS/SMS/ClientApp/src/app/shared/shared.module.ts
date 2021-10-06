@@ -7,6 +7,9 @@ import { AddressDetailsComponent } from './address/address-details/address-detai
 import { ReactiveFormsModule } from '@angular/forms';
 import { ClassesComponent } from './classes/classes.component';
 import { MessageBoxComponent } from './dialog-boxes/message-box/message-box.component';
+import { UploadComponent } from './upload/upload.component';
+import { DownloadComponent } from './download/download.component';
+import { FileManagerComponent } from './file-manager/file-manager.component';
 
 
 
@@ -17,7 +20,10 @@ import { MessageBoxComponent } from './dialog-boxes/message-box/message-box.comp
   declarations: [HeaderActionComponent,AddressDetailComponent,
     AddressDetailsComponent,
     ClassesComponent,
-    MessageBoxComponent
+    MessageBoxComponent,
+    UploadComponent,
+    DownloadComponent,
+    FileManagerComponent
     ],
   imports: [
     CommonModule,

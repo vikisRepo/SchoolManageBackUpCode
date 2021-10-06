@@ -1,6 +1,5 @@
 import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { MasterRoutingModule } from './master-routing.module';
 import { MasterComponent } from './master.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -10,7 +9,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { AngularMaterialModule } from 'src/angular-material.module';
 import { AngularFileUploaderModule } from "angular-file-uploader";
-
 import { AvatarModule } from 'ngx-avatar';
 import {MatIconModule} from '@angular/material/icon';
 import { TripDetailsComponent } from './transport/trip-details/trip-details.component';

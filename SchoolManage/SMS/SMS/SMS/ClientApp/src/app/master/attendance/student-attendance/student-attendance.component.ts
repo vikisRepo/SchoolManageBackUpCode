@@ -53,6 +53,7 @@ export class StudentAttendanceComponent implements OnInit {
   class = SmsConstant.classes;
   section = SmsConstant.section;
   blockUI: any;
+  ALL_Section: any = [];
   constructor(private fb: FormBuilder, private factory: FactorydataService, private attendanceService: AttendancerestApiService) {
     this.class = this.factory.classes;
     this.section = this.factory.Subjectsdropdown;
@@ -153,6 +154,13 @@ export class StudentAttendanceComponent implements OnInit {
       row.absent=0;
       row.halfDay=1;
     }
+  }
+
+  LoadSections(className)
+  {
+    this.factory.GetSectionByClassName(className.value).subscribe((data) => {
+      this.ALL_Section = data; 
+    });
   }
 
 }

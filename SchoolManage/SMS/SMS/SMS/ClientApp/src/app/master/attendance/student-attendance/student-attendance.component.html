@@ -29,7 +29,8 @@
                         <mat-form-field appearance="standard">
                             <mat-label>Class</mat-label>
                             <mat-select formControlName="class">
-                                <mat-option *ngFor="let classFilter  of class " [value]="classFilter .className">
+                                <mat-option *ngFor="let classFilter  of class " [value]="classFilter .className"
+                                (selectionChange)="LoadSections($event)">
                                     {{classFilter .className}} 
                                 </mat-option>
                             </mat-select>
@@ -39,9 +40,9 @@
                         <mat-form-field appearance="standard">
                             <mat-label>Section</mat-label>
                             <mat-select formControlName="section">
-                                <mat-option *ngFor="let sectionFilter  of section " [value]="sectionFilter .viewValue">
-                                    {{sectionFilter .viewValue}} 
-                                </mat-option>
+                              <mat-option *ngFor="let sec of ALL_Section " [value]="sec">
+                                {{sec}}
+                            </mat-option>
                             </mat-select>
                         </mat-form-field>
                     </div>

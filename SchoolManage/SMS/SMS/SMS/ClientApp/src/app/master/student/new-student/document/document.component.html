@@ -5,17 +5,23 @@ class="example-delete-tab-button"
 Delete Tab
 </button> -->
 
+
+
 <form [formGroup]="documentForm" class="p-base">
 
+    <app-filemanager></app-filemanager>
+    
     <div class="container-fluid">
         <!-- <angular-file-uploader #fileUpload1
         [config]="afuConfig">
        [resetUpload]=resetVar -->
         <!-- // (ApiResponse)="DocUpload($event)">  -->
 
+ 
 
 
-        <div class="row" *ngFor = "let doc of attachementTitles">
+
+        <!-- <div class="row" *ngFor = "let doc of attachementTitles">
             <div class="col-sm-3" style="margin-left: 50px;margin-Top: 20px;">
                 <h3>{{doc}}</h3>
             </div>
@@ -24,7 +30,7 @@ Delete Tab
                 
             </div>
            
-        </div>
+        </div> -->
      
 
     </div>
