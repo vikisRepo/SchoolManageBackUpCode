@@ -217,11 +217,52 @@ namespace SMS.Middleware
                                 );
 
             modelBuilder.Entity<InventoryItemType>().HasData(
-                new InventoryItemType { InventoryItemTypeId = 1, Description = "Furniture" }
+                new InventoryItemType { InventoryItemTypeId = 1, Description = "Stationery" },
+                new InventoryItemType { InventoryItemTypeId = 2, Description = "Chair" },
+                new InventoryItemType { InventoryItemTypeId = 3, Description = "Bench" },
+                new InventoryItemType { InventoryItemTypeId = 4, Description = "Plumbing Tools" },
+                new InventoryItemType { InventoryItemTypeId = 5, Description = "Light" },
+                new InventoryItemType { InventoryItemTypeId = 6, Description = "Gadgets" },
+                new InventoryItemType { InventoryItemTypeId = 7, Description = "Fan" },
+                new InventoryItemType { InventoryItemTypeId = 8, Description = "Board" },
+                new InventoryItemType { InventoryItemTypeId = 9, Description = "Medicines" },
+                new InventoryItemType { InventoryItemTypeId = 10, Description = "Printer" },
+                new InventoryItemType { InventoryItemTypeId = 11, Description = "Computer" },
+                new InventoryItemType { InventoryItemTypeId = 12, Description = "Laptops" },
+                new InventoryItemType { InventoryItemTypeId = 13, Description = "IT Accesories" },
+                new InventoryItemType { InventoryItemTypeId = 14, Description = "Office items" },
+                new InventoryItemType { InventoryItemTypeId = 15, Description = "Paper" },
+                new InventoryItemType { InventoryItemTypeId = 16, Description = "Xerox Machine" },
+                new InventoryItemType { InventoryItemTypeId = 17, Description = "Bathroom Items" },
+                new InventoryItemType { InventoryItemTypeId = 18, Description = "Projector" },
+                new InventoryItemType { InventoryItemTypeId = 19, Description = "Lab Chemicals" },
+                new InventoryItemType { InventoryItemTypeId = 20, Description = "Laboratory Product" },
+                new InventoryItemType { InventoryItemTypeId = 21, Description = "Specimen" },
+                new InventoryItemType { InventoryItemTypeId = 22, Description = "Paint" },
+                new InventoryItemType { InventoryItemTypeId = 23, Description = "Hardwares" },
+                new InventoryItemType { InventoryItemTypeId = 24, Description = "Kitchen Utensils" },
+                new InventoryItemType { InventoryItemTypeId = 25, Description = "Generator" },
+                new InventoryItemType { InventoryItemTypeId = 26, Description = "AC" },
+                new InventoryItemType { InventoryItemTypeId = 27, Description = "Water Doctor" },
+                new InventoryItemType { InventoryItemTypeId = 28, Description = "Celebration Kit" },
+                new InventoryItemType { InventoryItemTypeId = 29, Description = "Room Screen" },
+                new InventoryItemType { InventoryItemTypeId = 30, Description = "Sports Kit" }, 
+                new InventoryItemType { InventoryItemTypeId = 31, Description = "Swimming pool Kit" }
                     );
 
             modelBuilder.Entity<InventoryItemUsageArea>().HasData(
-                new InventoryItemUsageArea { InventoryItemUsageAreaId = 1, Description = "Computer Lab" }
+                new InventoryItemUsageArea { InventoryItemUsageAreaId = 1, Description = "Lab" },
+                new InventoryItemUsageArea { InventoryItemUsageAreaId = 2, Description = "Office" },
+                new InventoryItemUsageArea { InventoryItemUsageAreaId = 3, Description = "Class" },
+                new InventoryItemUsageArea { InventoryItemUsageAreaId = 4, Description = "General" },
+                new InventoryItemUsageArea { InventoryItemUsageAreaId = 5, Description = "Bathroom" },
+                new InventoryItemUsageArea { InventoryItemUsageAreaId = 6, Description = "Sports room" },
+                new InventoryItemUsageArea { InventoryItemUsageAreaId = 7, Description = "Swimming pool" },
+                new InventoryItemUsageArea { InventoryItemUsageAreaId = 8, Description = "Play area" },
+                new InventoryItemUsageArea { InventoryItemUsageAreaId = 9, Description = "Server room" },
+                new InventoryItemUsageArea { InventoryItemUsageAreaId = 10, Description = "Hall" },
+                new InventoryItemUsageArea { InventoryItemUsageAreaId = 11, Description = "Veranda" },
+                new InventoryItemUsageArea { InventoryItemUsageAreaId = 12, Description = "Common area" }
                     );
 
         }

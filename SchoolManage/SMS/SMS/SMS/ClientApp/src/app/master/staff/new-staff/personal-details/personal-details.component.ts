@@ -59,7 +59,7 @@ export class PersonalDetailsComponent implements OnInit, OnChanges, FormTouched 
         bloodGroup: ['', Validators.required],
         gender: ['', Validators.required],
         emailId: ['', [Validators.required, Validators.email]],
-        languagesId: [[], Validators.required],
+        languagesId: [{}, Validators.required],
         middleName: ['',Validators.pattern('^[a-zA-Z ]*$')],
         maritalStatus: ['', Validators.required],
         nationalityId: [''],
@@ -90,7 +90,6 @@ export class PersonalDetailsComponent implements OnInit, OnChanges, FormTouched 
 
   formTouched(): boolean {
     this.profileForm.markAllAsTouched();
-  
     let ft = this.addressDt.formTouched();
     
     return this.profileForm.valid && ft;
@@ -135,7 +134,7 @@ export class PersonalDetailsComponent implements OnInit, OnChanges, FormTouched 
     let value = Array.from(arrValue, (obj: any) => obj.value) as never[];
     this.formValues.addresses = value;
     this.addressValidFlag = !((Array.from(arrValue, (obj: any) => obj.valid)).includes(false));
-    this.formDetails.emit({ value: this.formValues, valid: (this.profileForm.valid && this.addressValidFlag) });//
+    this.formDetails.emit({ value: this.formValues, valid: (this.profileForm.valid) });// && this.addressValidFlag
   }
 
 }
