@@ -26,7 +26,7 @@ export class InventoryDetailComponent implements OnInit,FormTouched {
       itemName : [,[Validators.required,Validators.pattern(/^[a-zA-Z0-9_]*$/)]]
       ,itemTypeId : ['',Validators.required]
       ,modelNumber : ['',[Validators.required,Validators.pattern(/^[a-zA-Z0-9_]*$/)]]
-      ,serialNumber : ['',[Validators.required,Validators.pattern(/^[a-zA-Z0-9_]*$/)]]
+      ,serialNumber : [,[Validators.required,Validators.pattern(/^[a-zA-Z0-9_]*$/)]]
       ,warrenOrGarenInfo : ['',Validators.required] 
       ,itemUsageId : ['',Validators.required]
       ,warrenOrGarantee: [false, Validators.required]
