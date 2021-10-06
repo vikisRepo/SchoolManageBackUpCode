@@ -27,6 +27,7 @@ export class NewStudentComponent implements OnInit {
   _student : Student;
   id : any;
   submitted = false;
+  public parentAdmissionNumber : any;
 
   @ViewChildren("dt") dt: QueryList<FormTouched>;
   @BlockUI() blockUI: NgBlockUI;
@@ -40,6 +41,7 @@ export class NewStudentComponent implements OnInit {
 
     if(!this.isAddMode)
     {
+      this.parentAdmissionNumber = this.id;
       this.studentApiService.getStudent(this.id)
         .subscribe(studentdetails => {
           this._student = studentdetails;
@@ -71,7 +73,7 @@ export class NewStudentComponent implements OnInit {
         this.selectedTab--;
       }
       else if (st === 'frd' && flg) {
-        if (this.selectedTab >= 1) {
+        if (this.selectedTab == 1) {
           this.submit();
           return;
         }
@@ -103,12 +105,14 @@ export class NewStudentComponent implements OnInit {
   createStudent()
   {
     console.log(JSON.stringify(this.stuJsonResult));
-    this.studentApiService.createStudent(this.stuJsonResult).subscribe(_=>{
+    this.studentApiService.createStudent(this.stuJsonResult).subscribe(admissionNumber=>{
+      this.parentAdmissionNumber = admissionNumber;
       this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"New Student created successfully !"});
       setTimeout(() => {
         this.dialog.closeAll();
-        this.router.navigate(['/student-list']);
-      }, 5000);
+        // this.router.navigate(['/student-list']);
+        this.selectedTab++;
+      }, 1000);
     });
   }
 
@@ -118,8 +122,9 @@ export class NewStudentComponent implements OnInit {
       this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"Student details updated successfully !"});
       setTimeout(() => {
         this.dialog.closeAll();
-        this.router.navigate(['/student-list']);
-      }, 5000);
+        // this.router.navigate(['/student-list']);
+        this.selectedTab++;
+      }, 1000);
     });
   }
   
@@ -129,6 +134,7 @@ export class NewStudentComponent implements OnInit {
     this.stuFormtDetails[tab] = value.valid;
     Object.assign(this.stuJsonResult,value.value);
     console.log(value.value);
+
   }
 
 

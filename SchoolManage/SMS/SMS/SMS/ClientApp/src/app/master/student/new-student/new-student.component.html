@@ -24,6 +24,7 @@
       Documents
       <mat-icon *ngIf="stuFormtDetails[2]!=null && stuFormtDetails[2]" color="primary">check_circle</mat-icon>
     </ng-template>
+    
     <app-document (stuFormtDetails)="setTabFormDetails($event,2)" #dt></app-document>
   </mat-tab>
   
@@ -36,7 +37,8 @@
   </button>
   <button type="button" class="gradient-button" (click)="btnMovement('frd')">
     <span *ngIf="!(selectedTab>=1)">Next</span>
-    <span *ngIf="(selectedTab>=1)">Submit</span>
+    <span *ngIf="(selectedTab==1)">Save</span>
+    <span *ngIf="(selectedTab>1)">Submit</span>
   </button>
 </div>
 

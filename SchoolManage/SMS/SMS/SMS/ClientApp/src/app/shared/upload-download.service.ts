@@ -3,7 +3,9 @@ import { HttpClient, HttpRequest, HttpEvent, HttpResponse } from '@angular/commo
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
   
-@Injectable()
+@Injectable(
+ {providedIn:'root'}
+)
 export class UploadDownloadService {
   private baseApiUrl: string;
   private apiDownloadUrl: string;
@@ -11,7 +13,7 @@ export class UploadDownloadService {
   private apiFileUrl: string;
   
   constructor(private httpClient: HttpClient) {
-    this.baseApiUrl = environment.apiUrl;
+    this.baseApiUrl = environment.apiUrl + '/api/UploadDownload';
     this.apiDownloadUrl = this.baseApiUrl + '/download';
     this.apiUploadUrl = this.baseApiUrl + '/upload';
     this.apiFileUrl = this.baseApiUrl + '/files';

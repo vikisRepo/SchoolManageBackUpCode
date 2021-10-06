@@ -23,7 +23,7 @@
             <div class="col-sm-2">
                 <mat-form-field appearance="standard">
                     <mat-label>Section</mat-label>
-                    <mat-select formControlName="sectionFilter" (selectionChange)="applyFilterClass('sectionFilter')" >
+                    <mat-select formControlName="sectionFilter" (selectionChange)="applyFilterSection('sectionFilter')" >
                         <mat-option *ngFor="let sec of ALL_Section " [value]="sec">
                             {{sec}} 
                         </mat-option>

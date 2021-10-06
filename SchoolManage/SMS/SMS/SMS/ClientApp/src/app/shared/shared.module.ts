@@ -31,6 +31,6 @@ import { FileManagerComponent } from './file-manager/file-manager.component';
     AngularMaterialModule
   ],
   exports:[AngularMaterialModule,HeaderActionComponent,AddressDetailComponent,
-    AddressDetailsComponent,ClassesComponent,MessageBoxComponent]
+    AddressDetailsComponent,ClassesComponent,MessageBoxComponent,FileManagerComponent]
 })
 export class SharedModule { }

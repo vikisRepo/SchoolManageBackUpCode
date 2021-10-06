@@ -54,7 +54,7 @@ export class StudentrestApiService {
   }  
 
   // HttpClient API post() method => Create Student
-  createStudent(student : Student): Observable<Student> {
+  createStudent(student : Student): Observable<any> {
     console.log(JSON.stringify(student));
     return this.http.post<Student>(this.apiURL,student, this.httpOptions)
     .pipe(

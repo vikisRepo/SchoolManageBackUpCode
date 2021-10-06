@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SmsConstant } from 'src/app/shared/constant-values';
+import { FactorydataService } from 'src/app/shared/factorydata.service';
 import { FormTouched } from 'src/app/shared/interfaces/form-touched';
 import { InventoryService } from '../../inventory.service';
 
@@ -18,8 +19,9 @@ export class InventoryDetailComponent implements OnInit,FormTouched {
  itemusageAreaType = SmsConstant.itemUsageArea;
  formValues = {};
  disabled = false;
-  constructor(private fb:FormBuilder, private _InventoryAPI: InventoryService) {
-
+  constructor(private fb:FormBuilder, private _InventoryAPI: InventoryService, private factory : FactorydataService) {
+    this.itemtype = factory.itemName;
+    this.itemusageAreaType = factory.itemUsageArea;
     this.inventoryDetailForm = this.fb.group({
       itemName : ['',Validators.required]
       ,itemTypeId : ['',Validators.required]

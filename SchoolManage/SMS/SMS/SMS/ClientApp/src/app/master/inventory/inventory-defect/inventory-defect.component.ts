@@ -83,7 +83,7 @@ export class InventoryDefectComponent implements OnInit {
       setTimeout(() => {
         this.dialog.closeAll();
         this.LoadInventoryDefect();
-      }, 5000);
+      }, 1000);
     });
   }
 
@@ -95,7 +95,7 @@ export class InventoryDefectComponent implements OnInit {
       setTimeout(() => {
         this.defect.removeAt(index);
         this.dialog.closeAll();
-      }, 5000);
+      }, 1000);
     });
   }
 

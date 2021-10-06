@@ -6,7 +6,7 @@ import { ProgressStatusEnum, ProgressStatus } from 'src/app/shared/progress-stat
   selector: 'app-filemanager',
   templateUrl: './file-manager.component.html'
 })
-export class FileManagerComponent implements OnInit {
+export class FileManagerComponent  {
   
   public files: string[];
   public fileInDownload: string;

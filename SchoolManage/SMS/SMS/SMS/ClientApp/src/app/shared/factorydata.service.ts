@@ -173,11 +173,11 @@ export class FactorydataService {
   }
 
   get itemUsageArea(){
-    return JSON.parse(sessionStorage.getItem("inventoryItemUsageAreas"));
+    return JSON.parse(sessionStorage.getItem("itemUsageArea"));
   }
 
   get itemName(){
-    return JSON.parse(sessionStorage.getItem("inventoryItemTypes"));
+    return JSON.parse(sessionStorage.getItem("itemName"));
   }
 
   get designation(){

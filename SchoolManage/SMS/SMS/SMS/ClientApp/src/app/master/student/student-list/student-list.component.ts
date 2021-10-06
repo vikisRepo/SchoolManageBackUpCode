@@ -34,6 +34,7 @@ export class StudentListComponent implements OnInit {
   currentUserSubscription !: Subscription;
   studentListData : any;
   currentStudent : Student;
+  students:Array<Student>;
   filters : boolean;
   rows : number = 0;
   classes = SmsConstant.classes;
@@ -67,6 +68,7 @@ export class StudentListComponent implements OnInit {
     this.currentUserSubscription = this.studentrestApiService.getStudents().subscribe((student:any) => {
       //debugger;
       this.currentStudent = student;
+      this.students=student;
       this.studentListData = new MatTableDataSource(student);
        this.studentListData.paginator = this.paginator;
       this.studentListData.sort = this.sort;
@@ -88,12 +90,26 @@ export class StudentListComponent implements OnInit {
   }
 
   applyFilterClass(event: any) {
-    const filterValues = {
+   /* const filterValues = {
       Class: this.studentfilters.value["classFilter"].toLowerCase()
     };
     debugger;
-    this.studentListData.filter = JSON.stringify(filterValues);
+    this.studentListData.filter = filterValues;*/
+    let fileterData=this.students.filter(obj=> obj.class===this.studentfilters.value["classFilter"]);
+    this.studentListData=new MatTableDataSource(fileterData);
+    this.rows = this.studentListData.data.length;
   }
+
+  applyFilterSection(event: any) {
+    /* const filterValues = {
+       Class: this.studentfilters.value["classFilter"].toLowerCase()
+     };
+     debugger;
+     this.studentListData.filter = filterValues;*/
+     let fileterData=this.students.filter(obj=> obj.class===this.studentfilters.value["sectionFilter"]);
+     this.studentListData=new MatTableDataSource(fileterData);
+     this.rows = this.studentListData.data.length;
+   }
 
   filterToggle()
   {
@@ -110,6 +126,7 @@ export class StudentListComponent implements OnInit {
   clearFilter(): void {
     this.studentListData.filter = '';
     this.studentfilters.reset();
+    this.LoadStudent();
   }
 
   LoadSections(className)

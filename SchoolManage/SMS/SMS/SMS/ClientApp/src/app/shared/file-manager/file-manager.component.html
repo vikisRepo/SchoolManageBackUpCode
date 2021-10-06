@@ -1,9 +1,9 @@
 <app-upload [disabled]="showProgress" (uploadStatus)="uploadStatus($event)"></app-upload>
-<button>Test</button>
-<h2>File List</h2>
+
+<!-- <h2>File List</h2> -->
 <p *ngIf="showProgress"> progress <strong>{{percentage}}%</strong></p>
-<hr>
-<div class="container">
+<!-- <hr> -->
+<!-- <div class="container">
     <ul>
         <li *ngFor="let file of files">
             <a>
@@ -12,4 +12,8 @@
             </a>
         </li>
     </ul>
-</div>
+</div>  -->
+
+<!-- <div class="container">   [fileName]="downloadfile"-->
+    <app-download [disabled]="showProgress" (downloadStatus)="downloadStatus($event)"></app-download>  
+<!-- </div>  -->

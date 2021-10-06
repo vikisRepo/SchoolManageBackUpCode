@@ -1,6 +1,13 @@
 <div class="container-upload">
-    <button [disabled]="disabled" [ngClass]="{'disabled': disabled}" class="button upload" (click)="inputFile.click()">
+    <!-- <button [disabled]="disabled" [ngClass]="{'disabled': disabled}" class="button upload" (click)="inputFile.click()">
         UPLOAD
-    </button>
+    </button> -->
+    <label [ngClass]="{'disabled': disabled}">
+        <img src="../../../../assets/attachment.png" class="icon" style="height: 25px;"
+            (click)="inputFile.click()" />
+            <!-- <mat-icon color="primary">
+                    check_circle</mat-icon> -->
+        <!--<h3 >Attachment  </h3> -->
+    </label>
     <input name="file" id="file"(change)="upload($event)" type="file" #inputFile hidden>
 </div>

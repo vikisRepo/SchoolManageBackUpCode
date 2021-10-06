@@ -51,7 +51,7 @@ namespace SMS.Controllers
 		// POST api/<StudentController>
 		[HttpPost]
 		[AllowAnonymous]
-		public void Post([FromBody] Student student)
+		public int Post([FromBody] Student student)
 		{
 			RegisterRequest model = new RegisterRequest();
 			model.Title = _dbcontext.Salutations.Where(salutation => salutation.SalutationId == student.Salutation).FirstOrDefault().SalutationName;
@@ -66,7 +66,9 @@ namespace SMS.Controllers
 			student.StudentId =  account.Id;
             _dbcontext.Students.Add(student);
 			_dbcontext.SaveChanges();
-		}
+            return student.AdmissionNumber;
+
+        }
 
 		// PUT api/<StudentController>/5
 		[HttpPut("{id}")]
