@@ -33,6 +33,7 @@ export class NewStudentComponent implements OnInit {
   @BlockUI() blockUI: NgBlockUI;
 
   parentG=null;
+  documentDetails = {};
   
   constructor(private studentApiService: StudentrestApiService, private route: ActivatedRoute, public dialog: MatDialog,
     private router: Router) { }
@@ -42,6 +43,8 @@ export class NewStudentComponent implements OnInit {
     if(!this.isAddMode)
     {
       this.parentAdmissionNumber = this.id;
+      debugger;
+      this.documentDetails = {admissionNumber:this.parentAdmissionNumber};
       this.studentApiService.getStudent(this.id)
         .subscribe(studentdetails => {
           this._student = studentdetails;
@@ -107,6 +110,7 @@ export class NewStudentComponent implements OnInit {
     console.log(JSON.stringify(this.stuJsonResult));
     this.studentApiService.createStudent(this.stuJsonResult).subscribe(admissionNumber=>{
       this.parentAdmissionNumber = admissionNumber;
+      this.documentDetails = {admissionNumber:this.parentAdmissionNumber};
       this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"New Student created successfully !"});
       setTimeout(() => {
         this.dialog.closeAll();

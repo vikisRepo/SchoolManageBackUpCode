@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { UploadDownloadService } from 'src/app/shared/upload-download.service';
 import { ProgressStatusEnum, ProgressStatus } from 'src/app/shared/progress-status.model';
   
@@ -7,7 +7,7 @@ import { ProgressStatusEnum, ProgressStatus } from 'src/app/shared/progress-stat
   templateUrl: './file-manager.component.html'
 })
 export class FileManagerComponent  {
-  
+  @Input() public fileDetails : any;
   public files: string[];
   public fileInDownload: string;
   public percentage: number;

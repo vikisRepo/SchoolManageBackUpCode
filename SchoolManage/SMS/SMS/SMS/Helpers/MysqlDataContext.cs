@@ -30,6 +30,8 @@ namespace WebApi.Helpers
 
         public virtual DbSet<LessonPlan> LessonPlans { get; set; }
 
+        public virtual DbSet<StudentAttachments> StudentDocuments { get; set; }
+
 
         //leave tables
 

@@ -7,8 +7,29 @@
             </div>
             <div class="col-sm-5" style="margin-Top: 20px;">
                 <!-- <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload> -->
-                <app-filemanager></app-filemanager>
+                <div class="container-upload">
+                    <!-- <button [disabled]="disabled" [ngClass]="{'disabled': disabled}" class="button upload" (click)="inputFile.click()">
+                        UPLOAD
+                    </button>  [ngClass]="{'disabled': disabled}"-->
+                    <label>
+                        <img src="../../../../assets/attachment.png" class="icon" style="height: 25px;cursor: pointer;"
+                            (click)="inputFile.click()" />
+                            <!-- <mat-icon color="primary">
+                                    check_circle</mat-icon> -->
+                        <!--<h3 >Attachment  </h3> -->
+                    </label>
+                    <input name="file" id="file"(change)="upload($event, doc)" type="file" #inputFile hidden>
+                </div>
+                <div class="container-upload">
+                    <mat-icon class="button download" Style="cursor: pointer;"
+                    (click)="download($event,doc)" >get_app</mat-icon>
+                    <!-- <button [disabled]="disabled" class="button download" [ngClass]="{'disabled': disabled}"
+                        (click)="download()">download</button> -->
+                </div>
+                <!-- <app-filemanager [fileDetails]="studentDocumentDetails"></app-filemanager> -->
             </div>
         </div>
+        <!-- <p> {{getFormAdmissionNumber.admissionNumber | json}}</p> -->
     </div>
+    
 </form>

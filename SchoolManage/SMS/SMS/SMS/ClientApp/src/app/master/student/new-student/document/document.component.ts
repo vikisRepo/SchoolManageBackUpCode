@@ -1,6 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validator } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpEventType } from '@angular/common/http';
 import { ConstantPool } from '@angular/compiler';
 import { SSL_OP_NO_TLSv1_1 } from 'constants';
 import { ShowHideDirective } from '@angular/flex-layout';
@@ -9,6 +9,8 @@ import { ViewChild } from '@angular/core';
 import { AngularFileUploaderComponent } from "angular-file-uploader";
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { FormTouched } from 'src/app/shared/interfaces/form-touched';
+import { UploadDownloadService } from 'src/app/shared/upload-download.service';
+import { StudentrestApiService } from '../../studentrest-api.service';
 
 
 @Component({
@@ -18,6 +20,8 @@ import { FormTouched } from 'src/app/shared/interfaces/form-touched';
 })
 export class DocumentComponent implements OnInit ,FormTouched{
   @Output() stuFormDetails = new EventEmitter();
+  @Input() public studentDocumentDetails  : any;
+  studentdocrequest : any = {};
   documentForm: FormGroup;
   selectedFile: any = null;
   result: any = null;
@@ -41,6 +45,7 @@ export class DocumentComponent implements OnInit ,FormTouched{
   private fileUpload1: AngularFileUploaderComponent;
 
   public response: { dbPath: '' };
+  fileName : any;
 
 
   afuConfig = {
@@ -75,7 +80,9 @@ export class DocumentComponent implements OnInit ,FormTouched{
     }
   };
 
-  constructor(private http: HttpClient, private fb: FormBuilder) {
+  constructor(private http: HttpClient, private fb: FormBuilder, 
+    private service: UploadDownloadService,
+    private studentApiService: StudentrestApiService) {
     this.documentForm = this.fb.group({
       transferCertificate: ['']
       , birthCertificate: ['']
@@ -85,63 +92,21 @@ export class DocumentComponent implements OnInit ,FormTouched{
       , studentVisa: ['']
     });
     this.documentForm.valueChanges.subscribe(() => {
+      console.log("Documentjson" + JSON.stringify(this.studentDocumentDetails));
       this.stuFormDetails.emit({ value: this.documentForm, valid: this.documentForm.valid });
     })
   }
+
   formTouched(): boolean {
     this.documentForm.markAllAsTouched();
     return this.documentForm.valid;
   }
+
   onSubmit() {
     console.warn(this.documentForm.value);
   }
+
   Onfilesave(event: any, count: any) {
-
-    // this.all_files.push(<File>event.target.files[count][0]);
-    // switch(count)
-    // {
-    //   case 0:
-    //     {
-    //       this.t1img=true;
-    //       this.t1fileName=this.all_files[0].name
-    //     }
-    //     break;
-    //     case 1:
-    //     {
-    //       this.bSuccessImages=true;
-    //       this.bCertificareName=this.all_files[1].name
-    //     }
-    //     break;
-    //     case 2:
-    //     {
-
-    //       this.passportName=this.all_files[2].name
-    //     }
-    //     break;
-    //     case 3:
-    //     {
-
-    //       this.aadharName=this.all_files[3].name
-    //     }
-    //     break;
-    //     case 4:
-    //     {
-
-    //       this.RationCardName=this.all_files[4].name
-    //     }
-    //     break;
-    // }
-
-
-    // if(count===0)
-    // {
-    //   this.t1img=true;
-    //   this.t1fileName=this.all_files[count].name
-    // }
-    // this.all_files.push(event.target.files[count]);
-    // this.selectedFile =<File>event.target.files[count];
-    // console.log(this.selectedFile.name+" "+this.t1img);
-    // this.t1fileName=this.selectedFile.name;
 
     for (let i = 0; i < this.all_files.length; i++) {
       // console.log('File:', this.all_files[i], 'Name:', this.all_files[i].name);
@@ -167,7 +132,76 @@ export class DocumentComponent implements OnInit ,FormTouched{
     this.http.post('', fd).subscribe(res => {
       console.log(res);
     });
-this.blockUI.stop();
+    this.blockUI.stop();
+  }
+
+  public upload(event, doc: any) {
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.studentdocrequest = {admissionNumber : this.studentDocumentDetails.admissionNumber, documentType : doc};
+      // this.uploadStatus.emit({status: ProgressStatusEnum.START});
+      this.service.uploadFile(file, this.studentdocrequest).subscribe(
+        data => {
+          if (data) {
+            switch (data.type) {
+              case HttpEventType.UploadProgress:
+                // this.uploadStatus.emit( {status: ProgressStatusEnum.IN_PROGRESS, percentage: Math.round((data.loaded / data.total) * 100)});
+                break;
+              case HttpEventType.Response:
+                // this.inputFile.nativeElement.value = '';
+                // this.uploadStatus.emit( {status: ProgressStatusEnum.COMPLETE});
+                break;
+            }
+          }
+        },
+        error => {
+          // this.inputFile.nativeElement.value = '';
+          // this.uploadStatus.emit({status: ProgressStatusEnum.ERROR});
+        }
+      );
+    }
+  }
+
+  public download(event, doc : any) {
+    // this.downloadStatus.emit( {status: ProgressStatusEnum.START});
+    // setTimeout(() => {
+    // this.studentApiService.GetStudentDocumentDetails(this.studentDocumentDetails.admissionNumber,doc).subscribe( (data) =>{
+    //   console.log(JSON.stringify(data));
+    //   this.fileName = data;
+    // });
+    // }, 250);
+    this.service.GetStudentDocumentDetails(this.studentDocumentDetails.admissionNumber, doc).toPromise().then(
+      filedata => {
+        this.fileName = filedata.pathToFile;
+        this.service.downloadFile(this.fileName).subscribe(
+          data => {
+            switch (data.type) {
+              case HttpEventType.DownloadProgress:
+                // this.downloadStatus.emit( {status: ProgressStatusEnum.IN_PROGRESS, percentage: Math.round((data.loaded / data.total) * 100)});
+                break;
+              case HttpEventType.Response:
+                // this.downloadStatus.emit( {status: ProgressStatusEnum.COMPLETE});
+                const downloadedFile = new Blob([data.body], { type: data.body.type });
+                const a = document.createElement('a');
+                a.setAttribute('style', 'display:none;');
+                document.body.appendChild(a);
+                a.download = this.fileName;
+                a.href = URL.createObjectURL(downloadedFile);
+                a.target = '_blank';
+                a.click();
+                document.body.removeChild(a);
+                break;
+            }
+          },
+          error => {
+            // this.downloadStatus.emit( {status: ProgressStatusEnum.ERROR});
+          }
+        );
+      }
+    )
+    debugger;  
+
+    
   }
 
 

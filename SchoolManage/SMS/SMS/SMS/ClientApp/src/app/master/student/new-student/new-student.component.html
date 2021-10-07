@@ -25,7 +25,7 @@
       <mat-icon *ngIf="stuFormtDetails[2]!=null && stuFormtDetails[2]" color="primary">check_circle</mat-icon>
     </ng-template>
     
-    <app-document (stuFormtDetails)="setTabFormDetails($event,2)" #dt></app-document>
+    <app-document (stuFormtDetails)="setTabFormDetails($event,2)" [studentDocumentDetails]="documentDetails" #dt ></app-document>
   </mat-tab>
   
 </mat-tab-group>

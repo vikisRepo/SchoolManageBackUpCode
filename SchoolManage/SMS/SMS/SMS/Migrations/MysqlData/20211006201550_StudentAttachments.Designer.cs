@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.Helpers;
 
 namespace SMS.Migrations.MysqlData
 {
     [DbContext(typeof(MysqlDataContext))]
-    partial class MysqlDataContextModelSnapshot : ModelSnapshot
+    [Migration("20211006201550_StudentAttachments")]
+    partial class StudentAttachments
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -2043,6 +2045,9 @@ namespace SMS.Migrations.MysqlData
                     b.Property<int>("StudentAddressId")
                         .HasColumnType("int");
 
+                    b.Property<int>("StudentAttachmentsId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("passingOutSchool")
                         .HasColumnType("int");
 
@@ -2112,9 +2117,14 @@ namespace SMS.Migrations.MysqlData
                     b.Property<string>("PathToFile")
                         .HasColumnType("text");
 
+                    b.Property<int?>("StudentId")
+                        .HasColumnType("int");
+
                     b.HasKey("StudentAttachmentsId");
 
-                    b.ToTable("StudentDocuments");
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("StudentAttachments");
                 });
 
             modelBuilder.Entity("SMS.Models.TimeTable.ClassTimeTable", b =>
@@ -2414,6 +2424,13 @@ namespace SMS.Migrations.MysqlData
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("SMS.Models.StudentAttachments", b =>
+                {
+                    b.HasOne("SMS.Models.Student", null)
+                        .WithMany("StudentDocuments")
+                        .HasForeignKey("StudentId");
+                });
+
             modelBuilder.Entity("SMS.Models.TimeTable.PeriodDetail", b =>
                 {
                     b.HasOne("SMS.Models.TimeTable.ClassTimeTable", "ClassTimeTable")
@@ -2532,6 +2549,8 @@ namespace SMS.Migrations.MysqlData
             modelBuilder.Entity("SMS.Models.Student", b =>
                 {
                     b.Navigation("Addresses");
+
+                    b.Navigation("StudentDocuments");
                 });
 
             modelBuilder.Entity("SMS.Models.TimeTable.ClassTimeTable", b =>

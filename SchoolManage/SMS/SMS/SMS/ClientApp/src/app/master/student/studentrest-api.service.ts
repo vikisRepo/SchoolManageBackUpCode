@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, Subject, throwError } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
+import { retry, catchError, delay } from 'rxjs/operators';
 
 import { CompileShallowModuleMetadata } from '@angular/compiler';
 import { Console } from 'console';
@@ -16,6 +16,7 @@ export class StudentrestApiService {
 
   apiURL = environment.apiUrl + '/api/Student';
   apiFeedbackURL = 'api/StudentFeedback/';
+  studocsapiURL = environment.apiUrl + '/api/UploadDownload/GetStudentDocumentDetails';
   
   @BlockUI() blockUI: NgBlockUI;
 
@@ -53,6 +54,16 @@ export class StudentrestApiService {
     )
   }  
 
+  // HttpClient API get() method => Fetch Student
+  GetStudentDocumentDetails(admissionNumber : any, docType : any): Observable<any> {
+    return this.http.get<any>(this.studocsapiURL + '/' + admissionNumber + '/' + docType)
+    .pipe(
+      retry(1),
+      catchError((err)=>this.handleError(err)),
+      delay(1000) 
+    )
+  }  
+
   // HttpClient API post() method => Create Student
   createStudent(student : Student): Observable<any> {
     console.log(JSON.stringify(student));
@@ -81,7 +92,6 @@ export class StudentrestApiService {
       catchError((err)=>this.handleError(err))
     )
   }
-
 
   //Staff-Feedback
     // HttpClient API get() method => Fetch Staffs list
