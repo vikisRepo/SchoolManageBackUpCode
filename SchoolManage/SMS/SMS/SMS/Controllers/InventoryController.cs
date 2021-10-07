@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SMS.Models.Inventory;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace SMS.Controllers
 		[HttpGet ("Inventory")]
 		public IEnumerable<Inventory> Inventory()
 		{
-			return this._dbContext.Inventorys.ToList();
+			return this._dbContext.Inventorys.Include(x => x.InventoryItemUsageArea).Include(d => d.InventoryItemType).ToList();
 		}
 
 		// GET api/<InventoryController>/5

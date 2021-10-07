@@ -82,7 +82,7 @@ export class InventoryDefectComponent implements OnInit {
       this.dialog.open(MessageBoxComponent, { width: '350px', height: '100px', data: "InventoryDefects Saved successfully !" });
       setTimeout(() => {
         this.dialog.closeAll();
-        this.LoadInventoryDefect();
+       // this.LoadInventoryDefect();
       }, 1000);
     });
   }
@@ -103,7 +103,7 @@ export class InventoryDefectComponent implements OnInit {
     if(flg)
       {
         console.log(this.defect.at(index).value)
-       this.CreateInventoryDefect(this.defect.at(index).value);
+        this.CreateInventoryDefect(this.defect.at(index).value);
         this.defect.at(index).disable();
       }
     else{

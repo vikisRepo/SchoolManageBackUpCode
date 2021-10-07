@@ -128,6 +128,9 @@
                     <mat-label>Admission Number</mat-label>
                     <input matInput formControlName="admissionNumber">
                 </mat-form-field>
+                <div class="formfield-validation" *ngIf="f.admissionNumber.errors">
+                    <div *ngIf="f.admissionNumber.errors.pattern">Admission Number cannot contain special character.</div>
+                </div>
                 <mat-form-field appearance="standard">
                     <mat-label>Roll Number</mat-label>
                     <input matInput formControlName="rollNo">

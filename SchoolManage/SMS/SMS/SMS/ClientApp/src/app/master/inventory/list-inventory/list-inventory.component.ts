@@ -9,6 +9,7 @@ import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { SmsConstant } from 'src/app/shared/constant-values';
 import { Console } from 'console';
 import { InventoryService } from '../inventory.service';
+import { FactorydataService } from 'src/app/shared/factorydata.service';
 
 @Component({
   selector: 'app-list-inventory',
@@ -27,7 +28,7 @@ export class ListInventoryComponent implements OnInit {
   @ViewChild(MatSort) sort !: MatSort;
  
   currentUserSubscription !: Subscription;
-   currentInventory? : any;
+   currentInventory : Array<any>;
   // Inventorys: Inventory[] = [];
   inventoryListData!: MatTableDataSource<any>;
 
@@ -55,7 +56,9 @@ export class ListInventoryComponent implements OnInit {
    @BlockUI() blockUI: NgBlockUI;
   listinventoryfilters: FormGroup;
   
-  constructor(private fb: FormBuilder,private router:Router, private inventoryService: InventoryService) {
+  constructor(private fb: FormBuilder,private router:Router, private inventoryService: InventoryService,private factory: FactorydataService) {
+    this.itemstypes = factory.itemName;
+    this.itemusageArea =factory.itemUsageArea;
     this.listinventoryfilters = this.fb.group({
       itemTypeFilter: [''],
       itemUsageAreaFilter: ['']
@@ -106,11 +109,26 @@ export class ListInventoryComponent implements OnInit {
     this.router.navigate(['/add-inventory']);
   }
 
-  applyFilter(event: any) {
-    console.log(event,this.listinventoryfilters.value)
+  applyFilteritemTypeFilter(event: any) {
+     console.log(event,this.listinventoryfilters.value)
   
-    const filterValue = this.listinventoryfilters.value[event];
-    this.inventoryListData.filter = filterValue.trim().toLowerCase();
+    // const filterValue = this.listinventoryfilters.value[event];
+    // this.inventoryListData.filter = filterValue.trim().toLowerCase();
+    // this.rows = this.inventoryListData.data.length;
+    let filterData = this.currentInventory.filter(obj => obj.inventoryItemType.description===this.listinventoryfilters.value["itemTypeFilter"])
+    this.inventoryListData=new MatTableDataSource(filterData);
+    this.rows = this.inventoryListData.data.length;
+  }
+
+  applyFilteritemUsageAreaFilter(event: any) {
+    // console.log(event,this.listinventoryfilters.value)
+  
+    // const filterValue = this.listinventoryfilters.value[event];
+    // this.inventoryListData.filter = filterValue.trim().toLowerCase();
+    // this.rows = this.inventoryListData.data.length;
+    let filterData = this.currentInventory.filter(obj => obj.inventoryItemUsageArea.description===this.listinventoryfilters.value["itemUsageAreaFilter"]);
+    this.inventoryListData=new MatTableDataSource(filterData);
+    this.rows = this.inventoryListData.data.length;
   }
   
   removeInventory(inventory : any)

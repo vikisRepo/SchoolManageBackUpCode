@@ -66,7 +66,7 @@ export class StudentDetailsComponent implements OnInit ,FormTouched{
       , emailId: ['', [Validators.required, Validators.email]]
       , aadharNumber: [, [Validators.required, Validators.maxLength(12),Validators.minLength(12), Validators.pattern(/^[0-9]\d*$/)]]
       , mobile: ['', [Validators.required, Validators.maxLength(10), Validators.pattern(/^[0-9]\d*$/)]]
-      , admissionNumber: ['',[Validators.required,Validators.pattern(/^[0-9]\d*$/)]]
+      , admissionNumber: ['',[Validators.required,Validators.pattern(/^[a-zA-Z0-9_]*$/)]]
       , admissionDate: ['',Validators.required]
       , class: ['',Validators.required]
       , section: ['',Validators.required]
