@@ -6,6 +6,7 @@ import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { StudentrestApiService } from '../studentrest-api.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MessageBoxComponent } from 'src/app/shared/dialog-boxes/message-box/message-box.component';
+import { FactorydataService } from 'src/app/shared/factorydata.service';
 
 @Component({
   selector: 'app-student-feedback',
@@ -15,15 +16,25 @@ import { MessageBoxComponent } from 'src/app/shared/dialog-boxes/message-box/mes
 export class StudentFeedbackComponent implements OnInit{
   newstudentFeedback:FormGroup;
   feedbackTypes = SmsConstant.feedbackTypes;
+  staffNameList = SmsConstant.staffName
+  classes = SmsConstant.classes;
   isAddMode?: boolean;
   loading = false;
   submitted = false;
   id?: any;
+  ALL_Section: any = [];
+  ALL_Admission: any = [];
+  _className : string;
+  _section : string;
+
 
    @BlockUI() blockUI: NgBlockUI;
   // studentFeedbackTitle = SmsConstant.feedbackTitles;
-  constructor(private fb:FormBuilder,  private studentrestApiService :StudentrestApiService, private route: ActivatedRoute,public dialog: MatDialog) 
+  constructor(private fb:FormBuilder,  private studentrestApiService :StudentrestApiService, private route: ActivatedRoute,public dialog: MatDialog,  private factory: FactorydataService) 
   {
+    debugger;
+    this.classes =factory.classes;
+    this.staffNameList =factory.staffNames;
     this.newstudentFeedback=this.fb.group({
       admissionNumber: ['', Validators.required],
       staffName: ['', Validators.required],
@@ -76,6 +87,15 @@ export class StudentFeedbackComponent implements OnInit{
     
   }
 
+  LoadSections(className)
+  {
+    debugger;
+    this._className = className.value;
+    this.factory.GetSectionByClassName(className.value).subscribe((data) => {
+      this.ALL_Section = data; 
+    });
+  }
+
   createStudenteLetter()
   {
     this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"student feedback created successfully !"});
@@ -106,5 +126,14 @@ export class StudentFeedbackComponent implements OnInit{
     });
   }
 
+  LoadadmissionNumber(section)
+  {
+    debugger;
+     this.factory.GetAdmissionNumber(this._className,section.value).subscribe((data) => {
+      this.ALL_Admission = data; 
+     });
+    
+  }
+  
 
 }

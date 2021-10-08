@@ -204,5 +204,23 @@ namespace SMS.Controllers
 		}
 		#endregion
 
+		#region AdmissionNobyClassandSection
+		[HttpGet("AdmissionNobyClassandSection/{className}/{Section}")]
+		public IActionResult AdmissionNobyClassandSection(string className,string Section)
+		{
+			return  Ok( _dbcontext.Students.Where(x  => x.Class ==className && x.Section == Section).Select(y => new { y.StudentId, y.AdmissionNumber}).ToList());
+		}
+		#endregion
+
+		#region StaffNames
+		[HttpGet("StaffNames")]
+		public IActionResult StaffNames()
+		{
+			return Ok(_dbcontext.Staffs.Select(x => new {
+				StaffName = string.Format("{0} {1}", x.FirstName, x.LastName),
+				x.StaffId
+			  }).ToList());
+		}
+		#endregion
 	}
 }

@@ -131,10 +131,7 @@ export class SmsConstant {
   ]
 
   static  staffName = [
-    { value: 0, viewValue: '--select none--' },
-    { value: 1, viewValue: 'Aiswarya' },
-    { value: 2, viewValue: 'Arun Prasanth' },
-    { value: 3, viewValue: 'Dinesh' }
+    // { staffId: 1, staffName: 'Aiswarya' },
   ]
 
   static  designation = [
@@ -332,6 +329,10 @@ export class SmsConstant {
    // { inventoryItemUsageAreaId: 0, description: '--select none--' }
     // { value: "1", viewValue: 'itemUsageArea 1' },
     // { value: "2", viewValue: 'itemUsageArea 2' }
+  ]
+
+  static addmissionNumbers = [
+       // { studentId: 0, admissionNumber: '--select none--' }
   ]
 
 
