@@ -128,5 +128,4 @@ export class StudentDetailsComponent implements OnInit ,FormTouched{
     });
   }
 
-
 }

@@ -4,20 +4,26 @@
         <div class="row">
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
-                    <mat-label>Addmission Number</mat-label>
-                    <input matInput  formControlName="admissionNumber">
-                </mat-form-field>
-                <mat-form-field appearance="standard">
-                    <mat-label>Staff Name</mat-label>
-                    <input matInput  formControlName="staffName">
-                </mat-form-field>
-                <mat-form-field appearance="standard">
-                    <mat-label>Feedback Type</mat-label>
-                    <mat-select formControlName="feedbackType">
-                        <mat-option *ngFor="let feedbackType of feedbackTypes" [value]="feedbackType.value">
-                            {{feedbackType.viewValue}}
+                    <mat-label>Class</mat-label>
+                    <mat-select formControlName="class" (selectionChange)="LoadSections($event)">
+                        <mat-option *ngFor="let class of classes" [value]="class.className" >
+                            {{class.className}}
                         </mat-option>
                     </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="standard">
+                    <mat-label>Staff Name</mat-label>
+                    <mat-select formControlName="staffName">
+                        <mat-option *ngFor="let staff of staffNameList" [value]="staff.staffId" >
+                            {{staff.staffName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="standard" style="width:350px;">
+                    <mat-label>Description</mat-label>
+                    <textarea matInput formControlName="description"></textarea>
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Date</mat-label>
@@ -27,10 +33,20 @@
                 </mat-form-field>
             </div>
             <div class="col-sm-3">
-                <mat-form-field appearance="standard">
+                <!-- <mat-form-field appearance="standard">
                     <mat-label>Class</mat-label>
                     <input matInput  formControlName="class">
+                </mat-form-field> -->
+                
+                <mat-form-field appearance="standard">
+                    <mat-label>Section</mat-label>
+                    <mat-select formControlName="section" (selectionChange)="LoadadmissionNumber($event)">
+                        <mat-option *ngFor="let sec of ALL_Section " [value]="sec">
+                            {{sec}}
+                        </mat-option>
+                    </mat-select>
                 </mat-form-field>
+
                 <!-- <mat-form-field appearance="standard">
                     <mat-label>Feedback Title</mat-label>
                     <mat-select formControlName="feedbacktitle">
@@ -39,21 +55,31 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field> -->
+                <mat-form-field appearance="standard">
+                    <mat-label>Feedback Type</mat-label>
+                    <mat-select formControlName="feedbackType">
+                        <mat-option *ngFor="let feedbackType of feedbackTypes" [value]="feedbackType.value">
+                            {{feedbackType.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
 
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Addmission Number</mat-label>
+                    <mat-select formControlName="admissionNumber" >
+                        <mat-option *ngFor="let addmission of ALL_Admission" [value]="addmission.studentId">
+                            {{addmission.admissionNumber}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+               
                 <mat-form-field appearance="standard">
                     <mat-label>Feedback Title</mat-label>
                     <input matInput  formControlName="feedbacktitle">
                 </mat-form-field>
-            </div>
-            <div class="col-sm-3">
-                <mat-form-field appearance="standard">
-                    <mat-label>Section</mat-label>
-                    <input matInput  formControlName="section">
-                </mat-form-field>
-                <mat-form-field appearance="standard" style="width:350px;">
-                    <mat-label>Description</mat-label>
-                    <textarea matInput formControlName="description"></textarea>
-                </mat-form-field>
+ 
             </div>
         </div>
         <div class="row" style="width: 100%;">

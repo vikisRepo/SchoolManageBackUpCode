@@ -11,6 +11,8 @@ import { environment } from 'src/environments/environment';
 })
 export class FactorydataService {
   sectionapiURL :any= environment.apiUrl + "/api/AcademicClass/GetClassSections/";
+  admissionapiURL :any =environment.apiUrl +  "/api/Factory/AdmissionNobyClassandSection/";
+ // staffNamesapiURL :any =environment.apiUrl + "/api/Factory/StaffNames";
   constructor(private http: HttpClient) {
     
    }
@@ -36,12 +38,13 @@ export class FactorydataService {
       inventoryItemUsageAreas : this.getfactorydata('/api/Factory/InventoryItemUsageAreas', 2000), 
       factoryClasses : this.getfactorydata('/api/AcademicClass/GetFactoryClassNames', 2000),
       factorySubjects : this.getfactorydata('/api/Subject', 2000),
-      factoryRole : this.getfactorydata('/api/Factory/Roles', 2000)
+      factoryRole : this.getfactorydata('/api/Factory/Roles', 2000),
+      staffName : this.getfactorydata('/api/Factory/StaffNames',2000)
       
       // requestThree: this.getfactorydata('/api​/Factory​/RepotingTo')
     })
     .subscribe(({banks, cities,departments,employeestatus,bloodgroup,maritalStatus,religion,gender,salutations,language,staffTypes,nationalities,designation,
-             inventoryItemUsageAreas, inventoryItemTypes, factoryClasses, factorySubjects, factoryRole}) => {
+             inventoryItemUsageAreas, inventoryItemTypes, factoryClasses, factorySubjects, factoryRole,staffName}) => {
       SmsConstant.bank = banks;
       sessionStorage.setItem('bank',JSON.stringify(banks));
       SmsConstant.city = cities;
@@ -82,6 +85,8 @@ export class FactorydataService {
       sessionStorage.setItem('Subjectsdropdown',JSON.stringify(factorySubjects));
       SmsConstant.role = factoryRole;
       sessionStorage.setItem('role',JSON.stringify(factoryRole));
+      SmsConstant.staffName = staffName;
+      sessionStorage.setItem('staffName',JSON.stringify(staffName));
     });
 
    }
@@ -187,6 +192,9 @@ export class FactorydataService {
   get role(){
     return JSON.parse(sessionStorage.getItem("role"));
   }
+  get staffNames(){
+     return JSON.parse(sessionStorage.getItem("staffName"));
+  }
 
 
   GetSectionByClassName(className : any): Observable<any> {
@@ -197,5 +205,21 @@ export class FactorydataService {
         catchError((err)=>this.handleError(err))
       )
     }
+  
+  GetAdmissionNumber(className : any,section :any):Observable<any>{
+    debugger;
+    return this.http.get<any>(this.admissionapiURL+className+"/"+section)
+    .pipe(
+      retry(1),
+      catchError((err)=>this.handleError(err))
+    )
+  }
+  // getStaffNames():Observable<any>{
+  //   return this.http.get<any>(this.staffNamesapiURL)
+  //   .pipe(
+  //     retry(1),
+  //     catchError((err)=>this.handleError(err))
+  //   )
+  // }
 
 }
