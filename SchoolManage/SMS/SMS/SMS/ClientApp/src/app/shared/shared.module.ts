@@ -10,6 +10,7 @@ import { MessageBoxComponent } from './dialog-boxes/message-box/message-box.comp
 import { UploadComponent } from './upload/upload.component';
 import { DownloadComponent } from './download/download.component';
 import { FileManagerComponent } from './file-manager/file-manager.component';
+import { NotificationMenuComponent } from './notification-menu/notification-menu.component';
 
 
 
@@ -23,7 +24,8 @@ import { FileManagerComponent } from './file-manager/file-manager.component';
     MessageBoxComponent,
     UploadComponent,
     DownloadComponent,
-    FileManagerComponent
+    FileManagerComponent,
+    NotificationMenuComponent
     ],
   imports: [
     CommonModule,
@@ -31,6 +33,6 @@ import { FileManagerComponent } from './file-manager/file-manager.component';
     AngularMaterialModule
   ],
   exports:[AngularMaterialModule,HeaderActionComponent,AddressDetailComponent,
-    AddressDetailsComponent,ClassesComponent,MessageBoxComponent,FileManagerComponent]
+    AddressDetailsComponent,ClassesComponent,MessageBoxComponent,FileManagerComponent, NotificationMenuComponent]
 })
 export class SharedModule { }

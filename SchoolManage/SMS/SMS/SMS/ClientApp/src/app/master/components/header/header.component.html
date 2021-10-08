@@ -22,8 +22,23 @@
 
     <button mat-icon-button class="menuIcon" style=" margin-left:15px;">
       <img src="../../../assets/notification-bell.png" alt="Notify"
-        style="height:30px;margin-top:2px">
+        style="height:30px;margin-top:2px" (click)="openNotification(!showNotification)">
     </button>
+
+      <div class="notification-wrapper">
+        <!-- You can put an icon from Material Design icon or Fontawesome -->
+        <div class="notification-btn" (click)="openNotification(!showNotification)">
+          <span class="mdi mdi-bell"></span>
+        </div>
+        <div *ngIf="showNotification" class="notification-content" 
+          [exclude]="'.notification-btn'">
+          <div class="notification-header">
+            <span class="mdi mdi-settings"></span>
+            <span class="label">Notifications</span>
+          </div>
+          <li>Sample Test</li>
+        </div>
+      </div>
 
     <div>
       <button (click)="logout()" class="btn help-btn">LogOut</button>

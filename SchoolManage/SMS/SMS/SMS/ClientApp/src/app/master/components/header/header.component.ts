@@ -32,6 +32,8 @@ export class HeaderComponent implements OnInit {
 
    public response: {dbPath: ''};
 
+   showNotification: boolean;
+
 
    afuConfig = {
      multiple: false,
@@ -102,6 +104,12 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.accountService.logout();
+  }
+
+  openNotification(state: boolean) {
+    console.log(state);
+
+    this.showNotification = state;
   }
 
 }
