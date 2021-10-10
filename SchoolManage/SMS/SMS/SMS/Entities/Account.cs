@@ -1,3 +1,4 @@
+using SMS.Models.Message;
 using System;
 using System.Collections.Generic;
 
@@ -27,5 +28,9 @@ namespace WebApi.Entities
         {
             return this.RefreshTokens?.Find(x => x.Token == token) != null;
         }
-    }
+
+        public ICollection<Message> Messages { get; set; }
+
+        public ICollection<MessageRecipient> MessageRecipients { get; set; }
+  }
 }

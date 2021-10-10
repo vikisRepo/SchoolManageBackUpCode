@@ -6,6 +6,7 @@ using SMS.Models.Academics;
 using SMS.Models.Attendance;
 using SMS.Models.Inventory;
 using SMS.Models.Leave;
+using SMS.Models.Message;
 using SMS.Models.Setup;
 using SMS.Models.TimeTable;
 using SMS.Models.Transport;
@@ -111,7 +112,13 @@ namespace WebApi.Helpers
 
         public virtual DbSet<PeriodDetail> PeriodDetails { get; set; }
 
-        private readonly IConfiguration Configuration;
+        #region Messaging
+        public virtual DbSet<Message> Messages { get; set; }
+        public virtual DbSet<MessageRecipient> MessageRecipients { get; set; }
+        public virtual DbSet<ReminderFrequency> ReminderFrequencies { get; set; }
+    #endregion
+
+    private readonly IConfiguration Configuration;
 
         public MysqlDataContext(IConfiguration configuration)
         {

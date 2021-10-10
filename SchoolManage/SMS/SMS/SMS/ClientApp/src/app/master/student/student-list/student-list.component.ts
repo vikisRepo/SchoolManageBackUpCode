@@ -106,7 +106,7 @@ export class StudentListComponent implements OnInit {
      };
      debugger;
      this.studentListData.filter = filterValues;*/
-     let fileterData=this.students.filter(obj=> obj.class===this.studentfilters.value["sectionFilter"]);
+     let fileterData=this.students.filter(obj=> obj.section===this.studentfilters.value["sectionFilter"]);
      this.studentListData=new MatTableDataSource(fileterData);
      this.rows = this.studentListData.data.length;
    }
