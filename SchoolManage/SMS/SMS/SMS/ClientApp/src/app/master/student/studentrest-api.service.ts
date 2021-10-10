@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
 import { Observable, Subject, throwError } from 'rxjs';
 import { retry, catchError, delay } from 'rxjs/operators';
 
@@ -8,6 +8,8 @@ import { Console } from 'console';
 import { Student, Dependents } from './student';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { environment } from 'src/environments/environment';
+import { DatePipe } from '@angular/common';
+import { formatDate } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +19,7 @@ export class StudentrestApiService {
   apiURL = environment.apiUrl + '/api/Student';
   apiFeedbackURL = 'api/StudentFeedback/';
   studocsapiURL = environment.apiUrl + '/api/UploadDownload/GetStudentDocumentDetails';
+  apiStudentFeedbackUploadUrl = environment.apiUrl + '/api/StudentFeedback/UploadStudentFeedbackAndDocument'; 
   
   @BlockUI() blockUI: NgBlockUI;
 
@@ -112,16 +115,51 @@ export class StudentrestApiService {
       )
     }  
   
-    // HttpClient API post() method => Create Staff
-    createStudentFeedBack(staffFeedBack : any): Observable<any> {
-      console.log(JSON.stringify(staffFeedBack))
-      return this.http.post<any>(this.apiFeedbackURL ,staffFeedBack, this.httpOptions)
-      .pipe(
-        retry(1),
-        catchError((err)=>this.handleError(err))
-      )
+    // // HttpClient API post() method => Create Staff
+    // createStudentFeedBack(staffFeedBack : any): Observable<any> {
+    //   console.log(JSON.stringify(staffFeedBack))
+    //   return this.http.post<any>(this.apiFeedbackURL ,staffFeedBack, this.httpOptions)
+    //   .pipe(
+    //     retry(1),
+    //     catchError((err)=>this.handleError(err))
+    //   )
   
-    }  
+    // }
+    
+    public createStudentFeedBack(file: Blob, studentFeedbackdetails : any): Observable<HttpEvent<void>> {
+      debugger;
+      console.log("Hai"+studentFeedbackdetails.startDate.toISOString());
+      const formData = new FormData();
+      formData.append('file', file);
+      // formData.append('studentAttachments', JSON.stringify(docdetails));
+      formData.append('admissionNumber', studentFeedbackdetails.admissionNumber);
+      formData.append('staffId', studentFeedbackdetails.staffId);
+      formData.append('feedbackType', studentFeedbackdetails.feedbackType);
+      formData.append('date',  studentFeedbackdetails.startDate.toISOString());// | date: "dd:MMM:yyyy hh-mm-ss z"
+      formData.append('class', studentFeedbackdetails.class);
+      formData.append('feedbacktitle', studentFeedbackdetails.feedbacktitle);
+      formData.append('section', studentFeedbackdetails.section);
+      formData.append('description', studentFeedbackdetails.description);
+
+      let stuparams= new HttpParams()
+      stuparams.set('admissionNumber', studentFeedbackdetails.admissionNumber);
+      stuparams.set('staffId', studentFeedbackdetails.staffId);
+      stuparams.set('feedbackType', studentFeedbackdetails.feedbackType);
+      stuparams.set('date', studentFeedbackdetails.date);
+      stuparams.set('class', studentFeedbackdetails.class);
+      stuparams.set('feedbacktitle', studentFeedbackdetails.feedbacktitle);
+      stuparams.set('section', studentFeedbackdetails.section);
+      stuparams.set('description', studentFeedbackdetails.description);
+
+      return this.http.request(new HttpRequest(
+        'POST',
+        this.apiStudentFeedbackUploadUrl,
+        formData,
+        {
+          reportProgress: true,
+          params: stuparams
+        }));
+    }
   
     // HttpClient API put() method => Update Staff
     updateStudentFeedBack(id : any, staffFeedBack : any): Observable<any> {

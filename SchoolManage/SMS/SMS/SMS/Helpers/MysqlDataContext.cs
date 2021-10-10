@@ -32,10 +32,12 @@ namespace WebApi.Helpers
 
         public virtual DbSet<StudentAttachments> StudentDocuments { get; set; }
 
+        public virtual DbSet<StudentFeedback> StudentFeedbacks { get; set; }
 
-        //leave tables
 
-        public virtual DbSet<StudentLeave> StudentLeaves { get; set; }
+    //leave tables
+
+    public virtual DbSet<StudentLeave> StudentLeaves { get; set; }
 
         public virtual DbSet<StaffLeave> StaffLeaves { get; set; }
 

@@ -14,7 +14,7 @@
 
                 <mat-form-field appearance="standard">
                     <mat-label>Staff Name</mat-label>
-                    <mat-select formControlName="staffName">
+                    <mat-select formControlName="staffId">
                         <mat-option *ngFor="let staff of staffNameList" [value]="staff.staffId" >
                             {{staff.staffName}}
                         </mat-option>
@@ -27,7 +27,7 @@
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Date</mat-label>
-                    <input matInput [matDatepicker]="picker" formControlName="date">
+                    <input matInput [matDatepicker]="picker" formControlName="startDate" >
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
@@ -69,7 +69,7 @@
                 <mat-form-field appearance="standard">
                     <mat-label>Addmission Number</mat-label>
                     <mat-select formControlName="admissionNumber" >
-                        <mat-option *ngFor="let addmission of ALL_Admission" [value]="addmission.studentId">
+                        <mat-option *ngFor="let addmission of ALL_Admission" [value]="addmission.admissionNumber">
                             {{addmission.admissionNumber}}
                         </mat-option>
                     </mat-select>
@@ -84,13 +84,14 @@
         </div>
         <div class="row" style="width: 100%;">
             <div class="col-sm-3" style="margin-Top: 20px;">
-                <label for="tCertificate">
-                    <h2>Attachment <img src="../../../../assets/attachment.png" class="icon" style="height: 25px;" />&nbsp;
-                        <!--<mat-icon  color="primary">check_circle
-                     </mat-icon> -->
-                    </h2>
-                    <!-- <p style="color:red; margin-top:-10px">{{this.t1fileName}}</p> *ngIf="this.t1img"-->
+                <label>
+                    <img src="../../../../assets/attachment.png" class="icon" style="height: 25px;cursor: pointer;"
+                        (click)="inputFile.click()" />
+                        <!-- <mat-icon color="primary">
+                                check_circle</mat-icon> -->
+                    <!--<h3 >Attachment  </h3> -->
                 </label>
+                <input name="file" id="file"(change)="upload($event)" type="file" #inputFile hidden>
             </div>
             <div class="col-sm-3" style="margin-top: 20px;">
                 <!-- <input type="file" id="tCertificate" (change)="Onfilesave($event,0)" style="visibility: hidden;"
@@ -101,5 +102,4 @@
     <div class="footer-n-stu" style="float: right; margin-right: 20px;">   
         <button type="button" (click)="submit()" class="gradient-button">Submit</button>
       </div>
-      <!-- <p>{{newstudentFeedback.value|json}}</p> -->
     </form>

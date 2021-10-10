@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;
@@ -70,7 +70,7 @@ namespace SMS.Controllers
             return Ok();
         }
 
-        [HttpGet]
+    [HttpGet]
         [Route("download")]
         public async Task<IActionResult> Download([FromQuery] string file)
         {

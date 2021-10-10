@@ -7,6 +7,7 @@ import { StudentrestApiService } from '../studentrest-api.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MessageBoxComponent } from 'src/app/shared/dialog-boxes/message-box/message-box.component';
 import { FactorydataService } from 'src/app/shared/factorydata.service';
+import { HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-student-feedback',
@@ -26,6 +27,7 @@ export class StudentFeedbackComponent implements OnInit{
   ALL_Admission: any = [];
   _className : string;
   _section : string;
+  file : any;
 
 
    @BlockUI() blockUI: NgBlockUI;
@@ -37,9 +39,9 @@ export class StudentFeedbackComponent implements OnInit{
     this.staffNameList =factory.staffNames;
     this.newstudentFeedback=this.fb.group({
       admissionNumber: ['', Validators.required],
-      staffName: ['', Validators.required],
+      staffId: ['', Validators.required],
       feedbackType: ['', Validators.required],
-      date: ['', Validators.required],
+      startDate: ['', Validators.required],
       class: ['', Validators.required],
       feedbacktitle: ['', Validators.required],
       section:['', Validators.required],
@@ -68,6 +70,7 @@ export class StudentFeedbackComponent implements OnInit{
   }
 
   submit() {
+    debugger;
     console.log(this.newstudentFeedback.value);
     this.newstudentFeedback.markAllAsTouched();
     if(this.newstudentFeedback.invalid)
@@ -98,22 +101,41 @@ export class StudentFeedbackComponent implements OnInit{
 
   createStudenteLetter()
   {
-    this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"student feedback created successfully !"});
-      setTimeout(() => {
-        this.dialog.closeAll();
-      }, 2500);
-   this.blockUI.start()
-    this.studentrestApiService.createStudentFeedBack(this.newstudentFeedback.value).subscribe(_=>{
-      this.blockUI.stop();
+    this.studentrestApiService.createStudentFeedBack(this.file, this.newstudentFeedback.value).toPromise().then(
+      data => {
+        if (data) {
+          switch (data.type) {
+            case HttpEventType.UploadProgress:
+              // this.uploadStatus.emit( {status: ProgressStatusEnum.IN_PROGRESS, percentage: Math.round((data.loaded / data.total) * 100)});
+              break;
+            case HttpEventType.Response:
+              // this.inputFile.nativeElement.value = '';
+              // this.uploadStatus.emit( {status: ProgressStatusEnum.COMPLETE});
+              break;
+          }
+        }
+        this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"Student feedback created successfully !"});
+        setTimeout(() => {
+          this.dialog.closeAll();
+        }, 2500);
+      },
+      error => {
+        // this.inputFile.nativeElement.value = '';
+        // this.uploadStatus.emit({status: ProgressStatusEnum.ERROR});
+      }
+    );
+  }
+
+  public upload(event) {
+    if (event.target.files && event.target.files.length > 0) {
+      this.file = event.target.files[0];
       
-    },()=>{
-      this.blockUI.stop();
-    });
+    }
   }
 
   updateStudenteLetter()
   {
-    this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"student feedback updated successfully !"});
+    this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"Student feedback updated successfully !"});
       setTimeout(() => {
         this.dialog.closeAll();
       }, 2500);

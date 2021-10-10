@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.Helpers;
 
 namespace SMS.Migrations.MysqlData
 {
     [DbContext(typeof(MysqlDataContext))]
-    partial class MysqlDataContextModelSnapshot : ModelSnapshot
+    [Migration("20211009002656_StudentFeedbackV1")]
+    partial class StudentFeedbackV1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -2126,8 +2128,8 @@ namespace SMS.Migrations.MysqlData
                     b.Property<int>("AdmissionNumber")
                         .HasColumnType("int");
 
-                    b.Property<int>("AttachmentId")
-                        .HasColumnType("int");
+                    b.Property<string>("Attachment")
+                        .HasColumnType("text");
 
                     b.Property<string>("Class")
                         .HasColumnType("text");

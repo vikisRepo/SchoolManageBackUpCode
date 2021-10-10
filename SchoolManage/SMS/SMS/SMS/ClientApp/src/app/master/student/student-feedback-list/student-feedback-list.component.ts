@@ -15,13 +15,7 @@ import { SmsConstant } from 'src/app/shared/constant-values';
   styleUrls: ['./student-feedback-list.component.css']
 })
 export class StudentFeedbackListComponent implements OnInit {
-  studentFeedbackList=[{
-    'studentName':'Ramesh',
-    'feedBackType': 'Achievement',
-    'feedbackTitle':'Best Student of the Year',
-    'description':'2020 Best Student BVPS',
-    'date':'01-01-2020',
-    'attachment':'A1'}];
+  studentFeedbackList=[{}];
 
     @ViewChild(MatPaginator)
     paginator!: MatPaginator;
