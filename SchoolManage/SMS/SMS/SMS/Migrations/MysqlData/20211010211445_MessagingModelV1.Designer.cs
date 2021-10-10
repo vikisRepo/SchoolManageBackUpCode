@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.Helpers;
 
 namespace SMS.Migrations.MysqlData
 {
     [DbContext(typeof(MysqlDataContext))]
-    partial class MysqlDataContextModelSnapshot : ModelSnapshot
+    [Migration("20211010211445_MessagingModelV1")]
+    partial class MessagingModelV1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1404,10 +1406,10 @@ namespace SMS.Migrations.MysqlData
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("AccountId")
+                    b.Property<int>("CreatedDate")
                         .HasColumnType("int");
 
-                    b.Property<int>("CreatedDate")
+                    b.Property<int>("CreatorId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Expirydate")
@@ -1436,11 +1438,7 @@ namespace SMS.Migrations.MysqlData
 
                     b.HasKey("MessageId");
 
-                    b.HasIndex("AccountId");
-
                     b.HasIndex("MessageRecipientId");
-
-                    b.HasIndex("ParentMessageId");
 
                     b.HasIndex("ReminderFrequencyId");
 
@@ -1453,15 +1451,10 @@ namespace SMS.Migrations.MysqlData
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("AccountId")
-                        .HasColumnType("int");
-
                     b.Property<int>("IsRead")
                         .HasColumnType("int");
 
                     b.HasKey("MessageRecipientId");
-
-                    b.HasIndex("AccountId");
 
                     b.ToTable("MessageRecipients");
                 });
@@ -2520,32 +2513,13 @@ namespace SMS.Migrations.MysqlData
 
             modelBuilder.Entity("SMS.Models.Message.Message", b =>
                 {
-                    b.HasOne("WebApi.Entities.Account", null)
-                        .WithMany("Messages")
-                        .HasForeignKey("AccountId");
-
                     b.HasOne("SMS.Models.Message.MessageRecipient", null)
                         .WithMany("Messages")
                         .HasForeignKey("MessageRecipientId");
 
-                    b.HasOne("SMS.Models.Message.Message", "ParentMessage")
-                        .WithMany()
-                        .HasForeignKey("ParentMessageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("SMS.Models.Message.ReminderFrequency", null)
                         .WithMany("Messages")
                         .HasForeignKey("ReminderFrequencyId");
-
-                    b.Navigation("ParentMessage");
-                });
-
-            modelBuilder.Entity("SMS.Models.Message.MessageRecipient", b =>
-                {
-                    b.HasOne("WebApi.Entities.Account", null)
-                        .WithMany("MessageRecipients")
-                        .HasForeignKey("AccountId");
                 });
 
             modelBuilder.Entity("SMS.Models.StaffAddress", b =>
@@ -2706,13 +2680,6 @@ namespace SMS.Migrations.MysqlData
             modelBuilder.Entity("SMS.Models.TimeTable.ClassTimeTable", b =>
                 {
                     b.Navigation("PeriodDetails");
-                });
-
-            modelBuilder.Entity("WebApi.Entities.Account", b =>
-                {
-                    b.Navigation("MessageRecipients");
-
-                    b.Navigation("Messages");
                 });
 #pragma warning restore 612, 618
         }

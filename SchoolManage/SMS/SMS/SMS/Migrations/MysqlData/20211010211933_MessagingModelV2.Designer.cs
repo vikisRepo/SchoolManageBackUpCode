@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.Helpers;
 
 namespace SMS.Migrations.MysqlData
 {
     [DbContext(typeof(MysqlDataContext))]
-    partial class MysqlDataContextModelSnapshot : ModelSnapshot
+    [Migration("20211010211933_MessagingModelV2")]
+    partial class MessagingModelV2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1410,6 +1412,9 @@ namespace SMS.Migrations.MysqlData
                     b.Property<int>("CreatedDate")
                         .HasColumnType("int");
 
+                    b.Property<int>("CreatorId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Expirydate")
                         .HasColumnType("datetime");
 
@@ -1439,8 +1444,6 @@ namespace SMS.Migrations.MysqlData
                     b.HasIndex("AccountId");
 
                     b.HasIndex("MessageRecipientId");
-
-                    b.HasIndex("ParentMessageId");
 
                     b.HasIndex("ReminderFrequencyId");
 
@@ -2528,17 +2531,9 @@ namespace SMS.Migrations.MysqlData
                         .WithMany("Messages")
                         .HasForeignKey("MessageRecipientId");
 
-                    b.HasOne("SMS.Models.Message.Message", "ParentMessage")
-                        .WithMany()
-                        .HasForeignKey("ParentMessageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("SMS.Models.Message.ReminderFrequency", null)
                         .WithMany("Messages")
                         .HasForeignKey("ReminderFrequencyId");
-
-                    b.Navigation("ParentMessage");
                 });
 
             modelBuilder.Entity("SMS.Models.Message.MessageRecipient", b =>
