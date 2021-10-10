@@ -69,33 +69,37 @@ namespace SMS.Controllers
     [Route("UploadStudentFeedbackAndDocument")]
     public async Task<IActionResult> UploadStudentFeedbackAndDocument(IFormFile file, [FromForm] StudentFeedback studentFeedbackReq)
     {
-      var studentAttachments = new StudentAttachments();
-      studentAttachments.AdmissionNumber = studentFeedbackReq.AdmissionNumber;
-      studentAttachments.DocumentType = "Student Feedback";
-      var uploads = Path.Combine(_hostingEnvironment.WebRootPath, "uploads");
-      if (!Directory.Exists(uploads))
-      {
-        Directory.CreateDirectory(uploads);
-      }
-      if (file.Length > 0)
-      {
-        var filePath = Path.Combine(uploads, file.FileName);
-        studentAttachments.PathToFile = filePath;
-        using (var fileStream = new FileStream(filePath, FileMode.Create))
-        {
-          await file.CopyToAsync(fileStream);
-        }
+            if (file != null)
+            {
+                var studentAttachments = new StudentAttachments();
+                studentAttachments.AdmissionNumber = studentFeedbackReq.AdmissionNumber;
+                studentAttachments.DocumentType = "Student Feedback";
+                var uploads = Path.Combine(_hostingEnvironment.WebRootPath, "uploads");
+                if (!Directory.Exists(uploads))
+                {
+                    Directory.CreateDirectory(uploads);
+                }
+                if (file.Length > 0)
+                {
+                    var filePath = Path.Combine(uploads, file.FileName);
+                    studentAttachments.PathToFile = filePath;
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await file.CopyToAsync(fileStream);
+                    }
 
-        _dbcontext.StudentDocuments.Add(studentAttachments);
-        _dbcontext.SaveChanges();
+                    _dbcontext.StudentDocuments.Add(studentAttachments);
+                    _dbcontext.SaveChanges();
 
-        studentFeedbackReq.DateCreated = DateTime.Now;
-        studentFeedbackReq.AttachmentId = studentAttachments.StudentAttachmentsId;
-        await _dbcontext.StudentFeedbacks.AddAsync(studentFeedbackReq);
-        await _dbcontext.SaveChangesAsync();
+                    studentFeedbackReq.DateCreated = DateTime.Now;
+                    studentFeedbackReq.AttachmentId = studentAttachments.StudentAttachmentsId;
 
-      }
-      return Ok();
+
+                }
+            }
+            await _dbcontext.StudentFeedbacks.AddAsync(studentFeedbackReq);
+            await _dbcontext.SaveChangesAsync();
+            return Ok();
     }
 
     // PUT api/<StudentFeedbackController>/5

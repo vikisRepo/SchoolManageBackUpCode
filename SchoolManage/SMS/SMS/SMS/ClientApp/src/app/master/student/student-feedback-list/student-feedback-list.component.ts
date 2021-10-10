@@ -43,7 +43,7 @@ export class StudentFeedbackListComponent implements OnInit {
       end: new FormControl()
     });
      @BlockUI() blockUI: NgBlockUI;
-    columnsToDisplay=['studentName','feedBackType','feedbackTitle','description','date', 'actions'];
+    columnsToDisplay=['studentName','feedBackType','feedbackTitle','description','date','attachment', 'actions'];
   
   constructor(private fb: FormBuilder,private roter:Router, private studentrestApiService :StudentrestApiService) { 
     this.studentfeedbackfilters = this.fb.group({
