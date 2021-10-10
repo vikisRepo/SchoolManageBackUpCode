@@ -5,24 +5,25 @@
             <div class="col-sm-3" style="margin-left: 50px;margin-Top: 20px;">
                 <h3>{{doc}}</h3>
             </div>
-            <div class="col-sm-5" style="margin-Top: 20px;">
+            <div class="col-sm-6" style="margin-Top: 20px;width: 500px;">
                 <!-- <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload> -->
-                <div class="container-upload">
+                <div class="row">
                     <!-- <button [disabled]="disabled" [ngClass]="{'disabled': disabled}" class="button upload" (click)="inputFile.click()">
                         UPLOAD
                     </button>  [ngClass]="{'disabled': disabled}"-->
                     <label>
-                        <img src="../../../../assets/attachment.png" class="icon" style="height: 25px;cursor: pointer;"
+                        <img src="../../../../assets/attachment.png" class="icon" style="height: 25px;cursor: pointer; margin-right: 25px;"
                             (click)="inputFile.click()" />
                             <!-- <mat-icon color="primary">
                                     check_circle</mat-icon> -->
                         <!--<h3 >Attachment  </h3> -->
                     </label>
-                    <input name="file" id="file"(change)="upload($event, doc)" type="file" #inputFile hidden>
-                </div>
-                <div class="container-upload">
+                    <input name="file" id="file"(change)="upload($event, doc)"  type="file" #inputFile hidden>
+               
                     <mat-icon class="button download" Style="cursor: pointer;"
                     (click)="download($event,doc)" >get_app</mat-icon>
+                    <img src="../../../../assets/trash.png" class="icon" style="height: 25px;cursor: pointer;margin-left: 25px;"/>
+
                     <!-- <button [disabled]="disabled" class="button download" [ngClass]="{'disabled': disabled}"
                         (click)="download()">download</button> -->
                 </div>
