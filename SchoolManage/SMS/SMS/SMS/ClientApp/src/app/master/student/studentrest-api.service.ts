@@ -20,6 +20,7 @@ export class StudentrestApiService {
   apiFeedbackURL = 'api/StudentFeedback/';
   studocsapiURL = environment.apiUrl + '/api/UploadDownload/GetStudentDocumentDetails';
   apiStudentFeedbackUploadUrl = environment.apiUrl + '/api/StudentFeedback/UploadStudentFeedbackAndDocument'; 
+  apiStudentFeedbackUpdateUrl =  environment.apiUrl + '/api/StudentFeedback/UpdateStudentFeedbackAndDocument'; 
   
   @BlockUI() blockUI: NgBlockUI;
 

@@ -51,7 +51,9 @@ export class StudentFeedbackListComponent implements OnInit {
      @BlockUI() blockUI: NgBlockUI;
     columnsToDisplay=['studentName','feedBackType','feedbackTitle','description','date','attachment', 'actions'];
   
-  constructor(private fb: FormBuilder,private roter:Router, private studentrestApiService :StudentrestApiService) { 
+  constructor(private fb: FormBuilder,private studentrestApiService :StudentrestApiService,
+    private route: ActivatedRoute, public dialog: MatDialog,
+    private router: Router) { 
     this.studentfeedbackfilters = this.fb.group({
       FeedbackTypeFilter: [''],
       start: [''],
@@ -73,7 +75,7 @@ export class StudentFeedbackListComponent implements OnInit {
     }
   }
   callNewStudentFeedback(){
-    this.roter.navigate(['/student-feedback'])
+    this.router.navigate(['/student-feedback'])
   }
 
   removeStaffFeedBack(staff : any){
@@ -90,7 +92,7 @@ export class StudentFeedbackListComponent implements OnInit {
   editStaffFeedBack(staff : any)
   {
     console.log(staff);
-    this.roter.navigate(['/student-feedback',staff.studentFeedbackId]);
+    this.router.navigate(['/student-feedback',staff.studentFeedbackId]);
     // this.staffApiService.deleteStaff(staff.mobile).subscribe(_=>{
     // });
   }
