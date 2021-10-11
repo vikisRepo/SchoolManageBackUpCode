@@ -43,7 +43,6 @@ export class NewStudentComponent implements OnInit {
     if(!this.isAddMode)
     {
       this.parentAdmissionNumber = this.id;
-      debugger;
       this.documentDetails = {admissionNumber:this.parentAdmissionNumber};
       this.studentApiService.getStudent(this.id)
         .subscribe(studentdetails => {
@@ -68,7 +67,7 @@ export class NewStudentComponent implements OnInit {
   }
 
   btnMovement(st: string) {
-//debugger;
+  debugger;
    let flg = this.dt.toArray()[this.selectedTab].formTouched();
    console.log(flg)
    

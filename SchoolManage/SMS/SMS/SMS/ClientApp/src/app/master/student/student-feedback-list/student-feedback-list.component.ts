@@ -1,5 +1,5 @@
 import { Component, OnInit,  ViewChild, AfterViewInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StudentrestApiService } from '../studentrest-api.service';
 import { Subscription} from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
@@ -28,6 +28,8 @@ export class StudentFeedbackListComponent implements OnInit {
     studentfeedbackfilters: FormGroup;
     filters : boolean;
     rows : number =0;
+    id : string;
+    isMyFeedbackMode : boolean;
 
     // "studentFeedbackId": 1,
     // "staffName": "asdasdasd",
@@ -47,7 +49,8 @@ export class StudentFeedbackListComponent implements OnInit {
      @BlockUI() blockUI: NgBlockUI;
     columnsToDisplay=['studentName','feedBackType','feedbackTitle','description','date','attachment', 'actions'];
   
-  constructor(private fb: FormBuilder,private roter:Router, private studentrestApiService :StudentrestApiService) { 
+  constructor(private fb: FormBuilder,private roter:Router, private studentrestApiService :StudentrestApiService,
+    private route: ActivatedRoute) { 
     this.studentfeedbackfilters = this.fb.group({
       FeedbackTypeFilter: [''],
       start: [''],
@@ -56,7 +59,17 @@ export class StudentFeedbackListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.LoadFeedBack();
+    debugger;
+    this.id = this.route.snapshot.params['id'];
+    this.isMyFeedbackMode = !this.id;
+    if (!this.isMyFeedbackMode)
+    {
+       this.LoadFeedBackByAdmissionNumber();
+    }
+    else
+    {
+       this.LoadFeedBack();
+    }
   }
   callNewStudentFeedback(){
     this.roter.navigate(['/student-feedback'])
@@ -85,11 +98,25 @@ export class StudentFeedbackListComponent implements OnInit {
       this.studentFeedbackArr = staffFeedback;
       this.studentFeedbackList = staffFeedback;
       console.log(this.studentFeedbackList);
-      this.rows = this.studentFeedbackList.data.length;
+     // this.rows = this.studentFeedbackList.data.length;
        this.blockUI.stop();
 
     });
   }
+
+  LoadFeedBackByAdmissionNumber()
+  {
+    this.blockUI.start();
+
+    this.currentUserSubscription = this.studentrestApiService.getStudentsFeedBackByAdmissionNumber(this.id).subscribe((staffFeedback:any) => {
+      this.studentFeedbackArr = staffFeedback;
+      this.studentFeedbackList = staffFeedback;
+      console.log(this.studentFeedbackList);
+     // this.rows = this.studentFeedbackList.data.length;
+       this.blockUI.stop();
+    });
+  }
+
   filterToggle(){
     this.filters = !this.filters;
   }
@@ -120,7 +147,14 @@ export class StudentFeedbackListComponent implements OnInit {
   clearFilter():void{
     this.studentFeedbackList.filter = '';
     this.studentfeedbackfilters.reset();
-    this.LoadFeedBack();
+    if (!this.isMyFeedbackMode)
+    {
+       this.LoadFeedBackByAdmissionNumber();
+    }
+    else
+    {
+       this.LoadFeedBack();
+    }
   }
 
 }

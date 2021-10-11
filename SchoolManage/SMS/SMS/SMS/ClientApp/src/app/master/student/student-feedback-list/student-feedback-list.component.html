@@ -1,10 +1,12 @@
 <div class="row headerstyle">
-    <h2>Student Feedback List</h2>
+
+    <h2 [hidden]="!isMyFeedbackMode">Student Feedback List</h2>
+    <h2 [hidden]="isMyFeedbackMode">My Feedback List</h2>
 
     <div class="right-content">
         <img src="../../../assets/filter.png" alt="profile" (click)=" filterToggle()"
             style="height:30px;margin-top:-10px;margin-right: 20px; cursor: pointer;">
-        <img src="../../../assets/plus.png" alt="profile" (click)="callNewStudentFeedback()"
+        <img [hidden]="!isMyFeedbackMode" src="../../../assets/plus.png" alt="profile" (click)="callNewStudentFeedback()"
             style="height:30px;margin-top:-10px;margin-right: 40px;cursor: pointer;">
     </div>
 </div>
@@ -102,8 +104,8 @@
         <th mat-header-cell *matHeaderCellDef> </th>
         <td mat-cell *matCellDef="let element">
             <!-- <img src="../../../../assets/mind-map.png" class="icon" style="margin-right: 10px;" /> -->
-            <img src="../../../../assets/edit.png" class="icon" (click)="editStaffFeedBack(element)" style="margin-right: 10px;" />
-            <img src="../../../../assets/trash.png" class="icon" (click)="removeStaffFeedBack(element)" style="margin-right: 10px; cursor: pointer;" />
+            <img src="../../../../assets/edit.png" [hidden]="!isMyFeedbackMode" class="icon" (click)="editStaffFeedBack(element)" style="margin-right: 10px;" />
+            <img src="../../../../assets/trash.png" [hidden]="!isMyFeedbackMode" class="icon" (click)="removeStaffFeedBack(element)" style="margin-right: 10px; cursor: pointer;" />
         </td>
     </ng-container>
 

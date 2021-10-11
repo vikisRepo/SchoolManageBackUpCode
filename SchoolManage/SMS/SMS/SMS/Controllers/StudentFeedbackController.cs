@@ -49,8 +49,32 @@ namespace SMS.Controllers
       //})
     }
 
-		// GET api/<StudentFeedbackController>/5
-		[HttpGet("{id}")]
+        [HttpGet("GetByAdmissionNumber/{admissionNumber}")]
+        public IActionResult GetByAdmissionNumber(int admissionNumber)
+        {
+            return Ok((from studfeedback in _dbcontext.StudentFeedbacks
+                       join staff in _dbcontext.Staffs on studfeedback.StaffId equals staff.StaffId
+                       select new
+                       {
+                           studentFeedbackId = studfeedback.StudentFeedbackId,
+                           feedbackType = studfeedback.FeedbackType,
+                           date = studfeedback.Date,
+                           Class = studfeedback.Class,
+                           Feedbacktitle = studfeedback.Feedbacktitle,
+                           section = studfeedback.Section,
+                           description = studfeedback.Description,
+                           attachmentId = studfeedback.AttachmentId,
+                           admissionNumber = studfeedback.AdmissionNumber,
+                           dateCreated = studfeedback.DateCreated,
+                           staffName = staff.FirstName
+                       }).Where(x => x.admissionNumber ==  admissionNumber).ToList());
+            //return _dbcontext.StudentFeedbacks.Join(_dbcontext.Staffs, a => a.StaffId, b => b.StaffId, (a, b) => a.StaffId).ToList().Select(x => {
+            //  x.
+            //})
+        }
+
+        // GET api/<StudentFeedbackController>/5
+        [HttpGet("{id}")]
 		public StudentFeedback Get(int id)
 		{
 			return _dbcontext.StudentFeedbacks.Where(X => X.StudentFeedbackId == id).FirstOrDefault();

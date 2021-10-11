@@ -15,6 +15,7 @@ export class ClassSectionComponent implements OnInit {
 
   @Input() expData: any;
   @Output() btnEvent = new EventEmitter();
+  enabletrash : any = true;
 
   // subjectList=SmsConstant.Subjectsdropdown;
   // sectionList=SmsConstant.Sectiondropdown;
@@ -50,11 +51,12 @@ export class ClassSectionComponent implements OnInit {
   }
 
   save(eventtype : any) {
-    
+    debugger;
     if (Object.keys(this.expData).length != 0)
     {
       if (eventtype == 'toggle')
       {
+        debugger;
         this.newFlag = false;
         this.csForm.enable();
         this._eventtype = 'update';
@@ -63,8 +65,17 @@ export class ClassSectionComponent implements OnInit {
 
       if (eventtype == 'update')
       {
+        debugger;
         this.update();
-        this._eventtype = 'toggle';
+        this.newFlag = true;
+        this._eventtype = 'save';
+        return;
+      }
+      if (eventtype == 'save')
+      {
+        debugger;
+        this.newFlag = false;
+        this._eventtype = 'update';
         return;
       }
     }
@@ -127,5 +138,16 @@ export class ClassSectionComponent implements OnInit {
     this.csForm.enable();
 
     this.btnEvent.emit(2);
+  }
+
+  changeandunchange(flg:boolean , index : number){
+    if(flg)
+      {
+        this.csForm.value.at(index).disable();
+      }
+    else{
+        this.csForm.value.at(index).enable();
+    }
+
   }
 }

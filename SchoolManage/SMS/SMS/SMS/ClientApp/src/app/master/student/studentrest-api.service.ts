@@ -17,7 +17,7 @@ import { formatDate } from '@angular/common';
 export class StudentrestApiService {
 
   apiURL = environment.apiUrl + '/api/Student';
-  apiFeedbackURL = 'api/StudentFeedback/';
+  apiFeedbackURL = environment.apiUrl +'/api/StudentFeedback/';
   studocsapiURL = environment.apiUrl + '/api/UploadDownload/GetStudentDocumentDetails';
   apiStudentFeedbackUploadUrl = environment.apiUrl + '/api/StudentFeedback/UploadStudentFeedbackAndDocument'; 
   
@@ -100,6 +100,15 @@ export class StudentrestApiService {
     // HttpClient API get() method => Fetch Staffs list
     getStudentsFeedBack(): Observable<any> {
       return this.http.get<any>(this.apiFeedbackURL)
+      .pipe(
+        retry(1),
+        catchError((err)=>this.handleError(err))
+      )
+    }
+
+    getStudentsFeedBackByAdmissionNumber(admissionNumber : any): Observable<any> {
+      console.log(this.apiFeedbackURL + "GetByAdmissionNumber/" + admissionNumber);
+      return this.http.get<any>(this.apiFeedbackURL + "GetByAdmissionNumber/" + admissionNumber)
       .pipe(
         retry(1),
         catchError((err)=>this.handleError(err))
