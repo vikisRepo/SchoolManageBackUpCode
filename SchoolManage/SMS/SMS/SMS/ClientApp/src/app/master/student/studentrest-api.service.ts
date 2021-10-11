@@ -17,7 +17,7 @@ import { formatDate } from '@angular/common';
 export class StudentrestApiService {
 
   apiURL = environment.apiUrl + '/api/Student';
-  apiFeedbackURL = environment.apiUrl +'/api/StudentFeedback/';
+  apiFeedbackURL = 'api/StudentFeedback/';
   studocsapiURL = environment.apiUrl + '/api/UploadDownload/GetStudentDocumentDetails';
   apiStudentFeedbackUploadUrl = environment.apiUrl + '/api/StudentFeedback/UploadStudentFeedbackAndDocument'; 
   
@@ -137,14 +137,14 @@ export class StudentrestApiService {
     
     public createStudentFeedBack(file: Blob, studentFeedbackdetails : any): Observable<HttpEvent<void>> {
       debugger;
-      console.log("Hai"+studentFeedbackdetails.startDate.toISOString());
+      console.log("Hai"+studentFeedbackdetails);
       const formData = new FormData();
       formData.append('file', file);
       // formData.append('studentAttachments', JSON.stringify(docdetails));
       formData.append('admissionNumber', studentFeedbackdetails.admissionNumber);
       formData.append('staffId', studentFeedbackdetails.staffId);
       formData.append('feedbackType', studentFeedbackdetails.feedbackType);
-      formData.append('date',  studentFeedbackdetails.startDate.toISOString());// | date: "dd:MMM:yyyy hh-mm-ss z"
+      formData.append('date',  studentFeedbackdetails.date.toISOString());// | date: "dd:MMM:yyyy hh-mm-ss z"
       formData.append('class', studentFeedbackdetails.class);
       formData.append('feedbacktitle', studentFeedbackdetails.feedbacktitle);
       formData.append('section', studentFeedbackdetails.section);
@@ -171,12 +171,38 @@ export class StudentrestApiService {
     }
   
     // HttpClient API put() method => Update Staff
-    updateStudentFeedBack(id : any, staffFeedBack : any): Observable<any> {
-      return this.http.put<any>(this.apiFeedbackURL + '/' + id, JSON.stringify(staffFeedBack), this.httpOptions)
-      .pipe(
-        retry(1),
-        catchError((err)=>this.handleError(err))
-      )
+    updateStudentFeedBack(id : any, file: Blob, staffFeedBack : any): Observable<any> {
+      const formData = new FormData();
+      formData.append('file', file);
+      // formData.append('studentAttachments', JSON.stringify(docdetails));
+      formData.append('admissionNumber', staffFeedBack.admissionNumber);
+      formData.append('studentFeedbackId', id);
+      formData.append('staffId', staffFeedBack.staffId);
+      formData.append('feedbackType', staffFeedBack.feedbackType);
+      formData.append('date',  staffFeedBack.date);// | date: "dd:MMM:yyyy hh-mm-ss z"
+      formData.append('class', staffFeedBack.class);
+      formData.append('feedbacktitle', staffFeedBack.feedbacktitle);
+      formData.append('section', staffFeedBack.section);
+      formData.append('description', staffFeedBack.description);
+
+      let stuparams= new HttpParams()
+      // stuparams.set('admissionNumber', studentFeedbackdetails.admissionNumber); StudentFeedbackId
+      // stuparams.set('staffId', studentFeedbackdetails.staffId);
+      // stuparams.set('feedbackType', studentFeedbackdetails.feedbackType);
+      // stuparams.set('date', studentFeedbackdetails.date);
+      // stuparams.set('class', studentFeedbackdetails.class);
+      // stuparams.set('feedbacktitle', studentFeedbackdetails.feedbacktitle);
+      // stuparams.set('section', studentFeedbackdetails.section);
+      // stuparams.set('description', studentFeedbackdetails.description);
+
+      return this.http.request(new HttpRequest(
+        'PUT',
+        this.apiStudentFeedbackUpdateUrl,
+        formData,
+        {
+          reportProgress: true,
+          params: stuparams
+        }));
     }
   
     // HttpClient API delete() method => Delete Staff

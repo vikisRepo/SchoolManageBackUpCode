@@ -8,6 +8,8 @@ import { MatSort } from '@angular/material/sort';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { FormBuilder, FormControl,FormGroup } from '@angular/forms';
 import { SmsConstant } from 'src/app/shared/constant-values';
+import { MessageBoxComponent } from 'src/app/shared/dialog-boxes/message-box/message-box.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-student-feedback-list',
@@ -49,8 +51,7 @@ export class StudentFeedbackListComponent implements OnInit {
      @BlockUI() blockUI: NgBlockUI;
     columnsToDisplay=['studentName','feedBackType','feedbackTitle','description','date','attachment', 'actions'];
   
-  constructor(private fb: FormBuilder,private roter:Router, private studentrestApiService :StudentrestApiService,
-    private route: ActivatedRoute) { 
+  constructor(private fb: FormBuilder,private roter:Router, private studentrestApiService :StudentrestApiService) { 
     this.studentfeedbackfilters = this.fb.group({
       FeedbackTypeFilter: [''],
       start: [''],
@@ -78,6 +79,10 @@ export class StudentFeedbackListComponent implements OnInit {
   removeStaffFeedBack(staff : any){
 
     this.studentrestApiService.deleteStudentFeedBack(staff.studentFeedbackId).subscribe(_=>{
+      this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"Student Feedback deleted successfully !"});
+        setTimeout(() => {
+          this.dialog.closeAll();
+        }, 2500);
       this.LoadFeedBack();
     });
   }
@@ -85,7 +90,7 @@ export class StudentFeedbackListComponent implements OnInit {
   editStaffFeedBack(staff : any)
   {
     console.log(staff);
-    this.roter.navigate(['/main/student-feedback',staff.studentFeedbackId]);
+    this.roter.navigate(['/student-feedback',staff.studentFeedbackId]);
     // this.staffApiService.deleteStaff(staff.mobile).subscribe(_=>{
     // });
   }

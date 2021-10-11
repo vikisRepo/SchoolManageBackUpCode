@@ -127,11 +127,51 @@ namespace SMS.Controllers
     }
 
     // PUT api/<StudentFeedbackController>/5
-    [HttpPut("{id}")]
-		public void Put(int id, [FromBody] StudentFeedback studentFeedbackReq)
-		{
-			_dbcontext.Entry(_dbcontext.StudentFeedbacks.Where(X => X.StudentFeedbackId == id).FirstOrDefault()).CurrentValues.SetValues(studentFeedbackReq);
-			_dbcontext.SaveChanges();
+    [HttpPut("UpdateStudentFeedbackAndDocument")]
+    public async Task<IActionResult> UpdateStudentFeedbackAndDocument(IFormFile file, [FromForm] StudentFeedback studentFeedbackReq)
+    {
+      var stuFeedback = _dbcontext.StudentFeedbacks.Where(X => X.StudentFeedbackId == studentFeedbackReq.StudentFeedbackId).FirstOrDefault();
+      if (file != null)
+      {
+        var studentAttachments = new StudentAttachments();
+        studentAttachments.AdmissionNumber = studentFeedbackReq.AdmissionNumber;
+        studentAttachments.DocumentType = "Student Feedback";
+        var uploads = Path.Combine(_hostingEnvironment.WebRootPath, "uploads");
+        if (!Directory.Exists(uploads))
+        {
+          Directory.CreateDirectory(uploads);
+        }
+        if (file.Length > 0)
+        {
+          var filePath = Path.Combine(uploads, file.FileName);
+          studentAttachments.PathToFile = filePath;
+          using (var fileStream = new FileStream(filePath, FileMode.Create))
+          {
+            await file.CopyToAsync(fileStream);
+          }
+
+          _dbcontext.StudentDocuments.Add(studentAttachments);
+          _dbcontext.SaveChanges();
+
+          studentFeedbackReq.DateCreated = DateTime.Now;
+          studentFeedbackReq.AttachmentId = studentAttachments.StudentAttachmentsId;
+          stuFeedback.AttachmentId = studentFeedbackReq.AttachmentId;
+
+        }
+      }
+      
+      stuFeedback.AdmissionNumber = studentFeedbackReq.AdmissionNumber;
+      stuFeedback.Class = studentFeedbackReq.Class;
+      stuFeedback.Section = studentFeedbackReq.Section;
+      stuFeedback.StaffId = studentFeedbackReq.StaffId;
+      stuFeedback.FeedbackType = studentFeedbackReq.FeedbackType;
+      stuFeedback.Feedbacktitle = studentFeedbackReq.Feedbacktitle;
+      stuFeedback.Description = studentFeedbackReq.Description;
+      stuFeedback.Date = studentFeedbackReq.Date;
+      stuFeedback.DateCreated = DateTime.Now;
+
+      await _dbcontext.SaveChangesAsync();
+      return Ok();
 		}
 
 		// DELETE api/<StudentFeedbackController>/5
