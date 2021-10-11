@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection.Metadata;
@@ -109,30 +109,34 @@ namespace SMS.Models
 
         //[JsonIgnore]
         //[IgnoreDataMember]
-        //public virtual ApplicationUser ApplicationUser { get; set; }
+        //public virtual ICollection<StudentFeedback> StudentFeedbacks { get; set; }
 
-        //[JsonIgnore]
-        //[IgnoreDataMember]
-        //public virtual Department Department { get; set; }
+    //[JsonIgnore]
+    //[IgnoreDataMember]
+    //public virtual ApplicationUser ApplicationUser { get; set; }
 
-        //[JsonIgnore]
-        //[IgnoreDataMember]
-        //public virtual Designation Designation { get; set; }
+    //[JsonIgnore]
+    //[IgnoreDataMember]
+    //public virtual Department Department { get; set; }
 
-        //[JsonIgnore]
-        //[IgnoreDataMember]
-        //public virtual StaffType StaffType { get; set; }
+    //[JsonIgnore]
+    //[IgnoreDataMember]
+    //public virtual Designation Designation { get; set; }
 
-        //[JsonIgnore]
-        //[IgnoreDataMember]
-        //public virtual EmployeementStatus EmployeementStatus { get; set; }
+    //[JsonIgnore]
+    //[IgnoreDataMember]
+    //public virtual StaffType StaffType { get; set; }
 
-        //[JsonIgnore]
-        //[IgnoreDataMember]
-        //public virtual Nationality Nationality { get; set; }
+    //[JsonIgnore]
+    //[IgnoreDataMember]
+    //public virtual EmployeementStatus EmployeementStatus { get; set; }
 
-        //[JsonIgnore]
-        //[IgnoreDataMember]
-        //public virtual Religion Religion { get; set; }
-    }
+    //[JsonIgnore]
+    //[IgnoreDataMember]
+    //public virtual Nationality Nationality { get; set; }
+
+    //[JsonIgnore]
+    //[IgnoreDataMember]
+    //public virtual Religion Religion { get; set; }
+  }
 }
