@@ -84,6 +84,9 @@ export class StudentDetailsComponent implements OnInit ,FormTouched{
 
     this.studentProfileForm.valueChanges.subscribe(() => {
       Object.assign(this.formValues, this.studentProfileForm.value);
+      this.factory.GetSectionByClassName(this.studentProfileForm.value['class']).subscribe((data) => {
+        this.ALL_Section = data; 
+      });
       this.stuFormtDetails.emit({ value: this.formValues, valid: (this.studentProfileForm.valid && this.addressValidFlag) }); // 
 
     })

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SmsConstant } from 'src/app/shared/constant-values';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { StudentrestApiService } from '../studentrest-api.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -32,7 +32,9 @@ export class StudentFeedbackComponent implements OnInit{
 
    @BlockUI() blockUI: NgBlockUI;
   // studentFeedbackTitle = SmsConstant.feedbackTitles;
-  constructor(private fb:FormBuilder,  private studentrestApiService :StudentrestApiService, private route: ActivatedRoute,public dialog: MatDialog,  private factory: FactorydataService) 
+  constructor(private fb:FormBuilder,  private studentrestApiService :StudentrestApiService, 
+             private route: ActivatedRoute,public dialog: MatDialog,  private factory: FactorydataService,
+             private router: Router) 
   {
     debugger;
     this.classes =factory.classes;
@@ -41,7 +43,7 @@ export class StudentFeedbackComponent implements OnInit{
       admissionNumber: ['', Validators.required],
       staffId: ['', Validators.required],
       feedbackType: ['', Validators.required],
-      startDate: ['', Validators.required],
+      date: ['', Validators.required],
       class: ['', Validators.required],
       feedbacktitle: ['', Validators.required],
       section:['', Validators.required],
@@ -56,8 +58,15 @@ export class StudentFeedbackComponent implements OnInit{
 
     if(!this.isAddMode)
     {
+      debugger;
       this.studentrestApiService.getStudentFeedBack(this.id)
-        .subscribe(data => {
+        .toPromise().then(data => {
+          this.factory.GetSectionByClassName(data.class).subscribe((sectiondata) => {
+            this.ALL_Section = sectiondata; 
+          });
+          this.factory.GetAdmissionNumber(data.class,data.section).subscribe((admissiondata) => {
+            this.ALL_Admission = admissiondata; 
+           });
           this.newstudentFeedback.patchValue(data);
         }, error => console.log(error));
     }
@@ -114,9 +123,10 @@ export class StudentFeedbackComponent implements OnInit{
               break;
           }
         }
-        this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"Student feedback created successfully !"});
+        this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"Student Feedback created successfully !"});
         setTimeout(() => {
           this.dialog.closeAll();
+          this.router.navigate(['/student-feedback-list']);
         }, 2500);
       },
       error => {
@@ -135,16 +145,14 @@ export class StudentFeedbackComponent implements OnInit{
 
   updateStudenteLetter()
   {
-    this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"Student feedback updated successfully !"});
+    this.blockUI.start()
+    this.studentrestApiService.updateStudentFeedBack(this.id, this.file, this.newstudentFeedback.value).toPromise().then(_=>{
+     
+      this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"Student feedback updated successfully !"});
       setTimeout(() => {
         this.dialog.closeAll();
+        this.router.navigate(['/student-feedback-list']);
       }, 2500);
-    this.blockUI.start()
-    this.studentrestApiService.updateStudentFeedBack(this.id, this.newstudentFeedback.value).subscribe(_=>{
-      this.blockUI.stop();
-      
-    },()=>{
-      this.blockUI.stop();
     });
   }
 

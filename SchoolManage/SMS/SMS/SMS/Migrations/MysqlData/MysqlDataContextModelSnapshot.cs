@@ -1475,7 +1475,7 @@ namespace SMS.Migrations.MysqlData
                     b.Property<int>("Frequency")
                         .HasColumnType("int");
 
-                    b.Property<char>("IsActive")
+                    b.Property<int>("IsActive")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
