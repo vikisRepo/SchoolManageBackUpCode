@@ -15,17 +15,19 @@ import { SmsConstant } from 'src/app/shared/constant-values';
   styleUrls: ['./student-feedback-list.component.css']
 })
 export class StudentFeedbackListComponent implements OnInit {
-  studentFeedbackList=[{}];
+  studentFeedbackList : any;
+  studentFeedbackArr: Array<any>;
 
     @ViewChild(MatPaginator)
     paginator!: MatPaginator;
     @ViewChild(MatSort) sort !: MatSort;
   
     currentUserSubscription !: Subscription;
-    staffListData!: MatTableDataSource<any>;
+    staffListData: MatTableDataSource<any>;
     feedbackTypes = SmsConstant.feedbackTypes;
     studentfeedbackfilters: FormGroup;
     filters : boolean;
+    rows : number =0;
 
     // "studentFeedbackId": 1,
     // "staffName": "asdasdasd",
@@ -80,8 +82,10 @@ export class StudentFeedbackListComponent implements OnInit {
     this.blockUI.start();
 
     this.currentUserSubscription = this.studentrestApiService.getStudentsFeedBack().subscribe((staffFeedback:any) => {
+      this.studentFeedbackArr = staffFeedback;
       this.studentFeedbackList = staffFeedback;
       console.log(this.studentFeedbackList);
+      this.rows = this.studentFeedbackList.data.length;
        this.blockUI.stop();
 
     });
@@ -89,9 +93,34 @@ export class StudentFeedbackListComponent implements OnInit {
   filterToggle(){
     this.filters = !this.filters;
   }
-  applyFilter(event: any) {
-    const filterValue = this.studentfeedbackfilters.value[event];
-    this.studentFeedbackList.filter = filterValue.trim().toLowerCase();
+  // applyFilter(event: any) {
+  //   const filterValue = this.studentfeedbackfilters.value[event];
+  //   this.studentFeedbackList.filter = filterValue.trim().toLowerCase();
+  // }
+  
+  applyFilterFeedbackType(event : any){
+    debugger;
+    let filterData =this.studentFeedbackArr.filter(obj => obj.feedbackType===this.studentfeedbackfilters["FeedbackTypeFilter"]);
+    console.log(this.studentfeedbackfilters["FeedbackTypeFilter"]);
+    this.studentFeedbackList = new MatTableDataSource(filterData);
+   // this.rows = this.studentFeedbackList.data.length;
+  }
+
+  applyFilterDate(event: any) {
+    /* const filterValues = {
+       Class: this.studentfilters.value["classFilter"].toLowerCase()
+     };
+     debugger;
+     this.studentListData.filter = filterValues;*/
+     let fileterData=this.studentFeedbackArr.filter(obj=> obj.date===this.studentfeedbackfilters["start"].value);
+     this.studentFeedbackList=new MatTableDataSource(fileterData);
+     this.rows = this.studentFeedbackList.data.length;
+   }
+
+  clearFilter():void{
+    this.studentFeedbackList.filter = '';
+    this.studentfeedbackfilters.reset();
+    this.LoadFeedBack();
   }
 
 }
