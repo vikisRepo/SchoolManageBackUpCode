@@ -38,7 +38,7 @@ namespace SMS.Models
         //LanguagesDropdown
         //[JsonIgnore]
         //[IgnoreDataMember]
-        public string LanguagesId { get; set; }
+        public int LanguagesId { get; set; }
 		//public Languages[] Languages { get; set; }
         public string EmailId { get; set; }
         public string AadharNumber { get; set; }
