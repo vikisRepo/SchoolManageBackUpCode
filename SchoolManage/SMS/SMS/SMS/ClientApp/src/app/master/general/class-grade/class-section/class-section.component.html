@@ -31,11 +31,11 @@
                     <input matInput formControlName="group">
                 </mat-form-field>
 
-                <button mat-icon-button class="btnIcon" *ngIf="newFlag"  (click)="save('save')">
+                <button mat-icon-button class="btnIcon" *ngIf="newFlag"  (click)="save()">
                     <img src="../../../../assets/save.png" class="icon">
                 </button>
 
-                <button mat-icon-button class="btnIcon" *ngIf="!newFlag" (click)="save(_eventtype)">
+                <button mat-icon-button class="btnIcon" *ngIf="!newFlag" (click)="toggleButton()">
                     <img src="../../../../assets/edit.png" class="icon">
                 </button>
 

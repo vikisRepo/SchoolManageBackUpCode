@@ -48,6 +48,11 @@ export class ClassGradeComponent implements OnInit {
       this.experiences.pop();
       return;
     }
+
+    if (value ===2){
+      //this.addButton = true;
+      return;
+    }
     this.getData();
     //api 
 

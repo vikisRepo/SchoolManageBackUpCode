@@ -39,45 +39,45 @@ export class ClassSectionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._eventtype = 'toggle';
     if (Object.keys(this.expData).length != 0) {
       this.csForm.disable();
       this.csForm.setValue(this.expData);
     }
     else{
       this.newFlag=true;
-      this._eventtype = 'toggle';
     }
   }
 
-  save(eventtype : any) {
+  save() {
     debugger;
     if (Object.keys(this.expData).length != 0)
     {
-      if (eventtype == 'toggle')
-      {
-        debugger;
-        this.newFlag = false;
-        this.csForm.enable();
-        this._eventtype = 'update';
-        return;
-      }
+      this.update();
+      return;
+      // if (eventtype == 'toggle')
+      // {
+      //   debugger;
+      //   this.newFlag = false;
+      //   this.csForm.enable();
+      //   this._eventtype = 'update';
+      //   return;
+      // }
 
-      if (eventtype == 'update')
-      {
-        debugger;
-        this.update();
-        this.newFlag = true;
-        this._eventtype = 'save';
-        return;
-      }
-      if (eventtype == 'save')
-      {
-        debugger;
-        this.newFlag = false;
-        this._eventtype = 'update';
-        return;
-      }
+      // if (eventtype == 'update')
+      // {
+      //   debugger;
+      //   this.update();
+      //   this.newFlag = true;
+      //   this._eventtype = 'save';
+      //   return;
+      // }
+      // if (eventtype == 'save')
+      // {
+      //   debugger;
+      //   this.newFlag = false;
+      //   this._eventtype = 'update';
+      //   return;
+      // }
     }
 
     console.log(this.csForm.value);
@@ -115,6 +115,8 @@ export class ClassSectionComponent implements OnInit {
 
   update()
   {
+    debugger;
+    console.log(this.expData);
     this.classGradeRestApiService.updateClassGrade(this.expData.class, this.csForm.value).subscribe(_=>{
       this.btnEvent.emit();
       this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"Class has been updated successfully !"});
@@ -134,7 +136,7 @@ export class ClassSectionComponent implements OnInit {
 
   toggleButton()
   {
-    this.newFlag = false;
+    this.newFlag = true;
     this.csForm.enable();
 
     this.btnEvent.emit(2);
