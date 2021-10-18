@@ -73,8 +73,8 @@ namespace SMS.Controllers
             //})
         }
 
-        // GET api/<StudentFeedbackController>/5
-        [HttpGet("{id}")]
+    // GET api/<StudentFeedbackController>/5
+    [HttpGet("{id}")]
 		public StudentFeedback Get(int id)
 		{
 			return _dbcontext.StudentFeedbacks.Where(X => X.StudentFeedbackId == id).FirstOrDefault();

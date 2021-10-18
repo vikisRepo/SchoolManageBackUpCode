@@ -172,19 +172,19 @@ export class StudentrestApiService {
     }
   
     // HttpClient API put() method => Update Staff
-    updateStudentFeedBack(id : any, file: Blob, staffFeedBack : any): Observable<any> {
+    updateStudentFeedBack(id : any, file: Blob, studFeedBack : any): Observable<any> {
       const formData = new FormData();
       formData.append('file', file);
       // formData.append('studentAttachments', JSON.stringify(docdetails));
-      formData.append('admissionNumber', staffFeedBack.admissionNumber);
+      formData.append('admissionNumber', studFeedBack.admissionNumber);
       formData.append('studentFeedbackId', id);
-      formData.append('staffId', staffFeedBack.staffId);
-      formData.append('feedbackType', staffFeedBack.feedbackType);
-      formData.append('date',  staffFeedBack.date);// | date: "dd:MMM:yyyy hh-mm-ss z"
-      formData.append('class', staffFeedBack.class);
-      formData.append('feedbacktitle', staffFeedBack.feedbacktitle);
-      formData.append('section', staffFeedBack.section);
-      formData.append('description', staffFeedBack.description);
+      formData.append('staffId', studFeedBack.staffId);
+      formData.append('feedbackType', studFeedBack.feedbackType);
+      formData.append('date',  studFeedBack.date);// | date: "dd:MMM:yyyy hh-mm-ss z"
+      formData.append('class', studFeedBack.class);
+      formData.append('feedbacktitle', studFeedBack.feedbacktitle);
+      formData.append('section', studFeedBack.section);
+      formData.append('description', studFeedBack.description);
 
       let stuparams= new HttpParams()
       // stuparams.set('admissionNumber', studentFeedbackdetails.admissionNumber); StudentFeedbackId

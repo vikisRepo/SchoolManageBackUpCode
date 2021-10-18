@@ -334,6 +334,14 @@ export class SmsConstant {
   static addmissionNumbers = [
        // { studentId: 0, admissionNumber: '--select none--' }
   ]
+  static employeeId =[
+    // {
+    //     employeeId: "34534534",
+    //     departmentName: "Finance",
+    //     teacherId: "dfgh",
+    //     staffName: "sdfgsdfg sdfgsdfg"
+    // }
+  ]
 
 
 

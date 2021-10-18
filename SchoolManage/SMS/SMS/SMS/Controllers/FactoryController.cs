@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SMS.Models;
 using SMS.Models.Inventory;
@@ -221,6 +221,20 @@ namespace SMS.Controllers
 				x.StaffId
 			  }).ToList());
 		}
-		#endregion
-	}
+    #endregion
+
+    #region GetEmployeeDetails
+    [HttpGet("GetEmployeeDetails")]
+    public IActionResult GetEmployeeDetails()
+    {
+      return Ok(_dbcontext.Staffs.Select(x => new
+      {
+        x.EmployeeId,
+        DepartmentName = _dbcontext.Departments.Where(X => X.DepartmentId == x.DepartmentId).FirstOrDefault().DepartmentName,
+        x.TeacherId,
+        StaffName = string.Format("{0} {1}", x.FirstName, x.LastName)
+      }).ToList());
+    }
+    #endregion
+  }
 }

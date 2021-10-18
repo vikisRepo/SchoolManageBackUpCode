@@ -18,6 +18,7 @@ const routes: Routes = [
       { path: 'staff-feedback', loadChildren:()=>import('./staff/staff-feedback/staff-feedback.module').then(m=>m.StaffFeedbackModule)},
       { path: 'staff-feedback/:id', loadChildren:()=>import('./staff/staff-feedback/staff-feedback.module').then(m=>m.StaffFeedbackModule)},
       { path: 'staff-feedback-list',loadChildren:()=>import('./staff/staff-feedback-list/staff-feedback-list.module').then(m=>m.StaffFeedbackListModule)},
+      { path: 'staff-feedback-list/:id',loadChildren:()=>import('./staff/staff-feedback-list/staff-feedback-list.module').then(m=>m.StaffFeedbackListModule)},
       { path: 'student-feedback',loadChildren:()=>import('./student/student-feedback/student-feedback.module').then(m=>m.StudentFeedbackModule)},
       { path: 'student-feedback/:id',loadChildren:()=>import('./student/student-feedback/student-feedback.module').then(m=>m.StudentFeedbackModule)},
       { path: 'student-feedback-list',loadChildren:()=>import('./student/student-feedback-list/student-feedback-list.module').then(m=>m.StudentFeedbackListModule)},

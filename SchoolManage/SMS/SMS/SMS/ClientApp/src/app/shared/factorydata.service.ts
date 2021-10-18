@@ -39,12 +39,13 @@ export class FactorydataService {
       factoryClasses : this.getfactorydata('/api/AcademicClass/GetFactoryClassNames', 2000),
       factorySubjects : this.getfactorydata('/api/Subject', 2000),
       factoryRole : this.getfactorydata('/api/Factory/Roles', 2000),
-      staffName : this.getfactorydata('/api/Factory/StaffNames',2000)
+      staffName : this.getfactorydata('/api/Factory/StaffNames',2000),
+      employeeId : this.getfactorydata('/api/Factory/GetEmployeeDetails',2000)
       
       // requestThree: this.getfactorydata('/api​/Factory​/RepotingTo')
     })
     .subscribe(({banks, cities,departments,employeestatus,bloodgroup,maritalStatus,religion,gender,salutations,language,staffTypes,nationalities,designation,
-             inventoryItemUsageAreas, inventoryItemTypes, factoryClasses, factorySubjects, factoryRole,staffName}) => {
+             inventoryItemUsageAreas, inventoryItemTypes, factoryClasses, factorySubjects, factoryRole,staffName,employeeId}) => {
       SmsConstant.bank = banks;
       sessionStorage.setItem('bank',JSON.stringify(banks));
       SmsConstant.city = cities;
@@ -87,6 +88,8 @@ export class FactorydataService {
       sessionStorage.setItem('role',JSON.stringify(factoryRole));
       SmsConstant.staffName = staffName;
       sessionStorage.setItem('staffName',JSON.stringify(staffName));
+      SmsConstant.employeeId =employeeId;
+      sessionStorage.setItem('employeeId',JSON.stringify(employeeId));
     });
 
    }
@@ -194,6 +197,9 @@ export class FactorydataService {
   }
   get staffNames(){
      return JSON.parse(sessionStorage.getItem("staffName"));
+  }
+  get employeeId(){
+    return JSON.parse(sessionStorage.getItem("employeeId"));
   }
 
 

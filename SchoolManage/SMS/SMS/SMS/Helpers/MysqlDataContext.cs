@@ -34,6 +34,7 @@ namespace WebApi.Helpers
         public virtual DbSet<StudentAttachments> StudentDocuments { get; set; }
 
         public virtual DbSet<StudentFeedback> StudentFeedbacks { get; set; }
+        public virtual DbSet<StaffFeedback> StaffFeedbacks { get; set; }
 
 
     //leave tables
@@ -112,8 +113,10 @@ namespace WebApi.Helpers
 
         public virtual DbSet<PeriodDetail> PeriodDetails { get; set; }
 
-        #region Messaging
-        public virtual DbSet<Message> Messages { get; set; }
+    public virtual DbSet<StaffAttachments> StaffDocuments { get; set; }
+
+    #region Messaging
+    public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<MessageRecipient> MessageRecipients { get; set; }
         public virtual DbSet<ReminderFrequency> ReminderFrequencies { get; set; }
     #endregion

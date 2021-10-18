@@ -29,7 +29,7 @@ export class StudentFeedbackListComponent implements OnInit {
     feedbackTypes = SmsConstant.feedbackTypes;
     studentfeedbackfilters: FormGroup;
     filters : boolean;
-    rows : number =0;
+    rows : number;
     id : string;
     isMyFeedbackMode : boolean;
 
@@ -57,7 +57,8 @@ export class StudentFeedbackListComponent implements OnInit {
     this.studentfeedbackfilters = this.fb.group({
       FeedbackTypeFilter: [''],
       start: [''],
-      end:['']
+      end:[''],
+      date: [{begin: new Date(2018, 7, 5), end: new Date(2018, 7, 25)}]
     });
   }
 
@@ -105,8 +106,8 @@ export class StudentFeedbackListComponent implements OnInit {
       this.studentFeedbackArr = staffFeedback;
       this.studentFeedbackList = staffFeedback;
       console.log(this.studentFeedbackList);
-     // this.rows = this.studentFeedbackList.data.length;
-       this.blockUI.stop();
+      this.rows = this.studentFeedbackArr.length;
+      this.blockUI.stop();
 
     });
   }
@@ -119,7 +120,7 @@ export class StudentFeedbackListComponent implements OnInit {
       this.studentFeedbackArr = staffFeedback;
       this.studentFeedbackList = staffFeedback;
       console.log(this.studentFeedbackList);
-     // this.rows = this.studentFeedbackList.data.length;
+      this.rows = this.studentFeedbackArr.length;
        this.blockUI.stop();
     });
   }
@@ -134,19 +135,22 @@ export class StudentFeedbackListComponent implements OnInit {
   
   applyFilterFeedbackType(event : any){
     debugger;
-    let filterData =this.studentFeedbackArr.filter(obj => obj.feedbackType===this.studentfeedbackfilters["FeedbackTypeFilter"]);
+    let filterData =this.studentFeedbackArr.filter(obj => obj.feedbackType===this.studentfeedbackfilters.value["FeedbackTypeFilter"]);
     console.log(this.studentfeedbackfilters["FeedbackTypeFilter"]);
     this.studentFeedbackList = new MatTableDataSource(filterData);
-   // this.rows = this.studentFeedbackList.data.length;
+    this.rows = this.studentFeedbackList.data.length;
   }
 
   applyFilterDate(event: any) {
     /* const filterValues = {
        Class: this.studentfilters.value["classFilter"].toLowerCase()
      };
-     debugger;
+    
      this.studentListData.filter = filterValues;*/
-     let fileterData=this.studentFeedbackArr.filter(obj=> obj.date===this.studentfeedbackfilters["start"].value);
+     console.log("StartDate" + this.studentfeedbackfilters.value["date"]);
+     debugger;
+     let fileterData=this.studentFeedbackArr.filter(obj=> obj.date >= this.studentfeedbackfilters.value["date"].begin
+     && obj.date <= this.studentfeedbackfilters.value["date"].end);
      this.studentFeedbackList=new MatTableDataSource(fileterData);
      this.rows = this.studentFeedbackList.data.length;
    }

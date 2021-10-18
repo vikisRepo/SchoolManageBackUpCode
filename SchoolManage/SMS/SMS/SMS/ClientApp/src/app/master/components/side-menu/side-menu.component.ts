@@ -11,14 +11,16 @@ export class SideMenuComponent implements OnInit {
   panelOpenState = false;
   showFiller = false;
   account : any;
-  myFeedbackroute : string;
+  mystuFeedbackroute : string;
+  mystaffFeedbackroute : string;
   
   
   constructor(private accountService: AccountService) { }
 
   ngOnInit(): void {
     this.account = this.accountService.accountValue;
-    this.myFeedbackroute = "student-feedback-list/"+this.account.id;
+    this.mystuFeedbackroute = "student-feedback-list/"+this.account.id;
+    this.mystaffFeedbackroute = "staff-feedback-list/"+this.account.id;
   }
 
   openSite(siteUrl) : void {

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { Router } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { FormControl, FormGroup } from '@angular/forms';
 import { Subscription} from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
@@ -8,6 +8,8 @@ import { MatSort } from '@angular/material/sort';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { StaffrestApiService } from '../staffrest-api.service';
 import { SmsConstant } from 'src/app/shared/constant-values';
+import { MessageBoxComponent } from 'src/app/shared/dialog-boxes/message-box/message-box.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-staff-feedback-list',
@@ -36,6 +38,8 @@ export class StaffFeedbackListComponent implements OnInit {
   feedbackTypes = SmsConstant.feedbackTypes;
   stafffeedbackfilters: FormGroup;
   filters : boolean;
+  isMyFeedbackMode : boolean;
+  id : any;
   range =new FormGroup({
     start: new FormControl(),
     end: new FormControl()
@@ -43,11 +47,21 @@ export class StaffFeedbackListComponent implements OnInit {
    @BlockUI() blockUI: NgBlockUI;
 
   columnsToDisplay = ['staffName', 'feedBackType', 'feedbackTitle', 'description', 'date', 'attachment', 'actions'];
-  constructor(private router: Router,  private staffrestApiService :StaffrestApiService) { }
+  constructor(private router: Router,  private staffrestApiService :StaffrestApiService,
+    public dialog: MatDialog, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.LoadFeedBack();
+    debugger;
+    this.id = this.route.snapshot.params['id'];
+    this.isMyFeedbackMode = !this.id;
+    if (!this.isMyFeedbackMode) {
+      this.LoadFeedBackbyAccount();
+    }
+    else {
+      this.LoadFeedBack();
+    }
   }
+
   callNewStaffFeedback()
   {
     this.router.navigate(['staff-feedback'])
@@ -56,13 +70,22 @@ export class StaffFeedbackListComponent implements OnInit {
   removeStaffFeedBack(staff : any){
 
     this.staffrestApiService.deleteStaffFeedBack(staff.empid).subscribe(_=>{
-      this.LoadFeedBack();
+      this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"Staff Feedback deleted successfully !"});
+      setTimeout(() => {
+        this.dialog.closeAll();
+      }, 2500); 
+      if (!this.isMyFeedbackMode) {
+        this.LoadFeedBackbyAccount();
+      }
+      else {
+        this.LoadFeedBack();
+      }
     });
   }
 
   editStaffFeedBack(staff : any)
   {
-    this.router.navigate(['staff-feedback',staff.empid]);
+    this.router.navigate(['staff-feedback',staff.staffFeedbackID]);
     // this.staffApiService.deleteStaff(staff.mobile).subscribe(_=>{
     // });
   }
@@ -78,9 +101,25 @@ export class StaffFeedbackListComponent implements OnInit {
 
     });
   }
+
+  LoadFeedBackbyAccount()
+  {
+    this.blockUI.start();
+
+    this.currentUserSubscription = this.staffrestApiService.getStaffsFeedBackByAccount(this.id).
+    subscribe((staffFeedback:any) => {
+      this.staffFeedbackList = staffFeedback;
+      console.log(this.staffFeedbackList);
+       this.blockUI.stop();
+
+    });
+  }
+
+
   filterToggle(){
     this.filters = !this.filters;
   }
+
   applyFilter(event: any)
   {
     const filterValue =this.stafffeedbackfilters.value[event];
