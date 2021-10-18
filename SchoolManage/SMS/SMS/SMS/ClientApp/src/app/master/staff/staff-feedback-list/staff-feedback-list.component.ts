@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router'
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Subscription} from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -28,7 +28,8 @@ export class StaffFeedbackListComponent implements OnInit {
   //   }
   // ];
 
-  staffFeedbackList: any[];
+  staffFeedbackList: any;
+  staffFeedbackArr: Array<any>;
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -39,6 +40,7 @@ export class StaffFeedbackListComponent implements OnInit {
   stafffeedbackfilters: FormGroup;
   filters : boolean;
   isMyFeedbackMode : boolean;
+  rows :  Number = 0;
   id : any;
   range =new FormGroup({
     start: new FormControl(),
@@ -47,8 +49,16 @@ export class StaffFeedbackListComponent implements OnInit {
    @BlockUI() blockUI: NgBlockUI;
 
   columnsToDisplay = ['staffName', 'feedBackType', 'feedbackTitle', 'description', 'date', 'attachment', 'actions'];
-  constructor(private router: Router,  private staffrestApiService :StaffrestApiService,
-    public dialog: MatDialog, private route: ActivatedRoute) { }
+  constructor(private fb: FormBuilder,private router: Router,  private staffrestApiService :StaffrestApiService,
+    public dialog: MatDialog, private route: ActivatedRoute) { 
+      this.stafffeedbackfilters = this.fb.group({
+        FeedbackTypeFilter: [''],
+        // range: this.fb.group({
+        start: [''],
+        end:[''],
+        filterdate: [{begin: new Date(2018, 7, 5), end: new Date(2018, 7, 25)}]
+      });
+    }
 
   ngOnInit(): void {
     debugger;
@@ -90,12 +100,29 @@ export class StaffFeedbackListComponent implements OnInit {
     // });
   }
 
+  applyFilterDate(event: any) {
+    /* const filterValues = {
+       Class: this.studentfilters.value["classFilter"].toLowerCase()
+     };
+    
+     this.studentListData.filter = filterValues;*/
+    //  console.log("StartDate" + this.studentfeedbackfilters.value["start"]);
+    //  console.log("EndDate" + this.studentfeedbackfilters.value["end"]);
+    //  debugger;
+     let filterData=this.staffFeedbackArr.filter(obj=> obj.date >= this.stafffeedbackfilters.value["start"].toISOString()
+     && obj.date <= this.stafffeedbackfilters.value["end"].toISOString());
+     this.staffFeedbackList = new MatTableDataSource(filterData);
+    this.rows = this.staffFeedbackList.data.length;
+   }
+
   LoadFeedBack()
   {
     this.blockUI.start();
 
     this.currentUserSubscription = this.staffrestApiService.getStaffsFeedBack().subscribe((staffFeedback:any) => {
+      this.staffFeedbackArr = staffFeedback;
       this.staffFeedbackList = staffFeedback;
+      this.rows = this.staffFeedbackArr.length;
       console.log(this.staffFeedbackList);
        this.blockUI.stop();
 
@@ -108,7 +135,9 @@ export class StaffFeedbackListComponent implements OnInit {
 
     this.currentUserSubscription = this.staffrestApiService.getStaffsFeedBackByAccount(this.id).
     subscribe((staffFeedback:any) => {
+      this.staffFeedbackArr = staffFeedback;
       this.staffFeedbackList = staffFeedback;
+      this.rows = this.staffFeedbackArr.length;
       console.log(this.staffFeedbackList);
        this.blockUI.stop();
 
@@ -120,10 +149,24 @@ export class StaffFeedbackListComponent implements OnInit {
     this.filters = !this.filters;
   }
 
-  applyFilter(event: any)
-  {
-    const filterValue =this.stafffeedbackfilters.value[event];
-    this.staffListData.filter = filterValue.trim().toLowerCase();
+  applyFilterFeedbackType(event : any){
+    debugger;
+    let filterData =this.staffFeedbackArr.filter(obj => obj.feedbackType===this.stafffeedbackfilters.value["FeedbackTypeFilter"]);
+    this.staffFeedbackList = new MatTableDataSource(filterData);
+    this.rows = this.staffFeedbackList.data.length;
+  }
+
+  clearFilter():void{
+    this.staffFeedbackList.filter = '';
+    this.stafffeedbackfilters.reset();
+    if (!this.isMyFeedbackMode)
+    {
+       this.LoadFeedBackbyAccount();
+    }
+    else
+    {
+       this.LoadFeedBack();
+    }
   }
 
 }

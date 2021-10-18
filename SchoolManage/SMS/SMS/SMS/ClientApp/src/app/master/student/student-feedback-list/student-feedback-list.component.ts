@@ -56,9 +56,10 @@ export class StudentFeedbackListComponent implements OnInit {
     private router: Router) { 
     this.studentfeedbackfilters = this.fb.group({
       FeedbackTypeFilter: [''],
+      // range: this.fb.group({
       start: [''],
       end:[''],
-      date: [{begin: new Date(2018, 7, 5), end: new Date(2018, 7, 25)}]
+      filterdate: [{begin: new Date(2018, 7, 5), end: new Date(2018, 7, 25)}]
     });
   }
 
@@ -134,7 +135,7 @@ export class StudentFeedbackListComponent implements OnInit {
   // }
   
   applyFilterFeedbackType(event : any){
-    debugger;
+    // debugger;
     let filterData =this.studentFeedbackArr.filter(obj => obj.feedbackType===this.studentfeedbackfilters.value["FeedbackTypeFilter"]);
     console.log(this.studentfeedbackfilters["FeedbackTypeFilter"]);
     this.studentFeedbackList = new MatTableDataSource(filterData);
@@ -147,10 +148,11 @@ export class StudentFeedbackListComponent implements OnInit {
      };
     
      this.studentListData.filter = filterValues;*/
-     console.log("StartDate" + this.studentfeedbackfilters.value["date"]);
-     debugger;
-     let fileterData=this.studentFeedbackArr.filter(obj=> obj.date >= this.studentfeedbackfilters.value["date"].begin
-     && obj.date <= this.studentfeedbackfilters.value["date"].end);
+    //  console.log("StartDate" + this.studentfeedbackfilters.value["start"]);
+    //  console.log("EndDate" + this.studentfeedbackfilters.value["end"]);
+    //  debugger;
+     let fileterData=this.studentFeedbackArr.filter(obj=> obj.date >= this.studentfeedbackfilters.value["start"].toISOString()
+     && obj.date <= this.studentfeedbackfilters.value["end"].toISOString());
      this.studentFeedbackList=new MatTableDataSource(fileterData);
      this.rows = this.studentFeedbackList.data.length;
    }
