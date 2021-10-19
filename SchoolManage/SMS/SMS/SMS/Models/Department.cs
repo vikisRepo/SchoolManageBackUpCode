@@ -15,8 +15,5 @@ namespace SMS.Models
 		//}
 		public int DepartmentId { get; set; }
         public string DepartmentName { get; set; }
-		//[JsonIgnore]
-		//[IgnoreDataMember]
-		//public virtual ICollection<Staff> staff { get; set; }
 	}
 }

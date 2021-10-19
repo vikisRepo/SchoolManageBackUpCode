@@ -6,14 +6,15 @@
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
                     <mat-label>Employee ID</mat-label>
-                    <input matInput value="" formControlName="empid" >
-                    <!-- <mat-error>  
-                        <span *ngIf="!f.empid.valid">Please enter Employee Id!!!</span>  
-                   </mat-error> -->
+                    <mat-select formControlName="empid" (selectionChange)="empidchange($event)">
+                        <mat-option *ngFor="let emp of employeeid"  [value]="emp.employeeId">
+                            {{emp.employeeId}}
+                        </mat-option>
+                    </mat-select>
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Staff Name</mat-label>
-                    <input matInput   formControlName="staffName" >
+                    <input matInput value="" formControlName="staffName" [value]="staffName" [disabled]="disableTeacherDetails" >
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Letter Type</mat-label>
@@ -27,12 +28,12 @@
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
                     <mat-label>Department</mat-label>
-                    <input matInput value=""  formControlName="department" >
+                    <input matInput value="" formControlName="department" [value]="departmentName" [disabled]="disableTeacherDetails" >
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Month</mat-label>
                     <mat-select formControlName="month">
-                        <mat-option *ngFor="let months of month" [value]="months.viewValue">
+                        <mat-option *ngFor="let months of month" [value]="months.value">
                             {{months.viewValue}}
                         </mat-option>
                     </mat-select>
@@ -41,7 +42,7 @@
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
                     <mat-label>Teacher ID</mat-label>
-                    <input matInput value=""  formControlName="teacherId" >
+                    <input matInput value="" formControlName="teacherId" [value]="teacherId" [disabled]="disableTeacherDetails" >
                 </mat-form-field>
                 <mat-form-field appearance="standard">
                     <mat-label>Year</mat-label>
@@ -53,21 +54,22 @@
                 </mat-form-field>
             </div>
         </div>
-        <!-- <div class="row" style="width: 100%;">
-           <div class="col-sm-3" style="margin-Top: 20px;">
-                <label for="tCertificate">
-                    <h2>Attachment <img src="../../../../assets/attachment.png" class="icon"
-                            style="height: 25px;" />&nbsp;<mat-icon *ngIf="this.t1img" color="primary">check_circle
-                        </mat-icon>
-                    </h2>
-                    <p style="color:red; margin-top:-10px">{{this.t1fileName}}</p>
+        <div class="row" style="width: 100%;">
+            <div class="col-sm-3" style="margin-Top:20px;">
+                <label>
+                    <img src="../../../../assets/attachment.png" class="icon" style="height: 25px;cursor: pointer;"
+                        (click)="inputFile.click()" />
+                        <!-- <mat-icon color="primary">
+                                check_circle</mat-icon> -->
+                    <!--<h3 >Attachment  </h3> -->
                 </label>
+                <input name="file" id="file"(change)="upload($event)" type="file" #inputFile hidden>
             </div>
             <div class="col-sm-3" style="margin-top: 20px;">
-                <input type="file" id="tCertificate" (change)="Onfilesave($event,0)" style="visibility: hidden;"
-                    formControlName="attachment">
+                <!-- <input type="file" id="tCertificate" (change)="Onfilesave($event,0)" style="visibility: hidden;"
+                 formControlName="attachment"> -->
             </div>
-        </div>  -->
+        </div>
     </div>
     <div class="footer-n-stu">
    
@@ -75,5 +77,5 @@
         <button type="button" class="gradient-button" (click) = "submit()">Submit</button>
       
       </div>
-      <!-- <p>{{eletterfrm.value|json}}</p> -->
+      <p>{{eletterfrm.value|json}}</p>
 </form>
