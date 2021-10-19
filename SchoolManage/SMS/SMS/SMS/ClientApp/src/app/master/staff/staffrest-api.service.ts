@@ -215,15 +215,39 @@ export class StaffrestApiService {
     }  
   
     // HttpClient API post() method => Create Staff
-    createStaffeLetter(staffFeedBack : any): Observable<any> {
-      console.log(JSON.stringify(staffFeedBack))
-      return this.http.post<any>(this.apieLetterURL ,staffFeedBack, this.httpOptions)
-      .pipe(
-        retry(1),
-        catchError((err)=>this.handleError(err))
-      )
+      createStaffeLetter(file: Blob, staffFeedBack : any): Observable<any> {
+        debugger;
+        const formData = new FormData();
+        formData.append('file', file);
+        // formData.append('studentAttachments', JSON.stringify(docdetails));
+        formData.append('empid', staffFeedBack.empid);
+        formData.append('staffName', staffFeedBack.staffName);
+        formData.append('feedbackType', staffFeedBack.feedbackType);
+        formData.append('department', staffFeedBack.department);
+        formData.append('feedbacktitle', staffFeedBack.feedbacktitle);
+        formData.append('teacherId', staffFeedBack.teacherId);
+        formData.append('description', staffFeedBack.description);
   
-    }  
+        // let stuparams= new HttpParams()
+        // stuparams.set('admissionNumber', staffFeedBack.admissionNumber);
+        // stuparams.set('staffId', staffFeedBack.staffId);
+        // stuparams.set('feedbackType', staffFeedBack.feedbackType);
+        // stuparams.set('date', staffFeedBack.date);
+        // stuparams.set('class', staffFeedBack.class);
+        // stuparams.set('feedbacktitle', staffFeedBack.feedbacktitle);
+        // stuparams.set('section', staffFeedBack.section);
+        // stuparams.set('description', staffFeedBack.description);
+  
+        return this.http.request(new HttpRequest(
+          'POST',
+          this.apiStaffFeedbackUploadUrl,
+          formData,
+          {
+            reportProgress: true
+            // params: stuparams
+          }));
+    
+      }  
   
     // HttpClient API put() method => Update Staff
     updateStaffeLetter(id : any, staffFeedBack : Staff): Observable<any> {

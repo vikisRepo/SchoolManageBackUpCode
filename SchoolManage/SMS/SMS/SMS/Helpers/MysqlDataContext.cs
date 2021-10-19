@@ -35,6 +35,7 @@ namespace WebApi.Helpers
 
         public virtual DbSet<StudentFeedback> StudentFeedbacks { get; set; }
         public virtual DbSet<StaffFeedback> StaffFeedbacks { get; set; }
+        public virtual DbSet<StaffeLetter> StaffeLetters { get; set; }
 
 
     //leave tables
