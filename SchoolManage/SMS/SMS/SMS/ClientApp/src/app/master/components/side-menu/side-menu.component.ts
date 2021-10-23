@@ -13,6 +13,7 @@ export class SideMenuComponent implements OnInit {
   account : any;
   mystuFeedbackroute : string;
   mystaffFeedbackroute : string;
+  myeLetterroute : string;
   
   
   constructor(private accountService: AccountService) { }
@@ -21,6 +22,7 @@ export class SideMenuComponent implements OnInit {
     this.account = this.accountService.accountValue;
     this.mystuFeedbackroute = "student-feedback-list/"+this.account.id;
     this.mystaffFeedbackroute = "staff-feedback-list/"+this.account.id;
+    this.myeLetterroute = "e-letter-list/" + this.account.id;
   }
 
   openSite(siteUrl) : void {

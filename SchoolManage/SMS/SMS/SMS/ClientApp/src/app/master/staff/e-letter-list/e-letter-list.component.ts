@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, AfterViewInit  } from '@angular/core';
-import { Router } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Subscription} from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
@@ -8,7 +8,8 @@ import { MatSort } from '@angular/material/sort';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { StaffrestApiService } from '../staffrest-api.service';
 import { SmsConstant } from 'src/app/shared/constant-values';
-
+import { MessageBoxComponent } from 'src/app/shared/dialog-boxes/message-box/message-box.component';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-e-letter-list',
   templateUrl: './e-letter-list.component.html',
@@ -45,6 +46,8 @@ export class ELetterListComponent implements OnInit {
   years = SmsConstant.year;
   filters : boolean = false;
   rows : number = 0;
+  id : any;
+  isMyeLetterMode : boolean;
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
@@ -55,19 +58,26 @@ export class ELetterListComponent implements OnInit {
   
    @BlockUI() blockUI: NgBlockUI;
 
-  constructor(private fb: FormBuilder,private router: Router, private staffrestApiService :StaffrestApiService) { 
+  constructor(private fb: FormBuilder,private router: Router, private staffrestApiService :StaffrestApiService,private route: ActivatedRoute, public dialog: MatDialog) { 
     this.eletterfilters = this.fb.group({
       leavetypeFilter: [''],
       monthFilter: [''],
       yearfilter: [''],
       joiningDateFrom: ['']
     });
-    this.LoadeLetter();
+
   }
   // name = new FormControl('');
 
   ngOnInit(): void {
-    this.LoadeLetter();
+    this.id = this.route.snapshot.params['id'];
+    this.isMyeLetterMode = !this.id;
+    if(!this.isMyeLetterMode){
+      this.LoadeLetterbyAccount();
+    }
+    else{
+      this.LoadeLetter();
+    }
   }
 
   filterToggle()
@@ -81,15 +91,28 @@ export class ELetterListComponent implements OnInit {
   }
   
   removeStaffeLetter(staff : any)
-  {
+  { 
+    // this.LoadeLetter();
+    // this.staffrestApiService.deleteStaffeLetter(staff.empid).subscribe(_=>{
+    //   this.LoadeLetter();
+    // });
     this.staffrestApiService.deleteStaffeLetter(staff.empid).subscribe(_=>{
-      this.LoadeLetter();
+      this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"Staff Feedback deleted successfully !"});
+      setTimeout(() => {
+        this.dialog.closeAll();
+      }, 2500); 
+      if (!this.isMyeLetterMode) {
+        this.LoadeLetterbyAccount();
+      }
+      else {
+        this.LoadeLetter();
+      }
     });
   }
 
   editStaffeLetter(staff : any)
   {
-    this.router.navigate(['/e-letter',staff.empid]);
+    this.router.navigate(['/e-letter',staff.staffeLetterId,this.isMyeLetterMode]);
     // this.staffApiService.deleteStaff(staff.mobile).subscribe(_=>{
     // });
   }
@@ -107,6 +130,19 @@ export class ELetterListComponent implements OnInit {
 
     this.currentUserSubscription = this.staffrestApiService.getStaffseLetters().subscribe((staffeLetter:any) => {
       this.eLetterList = staffeLetter;
+      console.log(this.eLetterList);
+       this.blockUI.stop();
+
+    });
+  }
+  LoadeLetterbyAccount()
+  {
+    debugger;
+    this.blockUI.start();
+
+    this.currentUserSubscription = this.staffrestApiService.getStaffseLetterkByAccount(this.id).
+    subscribe((staffeLeter:any) => {
+      this.eLetterList = staffeLeter;
       console.log(this.eLetterList);
        this.blockUI.stop();
 

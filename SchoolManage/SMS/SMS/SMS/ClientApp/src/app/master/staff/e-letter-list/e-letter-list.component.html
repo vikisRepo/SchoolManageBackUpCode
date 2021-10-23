@@ -1,5 +1,6 @@
 <div class="row headerstyle">
-    <h2>eLetter List</h2>
+    <h2 [hidden]="!isMyeLetterMode">Staff eLetter List</h2>
+    <h2 [hidden]="isMyeLetterMode">My eLetter List</h2>
     
     <div class="right-content">
         <img src="../../../assets/filter.png" alt="profile" style="height:30px;margin-top:-10px;margin-right: 20px; cursor: pointer;" (click)="filterToggle()">
@@ -108,8 +109,7 @@
      <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef> </th>
         <td mat-cell *matCellDef="let element">
-            <img src="../../../../assets/mind-map.png" class="icon" style="margin-right: 10px;"/>
-            <img src="../../../../assets/edit.png" class="icon" (click)="editStaffeLetter(element)" style="margin-right: 10px;"/>
+            <img src="../../../../assets/edit.png" class="icon" (click)="editStaffeLetter(element)" style="margin-right: 10px; cursor: pointer;"/>
              <img src="../../../../assets/trash.png" class="icon" (click)="removeStaffeLetter(element)" style="margin-right: 10px; cursor: pointer;"/> 
         </td>
     </ng-container>

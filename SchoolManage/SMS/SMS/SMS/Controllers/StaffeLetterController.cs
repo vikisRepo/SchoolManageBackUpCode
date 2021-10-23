@@ -24,6 +24,29 @@ namespace SMS.Controllers
 			this._dbcontext = dbcontext;
 			_hostingEnvironment = environment;
 		}
+
+		// GET: api/<StaffFeedbackController>
+		[HttpGet("GeteLetterByAccount/{accountId}")]
+		public IActionResult GeteLetterByAccount(int accountId)
+		{
+
+			var _staffMobileNumber = Convert.ToInt64(_dbcontext.Accounts.Where(account => account.Id == accountId).FirstOrDefault().Email);
+
+			return Ok((from staff in _dbcontext.Staffs
+					   join staffeLetters in _dbcontext.StaffeLetters on staff.EmployeeId equals staffeLetters.Empid
+					   select new
+					   {
+						   staffeLetterId = staffeLetters.StaffeLetterId,
+						   letterType = staffeLetters.LetterType,
+						   department = staffeLetters.Department,
+						   TeacherId = staffeLetters.TeacherId,
+						   month = staffeLetters.Month,
+						   year = staffeLetters.Year,
+						   staffName = staff.FirstName,
+						   Empid = staffeLetters.Empid,
+						   mobile = staff.Mobile
+					   }).Where(x => x.mobile == _staffMobileNumber).ToList());
+		}
 		// GET: api/<StaffeLetterController>
 		[HttpGet]
 		public IEnumerable<StaffeLetter> Get()
@@ -33,9 +56,9 @@ namespace SMS.Controllers
 
 		// GET api/<StaffeLetterController>/5
 		[HttpGet("{id}")]
-		public StaffeLetter Get(string id)
+		public StaffeLetter Get(int id)
 		{
-			return _dbcontext.StaffeLetters.Where(X => X.Empid == id).FirstOrDefault();
+			return _dbcontext.StaffeLetters.Where(X => X.StaffeLetterId == id).FirstOrDefault();
 		}
 
 		[HttpPost]
@@ -65,6 +88,7 @@ namespace SMS.Controllers
 					_dbcontext.SaveChanges();
 
 					staffeLetterback.AttachmentId = staffAttachments.StaffAttachmentsId;
+					
 
 
 				}

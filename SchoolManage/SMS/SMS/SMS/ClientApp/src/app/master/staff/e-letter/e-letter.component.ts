@@ -10,6 +10,7 @@ import { FactorydataService } from 'src/app/shared/factorydata.service';
 import { MatDialog } from '@angular/material/dialog';
 import { FormTouched } from 'src/app/shared/interfaces/form-touched';
 import { HttpEventType } from '@angular/common/http';
+import { AccountService } from 'src/app/_services';
 
 @Component({
   selector: 'app-e-letter',
@@ -31,10 +32,13 @@ export class ELetterComponent implements OnInit,FormTouched {
   submitted = false;
   id?: any;
   file : any;
+  isFromMyLetter : boolean;
 
    @BlockUI() blockUI: NgBlockUI;
 
-  constructor( private fb:FormBuilder, private staffrestApiService :StaffrestApiService, public factory :FactorydataService,private route: ActivatedRoute, private router: Router, public dialog: MatDialog) {
+  constructor( private fb:FormBuilder, private staffrestApiService :StaffrestApiService, public factory :FactorydataService,
+    private route: ActivatedRoute, private router: Router, public dialog: MatDialog, 
+    private accountService: AccountService) {
       this.eletterfrm = this.fb.group({
         empid: ['', [Validators.required]],
         staffName:['', Validators.required],
@@ -68,6 +72,7 @@ export class ELetterComponent implements OnInit,FormTouched {
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.isAddMode = !this.id;
+    this.isFromMyLetter = this.route.snapshot.params['myletter'];
   }
 
   empidchange(empdetail : any): void {
@@ -85,12 +90,13 @@ export class ELetterComponent implements OnInit,FormTouched {
   }
 
   submit() {
+    debugger;
     this.eletterfrm.markAllAsTouched();
-    if (this.eletterfrm.invalid) {
-      // this.router.navigate([this.returnUrl]);
-      return;
+    // if (this.eletterfrm.invalid) {
+    //   // this.router.navigate([this.returnUrl]);
+    //   return;
 
-    }
+    // }
 
     this.blockUI.start();
     this.submitted = true;
@@ -115,7 +121,7 @@ export class ELetterComponent implements OnInit,FormTouched {
 
   createStaffeLetter()
   {
-
+  
     this.staffrestApiService.createStaffeLetter(this.file,this.eletterfrm.value).toPromise().then(      
       data => {
         if (data) {
@@ -129,10 +135,10 @@ export class ELetterComponent implements OnInit,FormTouched {
               break;
           }
         }
-        this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"Staff Feedback created successfully !"});
+        this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"e-Letter detail created successfully !"});
         setTimeout(() => {
           this.dialog.closeAll();
-        // this.router.navigate(['/staff-feedback-list']);
+          this.router.navigate(['/e-letter-list']);
         }, 2500);
       },
       error => {
@@ -140,23 +146,19 @@ export class ELetterComponent implements OnInit,FormTouched {
         // this.uploadStatus.emit({status: ProgressStatusEnum.ERROR});
       }
     );
-    this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"e-Letter detail created successfully !"});
-    setTimeout(() => {
-      this.dialog.closeAll();
-    }, 2500);
   }
 
   updateSatffeLetter()
   {
-    this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"e-Letter detail updated successfully !"});
-      setTimeout(() => {
-        this.dialog.closeAll();
-      }, 2500);
     this.staffrestApiService.updateStaffeLetter(this.id,this.file,this.eletterfrm.value).toPromise().then(_=>{
       this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"e-Letter detail updated successfully !"});
       setTimeout(() => {
         this.dialog.closeAll();
-        this.router.navigate(['/staff-feedback-list']);
+        debugger;
+        if (!this.isFromMyLetter)
+          this.router.navigate(['/e-letter-list'])
+        else
+         this.router.navigate(['/e-letter-list/' + this.accountService.accountValue.id])  
       }, 2500); 
     })
   }
