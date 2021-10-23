@@ -21,6 +21,8 @@ export class StaffrestApiService {
   apiFeedbackByEmployeeURL = environment.apiUrl + '/api/StaffFeedback/GetFeedbackByAccount';
   apiStaffFeedbackUploadUrl = environment.apiUrl + '/api/StaffFeedback/UploadStaffFeedbackAndDocument';
   apiStaffFeedbackUpdateUrl= environment.apiUrl + '/api/StaffFeedback/UpdateStaffFeedbackAndDocument';
+  apiStaffeLetterUploadUrl = environment.apiUrl + '/api/StaffeLetter/UploadStaffeLetterAndDocument';
+  apiStaffeLetterUpdateUrl= environment.apiUrl + '/api/StaffeLetter/UpdateStaffeLetterAndDocument';
 
   private formvalueSource = new Subject<string>();
   formValue$ = this.formvalueSource.asObservable();
@@ -215,18 +217,19 @@ export class StaffrestApiService {
     }  
   
     // HttpClient API post() method => Create Staff
-      createStaffeLetter(file: Blob, staffFeedBack : any): Observable<any> {
+      createStaffeLetter(file: Blob, staffeLetter : any): Observable<any> {
         debugger;
         const formData = new FormData();
         formData.append('file', file);
         // formData.append('studentAttachments', JSON.stringify(docdetails));
-        formData.append('empid', staffFeedBack.empid);
-        formData.append('staffName', staffFeedBack.staffName);
-        formData.append('feedbackType', staffFeedBack.feedbackType);
-        formData.append('department', staffFeedBack.department);
-        formData.append('feedbacktitle', staffFeedBack.feedbacktitle);
-        formData.append('teacherId', staffFeedBack.teacherId);
-        formData.append('description', staffFeedBack.description);
+        formData.append('empid', staffeLetter.empid);
+        formData.append('staffName', staffeLetter.staffName);
+        formData.append('letterType', staffeLetter.feedbackType);
+        formData.append('department', staffeLetter.department);
+        formData.append('month', staffeLetter.month);
+        formData.append('year', staffeLetter.year);
+        formData.append('teacherId', staffeLetter.teacherId);
+        formData.append('description', staffeLetter.description);
   
         // let stuparams= new HttpParams()
         // stuparams.set('admissionNumber', staffFeedBack.admissionNumber);
@@ -240,7 +243,7 @@ export class StaffrestApiService {
   
         return this.http.request(new HttpRequest(
           'POST',
-          this.apiStaffFeedbackUploadUrl,
+          this.apiStaffeLetterUploadUrl,
           formData,
           {
             reportProgress: true
@@ -250,12 +253,36 @@ export class StaffrestApiService {
       }  
   
     // HttpClient API put() method => Update Staff
-    updateStaffeLetter(id : any, staffFeedBack : Staff): Observable<any> {
-      return this.http.put<any>(this.apieLetterURL + '/' + id, JSON.stringify(staffFeedBack), this.httpOptions)
-      .pipe(
-        retry(1),
-        catchError((err)=>this.handleError(err))
-      )
+    updateStaffeLetter(id : any,file:Blob, staffeLetter : any): Observable<any> {
+      const formData = new FormData();
+      formData.append('file', file);
+      // formData.append('studentAttachments', JSON.stringify(docdetails));
+      formData.append('empid', staffeLetter.empid);
+      formData.append('staffName', staffeLetter.staffName);
+      formData.append('letterType', staffeLetter.feedbackType);
+      formData.append('department', staffeLetter.department);
+      formData.append('month', staffeLetter.month);
+      formData.append('year', staffeLetter.year);
+      formData.append('teacherId', staffeLetter.teacherId);
+      formData.append('description', staffeLetter.description);
+      let stuparams= new HttpParams()
+      // stuparams.set('admissionNumber', studentFeedbackdetails.admissionNumber); StudentFeedbackId
+      // stuparams.set('staffId', studentFeedbackdetails.staffId);
+      // stuparams.set('feedbackType', studentFeedbackdetails.feedbackType);
+      // stuparams.set('date', studentFeedbackdetails.date);
+      // stuparams.set('class', studentFeedbackdetails.class);
+      // stuparams.set('feedbacktitle', studentFeedbackdetails.feedbacktitle);
+      // stuparams.set('section', studentFeedbackdetails.section);
+      // stuparams.set('description', studentFeedbackdetails.description);
+
+      return this.http.request(new HttpRequest(
+        'PUT',
+        this.apiStaffeLetterUpdateUrl,
+        formData,
+        {
+          reportProgress: true,
+          params: stuparams
+        }));
     }
   
     // HttpClient API delete() method => Delete Staff

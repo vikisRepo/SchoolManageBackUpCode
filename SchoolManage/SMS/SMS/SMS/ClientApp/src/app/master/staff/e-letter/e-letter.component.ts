@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,NgForm  } from '@angular/forms';
 import { SmsConstant } from 'src/app/shared/constant-values';
 import { StaffrestApiService } from '../staffrest-api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { MessageBoxComponent } from 'src/app/shared/dialog-boxes/message-box/message-box.component';
 import { FactorydataService } from 'src/app/shared/factorydata.service';
@@ -34,7 +34,7 @@ export class ELetterComponent implements OnInit,FormTouched {
 
    @BlockUI() blockUI: NgBlockUI;
 
-  constructor( private fb:FormBuilder, private staffrestApiService :StaffrestApiService, public factory :FactorydataService,private route: ActivatedRoute, public dialog: MatDialog) {
+  constructor( private fb:FormBuilder, private staffrestApiService :StaffrestApiService, public factory :FactorydataService,private route: ActivatedRoute, private router: Router, public dialog: MatDialog) {
       this.eletterfrm = this.fb.group({
         empid: ['', [Validators.required]],
         staffName:['', Validators.required],
@@ -132,7 +132,7 @@ export class ELetterComponent implements OnInit,FormTouched {
         this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"Staff Feedback created successfully !"});
         setTimeout(() => {
           this.dialog.closeAll();
-          this.router.navigate(['/staff-feedback-list']);
+        // this.router.navigate(['/staff-feedback-list']);
         }, 2500);
       },
       error => {
@@ -152,13 +152,13 @@ export class ELetterComponent implements OnInit,FormTouched {
       setTimeout(() => {
         this.dialog.closeAll();
       }, 2500);
-    this.staffrestApiService.updateStaffeLetter(this.id, this.eletterfrm.value).subscribe(_=>{
-      this.staffrestApiService.createStaffeLetter(this.eletterfrm.value).subscribe(_=>{
-       
-        
-        
-      });
-    });
+    this.staffrestApiService.updateStaffeLetter(this.id,this.file,this.eletterfrm.value).toPromise().then(_=>{
+      this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"e-Letter detail updated successfully !"});
+      setTimeout(() => {
+        this.dialog.closeAll();
+        this.router.navigate(['/staff-feedback-list']);
+      }, 2500); 
+    })
   }
   onSubmit() {
 

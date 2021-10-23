@@ -46,7 +46,7 @@ namespace SMS.Controllers
 			{
 				var staffAttachments = new StaffAttachments();
 				staffAttachments.EmployeeId = staffeLetterback.Empid;
-				staffAttachments.DocumentType = "Staff Feedback";
+				staffAttachments.DocumentType = "Staff eLetter";
 				var uploads = Path.Combine(_hostingEnvironment.WebRootPath, "uploads");
 				if (!Directory.Exists(uploads))
 				{
@@ -83,12 +83,51 @@ namespace SMS.Controllers
 			_dbcontext.SaveChanges();
 		}
 
+
+
 		// PUT api/<StaffeLetterController>/5
-		[HttpPut("{id}")]
-		public void Put(string id, [FromBody] StaffeLetter staffeLetter)
+		[HttpPut("UpdateStaffeLetterAndDocument")]
+		public async Task<IActionResult> UpdateStaffeLetterAndDocument(IFormFile file, [FromForm] StaffeLetter staffeLetter)
 		{
-			_dbcontext.Entry(_dbcontext.StaffeLetters.Where(X => X.Empid == id).FirstOrDefault()).CurrentValues.SetValues(staffeLetter);
-			_dbcontext.SaveChanges();
+			var _staffeLetter = _dbcontext.StaffeLetters.Where(X => X.StaffeLetterId == staffeLetter.StaffeLetterId).FirstOrDefault();
+			if (file != null)
+			{
+				var staffAttachments = new StaffAttachments();
+				staffAttachments.EmployeeId = staffeLetter.Empid;
+				staffAttachments.DocumentType = "Staff eLetter";
+				var uploads = Path.Combine(_hostingEnvironment.WebRootPath, "uploads");
+				if (!Directory.Exists(uploads))
+				{
+					Directory.CreateDirectory(uploads);
+				}
+				if (file.Length > 0)
+				{
+					var filePath = Path.Combine(uploads, file.FileName);
+					staffAttachments.PathToFile = filePath;
+					using (var fileStream = new FileStream(filePath, FileMode.Create))
+					{
+						await file.CopyToAsync(fileStream);
+					}
+
+
+					_dbcontext.StaffDocuments.Add(staffAttachments);
+					_dbcontext.SaveChanges();
+					staffeLetter.AttachmentId = staffAttachments.StaffAttachmentsId;
+					_staffeLetter.AttachmentId = staffeLetter.AttachmentId;
+
+				}
+			}
+
+			_staffeLetter.Empid = staffeLetter.Empid;
+			_staffeLetter.StaffName = staffeLetter.StaffName;
+			_staffeLetter.Department = staffeLetter.Department;
+			_staffeLetter.TeacherId = staffeLetter.TeacherId;
+			_staffeLetter.LetterType = staffeLetter.LetterType;
+			_staffeLetter.Month = staffeLetter.Month;
+			_staffeLetter.Year = staffeLetter.Year;
+
+			await _dbcontext.SaveChangesAsync();
+			return Ok();
 		}
 
 		// DELETE api/<StaffeLetterController>/5
