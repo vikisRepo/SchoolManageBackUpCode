@@ -22,7 +22,7 @@ export class DriverDetailsComponent implements OnInit {
     this.busDriverDetailForm.valueChanges.subscribe(() => {
       Object.assign(this.formValues, this.busDriverDetailForm.value);
       // alert(JSON.stringify(this.formValues));
-      this.driverFormOutput.emit({value: this.formValues});
+      this.driverFormOutput.emit({value: this.formValues, valid:this.busDriverDetailForm.valid});
     }
 
     )

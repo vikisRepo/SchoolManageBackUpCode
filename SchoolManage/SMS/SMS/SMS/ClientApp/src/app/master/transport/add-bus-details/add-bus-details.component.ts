@@ -25,6 +25,7 @@ export class AddBusDetailsComponent implements OnInit {
   @BlockUI() blockUI: NgBlockUI;
 
   constructor(private route: ActivatedRoute, public dialog: MatDialog, private _BusanddriverServiceAPI: BusanddriverService) { }
+  
   ngAfterViewInit(): void {
 
     if (!this.isAddMode) {

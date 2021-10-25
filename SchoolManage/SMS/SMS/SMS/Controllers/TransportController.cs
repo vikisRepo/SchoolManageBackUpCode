@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SMS.Models.Transport;
 using System;
@@ -33,9 +33,9 @@ namespace SMS.Controllers
 
         // GET api/<TransportController>/5
         [HttpGet("BusesAndDriver/{id}")]
-        public IEnumerable<BusesAndDriver> BusesAndDriver(int id)
+        public BusesAndDriver BusesAndDriver(int id)
         {
-            return _dbContext.BusesAndDrivers.Where(X => X.BusesAndDriverId == id).ToList();
+          return _dbContext.BusesAndDrivers.Where(X => X.BusesAndDriverId == id).FirstOrDefault();
         }
 
         // POST api/<TransportController>

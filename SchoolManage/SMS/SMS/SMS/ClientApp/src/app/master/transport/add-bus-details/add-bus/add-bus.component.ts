@@ -28,7 +28,7 @@ export class AddBusComponent implements OnInit {
 
     this.busDetailForm.valueChanges.subscribe(() =>{
       Object.assign(this.formValues, this.busDetailForm.value);
-      this.busFormOutput.emit({value: this.formValues});
+      this.busFormOutput.emit({value: this.formValues, valid:this.busDetailForm.valid});
     }
     )
    }

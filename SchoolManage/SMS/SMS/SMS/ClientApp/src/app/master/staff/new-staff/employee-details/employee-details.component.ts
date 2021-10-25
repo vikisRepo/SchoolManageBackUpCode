@@ -77,6 +77,7 @@ onSubmit(){
 
 }
   ngOnInit(): void {
+    debugger;
     this.staffrestApiService.formValue$.subscribe((data : any) => {
       this.empDetailsForm.patchValue(data);
     });

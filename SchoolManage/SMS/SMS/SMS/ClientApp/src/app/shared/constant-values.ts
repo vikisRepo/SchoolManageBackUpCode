@@ -306,18 +306,18 @@ export class SmsConstant {
 
   static  busTypes=[
     { value: 0, viewValue: '--select none--' }, 
-    { value: "1", viewValue: 'B1' }, 
-    { value: "2", viewValue: 'B2' },
-    { value: "3", viewValue: 'B3' },
-    { value: "4", viewValue: 'B4' },
-    { value: "5", viewValue: 'B5' }
+    { value: 1, viewValue: 'B1' }, 
+    { value: 2, viewValue: 'B2' },
+    { value: 3, viewValue: 'B3' },
+    { value: 4, viewValue: 'B4' },
+    { value: 5, viewValue: 'B5' }
 
   ]
 
   static  notification = [
     { value: 0, viewValue: '--select none--' },
-    { value: "1", viewValue: '10 days before' },
-    { value: "2", viewValue: '25 days before' }
+    { value: 1, viewValue: '10 days before' },
+    { value: 2, viewValue: '25 days before' }
   ]
   static  itemName = [
   //  { inventoryItemTypeId: 0, description: '--select none--' }
