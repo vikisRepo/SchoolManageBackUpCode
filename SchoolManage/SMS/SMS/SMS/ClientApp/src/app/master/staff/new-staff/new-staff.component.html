@@ -5,7 +5,8 @@
       Personal Details
       <mat-icon *ngIf="formDetails[0]!=null && formDetails[0]" color="primary">check_circle</mat-icon>
     </ng-template>
-    <app-personal-details [getFormValues]="_staff"(formDetails)="setTabFormDetails($event,0)" #dt></app-personal-details>
+    <app-personal-details [getFormValues]="_staff" (formDetails)="setTabFormDetails($event,0)" #dt></app-personal-details>
+    <!--  -->
   </mat-tab>
 
   <mat-tab>

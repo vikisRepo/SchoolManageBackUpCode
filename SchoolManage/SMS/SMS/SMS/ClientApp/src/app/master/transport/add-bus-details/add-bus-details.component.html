@@ -8,7 +8,7 @@
     </ng-template>
     <!-- <app-student-details [getFormValues]="_student"(stuFormtDetails)="setTabFormDetails($event,0)" ></app-student-details>
      -->
-    <app-add-bus (busFormOutput)="setTabFormDetails($event,0)"></app-add-bus>
+    <app-add-bus   (busFormOutput)="setTabFormDetails($event,0)"></app-add-bus>
   </mat-tab>
 
   <mat-tab>
@@ -31,5 +31,4 @@
     <span *ngIf="!(selectedTab>=1)">Next</span>
     <span *ngIf="selectedTab>=1">Submit</span>
   </button>
-
 </div>

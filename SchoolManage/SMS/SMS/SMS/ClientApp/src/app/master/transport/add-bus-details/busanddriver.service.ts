@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class BusanddriverService {
 
-  apiURL = environment.apiUrl + '/api/BusAnddriver/';
+  apiURL = environment.apiUrl + '/api/Transport/BusesAndDriver/';
   apiFeedbackURL = 'api/BusAnddriverFeedback/';
 
   @BlockUI() blockUI: NgBlockUI;
@@ -35,7 +35,7 @@ export class BusanddriverService {
 
   // HttpClient API get() method => Fetch Busdrivers list
   getBusAnddrivers(): Observable<any> {
-    return this.http.get<any>(this.apiURL)
+    return this.http.get<any>(environment.apiUrl + '/api/Transport/BusesAndDriver')
       .pipe(
         retry(1),
         catchError((err) => this.handleError(err))
@@ -103,6 +103,7 @@ export class BusanddriverService {
   }
 
   setFormValue(value: any) {
+    debugger;
     this.formvalueSource.next(value);
   }
 

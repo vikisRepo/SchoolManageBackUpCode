@@ -1,4 +1,5 @@
 export class BusAndDriver{
+    busesAndDriverId? : Number;
     busTypeid? :string;
     company? :string;
     seatCount? :string;

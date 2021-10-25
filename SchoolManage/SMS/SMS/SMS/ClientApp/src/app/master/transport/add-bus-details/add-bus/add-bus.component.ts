@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { SmsConstant } from 'src/app/shared/constant-values';
+import { BusanddriverService } from '../busanddriver.service';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class AddBusComponent implements OnInit {
  busDetailForm: FormGroup;
  bustype = SmsConstant.busTypes;
  sendNotification = SmsConstant.notification;
-  constructor(private fb:FormBuilder) {
+  constructor(private fb:FormBuilder, private _BusanddriverServiceAPI: BusanddriverService) {
     this.busDetailForm = this.fb.group({
       busTypeid : ['']
       ,company : ['']
@@ -33,6 +34,11 @@ export class AddBusComponent implements OnInit {
    }
   
   ngOnInit(): void {
+    this._BusanddriverServiceAPI.formValue$.subscribe((data : any) => {
+      console.log(data.value);
+      debugger;
+      this.busDetailForm.patchValue(data);
+    });
   }
 
 }

@@ -7,6 +7,7 @@ import { FormControl, FormGroup, FormArray } from '@angular/forms';
 import { SmsConstant } from 'src/app/shared/constant-values';
 import { FactorydataService } from 'src/app/shared/factorydata.service';
 import { FormTouched } from 'src/app/shared/interfaces/form-touched';
+import { StaffrestApiService } from '../../staffrest-api.service';
 
 @Component({
   selector: 'app-personal-details',
@@ -40,7 +41,7 @@ export class PersonalDetailsComponent implements OnInit, OnChanges, FormTouched 
   //   return this.profileForm.get('aliases') as FormArray;
   // }
 
-  constructor(private fb: FormBuilder, private factory: FactorydataService) {
+  constructor(private fb: FormBuilder, private factory: FactorydataService, private staffrestApiService : StaffrestApiService) {
     this.blood = factory.bloods;
     this.salutations = factory.salutations;
     this.maritalstatus = factory.maritalStatus;
@@ -95,10 +96,6 @@ export class PersonalDetailsComponent implements OnInit, OnChanges, FormTouched 
     return this.profileForm.valid && ft;
   }
 
-  ngOnInit(): void {
-
-  }
-
       // convenience getter for easy access to form fields
       get f() { return this.profileForm.controls; }
 
@@ -106,7 +103,7 @@ export class PersonalDetailsComponent implements OnInit, OnChanges, FormTouched 
     if (changes.getFormValues.currentValue) {
       console.log(changes.getFormValues.currentValue);
       this.addressData = this.getFormValues["addresses"];
-      this.getFormValues["languagesId"] = this.getFormValues["languagesId"].split(',');
+      // this.getFormValues["languagesId"] = this.getFormValues["languagesId"].split(',');
       this.profileForm.patchValue(this.getFormValues);
     }
   }
@@ -135,6 +132,12 @@ export class PersonalDetailsComponent implements OnInit, OnChanges, FormTouched 
     this.formValues.addresses = value;
     this.addressValidFlag = !((Array.from(arrValue, (obj: any) => obj.valid)).includes(false));
     this.formDetails.emit({ value: this.formValues, valid: (this.profileForm.valid) });// && this.addressValidFlag
+  }
+
+  ngOnInit(): void {
+    // this.staffrestApiService.formValue$.subscribe((data : any) => {
+    //   this.profileForm.patchValue(data);
+    // });
   }
 
 }

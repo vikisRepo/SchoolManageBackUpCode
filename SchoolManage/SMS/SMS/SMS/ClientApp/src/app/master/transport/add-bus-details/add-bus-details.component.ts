@@ -31,9 +31,10 @@ export class AddBusDetailsComponent implements OnInit {
       // console.log(this._busAndDriver);
       this._BusanddriverServiceAPI.getBusAnddriver(this.id)
         .subscribe(data => {
+          debugger;
           this._busAndDriver = data;
-          this._BusanddriverServiceAPI.setFormValue(data);
-          
+          this._BusanddriverServiceAPI.setFormValue(this._busAndDriver);
+          console.log(this._busAndDriver);
         }, error => console.log(error));
     }
 
@@ -94,7 +95,7 @@ export class AddBusDetailsComponent implements OnInit {
   createBusAndDriver() {
     // console.log(this.busAndDriJsonResult);
     this._BusanddriverServiceAPI.createBusAnddriver(this.busAndDriJsonResult).subscribe(_ => {
-      this.dialog.open(MessageBoxComponent, { width: '350px', height: '100px', data: "Bus And Driver Details updated successfully !" });
+      this.dialog.open(MessageBoxComponent, { width: '350px', height: '100px', data: "Bus And Driver Details saved successfully !" });
       setTimeout(() => {
         this.dialog.closeAll();
       }, 2500);
@@ -110,7 +111,10 @@ export class AddBusDetailsComponent implements OnInit {
   updateBusAndDriver()
   {
     this._BusanddriverServiceAPI.updateBusAnddriver(this.id, this.busAndDriJsonResult).subscribe(_=>{
-
+      this.dialog.open(MessageBoxComponent, { width: '350px', height: '100px', data: "Bus And Driver Details updated successfully !" });
+      setTimeout(() => {
+        this.dialog.closeAll();
+      }, 2500);
     });
   }
 
@@ -119,6 +123,7 @@ export class AddBusDetailsComponent implements OnInit {
     Object.assign(this.busAndDriJsonResult,value.value);
     // console.log(value.value);
   }
+
 }
 
 
