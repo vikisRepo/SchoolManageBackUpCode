@@ -19,7 +19,7 @@ namespace SMS.Models
 
 		public string Department { get; set; }
 
-		public int Month { get; set; }
+		public string Month { get; set; }
 
 		public string TeacherId { get; set; }
 

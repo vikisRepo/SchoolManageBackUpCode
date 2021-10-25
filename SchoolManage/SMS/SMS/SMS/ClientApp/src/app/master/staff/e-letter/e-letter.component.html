@@ -19,7 +19,7 @@
                 <mat-form-field appearance="standard">
                     <mat-label>Letter Type</mat-label>
                     <mat-select formControlName="letterType">
-                        <mat-option *ngFor="let letterType of letterTypes" [value]="letterType.value">
+                        <mat-option *ngFor="let letterType of letterTypes" [value]="letterType.viewValue">
                             {{letterType.viewValue}}
                         </mat-option>
                     </mat-select>
@@ -33,7 +33,7 @@
                 <mat-form-field appearance="standard">
                     <mat-label>Month</mat-label>
                     <mat-select formControlName="month">
-                        <mat-option *ngFor="let months of month" [value]="months.value">
+                        <mat-option *ngFor="let months of month" [value]="months.viewValue">
                             {{months.viewValue}}
                         </mat-option>
                     </mat-select>
