@@ -34,7 +34,7 @@ export class ListBusDetailComponent implements OnInit {
   //    'driverNumber':'one'
   // }];
   
-  columnsToDisplay = ['busNumber', 'companyName','driverName','driverNumber'];
+  columnsToDisplay = ['busNumber', 'companyName','driverName','driverNumber', 'actions'];
   constructor(private router:Router,private busanddriverApiService: BusanddriverService) { 
     //debugger;
     this.loadBusDetails();
@@ -66,19 +66,19 @@ export class ListBusDetailComponent implements OnInit {
 
   callNewStudent()
   {  
-    this.router.navigate(['new-staff']);
+    this.router.navigate(['add-bus-details']);
   }
   
   removeBusDetail(busanddriver : BusAndDriver)//Staff
   {
-    this.busanddriverApiService.deleteBusAnddriver(busanddriver.busTypeid).subscribe(_=>{
+    this.busanddriverApiService.deleteBusAnddriver(busanddriver.busesAndDriverId).subscribe(_=>{
       this.loadBusDetails();
     });
   }
 
   editBusdetail(busanddriver : BusAndDriver)
   {
-    this.router.navigate(['new-staff',busanddriver.busTypeid]);
+    this.router.navigate(['add-bus-details',busanddriver.busesAndDriverId]);
   }
 }
 

@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.Helpers;
 
 namespace SMS.Migrations.MysqlData
 {
     [DbContext(typeof(MysqlDataContext))]
-    partial class MysqlDataContextModelSnapshot : ModelSnapshot
+    [Migration("20211023204031_BusAndDriverDetails")]
+    partial class BusAndDriverDetails
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -2099,41 +2101,6 @@ namespace SMS.Migrations.MysqlData
                             StaffTypeId = 12,
                             Description = "HOD"
                         });
-                });
-
-            modelBuilder.Entity("SMS.Models.StaffeLetter", b =>
-                {
-                    b.Property<int>("StaffeLetterId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("AttachmentId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Department")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Empid")
-                        .HasColumnType("text");
-
-                    b.Property<string>("LetterType")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Month")
-                        .HasColumnType("text");
-
-                    b.Property<string>("StaffName")
-                        .HasColumnType("text");
-
-                    b.Property<string>("TeacherId")
-                        .HasColumnType("text");
-
-                    b.Property<int>("Year")
-                        .HasColumnType("int");
-
-                    b.HasKey("StaffeLetterId");
-
-                    b.ToTable("StaffeLetters");
                 });
 
             modelBuilder.Entity("SMS.Models.State", b =>

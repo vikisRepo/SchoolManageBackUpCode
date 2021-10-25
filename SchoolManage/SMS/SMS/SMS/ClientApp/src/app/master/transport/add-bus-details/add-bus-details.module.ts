@@ -13,7 +13,7 @@ import { DriverDetailsComponent } from './driver-details/driver-details.componen
 
 
 @NgModule({
-  declarations: [AddBusDetailsComponent, AddBusComponent, DriverDetailsComponent,],
+  declarations: [AddBusDetailsComponent, AddBusComponent, DriverDetailsComponent],
   imports: [
     CommonModule,
     AddBusDetailsRoutingModule,

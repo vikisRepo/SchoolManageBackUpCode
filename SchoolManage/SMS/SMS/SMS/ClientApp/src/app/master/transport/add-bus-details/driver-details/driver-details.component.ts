@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Console } from 'console';
+import { BusanddriverService } from '../busanddriver.service';
 
 @Component({
   selector: 'app-driver-details',
@@ -11,9 +12,9 @@ export class DriverDetailsComponent implements OnInit {
   @Output() driverFormOutput=new EventEmitter<any>(); 
   formValues = {};
   busDriverDetailForm: FormGroup;
-  constructor(private fb:FormBuilder) {
+  constructor(private fb:FormBuilder, private _BusanddriverServiceAPI: BusanddriverService) {
     this.busDriverDetailForm = this.fb.group({
-      driverName : ['']
+       driverName : ['']
       ,driverNumber : ['']
       ,driverAadhar : ['']
     });
@@ -28,6 +29,11 @@ export class DriverDetailsComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    debugger;
+    this._BusanddriverServiceAPI.formValue$.subscribe((data : any) => {
+      this.busDriverDetailForm.patchValue(data);
+      console.log("Inside Driver Details");
+    });
   }
 
 }

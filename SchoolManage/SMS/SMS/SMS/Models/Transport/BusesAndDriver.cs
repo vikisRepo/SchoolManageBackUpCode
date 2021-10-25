@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -32,14 +32,14 @@ namespace SMS.Models.Transport
 
         //public DateTime ArrivalTime { get; set; }
 
-        public string DriverName { get; set; }
+       public string DriverName { get; set; }
 
-        public int DriverNumber { get; set; }
+        public long DriverNumber { get; set; }
 
         public string DriverAadhar { get; set; }
 
-        //public byte BusLocation { get; set; }
+    //public byte BusLocation { get; set; }
 
-        public string company { get; set; }
+    public string company { get; set; }
     }
 }
