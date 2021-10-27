@@ -158,6 +158,7 @@ export class StudentAttendanceComponent implements OnInit {
 
   LoadSections(className)
   {
+    debugger;
     this.factory.GetSectionByClassName(className.value).subscribe((data) => {
       this.ALL_Section = data; 
     });

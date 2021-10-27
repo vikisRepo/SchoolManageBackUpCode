@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SmsConstant } from 'src/app/shared/constant-values';
 import { BusanddriverService } from '../busanddriver.service';
 
@@ -17,13 +17,13 @@ export class AddBusComponent implements OnInit {
  sendNotification = SmsConstant.notification;
   constructor(private fb:FormBuilder, private _BusanddriverServiceAPI: BusanddriverService) {
     this.busDetailForm = this.fb.group({
-      busTypeid : ['']
-      ,company : ['']
-      ,seatCount : ['']
-      ,busNumber : ['']
-      ,insurancePolicyNum : ['']
-      ,insuranceEndDate : ['']
-      ,notificationSpanId : ['']
+      busTypeid : ['', Validators.required]
+      ,company : ['', Validators.required]
+      ,seatCount : ['', Validators.required]
+      ,busNumber : ['', Validators.required]
+      ,insurancePolicyNum : ['', Validators.required]
+      ,insuranceEndDate : ['', Validators.required]
+      ,notificationSpanId : ['', Validators.required]
     })
 
     this.busDetailForm.valueChanges.subscribe(() =>{

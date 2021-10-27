@@ -28,7 +28,7 @@ export class StudentDetailsComponent implements OnInit ,FormTouched{
   nationality = SmsConstant.nationality;
   motherTon = SmsConstant.motherTongue;
   languageknown = SmsConstant.languageKnown;
-  class = SmsConstant.classes
+  class = SmsConstant.classes;
   firstLang =SmsConstant.firstLanguage;
   secndLanguage =SmsConstant.secondLanguage;
   section =SmsConstant.section;
