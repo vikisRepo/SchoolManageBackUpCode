@@ -67,19 +67,6 @@
         <td mat-cell *matCellDef="let element"> {{element.section}} </td>
     </ng-container>
 
-    <!--status-->
-    <!-- <ng-container matColumnDef="Status">
-        <th mat-header-cell *matHeaderCellDef> Status </th>
-        <td mat-cell *matCellDef="let element"> {{element.status}} </td>
-    </ng-container> -->
-
-    <ng-container matColumnDef="Actions">
-        <th mat-header-cell *matHeaderCellDef> </th>
-        <td mat-cell *matCellDef="let element">
-            <img src="../../../../assets/edit.png" class="icon" (click)="editStudent(element)" style="margin-right: 10px; cursor: pointer;"/>
-            <img src="../../../../assets/trash.png" class="icon" (click)="removeStudent(element)" style="margin-right: 10px; cursor: pointer;"/>
-        </td>
-    </ng-container>
     <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
     <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
 </table>
@@ -95,7 +82,7 @@
       </div>
       <div class="row" style="margin-top:20px;margin-left:15px;">
       <div class="example-button-container">
-        <button mat-fab color="primary" aria-label="Example icon button with a home icon">
+        <button mat-fab color="primary" aria-label="Example icon button with a home icon" (click)="removeStudentfromTrip()">
             <mat-icon>fast_rewind</mat-icon>
           </button>
       </div>
@@ -105,15 +92,15 @@
     <table mat-table [dataSource]="selectedStudentListData" class="mat-elevation-z6" style="width: 100%;">
         <ng-container matColumnDef="select">
             <th mat-header-cell *matHeaderCellDef>
-              <mat-checkbox (change)="$event ? masterToggle() : null"
-                            [checked]="selection.hasValue() && isAllSelected()"
-                            [indeterminate]="selection.hasValue() && !isAllSelected()">
+              <mat-checkbox (change)="$event ? masterToggleTrip() : null"
+                            [checked]="selectionTrip.hasValue() && isAllSelectedTrip()"
+                            [indeterminate]="selectionTrip.hasValue() && !isAllSelectedTrip()">
               </mat-checkbox>
             </th>
             <td mat-cell *matCellDef="let row">
               <mat-checkbox (click)="$event.stopPropagation()"
-                            (change)="$event ? selection.toggle(row) : null"
-                            [checked]="selection.isSelected(row)">
+                            (change)="$event ? selectionTrip.toggle(row) : null"
+                            [checked]="selectionTrip.isSelected(row)">
               </mat-checkbox>
             </td>
         </ng-container>
@@ -139,14 +126,6 @@
         <ng-container matColumnDef="Section">
             <th mat-header-cell *matHeaderCellDef> Section </th>
             <td mat-cell *matCellDef="let element"> {{element.section}} </td>
-        </ng-container>
-    
-        <ng-container matColumnDef="Actions">
-            <th mat-header-cell *matHeaderCellDef> </th>
-            <td mat-cell *matCellDef="let element">
-                <img src="../../../../assets/edit.png" class="icon" (click)="editStudent(element)" style="margin-right: 10px; cursor: pointer;"/>
-                <img src="../../../../assets/trash.png" class="icon" (click)="removeStudent(element)" style="margin-right: 10px; cursor: pointer;"/>
-            </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
         <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>

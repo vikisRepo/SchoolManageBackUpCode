@@ -29,13 +29,18 @@ export class StudentDetailsComponent implements OnInit {
   rows : number = 0;
   students:Array<Student>;
   selectedStudents:Array<Student> = [];
+  selectedStudentsTrip:Array<Student> = [];
+  copy:Array<Student> = [];
   currentUserSubscription !: Subscription;
   classes = SmsConstant.classes;
   sections = SmsConstant.section;
   initialSelection = [];
   allowMultiSelect = true;
+  initialSelectionTrip = [];
+  allowMultiSelectTrip = true;
   ALL_Section = [];
-  selection = new SelectionModel<any>(this.allowMultiSelect, this.initialSelection);
+  selection = new SelectionModel<Student>(this.allowMultiSelect, this.initialSelection);
+  selectionTrip = new SelectionModel<Student>(this.allowMultiSelectTrip, this.initialSelectionTrip);
 
   columnsToDisplay = ['select','StudentName', 'MobileNumber','Class','Section'];
 
@@ -49,6 +54,7 @@ export class StudentDetailsComponent implements OnInit {
   }
   studentDetailForm :FormGroup;
   ngOnInit(): void {
+
   }
   LoadStudent()
   {
@@ -58,6 +64,7 @@ export class StudentDetailsComponent implements OnInit {
       this.currentStudent = student;
       this.students=student;
       this.studentListData = new MatTableDataSource(student);
+
    //   this.selectedStudentListData = new MatTableDataSource(this.selectedStudents);
      // this.studentListData.paginator = this.paginator;
      // this.studentListData.sort = this.sort;
@@ -94,13 +101,13 @@ export class StudentDetailsComponent implements OnInit {
     const numRows = this.studentListData.data.length;
     return numSelected == numRows;
   }
-
-  addStudent()
-  {
-     this.selectedStudents.push(this.studentListData.data[0]);
-    console.log( this.studentListData.data[0]);
-    this.selectedStudentListData = new MatTableDataSource(this.selectedStudents);
+  isAllSelectedTrip() {
+    const numSelected = this.selectionTrip.selected.length;
+    const numRows = this.selectedStudentListData.data.length;
+    return numSelected == numRows;
   }
+
+
   
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
@@ -109,11 +116,31 @@ export class StudentDetailsComponent implements OnInit {
         this.studentListData.data.forEach(row => this.selection.select(row));
   }
 
+  masterToggleTrip() {
+    this.isAllSelectedTrip() ?
+        this.selectionTrip.clear() :
+        this.selectedStudentListData.data.forEach(row => this.selectionTrip.select(row));
+  }
+
   LoadSections(className)
   {
     this.factory.GetSectionByClassName(className.value).subscribe((data) => {
       this.ALL_Section = data; 
     });
+  }
+  addStudent()
+  {
+    this.selectedStudents=this.selectedStudents.concat(this.selection.selected);
+    this.selectedStudents=this.selectedStudents.filter((obj, pos, arr) => {
+      return arr.map(mapObj => mapObj["admissionNumber"]).indexOf(obj["admissionNumber"]) === pos;
+  });
+    this.selectedStudentListData = new MatTableDataSource(this.selectedStudents);
+  }
+  removeStudentfromTrip(){
+     console.log(this.selectionTrip.selected);
+     this.selectedStudentsTrip=this.selectionTrip.selected;
+    this.selectedStudents = this.selectedStudentListData.data.filter(ar => !this.selectedStudentsTrip.find(rm => (rm.admissionNumber === ar.admissionNumber)))
+    this.selectedStudentListData = new MatTableDataSource(this.selectedStudents);
   }
 
 }
