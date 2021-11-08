@@ -3,7 +3,7 @@
     
     <div class="right-content">
         <ul type="none" class="profile-name">
-            <li style="font-size: 22px;margin-top: -15px;">Count:{{rows}}</li>
+            <li style="font-size: 22px;margin-top: -15px;">Total Trips: {{rows}}</li>
           </ul>
         <img src="../../../assets/plus.png" alt="profile" (click)="callNewBusTrips()"
             style="height:30px;margin-top:-10px;margin-right: 40px;cursor: pointer;">
@@ -12,31 +12,31 @@
         <!--TripNumber-->
         <ng-container matColumnDef="TripNumber">
             <th mat-header-cell *matHeaderCellDef> Trip Number </th>
-            <td mat-cell *matCellDef="let element"> {{element.TripNumber}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.tripNumber}} </td>
         </ng-container>
 
         <!--busNumber-->
         <ng-container matColumnDef="busNumber">
             <th mat-header-cell *matHeaderCellDef> Bus Number </th>
-            <td mat-cell *matCellDef="let element"> {{element.busNumber}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.busesAndDrivers.busNumber}} </td>
         </ng-container>
 
         <!--driverName-->
         <ng-container matColumnDef="driverName">
             <th mat-header-cell *matHeaderCellDef> Driver Name </th>
-            <td mat-cell *matCellDef="let element"> {{element.driverName}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.busesAndDrivers.driverName}} </td>
         </ng-container>
 
         <!--driverNumber-->
         <ng-container matColumnDef="driverNumber">
             <th mat-header-cell *matHeaderCellDef> Driver Number </th>
-            <td mat-cell *matCellDef="let element"> {{element.driverNumber}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.busesAndDrivers.driverNumber}} </td>
         </ng-container>
 
          <!--totalNoOfStudent-->
          <ng-container matColumnDef="totalNoOfStudent">
             <th mat-header-cell *matHeaderCellDef> Total Number of Student </th>
-            <td mat-cell *matCellDef="let element"> {{element.totalNoOfStudent}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.totalHeadCount}} </td>
         </ng-container>
 
         <!--actions-->
@@ -49,7 +49,6 @@
                     style="margin-right: 10px; cursor: pointer;" />
             </td>
         </ng-container>
-
 
         <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
         <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>

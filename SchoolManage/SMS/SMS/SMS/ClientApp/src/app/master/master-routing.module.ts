@@ -46,6 +46,7 @@ const routes: Routes = [
       { path: 'class-timetable', loadChildren: () => import('./academic/class-timetable/class-timetable.module').then(m => m.ClassTimetableModule) },
       { path: 'list-bus-detail', loadChildren: () => import('./transport/list-bus-detail/list-bus-detail.module').then(m => m.ListBusDetailModule) },
       { path: 'add-bus-trip', loadChildren: () => import('./transport/add-bus-trip/add-bus-trip.module').then(m => m.AddBusTripModule) },
+      { path: 'add-bus-trip/:id', loadChildren: () => import('./transport/add-bus-trip/add-bus-trip.module').then(m => m.AddBusTripModule) },
       { path: 'list-bus-trips', loadChildren: () => import('./transport/list-bus-trips/list-bus-trips.module').then(m => m.ListBusTripsModule) }
     ]
   },

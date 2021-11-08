@@ -342,6 +342,8 @@ export class SmsConstant {
     //     staffName: "sdfgsdfg sdfgsdfg"
     // }
   ]
+  static busAndDriverDetails =[
+  ]
 
 
 

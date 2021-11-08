@@ -15,8 +15,8 @@
                 <mat-form-field appearance="standard">
                     <mat-label>section</mat-label>
                     <mat-select formControlName="section" (selectionChange)="applyFilterSection('sectionFilter')">
-                        <mat-option *ngFor="let section of sections" [value]="section.value">
-                            {{section.viewValue}}
+                        <mat-option *ngFor="let section of ALL_Section" [value]="section">
+                            {{section}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>   

@@ -236,5 +236,19 @@ namespace SMS.Controllers
       }).ToList());
     }
     #endregion
+
+    #region GetBusNumandDriverDetails
+    [HttpGet("GetBusNumandDriverDetails")]
+    public IActionResult GetBusNumandDriverDetails()
+    {
+      return Ok(_dbcontext.BusesAndDrivers.Select(x => new
+      {
+        x.BusesAndDriverId,
+        x.BusNumber,
+        x.DriverName,
+        x.DriverNumber
+      }).ToList());
+    }
+    #endregion
   }
 }

@@ -39,6 +39,7 @@ export class StudentDetailsComponent implements OnInit {
   initialSelectionTrip = [];
   allowMultiSelectTrip = true;
   ALL_Section = [];
+  selectedAdmissionNumber : Array<any> = [];
   selection = new SelectionModel<Student>(this.allowMultiSelect, this.initialSelection);
   selectionTrip = new SelectionModel<Student>(this.allowMultiSelectTrip, this.initialSelectionTrip);
 
@@ -53,9 +54,11 @@ export class StudentDetailsComponent implements OnInit {
     this.LoadStudent();
   }
   studentDetailForm :FormGroup;
+
   ngOnInit(): void {
 
   }
+
   LoadStudent()
   {
     this.blockUI.start();
@@ -101,6 +104,7 @@ export class StudentDetailsComponent implements OnInit {
     const numRows = this.studentListData.data.length;
     return numSelected == numRows;
   }
+
   isAllSelectedTrip() {
     const numSelected = this.selectionTrip.selected.length;
     const numRows = this.selectedStudentListData.data.length;
@@ -133,12 +137,15 @@ export class StudentDetailsComponent implements OnInit {
     this.selectedStudents=this.selectedStudents.concat(this.selection.selected);
     this.selectedStudents=this.selectedStudents.filter((obj, pos, arr) => {
       return arr.map(mapObj => mapObj["admissionNumber"]).indexOf(obj["admissionNumber"]) === pos;
-  });
+    });
     this.selectedStudentListData = new MatTableDataSource(this.selectedStudents);
+    debugger;
+    // this.selectedStudentListData.data.forEach();
+
   }
   removeStudentfromTrip(){
-     console.log(this.selectionTrip.selected);
-     this.selectedStudentsTrip=this.selectionTrip.selected;
+    console.log(this.selectionTrip.selected);
+    this.selectedStudentsTrip=this.selectionTrip.selected;
     this.selectedStudents = this.selectedStudentListData.data.filter(ar => !this.selectedStudentsTrip.find(rm => (rm.admissionNumber === ar.admissionNumber)))
     this.selectedStudentListData = new MatTableDataSource(this.selectedStudents);
   }

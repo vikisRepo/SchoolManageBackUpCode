@@ -25,12 +25,12 @@
   </mat-tab-group>
   
   <div class="footer-n-stu">
-    <button type="button" class="gradient-button" (click)="btnMovement('bck')" [disabled]="selectedTab<=0">
+    <!-- <button type="button" class="gradient-button" (click)="btnMovement('bck')" [disabled]="selectedTab<=0">
       Back
-    </button>
-    <button type="button" class="gradient-button" (click)="btnMovement('frd')">
-      <span *ngIf="!(selectedTab>=1)">Next</span>
-      <span *ngIf="selectedTab>=1">Submit</span>
+    </button> -->
+    <button type="button" class="gradient-button" (click)="submit()">
+      <!-- <span *ngIf="!(selectedTab>=1)">Next</span> -->
+      <span>Submit</span>
     </button>
   
   </div>

@@ -40,12 +40,14 @@ export class FactorydataService {
       factorySubjects : this.getfactorydata('/api/Subject', 2000),
       factoryRole : this.getfactorydata('/api/Factory/Roles', 2000),
       staffName : this.getfactorydata('/api/Factory/StaffNames',2000),
-      employeeId : this.getfactorydata('/api/Factory/GetEmployeeDetails',2000)
+      employeeId : this.getfactorydata('/api/Factory/GetEmployeeDetails',2000),
+      busAndDriverDetails : this.getfactorydata('/api/Factory/GetBusNumandDriverDetails',2000)
       
       // requestThree: this.getfactorydata('/api​/Factory​/RepotingTo')
     })
     .subscribe(({banks, cities,departments,employeestatus,bloodgroup,maritalStatus,religion,gender,salutations,language,staffTypes,nationalities,designation,
-             inventoryItemUsageAreas, inventoryItemTypes, factoryClasses, factorySubjects, factoryRole,staffName,employeeId}) => {
+             inventoryItemUsageAreas, inventoryItemTypes, factoryClasses, 
+             factorySubjects, factoryRole,staffName,employeeId,busAndDriverDetails}) => {
       SmsConstant.bank = banks;
       sessionStorage.setItem('bank',JSON.stringify(banks));
       SmsConstant.city = cities;
@@ -90,6 +92,8 @@ export class FactorydataService {
       sessionStorage.setItem('staffName',JSON.stringify(staffName));
       SmsConstant.employeeId =employeeId;
       sessionStorage.setItem('employeeId',JSON.stringify(employeeId));
+      SmsConstant.busAndDriverDetails = busAndDriverDetails;
+      sessionStorage.setItem('busAndDriverDetails',JSON.stringify(busAndDriverDetails));
     });
 
    }
@@ -200,6 +204,10 @@ export class FactorydataService {
   }
   get employeeId(){
     return JSON.parse(sessionStorage.getItem("employeeId"));
+  }
+
+  get busAndDriverDetails(){
+    return JSON.parse(sessionStorage.getItem("busAndDriverDetails"));
   }
 
 

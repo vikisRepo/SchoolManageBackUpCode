@@ -24,12 +24,12 @@ export class AddBusDetailsComponent implements OnInit {
 
   @BlockUI() blockUI: NgBlockUI;
 
-  constructor(private route: ActivatedRoute, public dialog: MatDialog, private _BusanddriverServiceAPI: BusanddriverService) { }
+  constructor(private route: ActivatedRoute, public dialog: MatDialog,
+     private _BusanddriverServiceAPI: BusanddriverService) { }
   
   ngAfterViewInit(): void {
 
     if (!this.isAddMode) {
-      // console.log(this._busAndDriver);
       this._BusanddriverServiceAPI.getBusAnddriver(this.id)
         .subscribe(data => {
           debugger;
@@ -45,15 +45,6 @@ export class AddBusDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.isAddMode = !this.id;
-    // if (Object.keys(this.expData).length != 0) {
-
-    //   this.BusAndDriverGrp.disable();
-    //   this.BusAndDriverGrp.setValue(this.expData);
-    // }
-    // else {
-
-    //   this.BusAndDriver = true;
-    // }
   }
 
   btnMovement(st: string) {
@@ -70,31 +61,20 @@ export class AddBusDetailsComponent implements OnInit {
   }
 
   submit() {
-   // debugger
     this.blockUI.start();
-    // this.submitted = true;
-
-
     if (this.BusAndDriverDetails.includes(false)) {
       this.blockUI.stop();
       return;
     }
-
     if (this.isAddMode) {
       this.createBusAndDriver();
      } else {
       this.updateBusAndDriver();
      }
-
     this.blockUI.stop();
-    // if(!this.stuFormtDetails.includes(false)){
-    //   return;
-    // }
-
   }
 
   createBusAndDriver() {
-    // console.log(this.busAndDriJsonResult);
     this._BusanddriverServiceAPI.createBusAnddriver(this.busAndDriJsonResult).subscribe(_ => {
       this.dialog.open(MessageBoxComponent, { width: '350px', height: '100px', data: "Bus And Driver Details saved successfully !" });
       setTimeout(() => {
@@ -102,12 +82,6 @@ export class AddBusDetailsComponent implements OnInit {
       }, 2500);
     });
   }
-  // this.studentApiService.createStudent(this.stuJsonResult).subscribe(_=>{
-  //   this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"student feedback updated successfully !"});
-  //   setTimeout(() => {
-  //     this.dialog.closeAll();
-  //   }, 2500);
-  // });
 
   updateBusAndDriver()
   {
@@ -122,7 +96,6 @@ export class AddBusDetailsComponent implements OnInit {
   setTabFormDetails(value: any,tab:number){
     this.BusAndDriverDetails[tab] = value.valid;
     Object.assign(this.busAndDriJsonResult,value.value);
-    // console.log(value.value);
   }
 
 }
