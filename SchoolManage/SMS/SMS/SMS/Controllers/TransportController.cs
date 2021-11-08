@@ -168,15 +168,18 @@ namespace SMS.Controllers
       }
     }
 
-    [HttpDelete("UpdateStudentTripDetails/{tripId}/{admissionNumber}")]
-    public void UpdateStudentTripDetails(int tripId, int admissionNumber)
+    [HttpDelete("UpdateStudentTripDetails/{tripId}/{admissionNumbers}")]
+    public void UpdateStudentTripDetails(int tripId, int[] admissionNumbers)
     {
-      var studentUpdate = _dbContext.Students.Where(x => x.AdmissionNumber == admissionNumber).FirstOrDefault();
-      if (studentUpdate != null)
-      {
-        studentUpdate.StudentTrip.BusTripid = tripId; 
-      }
-      _dbContext.SaveChanges();
+            foreach (var admissionNumber in admissionNumbers)
+            {
+                var studentUpdate = _dbContext.Students.Where(x => x.AdmissionNumber == admissionNumber).FirstOrDefault();
+                if (studentUpdate != null)
+                {
+                    studentUpdate.StudentTrip.BusTripid = tripId;
+                }
+                _dbContext.SaveChanges();
+            }
     }
 
   }

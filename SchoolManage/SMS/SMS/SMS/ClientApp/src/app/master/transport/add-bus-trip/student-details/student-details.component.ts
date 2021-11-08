@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 import { StudentrestApiService } from 'src/app/master/student/studentrest-api.service';
 import { Student } from 'src/app/master/student/student';
 import { SelectionModel } from '@angular/cdk/collections';
+import { listenerCount } from 'process';
+import { TransportService } from '../../transport.service';
 
 @Component({
   selector: 'app-student-details',
@@ -45,7 +47,8 @@ export class StudentDetailsComponent implements OnInit {
 
   columnsToDisplay = ['select','StudentName', 'MobileNumber','Class','Section'];
 
-  constructor(private fb : FormBuilder, private factory: FactorydataService,private studentrestApiService : StudentrestApiService) { 
+  constructor(private fb : FormBuilder, private factory: FactorydataService,
+    private studentrestApiService : StudentrestApiService, private transportservice : TransportService) { 
     this.classes = factory.classes;
     this.studentDetailForm = this.fb.group({
       class : ['',Validators.required],
@@ -134,13 +137,14 @@ export class StudentDetailsComponent implements OnInit {
   }
   addStudent()
   {
+    let list = [];
     this.selectedStudents=this.selectedStudents.concat(this.selection.selected);
     this.selectedStudents=this.selectedStudents.filter((obj, pos, arr) => {
+      if (list.indexOf(obj["admissionNumber"]) === -1) list.push(obj["admissionNumber"]);
       return arr.map(mapObj => mapObj["admissionNumber"]).indexOf(obj["admissionNumber"]) === pos;
     });
+
     this.selectedStudentListData = new MatTableDataSource(this.selectedStudents);
-    debugger;
-    // this.selectedStudentListData.data.forEach();
 
   }
   removeStudentfromTrip(){
