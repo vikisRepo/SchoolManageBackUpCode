@@ -9,7 +9,7 @@ import { ClassGrade } from 'src/app/master/general/class-grade/models/class-grad
 })
 export class ClassesRestApiService {
 
-  apiURL = 'api/api/AcademicClass/GetClassNames/';
+  apiURL = 'api/AcademicClass/GetClassNames/';
   //apiURL = "http://localhost:4000/Classes";
   
   constructor(private http: HttpClient) { }

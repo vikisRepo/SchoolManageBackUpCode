@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
@@ -17,7 +17,9 @@ namespace SMS.Models.Academics
 
 		public int AcademicClassSubjectId { get; set; }
 
-		public DateTime? date { get; set; }
+    public string Subject { get; set; }
+
+    public DateTime? date { get; set; }
 		public string classWork { get; set; }
 
 		public string homeWork { get; set; }
