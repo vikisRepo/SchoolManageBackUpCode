@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SmsConstant } from 'src/app/shared/constant-values';
+import { FactorydataService } from 'src/app/shared/factorydata.service';
 import { TimeTableService } from '../services/time-table.service';
 
 @Component({
@@ -19,7 +20,10 @@ export class TimeTableEditorComponent implements OnInit {
   constructor(private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private ttObj: TimeTableService,
-    public dialogRef: MatDialogRef<TimeTableEditorComponent>) { }
+    public dialogRef: MatDialogRef<TimeTableEditorComponent>,private factory: FactorydataService) { 
+      this.subjects = factory.Subjectsdropdown;
+      this.staff = factory.staffNames;
+    }
 
   ngOnInit(): void {
   
