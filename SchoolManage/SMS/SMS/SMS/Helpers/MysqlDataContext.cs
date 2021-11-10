@@ -40,9 +40,13 @@ namespace WebApi.Helpers
 
     //leave tables
 
-    public virtual DbSet<StudentLeave> StudentLeaves { get; set; }
+        public virtual DbSet<StudentLeave> StudentLeaves { get; set; }
 
         public virtual DbSet<StaffLeave> StaffLeaves { get; set; }
+
+        public virtual DbSet<LeaveSession> LeaveSessions { get; set; }
+
+        public virtual  DbSet<LeaveType> LeaveTypes { get; set; }
 
         #region "staff_Lookups"
         public virtual DbSet<Nationality> Nationalities { get; set; }
