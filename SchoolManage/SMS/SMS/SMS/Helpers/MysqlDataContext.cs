@@ -4,6 +4,7 @@ using SMS.Middleware;
 using SMS.Models;
 using SMS.Models.Academics;
 using SMS.Models.Attendance;
+using SMS.Models.Course;
 using SMS.Models.Inventory;
 using SMS.Models.Leave;
 using SMS.Models.Message;
@@ -108,7 +109,20 @@ namespace WebApi.Helpers
 
         public virtual DbSet<StudentAttendance> StudentAttendances { get; set; }
 
-        #endregion 
+        #endregion
+
+        #region Course
+
+        public virtual DbSet<CourseDetail> CourseDetails { get; set; }
+        public virtual DbSet<CompletionCriteria> CompletionCriterias { get; set; }
+
+        public virtual DbSet<CourseContent> CourseContents { get; set; }
+
+        public virtual DbSet<ContentType> ContentTypes { get; set; }
+
+        public virtual DbSet<StudentCourse> StudentCourses { get; set; }
+
+        #endregion
 
         public virtual DbSet<ClassTimeTable> ClassTimeTables { get; set; }
 

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SMS.Models;
 using SMS.Models.Academics;
+using SMS.Models.Course;
 using System;
 using System.Collections.Generic;
 using System.Linq;

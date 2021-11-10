@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.Helpers;
 
 namespace SMS.Migrations.MysqlData
 {
     [DbContext(typeof(MysqlDataContext))]
-    partial class MysqlDataContextModelSnapshot : ModelSnapshot
+    [Migration("20211110173345_CourseV1")]
+    partial class CourseV1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -609,44 +611,6 @@ namespace SMS.Migrations.MysqlData
                     b.ToTable("CompletionCriterias");
                 });
 
-            modelBuilder.Entity("SMS.Models.Course.ContentType", b =>
-                {
-                    b.Property<int>("ContentTypeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("text");
-
-                    b.HasKey("ContentTypeId");
-
-                    b.ToTable("ContentTypes");
-                });
-
-            modelBuilder.Entity("SMS.Models.Course.CourseContent", b =>
-                {
-                    b.Property<int>("CourseContentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("ContentTypeId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CourseDetailId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PathToFile")
-                        .HasColumnType("text");
-
-                    b.HasKey("CourseContentId");
-
-                    b.HasIndex("ContentTypeId");
-
-                    b.HasIndex("CourseDetailId");
-
-                    b.ToTable("CourseContents");
-                });
-
             modelBuilder.Entity("SMS.Models.Course.CourseDetail", b =>
                 {
                     b.Property<int>("CourseDetailID")
@@ -682,30 +646,6 @@ namespace SMS.Migrations.MysqlData
                     b.HasIndex("CompletionCriteriaId");
 
                     b.ToTable("CourseDetails");
-                });
-
-            modelBuilder.Entity("SMS.Models.Course.StudentCourse", b =>
-                {
-                    b.Property<int>("StudentCourseId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("CourseContentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PassingScore")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int");
-
-                    b.HasKey("StudentCourseId");
-
-                    b.HasIndex("CourseContentId");
-
-                    b.HasIndex("StudentId");
-
-                    b.ToTable("StudentCourses");
                 });
 
             modelBuilder.Entity("SMS.Models.Department", b =>
@@ -2690,25 +2630,6 @@ namespace SMS.Migrations.MysqlData
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SMS.Models.Course.CourseContent", b =>
-                {
-                    b.HasOne("SMS.Models.Course.ContentType", "ContentType")
-                        .WithMany()
-                        .HasForeignKey("ContentTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SMS.Models.Course.CourseDetail", "CourseDetail")
-                        .WithMany()
-                        .HasForeignKey("CourseDetailId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ContentType");
-
-                    b.Navigation("CourseDetail");
-                });
-
             modelBuilder.Entity("SMS.Models.Course.CourseDetail", b =>
                 {
                     b.HasOne("SMS.Models.Course.CompletionCriteria", "CompletionCriteria")
@@ -2716,25 +2637,6 @@ namespace SMS.Migrations.MysqlData
                         .HasForeignKey("CompletionCriteriaId");
 
                     b.Navigation("CompletionCriteria");
-                });
-
-            modelBuilder.Entity("SMS.Models.Course.StudentCourse", b =>
-                {
-                    b.HasOne("SMS.Models.Course.CourseContent", "CourseContent")
-                        .WithMany()
-                        .HasForeignKey("CourseContentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SMS.Models.Student", "Student")
-                        .WithMany()
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CourseContent");
-
-                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("SMS.Models.Inventory.Inventory", b =>
