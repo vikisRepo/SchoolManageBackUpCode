@@ -1,6 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SMS.Models;
 using SMS.Models.Transport;
 using System;
 using System.Collections.Generic;
@@ -168,19 +169,43 @@ namespace SMS.Controllers
       }
     }
 
-    [HttpDelete("UpdateStudentTripDetails/{tripId}/{admissionNumbers}")]
-    public void UpdateStudentTripDetails(int tripId, int[] admissionNumbers)
+    [HttpPut("UpdateStudentTripDetails/{tripId}")]
+    public void UpdateStudentTripDetails(int tripId, [FromBody]  int[] admissionNumbers)
     {
-            foreach (var admissionNumber in admissionNumbers)
-            {
-                var studentUpdate = _dbContext.Students.Where(x => x.AdmissionNumber == admissionNumber).FirstOrDefault();
-                if (studentUpdate != null)
-                {
-                    studentUpdate.StudentTrip.BusTripid = tripId;
-                }
-                _dbContext.SaveChanges();
-            }
+      var busTripDetails = _dbContext.BusTrips.Where(y => y.BusTripid == tripId).FirstOrDefault();
+      foreach (var admissionNumber in admissionNumbers)
+      {
+        var studentUpdate = _dbContext.Students.Where(x => x.AdmissionNumber == admissionNumber).FirstOrDefault();
+        if (studentUpdate != null)
+        {
+          studentUpdate.BusTripid = busTripDetails.BusTripid;
+        }
+        _dbContext.SaveChanges();
+      }
     }
+
+    [HttpPut("RemoveStudentTripDetails/{tripId}")]
+    public void RemoveStudentTripDetails(int tripId, [FromBody] int[] admissionNumbers)
+    {
+      var busTripDetails = _dbContext.BusTrips.Where(y => y.BusTripid == tripId).FirstOrDefault();
+      foreach (var admissionNumber in admissionNumbers)
+      {
+        var studentUpdate = _dbContext.Students.Where(x => x.AdmissionNumber == admissionNumber).FirstOrDefault();
+        if (studentUpdate != null)
+        {
+          studentUpdate.BusTripid = 0;
+        }
+        _dbContext.SaveChanges();
+      }
+    }
+
+    [HttpGet("GetStudentsByTripId/{tripId}")]
+    public IEnumerable<Student> GetStudentsByTripId(int tripId)
+    {
+      return _dbContext.Students.Include(X => X.Addresses).Include(d => d.Dependentsdetails).Where(Y => Y.BusTripid == tripId).ToList();
+    }
+
+
 
   }
 }

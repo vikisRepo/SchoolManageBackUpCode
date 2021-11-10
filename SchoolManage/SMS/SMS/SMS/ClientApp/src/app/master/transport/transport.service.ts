@@ -85,6 +85,29 @@ export class TransportService {
       )
   }
 
+  // HttpClient API put() method => Update BusAnddriver
+  UpdateStudentTripDetails(tripId: any, admissionNumber: any): Observable<any> {
+    debugger;
+    var apiURLUpdate = environment.apiUrl + '/api/Transport/UpdateStudentTripDetails/';
+
+    return this.http.put<any>(apiURLUpdate + tripId , admissionNumber, this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError((err) => this.handleError(err))
+      )
+  }
+
+  RemoveStudentTripDetails(tripId: any, admissionNumber: any): Observable<any> {
+    debugger;
+    var apiURLUpdate = environment.apiUrl + '/api/Transport/RemoveStudentTripDetails/';
+
+    return this.http.put<any>(apiURLUpdate + tripId , admissionNumber, this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError((err) => this.handleError(err))
+      )
+  }
+
   handleError(error: any) {
     this.blockUI.stop();
 

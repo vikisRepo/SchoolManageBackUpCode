@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.Helpers;
 
 namespace SMS.Migrations.MysqlData
 {
     [DbContext(typeof(MysqlDataContext))]
-    partial class MysqlDataContextModelSnapshot : ModelSnapshot
+    [Migration("20211110045924_tansportTripDetailsV6")]
+    partial class tansportTripDetailsV6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -2170,9 +2172,6 @@ namespace SMS.Migrations.MysqlData
                     b.Property<int?>("BloodGroup")
                         .HasColumnType("int");
 
-                    b.Property<int>("BusTripid")
-                        .HasColumnType("int");
-
                     b.Property<string>("Class")
                         .HasColumnType("text");
 
@@ -2243,8 +2242,6 @@ namespace SMS.Migrations.MysqlData
                         .HasColumnType("int");
 
                     b.HasKey("StudentId");
-
-                    b.HasIndex("BusTripid");
 
                     b.ToTable("Students");
                 });
@@ -2660,15 +2657,6 @@ namespace SMS.Migrations.MysqlData
                         .HasForeignKey("StaffId");
                 });
 
-            modelBuilder.Entity("SMS.Models.Student", b =>
-                {
-                    b.HasOne("SMS.Models.Transport.BusTrip", null)
-                        .WithMany("Students")
-                        .HasForeignKey("BusTripid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("SMS.Models.StudentAddress", b =>
                 {
                     b.HasOne("SMS.Models.Student", null)
@@ -2807,11 +2795,6 @@ namespace SMS.Migrations.MysqlData
             modelBuilder.Entity("SMS.Models.TimeTable.ClassTimeTable", b =>
                 {
                     b.Navigation("PeriodDetails");
-                });
-
-            modelBuilder.Entity("SMS.Models.Transport.BusTrip", b =>
-                {
-                    b.Navigation("Students");
                 });
 
             modelBuilder.Entity("WebApi.Entities.Account", b =>

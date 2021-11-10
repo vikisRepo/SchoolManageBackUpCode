@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.Helpers;
 
 namespace SMS.Migrations.MysqlData
 {
     [DbContext(typeof(MysqlDataContext))]
-    partial class MysqlDataContextModelSnapshot : ModelSnapshot
+    [Migration("20211110051037_tansportTripDetailsV8")]
+    partial class tansportTripDetailsV8
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -2170,7 +2172,7 @@ namespace SMS.Migrations.MysqlData
                     b.Property<int?>("BloodGroup")
                         .HasColumnType("int");
 
-                    b.Property<int>("BusTripid")
+                    b.Property<int?>("BusTripid")
                         .HasColumnType("int");
 
                     b.Property<string>("Class")
@@ -2664,9 +2666,7 @@ namespace SMS.Migrations.MysqlData
                 {
                     b.HasOne("SMS.Models.Transport.BusTrip", null)
                         .WithMany("Students")
-                        .HasForeignKey("BusTripid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BusTripid");
                 });
 
             modelBuilder.Entity("SMS.Models.StudentAddress", b =>

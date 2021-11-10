@@ -20,14 +20,14 @@ namespace SMS.Models.Transport
     public TimeSpan TripTimingTo { get; set; }
 
     public int TotalHeadCount { get; set; }
+
     [JsonIgnore]
     [ForeignKey("BusesAndDriverId")]
     public int BusesAndDriverId { get; set; }
 
     public BusesAndDriver BusesAndDrivers { get; set; }
 
-    //[ForeignKey("StudentId")]
-    //public Student Student { get; set; }
+    public virtual ICollection<Student> Students { get; set; }
 
 
   }

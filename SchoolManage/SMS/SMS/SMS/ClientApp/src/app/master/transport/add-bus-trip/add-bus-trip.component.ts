@@ -1,4 +1,4 @@
-import { Component, OnInit, Query, QueryList, ViewChildren,EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Query, QueryList, ViewChildren,EventEmitter, Output, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
@@ -15,7 +15,7 @@ import { BlockUI, NgBlockUI } from 'ng-block-ui';
 })
 export class AddBusTripComponent implements OnInit {
 
-  @Output() addbusTripFormDetail=new EventEmitter<any>(); 
+  @Output() addbusTripFormDetail=new EventEmitter<any>();
   tripDetailForm : FormControl;
   BusTrips: boolean[] = []
   selectedTab: number = 0;
@@ -23,7 +23,9 @@ export class AddBusTripComponent implements OnInit {
   _trip:BusTrips;
   isAddMode?: boolean;
   id: any;
-
+  tripId : any;
+  tripDetails : {};
+  
   @BlockUI() blockUI: NgBlockUI;
 
   @ViewChildren('dt') dt: QueryList<FormTouched>;
@@ -38,6 +40,8 @@ export class AddBusTripComponent implements OnInit {
   ngAfterViewInit(): void {
 
     if (!this.isAddMode) {
+      this.tripId = this.id;
+      this.tripDetails =  {tripId : this.tripId};
       this.transportService.getBusTripDetail(this.id)
         .subscribe(data => {
           this.transportService.setFormValue(data);
@@ -67,7 +71,9 @@ export class AddBusTripComponent implements OnInit {
   createBusTrips()
   {
     console.log(JSON.stringify(this.BusTripsResult));
-    this.transportService.createBusTripDetail(this.BusTripsResult).subscribe(_ => {
+    this.transportService.createBusTripDetail(this.BusTripsResult).subscribe(data => {
+      this.tripId = data;
+      this.tripDetails =  {tripId : this.tripId};
       this.dialog.open(MessageBoxComponent, { width: '350px', height: '100px', data: "Trip Details saved successfully !" });
       setTimeout(() => {
         this.dialog.closeAll();

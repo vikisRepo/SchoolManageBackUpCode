@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SmsConstant } from 'src/app/shared/constant-values';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
@@ -13,6 +13,8 @@ import { Student } from 'src/app/master/student/student';
 import { SelectionModel } from '@angular/cdk/collections';
 import { listenerCount } from 'process';
 import { TransportService } from '../../transport.service';
+import { MessageBoxComponent } from 'src/app/shared/dialog-boxes/message-box/message-box.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-student-details',
@@ -21,6 +23,7 @@ import { TransportService } from '../../transport.service';
 })
 export class StudentDetailsComponent implements OnInit {
   @Output() studentFormOutput =new EventEmitter<any>();
+  @Input() public BusTripDetails :any; 
   @BlockUI() blockUI: NgBlockUI;
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -48,7 +51,8 @@ export class StudentDetailsComponent implements OnInit {
   columnsToDisplay = ['select','StudentName', 'MobileNumber','Class','Section'];
 
   constructor(private fb : FormBuilder, private factory: FactorydataService,
-    private studentrestApiService : StudentrestApiService, private transportservice : TransportService) { 
+    private studentrestApiService : StudentrestApiService, private transportservice : TransportService, 
+    public dialog: MatDialog) { 
     this.classes = factory.classes;
     this.studentDetailForm = this.fb.group({
       class : ['',Validators.required],
@@ -137,21 +141,44 @@ export class StudentDetailsComponent implements OnInit {
   }
   addStudent()
   {
-    let list = [];
+    debugger;
+    let admissionNumberlist = [];
     this.selectedStudents=this.selectedStudents.concat(this.selection.selected);
     this.selectedStudents=this.selectedStudents.filter((obj, pos, arr) => {
-      if (list.indexOf(obj["admissionNumber"]) === -1) list.push(obj["admissionNumber"]);
+      if (admissionNumberlist.indexOf(obj["admissionNumber"]) === -1) admissionNumberlist.push(obj["admissionNumber"]);
       return arr.map(mapObj => mapObj["admissionNumber"]).indexOf(obj["admissionNumber"]) === pos;
     });
 
     this.selectedStudentListData = new MatTableDataSource(this.selectedStudents);
 
+    this.transportservice.UpdateStudentTripDetails( this.BusTripDetails.tripId, admissionNumberlist).subscribe(_ => {
+      this.dialog.open(MessageBoxComponent, { width: '350px', height: '100px', data: "Trip details for selected students updated successfully !" });
+      setTimeout(() => {
+        this.dialog.closeAll();
+      }, 2500);
+    });
+
   }
   removeStudentfromTrip(){
+        debugger;
+    let admissionNumberlist = [];
     console.log(this.selectionTrip.selected);
     this.selectedStudentsTrip=this.selectionTrip.selected;
-    this.selectedStudents = this.selectedStudentListData.data.filter(ar => !this.selectedStudentsTrip.find(rm => (rm.admissionNumber === ar.admissionNumber)))
+    this.selectedStudentsTrip.forEach(myFunction);
+    function myFunction(item) {
+      if (admissionNumberlist.indexOf(item["admissionNumber"]) === -1) admissionNumberlist.push(item["admissionNumber"]);
+    }
+    this.selectedStudents = this.selectedStudentListData.data.filter(ar => !this.selectedStudentsTrip.find(rm => (rm.admissionNumber === ar.admissionNumber)
+    ))
     this.selectedStudentListData = new MatTableDataSource(this.selectedStudents);
+
+    this.transportservice.RemoveStudentTripDetails( this.BusTripDetails.tripId, admissionNumberlist).subscribe(_ => {
+      this.dialog.open(MessageBoxComponent, { width: '350px', height: '100px', data: "Trip details for selected students updated successfully !" });
+      setTimeout(() => {
+        this.dialog.closeAll();
+      }, 2500);
+    });
+
   }
 
 }
