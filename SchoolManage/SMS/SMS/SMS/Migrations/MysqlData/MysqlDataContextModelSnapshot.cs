@@ -1588,7 +1588,7 @@ namespace SMS.Migrations.MysqlData
                     b.Property<int>("Frequency")
                         .HasColumnType("int");
 
-                    b.Property<char>("IsActive")
+                    b.Property<int>("IsActive")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -2212,41 +2212,6 @@ namespace SMS.Migrations.MysqlData
                             StaffTypeId = 12,
                             Description = "HOD"
                         });
-                });
-
-            modelBuilder.Entity("SMS.Models.StaffeLetter", b =>
-                {
-                    b.Property<int>("StaffeLetterId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("AttachmentId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Department")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Empid")
-                        .HasColumnType("text");
-
-                    b.Property<string>("LetterType")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Month")
-                        .HasColumnType("text");
-
-                    b.Property<string>("StaffName")
-                        .HasColumnType("text");
-
-                    b.Property<string>("TeacherId")
-                        .HasColumnType("text");
-
-                    b.Property<int>("Year")
-                        .HasColumnType("int");
-
-                    b.HasKey("StaffeLetterId");
-
-                    b.ToTable("StaffeLetters");
                 });
 
             modelBuilder.Entity("SMS.Models.State", b =>
