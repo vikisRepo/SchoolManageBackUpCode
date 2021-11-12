@@ -19,6 +19,9 @@ namespace SMS.Models.Course
 		public CompletionCriteria CompletionCriteria { get; set; }
 		public int PassingScore { get; set; }
 
+		public string Class { get; set; }
+		public string Subject { get; set; }
+
 		public DateTime CreatedDate { get; set; }
 	}
 }

@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SMS.Models;
 using SMS.Models.Academics;
-using SMS.Models.Course;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApi.Helpers;
+using SMS.Models.Course;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,45 +16,65 @@ namespace SMS.Controllers
 	[ApiController]
 	public class CourseController : ControllerBase
 	{
-		private readonly SchoolManagementContext _dbcontext;
+		private readonly MysqlDataContext _dbcontext;
 
-		public CourseController(SchoolManagementContext dbcontext)
+		public CourseController(MysqlDataContext dbcontext)
 		{
 			this._dbcontext = dbcontext;
 		}
 
 		// GET: api/<CourseController>
 		[HttpGet]
-		public IEnumerable<string> Get()
+		public IEnumerable<CourseDetail> Get()
 		{
-			return new string[] { "value1", "value2" };
+			return this._dbcontext.CourseDetails.ToList();
 		}
 
 		// GET api/<CourseController>/5
 		[HttpGet("{id}")]
-		public string Get(int id)
+		public CourseDetail Get(int id)
 		{
-			return "value";
+			return this._dbcontext.CourseDetails.Where(x => x.CourseDetailID == id).FirstOrDefault();
 		}
 
 		// POST api/<CourseController>
 		[HttpPost]
-		public void Post([FromBody] CourseDetail courseDetail)
+		public int Post([FromBody] CourseDetail courseDetail)
 		{
+			CourseDetail _courseDetail = new CourseDetail
+			{
+				Code = courseDetail.Code,
+				CreatedDate = courseDetail.CreatedDate,
+				Description = courseDetail.Description,
+				Name = courseDetail.Name,
+			};
+
 			_dbcontext.CourseDetails.Add(courseDetail);
 			_dbcontext.SaveChanges();
+			return _courseDetail.CourseDetailID;
 		}
 
 		// PUT api/<CourseController>/5
 		[HttpPut("{id}")]
-		public void Put(int id, [FromBody] string value)
+		public void Put(int id, [FromBody] CourseDetail courseDetail)
 		{
+			var courseDetails = _dbcontext.CourseDetails.Where(x => x.CourseDetailID == id).FirstOrDefault();
+
+			courseDetails.Code = courseDetail.Code;
+			courseDetails.CreatedDate = courseDetail.CreatedDate;
+			courseDetails.Description = courseDetail.Description;
+			courseDetails.Name = courseDetail.Name;
+			_dbcontext.SaveChanges();
+
 		}
 
 		// DELETE api/<CourseController>/5
 		[HttpDelete("{id}")]
 		public void Delete(int id)
 		{
+			var courseDetails = _dbcontext.CourseDetails.Where(x => x.CourseDetailID == id).FirstOrDefault();
+			_dbcontext.CourseDetails.Remove(courseDetails);
+			_dbcontext.SaveChanges();
 		}
 	}
 }

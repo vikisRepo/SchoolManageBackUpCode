@@ -6,11 +6,11 @@ namespace SMS.Migrations.MysqlData
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            //migrationBuilder.DropForeignKey(
-            //    name: "FK_Students_BusTrips_BusTripid",
-            //    table: "Students");
+			migrationBuilder.DropForeignKey(
+				name: "FK_Students_BusTrips_BusTripid",
+				table: "Students");
 
-            migrationBuilder.DropIndex(
+			migrationBuilder.DropIndex(
                 name: "IX_Students_BusTripid",
                 table: "Students");
 
@@ -32,13 +32,13 @@ namespace SMS.Migrations.MysqlData
                 table: "Students",
                 column: "BusTripid");
 
-            //migrationBuilder.AddForeignKey(
-            //    name: "FK_Students_BusTrips_BusTripid",
-            //    table: "Students",
-            //    column: "BusTripid",
-            //    principalTable: "BusTrips",
-            //    principalColumn: "BusTripid",
-            //    onDelete: ReferentialAction.Restrict);
-        }
+			migrationBuilder.AddForeignKey(
+				name: "FK_Students_BusTrips_BusTripid",
+				table: "Students",
+				column: "BusTripid",
+				principalTable: "BusTrips",
+				principalColumn: "BusTripid",
+				onDelete: ReferentialAction.Restrict);
+		}
     }
 }
