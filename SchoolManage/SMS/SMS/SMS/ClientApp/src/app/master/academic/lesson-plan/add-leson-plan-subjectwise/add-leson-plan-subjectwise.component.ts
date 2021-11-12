@@ -7,6 +7,8 @@ import { SmsConstant } from 'src/app/shared/constant-values';
 import {AlertService } from 'src/app/shared/alert';
 import { LessonPlanRestApiService } from '../lesson-plan-rest-api.service';
 import { validateBasis } from '@angular/flex-layout';
+import { MessageBoxComponent } from 'src/app/shared/dialog-boxes/message-box/message-box.component';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-add-leson-plan-subjectwise',
   templateUrl: './add-leson-plan-subjectwise.component.html',
@@ -25,7 +27,8 @@ export class AddLesonPlanSubjectwiseComponent implements OnInit {
      };
 
   constructor(private fb:FormBuilder,private route: ActivatedRoute,
-    private router: Router,protected alertService: AlertService, private lessonPlanRestApiService : LessonPlanRestApiService) { 
+    private router: Router,protected alertService: AlertService, 
+    private lessonPlanRestApiService : LessonPlanRestApiService, public dialog: MatDialog) { 
       
     this.subjectwiselessonform=this.fb.group({
       date: ['',Validators.required],
@@ -48,7 +51,12 @@ onSubmit() {
 
     // TODO: Use EventEmitter with form value
     // console.warn(this.subjectwiselessonform.value);
-    this.lessonPlanRestApiService.createLessonPlan(classSubject).subscribe(_ => {});
+    this.lessonPlanRestApiService.createLessonPlan(classSubject).subscribe(_ => {
+      this.dialog.open(MessageBoxComponent,{ width: '350px',height:'100px',data:"New Lesson Plan saved successfully !"});
+      setTimeout(() => {
+        this.dialog.closeAll();
+      }, 1000);
+    });
   }
   ngOnInit(): void {
 

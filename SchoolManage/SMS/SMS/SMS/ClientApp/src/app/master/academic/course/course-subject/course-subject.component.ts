@@ -26,7 +26,7 @@ export class CourseSubjectComponent implements OnInit {
    
   }
   navigate(subject: any) {
-        this.router.navigate(["/main/course/courseListView/"+subject+"/"+this.classId]);
+        this.router.navigate(["course/courseListView/"+subject+"/"+this.classId]);
     //  this.router.navigate(["/main/course/courseSubjectwise/" + subject + "/" + this.classId]);
   }
 }

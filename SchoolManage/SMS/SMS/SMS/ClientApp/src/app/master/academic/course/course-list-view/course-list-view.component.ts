@@ -36,7 +36,7 @@ export class CourseListViewComponent implements OnInit {
   }
   navigate() {
     
-    this.router.navigate(["/main/course/courseSubjectwise/" + this.subjectName + "/" + this.classId]);
+    this.router.navigate(["course/courseSubjectwise/" + this.subjectName + "/" + this.classId]);
 }
 checkBoxAction(matValue:any){
   // this.pFlagEmit.emit(matValue.checked);

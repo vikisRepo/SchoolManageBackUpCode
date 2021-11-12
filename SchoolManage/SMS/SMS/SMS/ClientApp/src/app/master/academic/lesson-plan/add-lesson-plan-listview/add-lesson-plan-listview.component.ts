@@ -11,27 +11,6 @@ import { LessonPlan } from '../models/lesson-plan';
 })
 export class AddLessonPlanListviewComponent implements OnInit {
   studentListData : any[];
-
-  // studentListData=[{
-  //   "date":"20/2/2021",
-  //   'lesson':'one',
-  //    'topic':'one',
-  //    'concept':'aiswarya@gmail.com',
-  //    'extraInfo':'5',
-  //    'games':'B',
-  //    'activity':'good',
-  //    'homeWork':'good'
-  // },
-  // {
-  //   "date":"20/2/2021",
-  //   'lesson':'one',
-  //    'topic':'one',
-  //    'concept':'aiswarya@gmail.com',
-  //    'extraInfo':'5',
-  //    'games':'B',
-  //    'activity':'good',
-  //    'homeWork':'good'
-  // }];
   columnsToDisplay = ['date','lesson', 'topic','concept','extraInfo','games','activity','homeWork','actions'];
   LessonListForm:FormGroup;
 
@@ -41,11 +20,10 @@ export class AddLessonPlanListviewComponent implements OnInit {
 
   constructor(private fb:FormBuilder,private route: ActivatedRoute,private router:Router, 
                   private lessonPlanRestApiService : LessonPlanRestApiService) { 
-this.LessonListForm=this.fb.group({
-  from:[''],
-  to:['']
-});
-
+      this.LessonListForm=this.fb.group({
+        from:[''],
+        to:['']
+      });
   }
 
   ngOnInit(): void {
@@ -62,12 +40,12 @@ this.LessonListForm=this.fb.group({
 
   }
   navToback(){
-    this.router.navigate(["main/lesson-plan/addsLessonPlanSubjectWise/"+this.subject+"/"+this.class]);
+    this.router.navigate(["lesson-plan/addsLessonPlanSubjectWise/"+this.subject+"/"+this.class]);
   }
 
   editLessonPlan(lessonPlan : any)
   {
-    this.router.navigate(['main/lesson-plan/addsLessonPlanSubjectWise/',lessonPlan.lessonPlanId]);
+    this.router.navigate(['lesson-plan/addsLessonPlanSubjectWise/',lessonPlan.lessonPlanId]);
     // this.staffApiService.deleteStaff(staff.mobile).subscribe(_=>{
     // });
   }

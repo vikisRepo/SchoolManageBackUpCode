@@ -14,7 +14,7 @@ export class LessonPlanRestApiService {
   apiURL = environment.apiUrl + "/api/AcademicClass/";
   // lessonPlanURL = 'api/LessonPlan/';
 
-  lessonPlanURL =  "http://localhost:3007/LessonPlan";
+  lessonPlanURL =  environment.apiUrl + "/api/LessonPlan";
 
   coursePlanURL = 'api/Course/';
   
