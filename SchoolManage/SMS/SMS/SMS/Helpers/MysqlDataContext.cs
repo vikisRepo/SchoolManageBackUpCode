@@ -112,10 +112,8 @@ namespace WebApi.Helpers
         public virtual DbSet<StaffAttendance> StaffAttendances { get; set; }
 
         public virtual DbSet<StudentAttendance> StudentAttendances { get; set; }
-
-        #endregion
-
-        #region Course
+        
+         #region Course
 
         public virtual DbSet<CourseDetail> CourseDetails { get; set; }
         public virtual DbSet<CompletionCriteria> CompletionCriterias { get; set; }
@@ -128,9 +126,11 @@ namespace WebApi.Helpers
 
         #endregion
 
-        public virtual DbSet<ClassTimeTable> ClassTimeTables { get; set; }
 
-        public virtual DbSet<PeriodDetail> PeriodDetails { get; set; }
+
+    public virtual DbSet<ClassTimeTable> ClassTimeTables { get; set; }
+
+    //public virtual DbSet<PeriodDetail> PeriodDetails { get; set; }
 
     public virtual DbSet<StaffAttachments> StaffDocuments { get; set; }
 

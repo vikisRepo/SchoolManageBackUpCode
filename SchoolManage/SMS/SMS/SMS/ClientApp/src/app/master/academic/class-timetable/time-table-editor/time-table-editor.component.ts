@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SmsConstant } from 'src/app/shared/constant-values';
@@ -11,7 +11,8 @@ import { TimeTableService } from '../services/time-table.service';
   styleUrls: ['./time-table-editor.component.css']
 })
 export class TimeTableEditorComponent implements OnInit {
-
+  
+  @Input() public classdetails : any;
   subjects = SmsConstant.Subjectsdropdown;
   staff = SmsConstant.staffName;
 
