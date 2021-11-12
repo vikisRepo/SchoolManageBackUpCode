@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { AnonymousSubject } from 'rxjs/internal/Subject';
 import { TimeTableService } from '../services/time-table.service';
 import { TimeTableEditorComponent } from '../time-table-editor/time-table-editor.component';
 
@@ -9,7 +10,7 @@ import { TimeTableEditorComponent } from '../time-table-editor/time-table-editor
   styleUrls: ['./time-table-viewer.component.css']
 })
 export class TimeTableViewerComponent implements OnInit {
-
+  @Input() public classdetails : any;
   l = { j: 6 };
 
   timePeriod = ['', '&#8544;', '&#8545;', '&#8546;', '&#8547;', '&#8548;', '&#8549;', '&#8550;', '&#8551;', '&#8552;'];
@@ -55,6 +56,7 @@ export class TimeTableViewerComponent implements OnInit {
 
   ngOnInit(): void {
     this.table = this.getIndex();
+    console.log(this.classdetails.class+" "+this.classdetails.section);
   }
 
   getIndex() {
@@ -73,8 +75,15 @@ export class TimeTableViewerComponent implements OnInit {
   }
 
   selectPeriod(obj) {
-    this.ttServObj.setData = obj;
-    this.dialog.open(TimeTableEditorComponent, { data: obj })
+    debugger;
+    var merged:any;
+    let timetableClassDetails = {timeTableMasterdetails : this.classdetails};
+    if(obj != "null" && obj != "undefined")
+     merged = Object.assign(obj, timetableClassDetails);
+    else
+     merged = timetableClassDetails;
+    this.ttServObj.setData = merged;
+    this.dialog.open(TimeTableEditorComponent, { data: merged })
   }
 
 }

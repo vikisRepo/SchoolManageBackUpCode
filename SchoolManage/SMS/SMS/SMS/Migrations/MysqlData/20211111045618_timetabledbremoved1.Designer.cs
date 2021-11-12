@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.Helpers;
 
 namespace SMS.Migrations.MysqlData
 {
     [DbContext(typeof(MysqlDataContext))]
-    partial class MysqlDataContextModelSnapshot : ModelSnapshot
+    [Migration("20211111045618_timetabledbremoved1")]
+    partial class timetabledbremoved1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -2342,51 +2344,6 @@ namespace SMS.Migrations.MysqlData
                     b.ToTable("StudentFeedbacks");
                 });
 
-            modelBuilder.Entity("SMS.Models.TimeTable.ClassTimeTable", b =>
-                {
-                    b.Property<int>("ClassTimeTableId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Class")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("Day")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("EndTime")
-                        .HasColumnType("datetime");
-
-                    b.Property<int>("Period")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Section")
-                        .HasColumnType("text");
-
-                    b.Property<int>("StaffId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("StartTime")
-                        .HasColumnType("datetime");
-
-                    b.Property<int>("SubjectID")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Year")
-                        .HasColumnType("datetime");
-
-                    b.HasKey("ClassTimeTableId");
-
-                    b.HasIndex("StaffId");
-
-                    b.HasIndex("SubjectID");
-
-                    b.ToTable("ClassTimeTables");
-                });
-
             modelBuilder.Entity("SMS.Models.Transport.BusTrip", b =>
                 {
                     b.Property<int>("BusTripid")
@@ -2654,25 +2611,6 @@ namespace SMS.Migrations.MysqlData
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("SMS.Models.TimeTable.ClassTimeTable", b =>
-                {
-                    b.HasOne("SMS.Models.Staff", "Staffs")
-                        .WithMany()
-                        .HasForeignKey("StaffId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SMS.Models.Setup.Subject", "Subject")
-                        .WithMany()
-                        .HasForeignKey("SubjectID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Staffs");
-
-                    b.Navigation("Subject");
                 });
 
             modelBuilder.Entity("SMS.Models.Transport.BusTrip", b =>

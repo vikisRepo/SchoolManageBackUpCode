@@ -108,11 +108,11 @@ namespace WebApi.Helpers
 
         public virtual DbSet<StudentAttendance> StudentAttendances { get; set; }
 
-        #endregion 
+    #endregion
 
-        public virtual DbSet<ClassTimeTable> ClassTimeTables { get; set; }
+    public virtual DbSet<ClassTimeTable> ClassTimeTables { get; set; }
 
-        public virtual DbSet<PeriodDetail> PeriodDetails { get; set; }
+    //public virtual DbSet<PeriodDetail> PeriodDetails { get; set; }
 
     public virtual DbSet<StaffAttachments> StaffDocuments { get; set; }
 
