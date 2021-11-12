@@ -4,6 +4,7 @@ using SMS.Middleware;
 using SMS.Models;
 using SMS.Models.Academics;
 using SMS.Models.Attendance;
+using SMS.Models.Course;
 using SMS.Models.Inventory;
 using SMS.Models.Leave;
 using SMS.Models.Message;
@@ -40,9 +41,13 @@ namespace WebApi.Helpers
 
     //leave tables
 
-    public virtual DbSet<StudentLeave> StudentLeaves { get; set; }
+        public virtual DbSet<StudentLeave> StudentLeaves { get; set; }
 
         public virtual DbSet<StaffLeave> StaffLeaves { get; set; }
+
+        public virtual DbSet<LeaveSession> LeaveSessions { get; set; }
+
+        public virtual  DbSet<LeaveType> LeaveTypes { get; set; }
 
         #region "staff_Lookups"
         public virtual DbSet<Nationality> Nationalities { get; set; }
@@ -107,8 +112,21 @@ namespace WebApi.Helpers
         public virtual DbSet<StaffAttendance> StaffAttendances { get; set; }
 
         public virtual DbSet<StudentAttendance> StudentAttendances { get; set; }
+        
+         #region Course
 
-    #endregion
+        public virtual DbSet<CourseDetail> CourseDetails { get; set; }
+        public virtual DbSet<CompletionCriteria> CompletionCriterias { get; set; }
+
+        public virtual DbSet<CourseContent> CourseContents { get; set; }
+
+        public virtual DbSet<ContentType> ContentTypes { get; set; }
+
+        public virtual DbSet<StudentCourse> StudentCourses { get; set; }
+
+        #endregion
+
+
 
     public virtual DbSet<ClassTimeTable> ClassTimeTables { get; set; }
 

@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.Helpers;
 
 namespace SMS.Migrations.MysqlData
 {
     [DbContext(typeof(MysqlDataContext))]
-    partial class MysqlDataContextModelSnapshot : ModelSnapshot
+    [Migration("20211110175552_CourseV2")]
+    partial class CourseV2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -682,30 +684,6 @@ namespace SMS.Migrations.MysqlData
                     b.HasIndex("CompletionCriteriaId");
 
                     b.ToTable("CourseDetails");
-                });
-
-            modelBuilder.Entity("SMS.Models.Course.StudentCourse", b =>
-                {
-                    b.Property<int>("StudentCourseId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("CourseContentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PassingScore")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int");
-
-                    b.HasKey("StudentCourseId");
-
-                    b.HasIndex("CourseContentId");
-
-                    b.HasIndex("StudentId");
-
-                    b.ToTable("StudentCourses");
                 });
 
             modelBuilder.Entity("SMS.Models.Department", b =>
@@ -1588,7 +1566,7 @@ namespace SMS.Migrations.MysqlData
                     b.Property<int>("Frequency")
                         .HasColumnType("int");
 
-                    b.Property<int>("IsActive")
+                    b.Property<char>("IsActive")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -2214,6 +2192,41 @@ namespace SMS.Migrations.MysqlData
                         });
                 });
 
+            modelBuilder.Entity("SMS.Models.StaffeLetter", b =>
+                {
+                    b.Property<int>("StaffeLetterId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("AttachmentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Department")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Empid")
+                        .HasColumnType("text");
+
+                    b.Property<string>("LetterType")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Month")
+                        .HasColumnType("text");
+
+                    b.Property<string>("StaffName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("TeacherId")
+                        .HasColumnType("text");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("int");
+
+                    b.HasKey("StaffeLetterId");
+
+                    b.ToTable("StaffeLetters");
+                });
+
             modelBuilder.Entity("SMS.Models.State", b =>
                 {
                     b.Property<int>("StateId")
@@ -2429,8 +2442,25 @@ namespace SMS.Migrations.MysqlData
                     b.Property<string>("Class")
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("Date")
+                    b.Property<string>("Section")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("Year")
                         .HasColumnType("datetime");
+
+                    b.HasKey("ClassTimeTableId");
+
+                    b.ToTable("ClassTimeTables");
+                });
+
+            modelBuilder.Entity("SMS.Models.TimeTable.PeriodDetail", b =>
+                {
+                    b.Property<int>("PeriodDetailId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("ClassTimeTableId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Day")
                         .HasColumnType("text");
@@ -2441,9 +2471,6 @@ namespace SMS.Migrations.MysqlData
                     b.Property<int>("Period")
                         .HasColumnType("int");
 
-                    b.Property<string>("Section")
-                        .HasColumnType("text");
-
                     b.Property<int>("StaffId")
                         .HasColumnType("int");
 
@@ -2453,16 +2480,15 @@ namespace SMS.Migrations.MysqlData
                     b.Property<int>("SubjectID")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Year")
-                        .HasColumnType("datetime");
+                    b.HasKey("PeriodDetailId");
 
-                    b.HasKey("ClassTimeTableId");
+                    b.HasIndex("ClassTimeTableId");
 
                     b.HasIndex("StaffId");
 
                     b.HasIndex("SubjectID");
 
-                    b.ToTable("ClassTimeTables");
+                    b.ToTable("PeriodDetails");
                 });
 
             modelBuilder.Entity("SMS.Models.Transport.BusTrip", b =>
@@ -2670,25 +2696,6 @@ namespace SMS.Migrations.MysqlData
                     b.Navigation("CompletionCriteria");
                 });
 
-            modelBuilder.Entity("SMS.Models.Course.StudentCourse", b =>
-                {
-                    b.HasOne("SMS.Models.Course.CourseContent", "CourseContent")
-                        .WithMany()
-                        .HasForeignKey("CourseContentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SMS.Models.Student", "Student")
-                        .WithMany()
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CourseContent");
-
-                    b.Navigation("Student");
-                });
-
             modelBuilder.Entity("SMS.Models.Inventory.Inventory", b =>
                 {
                     b.HasOne("SMS.Models.Inventory.InventoryItemType", "InventoryItemType")
@@ -2781,8 +2788,14 @@ namespace SMS.Migrations.MysqlData
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SMS.Models.TimeTable.ClassTimeTable", b =>
+            modelBuilder.Entity("SMS.Models.TimeTable.PeriodDetail", b =>
                 {
+                    b.HasOne("SMS.Models.TimeTable.ClassTimeTable", "ClassTimeTable")
+                        .WithMany("PeriodDetails")
+                        .HasForeignKey("ClassTimeTableId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("SMS.Models.Staff", "Staffs")
                         .WithMany()
                         .HasForeignKey("StaffId")
@@ -2794,6 +2807,8 @@ namespace SMS.Migrations.MysqlData
                         .HasForeignKey("SubjectID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("ClassTimeTable");
 
                     b.Navigation("Staffs");
 
@@ -2901,6 +2916,11 @@ namespace SMS.Migrations.MysqlData
             modelBuilder.Entity("SMS.Models.Student", b =>
                 {
                     b.Navigation("Addresses");
+                });
+
+            modelBuilder.Entity("SMS.Models.TimeTable.ClassTimeTable", b =>
+                {
+                    b.Navigation("PeriodDetails");
                 });
 
             modelBuilder.Entity("WebApi.Entities.Account", b =>

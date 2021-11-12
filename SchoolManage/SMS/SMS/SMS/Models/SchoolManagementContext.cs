@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using SMS.Models.Academics;
+using SMS.Models.Course;
 using SMS.Models.Setup;
 using SMS.Models.TimeTable;
 
@@ -55,8 +56,6 @@ namespace SMS.Models
 		public virtual DbSet<LessonPlan> LessonPlans { get; set; }
 
         public virtual DbSet<CourseDetail> CourseDetails { get; set; }
-
-        public virtual DbSet<StudentCourseDetail> StudentCourseDetails { get; set; }
 
         public virtual DbSet<StaffeLetter> StaffeLetters { get; set; }
 
