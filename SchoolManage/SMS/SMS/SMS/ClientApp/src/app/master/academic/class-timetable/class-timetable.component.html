@@ -8,15 +8,15 @@
         <div class="row">
            
             <div class="col-sm-2" style="font-size: 24px; padding-top: 13px;">
-                LKG
+                <p>CLASS : {{std}} - {{sec}}</p>
             </div>
             <div class="col-sm-2"></div>
             <div class="col-sm-2">
                 <mat-form-field appearance="standard">
                     <mat-label>Class</mat-label>
                     <mat-select formControlName="classFilter" (selectionChange)="applyFilter('classFilter')">
-                        <mat-option *ngFor="let classFilter  of classes " [value]="classFilter .viewValue">
-                            {{classFilter .viewValue}} 
+                        <mat-option *ngFor="let classFilter  of classes " [value]="classFilter.className">
+                            {{classFilter.className}} 
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -37,6 +37,6 @@
     <!-- </div> -->
 
 
-    <app-time-table-viewer></app-time-table-viewer>
+    <app-time-table-viewer [classdetails] = "classdetails"></app-time-table-viewer>
 
 </form>

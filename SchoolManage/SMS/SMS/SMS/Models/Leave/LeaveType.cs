@@ -11,6 +11,6 @@ namespace SMS.Models.Leave
 
 		public string LeaveTypeDescr { get; set; }
 
-		public int LeaveTypeFor { get; set; }
+		public string LeaveTypeFor { get; set; }
 	}
 }
