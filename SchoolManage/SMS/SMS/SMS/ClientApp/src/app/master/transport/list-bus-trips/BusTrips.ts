@@ -1,6 +1,9 @@
 export class BusTrips{
-    busTripnumber? :string;
-    busNumber? :string;
-    driverName? :string;
-    driverNumber? :string;
+    bustripid? : number;
+    tripnumber? :string;
+    tripAreas? : string;
+    tripTimingFrom? : string;
+    tripTimingTo? : string;
+    totalHeadCount? : Number; 
+    busedAndDriverId ? : Number;
 } 

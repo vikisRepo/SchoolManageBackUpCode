@@ -1,5 +1,5 @@
 <mat-accordion>
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" *ngIf="this.account.Role == 0">
         <mat-expansion-panel-header>
             <mat-panel-title>
                 <img src="../../../assets/student.png" style="width:40px;">
@@ -79,7 +79,7 @@
             <mat-list-item routerLink="lesson-plan">
                 Lesson Plan
             </mat-list-item>
-            <mat-list-item>
+            <mat-list-item routerLink="class-grade">
                 Class Details
             </mat-list-item>
             <mat-list-item routerLink="course">

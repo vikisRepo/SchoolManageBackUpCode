@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Role } from 'src/app/_models';
 import { AccountService } from '../../../_services';
 
 @Component({
@@ -14,15 +15,18 @@ export class SideMenuComponent implements OnInit {
   mystuFeedbackroute : string;
   mystaffFeedbackroute : string;
   myeLetterroute : string;
+  role : Role;
   
   
   constructor(private accountService: AccountService) { }
 
   ngOnInit(): void {
     this.account = this.accountService.accountValue;
+    debugger;
     this.mystuFeedbackroute = "student-feedback-list/"+this.account.id;
     this.mystaffFeedbackroute = "staff-feedback-list/"+this.account.id;
     this.myeLetterroute = "e-letter-list/" + this.account.id;
+    // this.role = this.account.Role;
   }
 
   openSite(siteUrl) : void {

@@ -27,6 +27,7 @@ import { HomeComponent } from '../app/home';
 import { AvatarModule } from 'ngx-avatar';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { NgScormPlayerModule } from 'ng-scorm-player';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     AngularFileUploaderModule,
     BlockUIModule.forRoot(),
     AlertModule,
+    NgScormPlayerModule.forChild({debug:true}),
     // AlertComponent,
     // HomeComponent,
     SimpleNotificationsModule.forRoot(),

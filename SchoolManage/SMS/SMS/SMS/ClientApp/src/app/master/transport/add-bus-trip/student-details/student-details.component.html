@@ -4,9 +4,9 @@
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
                     <mat-label>Class</mat-label>
-                    <mat-select formControlName="class">
-                        <mat-option *ngFor="let class of classes" [value]="class.value">
-                            {{class.viewValue}}
+                    <mat-select formControlName="class" (selectionChange)="applyFilterClass('classFilter')" (selectionChange)="LoadSections($event)">
+                        <mat-option *ngFor="let class of classes" [value]="class.className">
+                            {{class.className}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>    
@@ -14,9 +14,9 @@
             <div class="col-sm-3">
                 <mat-form-field appearance="standard">
                     <mat-label>section</mat-label>
-                    <mat-select formControlName="section">
-                        <mat-option *ngFor="let section of sections" [value]="section.value">
-                            {{section.viewValue}}
+                    <mat-select formControlName="section" (selectionChange)="applyFilterSection('sectionFilter')">
+                        <mat-option *ngFor="let section of ALL_Section" [value]="section">
+                            {{section}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>   
@@ -25,3 +25,110 @@
     </div>
 
 </form>
+<div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-4">
+<table mat-table [dataSource]="studentListData" class="mat-elevation-z6" style="width: 100%;">
+    <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-checkbox (change)="$event ? masterToggle() : null"
+                        [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()">
+          </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()"
+                        (change)="$event ? selection.toggle(row) : null"
+                        [checked]="selection.isSelected(row)">
+          </mat-checkbox>
+        </td>
+    </ng-container>
+    <!--studentName-->
+    <ng-container matColumnDef="StudentName">
+        <th mat-header-cell *matHeaderCellDef> Student Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+    </ng-container>
+
+    <!--mobileNumber-->
+    <ng-container matColumnDef="MobileNumber">
+        <th mat-header-cell *matHeaderCellDef> Mobile Number </th>
+        <td mat-cell *matCellDef="let element"> {{element.mobile}} </td>
+    </ng-container>
+
+    <!--class-->
+    <ng-container matColumnDef="Class">
+        <th mat-header-cell *matHeaderCellDef> Class </th>
+        <td mat-cell *matCellDef="let element"> {{element.class}} </td>
+    </ng-container>
+
+    <!--section-->
+    <ng-container matColumnDef="Section">
+        <th mat-header-cell *matHeaderCellDef> Section </th>
+        <td mat-cell *matCellDef="let element"> {{element.section}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+</table>
+</div>
+<div class="col-sm-2">
+    <div class="row" style="margin-top: 50%;margin-left:15px;">
+    <div class="example-button-container">
+        <button mat-fab color="primary" aria-label="Example icon button with a home icon" (click)="addStudent()">
+          <mat-icon>fast_forward</mat-icon>
+        </button>
+        
+      </div>
+      </div>
+      <div class="row" style="margin-top:20px;margin-left:15px;">
+      <div class="example-button-container">
+        <button mat-fab color="primary" aria-label="Example icon button with a home icon" (click)="removeStudentfromTrip()">
+            <mat-icon>fast_rewind</mat-icon>
+          </button>
+      </div>
+    </div>
+</div>
+<div class="col-sm-4">
+    <table mat-table [dataSource]="selectedStudentListData" class="mat-elevation-z6" style="width: 100%;">
+        <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef>
+              <mat-checkbox (change)="$event ? masterToggleTrip() : null"
+                            [checked]="selectionTrip.hasValue() && isAllSelectedTrip()"
+                            [indeterminate]="selectionTrip.hasValue() && !isAllSelectedTrip()">
+              </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row">
+              <mat-checkbox (click)="$event.stopPropagation()"
+                            (change)="$event ? selectionTrip.toggle(row) : null"
+                            [checked]="selectionTrip.isSelected(row)">
+              </mat-checkbox>
+            </td>
+        </ng-container>
+        <!--studentName-->
+        <ng-container matColumnDef="StudentName">
+            <th mat-header-cell *matHeaderCellDef> Student Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+        </ng-container>
+    
+        <!--mobileNumber-->
+        <ng-container matColumnDef="MobileNumber">
+            <th mat-header-cell *matHeaderCellDef> Mobile Number </th>
+            <td mat-cell *matCellDef="let element"> {{element.mobile}} </td>
+        </ng-container>
+    
+        <!--class-->
+        <ng-container matColumnDef="Class">
+            <th mat-header-cell *matHeaderCellDef> Class </th>
+            <td mat-cell *matCellDef="let element"> {{element.class}} </td>
+        </ng-container>
+    
+        <!--section-->
+        <ng-container matColumnDef="Section">
+            <th mat-header-cell *matHeaderCellDef> Section </th>
+            <td mat-cell *matCellDef="let element"> {{element.section}} </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+    </table> 
+</div>
+</div>
