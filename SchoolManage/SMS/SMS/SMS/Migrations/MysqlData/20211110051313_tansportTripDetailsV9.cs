@@ -6,11 +6,11 @@ namespace SMS.Migrations.MysqlData
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            //migrationBuilder.DropForeignKey(
-            //    name: "FK_Students_BusTrips_BusTripid",
-            //    table: "Students");
+			migrationBuilder.DropForeignKey(
+				name: "FK_Students_BusTrips_BusTripid",
+				table: "Students");
 
-            migrationBuilder.AlterColumn<int>(
+			migrationBuilder.AlterColumn<int>(
                 name: "BusTripid",
                 table: "Students",
                 type: "int",

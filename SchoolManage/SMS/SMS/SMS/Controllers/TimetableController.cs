@@ -21,32 +21,32 @@ namespace SMS.Controllers
             this._dbcontext = dbcontext;
         }
 
-   // GET api/<TimetableController>/5
-    [HttpGet("GetTimeTable/{clases}/{section}")]
-    public IActionResult Get(string clases,string section,DateTime fromDate,DateTime todate)
-    {
-      return Ok(_dbcontext.ClassTimeTables.Where(X => X.Class == clases && X.Section == section && (X.Date >= fromDate && X.Date <=X.Date)).FirstOrDefault());
-    }
+        // GET api/<TimetableController>/5
+        [HttpGet("GetTimeTable/{clases}/{section}")]
+        public IActionResult Get(string clases, string section, DateTime fromDate, DateTime todate)
+        {
+            return Ok(_dbcontext.ClassTimeTables.Where(X => X.Class == clases && X.Section == section && (X.Date >= fromDate && X.Date <= X.Date)).FirstOrDefault());
+        }
 
-    // GET: api/<TimetableController>
-    //    [HttpGet("RetriveTimetable")]
-    //public ClassTimeTable Get([FromBody] ClassTimeTableReq value)
-    //{
-    //  return _dbcontext.ClassTimeTables
-    //                 .Where(s => s.Class == value.Class && s.Section == value.Section && s.Year == value.Year)
-    //                 .FirstOrDefault<ClassTimeTable>();
-    //}
+        // GET: api/<TimetableController>
+        //    [HttpGet("RetriveTimetable")]
+        //public ClassTimeTable Get([FromBody] ClassTimeTableReq value)
+        //{
+        //  return _dbcontext.ClassTimeTables
+        //                 .Where(s => s.Class == value.Class && s.Section == value.Section && s.Year == value.Year)
+        //                 .FirstOrDefault<ClassTimeTable>();
+        //}
 
-    // POST api/<TimetableController>
-    [HttpPost("CreatePeriod")]
-    public void Post([FromBody] ClassTimeTable value)
-    {
-      _dbcontext.ClassTimeTables.Add(value);
-      _dbcontext.SaveChanges();
-    }
+        // POST api/<TimetableController>
+        [HttpPost("CreatePeriod")]
+        public void Post([FromBody] ClassTimeTable value)
+        {
+            _dbcontext.ClassTimeTables.Add(value);
+            _dbcontext.SaveChanges();
+        }
 
-    // PUT api/<TimetableController>/5
-    [HttpPut("{id}")]
+        // PUT api/<TimetableController>/5
+        [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
