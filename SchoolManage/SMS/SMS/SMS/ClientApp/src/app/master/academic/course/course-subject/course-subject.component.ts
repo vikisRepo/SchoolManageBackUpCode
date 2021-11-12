@@ -18,6 +18,7 @@ export class CourseSubjectComponent implements OnInit {
     private router: Router, private lessonPlanRestApiService : LessonPlanRestApiService) { }
 
   ngOnInit(): void {
+    debugger;
     this.classId = this.route.snapshot.paramMap.get('class');
     this.lessonPlanRestApiService.getClassSubjects(this.classId).subscribe( data => {
       this.standard = data;
@@ -28,5 +29,22 @@ export class CourseSubjectComponent implements OnInit {
   navigate(subject: any) {
         this.router.navigate(["course/courseListView/"+subject+"/"+this.classId]);
     //  this.router.navigate(["/main/course/courseSubjectwise/" + subject + "/" + this.classId]);
+  }
+
+  getColor(title) { (2)
+    switch (title) {
+      case title.includes('Tamil'):
+        return '#E36EEC';
+      case title.includes('English'):
+        return '#6E9BEC';
+      case title.includes('Maths'):
+        return '#EC846E';
+      case title.includes('Science'):
+        return 'yellow';
+      case title.includes('Social'):
+        return '#FFBD33'; 
+      default:
+         return '33FFBD';  
+    }
   }
 }

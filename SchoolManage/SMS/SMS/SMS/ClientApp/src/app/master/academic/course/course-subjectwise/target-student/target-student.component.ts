@@ -59,7 +59,7 @@ export class TargetStudentComponent implements OnInit {
   LoadStudent()
   {
     // this.blockUI.start();
-
+     debugger;
     this.currentUserSubscription = this.studentrestApiService.getStudents().subscribe((student:any) => {
       this.currentStudent = student;
       this.studentListData = new MatTableDataSource(student);

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Console } from 'console';
 import { Role } from 'src/app/_models';
 import { AccountService } from '../../../_services';
 
@@ -27,6 +28,7 @@ export class SideMenuComponent implements OnInit {
     this.mystaffFeedbackroute = "staff-feedback-list/"+this.account.id;
     this.myeLetterroute = "e-letter-list/" + this.account.id;
     // this.role = this.account.Role;
+    console.log(this.account.Role);
   }
 
   openSite(siteUrl) : void {
